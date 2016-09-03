@@ -8,7 +8,7 @@ About
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
 and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift.
 
-Easy install
+Easy Install
 ------------
 
 Download the zip [file](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
