@@ -6,7 +6,9 @@ About
 ![demo](https://github.com/kmikiy/SpotMenu/blob/master/demo.gif)
 
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
-and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift.
+and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift. 
+
+Note: The animated gif currently demonstrates the functionality of version 1.0
 
 New Features in Version 1.1
 ---------------------
