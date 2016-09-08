@@ -8,10 +8,16 @@ About
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
 and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift.
 
+Update in Version 1.1
+---------------------
++ Added play/pause functionality
++ Added a scrollbar to jump to a position of the currently playing song
++ The menu bar now shows an icon if music is playing
+
 Easy Install
 ------------
 
-Download the zip [file](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.0](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu.zip) or [version 1.1](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu_1_1.zip). Unarchive it. Run SpotMenu.app.
 In case of unidentified developer follow these [steps](https://mborgerson.com/trayplay)!
 
 How to Build
