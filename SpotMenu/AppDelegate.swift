@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Spotify
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -20,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var lastTitle = ""
     var lastArtist = ""
+    var lastState = PlayerState.playing
     
     var initialWidth:CGFloat = 0
 
@@ -28,14 +30,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         
         if let button = statusItem.button {
-            
             button.image = NSImage(named: "StatusBarButtonImage")
             button.action = #selector(AppDelegate.togglePopover(_:))
             button.addSubview(hiddenView)
             updateTitle()
             initialWidth = statusItem.button!.bounds.width
             updateHidden()
-            
         }
         
         popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
@@ -65,11 +65,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateTitle(){
+        let state = Spotify.playerState
         if let artist = Spotify.currentTrack.artist {
-            if let title = Spotify.currentTrack.title where lastTitle != title || lastArtist != artist {
-                statusItem.title = "\(artist) - \(title)  "
+            if let title = Spotify.currentTrack.title where lastTitle != title || lastArtist != artist || lastState != state {
+                switch state {
+                case .playing:
+                    statusItem.title = "🎶 \(artist) - \(title)  "
+                default:
+                    statusItem.title = "\(artist) - \(title)  "
+                }
+                
                 lastArtist = artist
                 lastTitle = title
+                lastState = state
             }
         } else {
             statusItem.title = nil

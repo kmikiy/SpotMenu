@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct InternalNotification {
-    static let key = "com.KMikiy.SpotMenu.NotificationKey"
+public struct InternalNotification {
+    public static let key = "com.KMikiy.SpotMenu.NotificationKey"
 }
