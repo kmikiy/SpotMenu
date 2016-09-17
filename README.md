@@ -19,13 +19,13 @@ New Features in Version 1.1
 Easy Install
 ------------
 
-Download the zip file [version 1.0](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu.zip) or [version 1.1](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu_1_1.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.0](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu_1_0.zip), [version 1.1](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu_1_1.zip) or [version 1.2](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu_1_2.zip). Unarchive it. Run SpotMenu.app.
 In case of unidentified developer follow these [steps](https://mborgerson.com/trayplay)!
 
 How to Build
 ------------
 
-First, you'll need Xcode. You can download this at the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12).
+First, you'll need Xcode 8. You can download this at the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 Second, you'll need [CocoaPods](https://guides.cocoapods.org/using/getting-started.html). 
 
 Now, use [Git](http://git-scm.com/) to clone the repository and clone the submodules.
@@ -35,3 +35,5 @@ Now, use [Git](http://git-scm.com/) to clone the repository and clone the submod
     pod install
 
 Finally, open up the SpotMenu.xcworkspace. Set the "Scheme" to build the SpotMenu target for "My Mac". Then Product > Run (or the shortcut ⌘R).
+
+Note: Version 1.2 has be updated to swift 3.0 therefore Xcode 8 is required.
