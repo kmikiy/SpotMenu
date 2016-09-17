@@ -8,20 +8,20 @@
 
 import Foundation
 
-public class Track: NSObject {
-    public var title: String? {
+open class Track: NSObject {
+    open var title: String? {
         get { return Spotify.executeAppleScriptWithString("get name of current track") }
     }
     
-    public var artist: String? {
+    open var artist: String? {
         get { return Spotify.executeAppleScriptWithString("get artist of current track") }
     }
     
-    public var artworkUrl: String? {
+    open var artworkUrl: String? {
         get { return Spotify.executeAppleScriptWithString("get artwork url of current track") }
     }
     
-    public var positionPercentage: Double {
+    open var positionPercentage: Double {
         get {
             let d = duration
             if d == 0.0 { return 0}
@@ -30,13 +30,13 @@ public class Track: NSObject {
         set {
             let d = duration
             if d == 0.0 { return }
-            Spotify.executeAppleScriptWithString("set player position to \(d * newValue)")
+            _ = Spotify.executeAppleScriptWithString("set player position to \(d * newValue)")
             return
         }
         
     }
     
-    public var position: Double {
+    open var position: Double {
         get {
             if let pos = Spotify.executeAppleScriptWithString("get player position") {
                 if let val = Double(pos) {
@@ -47,7 +47,7 @@ public class Track: NSObject {
         }
     }
     
-    public var duration: Double {
+    open var duration: Double {
         get {
             if let pos = Spotify.executeAppleScriptWithString("get duration of current track") {
                 if let val = Double(pos) {

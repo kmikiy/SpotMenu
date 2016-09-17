@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class Spotify: NSObject {
+open class Spotify: NSObject {
     
     // MARK: - Variables
-    public static var currentTrack = Track()
+    open static var currentTrack = Track()
     
-    public static var playerState: PlayerState {
+    open static var playerState: PlayerState {
         get {
             if let state = Spotify.executeAppleScriptWithString("get player state") {
                 //print(state)
@@ -27,33 +27,33 @@ public class Spotify: NSObject {
         set {
             switch newValue {
             case .paused:
-                Spotify.executeAppleScriptWithString("pause")
+                _ = Spotify.executeAppleScriptWithString("pause")
             case .playing:
-                Spotify.executeAppleScriptWithString("play")
+                _ = Spotify.executeAppleScriptWithString("play")
             }
-            NSNotificationCenter.defaultCenter().postNotificationName(InternalNotification.key, object: self)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
         }
     }
     
     
     // MARK: - Methods
-    public static func playNext(completionHandler: (()->())? = nil){
-        Spotify.executeAppleScriptWithString("play (next track)")
+    open static func playNext(_ completionHandler: (()->())? = nil){
+        _ = Spotify.executeAppleScriptWithString("play (next track)")
         completionHandler?()
-        NSNotificationCenter.defaultCenter().postNotificationName(InternalNotification.key, object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
         
     }
     
-    public static func playPrevious(completionHandler: (() -> ())? = nil){
-        Spotify.executeAppleScriptWithString("play (previous track)")
+    open static func playPrevious(_ completionHandler: (() -> ())? = nil){
+        _ = Spotify.executeAppleScriptWithString("play (previous track)")
         completionHandler?()
-        NSNotificationCenter.defaultCenter().postNotificationName(InternalNotification.key, object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
     
 
     
     // MARK: - Helpers
-    static func executeAppleScriptWithString(command: String) -> String? {
+    static func executeAppleScriptWithString(_ command: String) -> String? {
         let myAppleScript = "if application \"Spotify\" is running then tell application \"Spotify\" to \(command)"
         //print(myAppleScript)
         var error: NSDictionary?

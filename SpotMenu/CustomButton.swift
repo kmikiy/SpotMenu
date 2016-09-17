@@ -16,7 +16,7 @@ class CustomButton: NSButton {
         super.init(frame: frameRect)
         
         // set tracking area
-        let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.MouseEnteredAndExited, NSTrackingAreaOptions.ActiveAlways])
+        let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways])
         trackingArea = NSTrackingArea(rect: bounds, options: opts, owner: self, userInfo: nil)
         self.addTrackingArea(trackingArea)
         
@@ -27,7 +27,7 @@ class CustomButton: NSButton {
         super.init(coder: coder)
         
         // set tracking area
-        let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.MouseEnteredAndExited, NSTrackingAreaOptions.ActiveAlways])
+        let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways])
         trackingArea = NSTrackingArea(rect: bounds, options: opts, owner: self, userInfo: nil)
         self.addTrackingArea(trackingArea)
         
@@ -39,11 +39,11 @@ class CustomButton: NSButton {
     }
     
     // MARK: mouse events
-    override func mouseEntered(theEvent: NSEvent) {
+    override func mouseEntered(with theEvent: NSEvent) {
         self.alphaValue = 1
     }
     
-    override func mouseExited(theEvent: NSEvent) {
+    override func mouseExited(with theEvent: NSEvent) {
         self.alphaValue = 0
     }
 }

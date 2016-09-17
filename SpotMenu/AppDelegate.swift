@@ -15,9 +15,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     var eventMonitor: EventMonitor?
 
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     let popover = NSPopover()
-    var timer: NSTimer?
+    var timer: Timer?
     
     var lastTitle = ""
     var lastArtist = ""
@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var initialWidth:CGFloat = 0
 
     var hiddenView: NSView = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 1))
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
         if let button = statusItem.button {
@@ -41,33 +41,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
         //popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
         
-        eventMonitor = EventMonitor(mask: [.LeftMouseDownMask, .RightMouseDownMask]) { [unowned self] event in
-            if self.popover.shown {
+        eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [unowned self] event in
+            if self.popover.isShown {
                 self.closePopover(event)
             }
         }
         eventMonitor?.start()
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.updateTitleAndPopover), name: InternalNotification.key, object: nil)
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.updateTitleAndPopover), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
         eventMonitor?.stop()
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         timer!.invalidate()
     }
 
     
     func postUpdateNotification(){
-        NSNotificationCenter.defaultCenter().postNotificationName(InternalNotification.key, object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
     
     func updateTitle(){
         let state = Spotify.playerState
         if let artist = Spotify.currentTrack.artist {
-            if let title = Spotify.currentTrack.title where lastTitle != title || lastArtist != artist || lastState != state {
+            if let title = Spotify.currentTrack.title , lastTitle != title || lastArtist != artist || lastState != state {
                 switch state {
                 case .playing:
                     statusItem.title = "🎶 \(artist) - \(title)  "
@@ -100,20 +100,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: - Popover
 
-    func showPopover(sender: AnyObject?) {
+    func showPopover(_ sender: AnyObject?) {
         initialWidth = statusItem.button!.bounds.width
         updateHidden()
-        popover.showRelativeToRect(hiddenView.bounds, ofView: hiddenView, preferredEdge: NSRectEdge.MinY)
+        popover.show(relativeTo: hiddenView.bounds, of: hiddenView, preferredEdge: NSRectEdge.minY)
         eventMonitor?.start()
     }
     
-    func closePopover(sender: AnyObject?) {
+    func closePopover(_ sender: AnyObject?) {
         popover.performClose(sender)
         eventMonitor?.stop()
     }
     
-    func togglePopover(sender: AnyObject?) {
-        if popover.shown {
+    func togglePopover(_ sender: AnyObject?) {
+        if popover.isShown {
             closePopover(sender)
         } else {
             showPopover(sender)
