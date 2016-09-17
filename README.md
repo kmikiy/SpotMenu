@@ -8,10 +8,16 @@ About
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
 and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift. 
 
-Note: The animated gif currently demonstrates the functionality of version 1.0
+Note: The animated gif currently demonstrates the functionality of version 1.2
+
+New Features in Version 1.2
+---------------------------
++ Scrollbar now updates its position more frequently
++ Current track position is shown in text also (minutes:seconds)
++ The ability to toggle between the duration of the current track and the time remaining
 
 New Features in Version 1.1
----------------------
+---------------------------
 + Added play/pause functionality
 + Added a scrollbar to jump to a position of the currently playing song
 + The menu bar now shows an icon if music is playing
