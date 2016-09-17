@@ -42,4 +42,4 @@ Now, use [Git](http://git-scm.com/) to clone the repository and clone the submod
 
 Finally, open up the SpotMenu.xcworkspace. Set the "Scheme" to build the SpotMenu target for "My Mac". Then Product > Run (or the shortcut ⌘R).
 
-Note: Version 1.2 has be updated to swift 3.0 therefore Xcode 8 is required.
+Note: Version 1.2 has been updated to swift 3.0 therefore Xcode 8 is required.
