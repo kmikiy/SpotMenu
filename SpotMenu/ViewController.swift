@@ -1,25 +1,20 @@
 import Cocoa
 import WebKit
-import AlamofireImage
-import Alamofire
 import Spotify
 
 class ViewController: NSViewController {
     
-    var lastArtworkUrl = ""
-    
     @IBOutlet weak var positionSlider: NSSlider!
-
     @IBOutlet weak var artistLabel: NSTextField!
     @IBOutlet weak var titleLabel: NSTextField!
     @IBOutlet weak var playerStateButton: NSButton!
     @IBOutlet weak var artworkImageView: NSImageView!
     @IBOutlet weak var leftTime: NSTextField!
     @IBOutlet weak var rightTime: NSTextField!
+    
+    var lastArtworkUrl = ""
     var rightTimeIsDuration: Bool = true
-    
     var timer: Timer!
-    
     var defaultImage: NSImage!
     
     override func viewWillAppear() {
@@ -49,18 +44,7 @@ class ViewController: NSViewController {
 
     func updateInfo() {
         if let artworkUrl = Spotify.currentTrack.artworkUrl , artworkUrl != lastArtworkUrl {
-            Alamofire.request(artworkUrl, method: .get)
-                .responseImage { response in
-//                    debugPrint(response)
-//                    print(response.request)
-//                    print(response.response)
-//                    debugPrint(response.result)
-                    
-                    if let image = response.result.value {
-//                        print("image downloaded: \(image)")
-                        self.artworkImageView.image = image
-                    }
-            }
+            self.artworkImageView.downloadImage(url: URL(string: artworkUrl)!)
             lastArtworkUrl = artworkUrl
         }
         if Spotify.currentTrack.artworkUrl == nil {
@@ -165,4 +149,27 @@ extension ViewController {
         rightTimeIsDuration = !rightTimeIsDuration
         updateTime()
     }
+}
+
+extension NSImageView {
+    private func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL) {
+        
+//        Swift.print("Download Started")
+        getDataFromUrl(url: url) { (data, response, error)  in
+            DispatchQueue.main.sync() { () -> Void in
+                guard let data = data, error == nil else { return }
+//                Swift.print(response?.suggestedFilename ?? url.lastPathComponent)
+//                Swift.print("Download Finished")
+                self.image = NSImage(data: data)
+            }
+        }
+    }
+    
 }

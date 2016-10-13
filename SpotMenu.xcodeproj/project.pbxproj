@@ -21,7 +21,6 @@
 		2133243B1D79967B0060D48C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213324391D79967B0060D48C /* ViewController.xib */; };
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
 		21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A668171D7F13CE009813E5 /* CustomButton.swift */; };
-		AA726E9211BD43ECCD20E313 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8065BECAB091152A4C5578F /* Pods_SpotMenu.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,9 +64,6 @@
 		213324391D79967B0060D48C /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		21A668171D7F13CE009813E5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		C8065BECAB091152A4C5578F /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBF082F911D700C2F5672C53 /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
-		DDB9A6E6AD127A8F2340C6AC /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +78,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA726E9211BD43ECCD20E313 /* Pods_SpotMenu.framework in Frameworks */,
 				210C644E1D7EB3E4001318FF /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,8 +112,6 @@
 				2133242A1D79801E0060D48C /* SpotMenu */,
 				210C64481D7EB3E4001318FF /* Spotify */,
 				213324291D79801E0060D48C /* Products */,
-				32B8091ED3929E51E1512A7A /* Pods */,
-				E8CD7B8EA4F3A2F726BD83BA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,23 +137,6 @@
 				213324321D79801E0060D48C /* Info.plist */,
 			);
 			path = SpotMenu;
-			sourceTree = "<group>";
-		};
-		32B8091ED3929E51E1512A7A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CBF082F911D700C2F5672C53 /* Pods-SpotMenu.debug.xcconfig */,
-				DDB9A6E6AD127A8F2340C6AC /* Pods-SpotMenu.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		E8CD7B8EA4F3A2F726BD83BA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C8065BECAB091152A4C5578F /* Pods_SpotMenu.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,12 +175,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 213324351D79801E0060D48C /* Build configuration list for PBXNativeTarget "SpotMenu" */;
 			buildPhases = (
-				8F68F3597747823283864BA2 /* [CP] Check Pods Manifest.lock */,
 				213324241D79801E0060D48C /* Sources */,
 				213324251D79801E0060D48C /* Frameworks */,
 				213324261D79801E0060D48C /* Resources */,
-				B291F186ACF15BCFEAC5EDB0 /* [CP] Embed Pods Frameworks */,
-				A6A87454939C0868EB78D954 /* [CP] Copy Pods Resources */,
 				210C64531D7EB3E4001318FF /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -275,54 +248,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		8F68F3597747823283864BA2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A6A87454939C0868EB78D954 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B291F186ACF15BCFEAC5EDB0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		210C64421D7EB3E4001318FF /* Sources */ = {
@@ -457,7 +382,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -498,7 +423,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -507,7 +432,6 @@
 		};
 		213324361D79801E0060D48C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBF082F911D700C2F5672C53 /* Pods-SpotMenu.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -522,7 +446,6 @@
 		};
 		213324371D79801E0060D48C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DDB9A6E6AD127A8F2340C6AC /* Pods-SpotMenu.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
