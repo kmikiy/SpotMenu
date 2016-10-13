@@ -34,12 +34,12 @@ How to Build
 First, you'll need Xcode 8. You can download this at the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 Second, you'll need [CocoaPods](https://guides.cocoapods.org/using/getting-started.html). 
 
-Now, use [Git](http://git-scm.com/) to clone the repository and clone the submodules.
+Now, use [Git](http://git-scm.com/) to clone the repository.
 
     git clone https://github.com/kmikiy/SpotMenu.git
-    cd SpotMenu
-    pod install
 
-Finally, open up the SpotMenu.xcworkspace. Set the "Scheme" to build the SpotMenu target for "My Mac". Then Product > Run (or the shortcut ⌘R).
+Finally, open up the SpotMenu.xcodeproj. Set the "Scheme" to build the "SpotMenu" target for "My Mac". Then Product > Run (or the shortcut ⌘R).
 
-Note: Version 1.2 has been updated to swift 3.0 therefore Xcode 8 is required.
+Note: 
++ Version 1.2 has been updated to swift 3.0 therefore Xcode 8 is required.
++ In some cases it might be required to select the "Spotify" scheme and build it before selecting "SpotMenu".
