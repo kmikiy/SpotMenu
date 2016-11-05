@@ -43,3 +43,9 @@ Finally, open up the SpotMenu.xcodeproj. Set the "Scheme" to build the "SpotMenu
 Note: 
 + Version 1.2 has been updated to swift 3.0 therefore Xcode 8 is required.
 + In some cases it might be required to select the "Spotify" scheme and build it before selecting "SpotMenu".
+
+Help
+----
++ Post any issues you find
++ Post new feature requests
++ [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NL4KDG65UYQB6) Help me get that new Tesla Model X 🚗 or a cup of coffee ☕️, anything helps 💸💰💵
