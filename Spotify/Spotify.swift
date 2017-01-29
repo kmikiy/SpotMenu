@@ -50,20 +50,53 @@ open class Spotify: NSObject {
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
     
-
+    
+    open static func startSpotify(hidden: Bool = true, completionHandler: (() -> ())? = nil){
+        let option: StartOptions
+        switch hidden {
+        case true:
+            option = .withoutUI
+        case false:
+            option = .withUI
+        }
+        _ = Spotify.startSpotify(option: option)
+        completionHandler?()
+        NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
+    }
+    
     
     // MARK: - Helpers
     static func executeAppleScriptWithString(_ command: String) -> String? {
         let myAppleScript = "if application \"Spotify\" is running then tell application \"Spotify\" to \(command)"
+        
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: myAppleScript) {
+            return scriptObject.executeAndReturnError(&error).stringValue
+        }
+        return nil
+    }
+    
+    
+    enum StartOptions {
+        case withUI
+        case withoutUI
+    }
+    
+    static func startSpotify(option:StartOptions) -> String?{
+        let command:String;
+        switch option {
+        case .withoutUI:
+            command = "run"
+        case .withUI:
+            command = "launch"
+        }
+        
+        let myAppleScript = "if application \"Spotify\" is not running then \(command) application \"Spotify\""
+        
         //print(myAppleScript)
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: myAppleScript) {
-            if let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(
-                &error) {
-                return output.stringValue
-            } else if (error != nil) {
-                print("error: \(error)")
-            }
+            return scriptObject.executeAndReturnError(&error).stringValue
         }
         return nil
     }
