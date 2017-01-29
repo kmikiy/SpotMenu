@@ -150,6 +150,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 closePopover(sender)
             } else {
                 popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
+                Spotify.startSpotify(hidden: true)
                 showPopover(sender)
             }
         }
