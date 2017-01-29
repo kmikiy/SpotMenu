@@ -25,7 +25,7 @@ New Features in Version 1.1
 Easy Install
 ------------
 
-Download the zip file [version 1.0](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu_1_0.zip), [version 1.1](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu_1_1.zip) or [version 1.2](https://github.com/kmikiy/SpotMenu/raw/master/SpotMenu_1_2.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.0](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_0.zip), [version 1.1](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_1.zip) or [version 1.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_2.zip). Unarchive it. Run SpotMenu.app.
 In case of unidentified developer follow these [steps](https://mborgerson.com/trayplay)!
 
 How to Build
