@@ -13,6 +13,7 @@ import Spotify
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
+
     var eventMonitor: EventMonitor?
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
@@ -24,19 +25,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var lastState = PlayerState.playing
     
     var initialWidth:CGFloat = 0
-
+    
+    let url = URL(string: "https://github.com/kmikiy/SpotMenu")
+    
+    let menu = NSMenu()
+    
     var hiddenView: NSView = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 1))
+    
+
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
         
         if let button = statusItem.button {
             button.image = NSImage(named: "StatusBarButtonImage")
+            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             button.action = #selector(AppDelegate.togglePopover(_:))
             button.addSubview(hiddenView)
             updateTitle()
             initialWidth = statusItem.button!.bounds.width
             updateHidden()
         }
+        
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(AppDelegate.quit(_:)), keyEquivalent: "Q"))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Issues", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: "I"))
+        menu.addItem(NSMenuItem(title: " - kmikiy - ", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: ""))
         
         popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
         //popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
@@ -95,10 +108,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateHidden()
     }
     
-    
-    
-    
+
     // MARK: - Popover
+    func openSite(_ sender: NSMenuItem) {
+//        NSApplicationDelegate.open(url, options: [:], completionHandler: nil)
+    }
+    
+    func quit(_ sender: NSMenuItem) {
+       NSApp.terminate(self)
+    }
 
     func showPopover(_ sender: AnyObject?) {
         initialWidth = statusItem.button!.bounds.width
@@ -113,10 +131,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func togglePopover(_ sender: AnyObject?) {
-        if popover.isShown {
-            closePopover(sender)
+        let event = NSApp.currentEvent!
+        
+        if event.type == NSEventType.rightMouseUp {
+            if popover.isShown{
+                closePopover(sender)
+            }
+                
+            statusItem.menu = menu
+            statusItem.popUpMenu(menu)
+            
+            // This is critical, otherwise clicks won't be processed again
+            statusItem.menu = nil
+            
         } else {
-            showPopover(sender)
+            statusItem.menu = nil
+            if popover.isShown {
+                closePopover(sender)
+            } else {
+                popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
+                showPopover(sender)
+            }
         }
     }
 }
