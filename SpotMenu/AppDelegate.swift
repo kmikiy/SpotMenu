@@ -111,7 +111,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Popover
     func openSite(_ sender: NSMenuItem) {
-//        NSApplicationDelegate.open(url, options: [:], completionHandler: nil)
+        if let url = url, NSWorkspace.shared().open(url) {
+            print("default browser was successfully opened")
+        }
     }
     
     func quit(_ sender: NSMenuItem) {
