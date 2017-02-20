@@ -84,7 +84,7 @@ class ViewController: NSViewController {
         case .paused:
             playerStateButton.title = "▶︎"
         case .playing:
-            playerStateButton.title = "🁢🁢"
+            playerStateButton.title = "❚❚"
         }
     }
     
