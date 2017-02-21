@@ -8,7 +8,14 @@ About
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
 and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift. 
 
-Note: The animated gif currently demonstrates the functionality of version 1.2
+Note: The animated gif currently demonstrates the functionality of version 1.3
+
+New Features in Version 1.3
+---------------------------
++ New layout (with the help of @maurojuniorr)
++ Exit button moved to right click menu on menubar (credits: @Triloworld)
++ Issues added to right click (credits: @Triloworld)
++ Created a seperate pod for controlling Spotify on a mac. You can find the library [here](https://github.com/kmikiy/Spotify)
 
 New Features in Version 1.2
 ---------------------------
@@ -25,8 +32,16 @@ New Features in Version 1.1
 Easy Install
 ------------
 
-Download the zip file [version 1.0](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_0.zip), [version 1.1](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_1.zip) or [version 1.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_2.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.3](https://github.com/kmikiy/SpotMenu/releases/download/v1.3/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
 In case of unidentified developer follow these [steps](https://mborgerson.com/trayplay)!
+
+Older versions:   
+[version 1.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_2.zip)   
+[version 1.1](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_1.zip)   
+... 
+
+You can find all releases [here] (https://github.com/kmikiy/SpotMenu/releases).
+
 
 How to Build
 ------------
