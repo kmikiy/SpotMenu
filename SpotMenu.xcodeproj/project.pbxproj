@@ -14,6 +14,9 @@
 		2133243B1D79967B0060D48C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213324391D79967B0060D48C /* ViewController.xib */; };
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
 		21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A668171D7F13CE009813E5 /* CustomButton.swift */; };
+		6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */; };
+		647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647BEE611E5B2037007E3AB5 /* PopOver.xib */; };
+		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +44,9 @@
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		21A668171D7F13CE009813E5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
+		6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		647BEE611E5B2037007E3AB5 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
+		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -79,13 +85,16 @@
 			isa = PBXGroup;
 			children = (
 				21A668171D7F13CE009813E5 /* CustomButton.swift */,
+				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
 				2133243E1D7999180060D48C /* EventMonitor.swift */,
 				2133242B1D79801E0060D48C /* AppDelegate.swift */,
 				213324381D79967B0060D48C /* ViewController.swift */,
 				213324391D79967B0060D48C /* ViewController.xib */,
+				647BEE611E5B2037007E3AB5 /* PopOver.xib */,
 				2133242D1D79801E0060D48C /* Assets.xcassets */,
 				2133242F1D79801E0060D48C /* MainMenu.xib */,
 				213324321D79801E0060D48C /* Info.plist */,
+				6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */,
 			);
 			path = SpotMenu;
 			sourceTree = "<group>";
@@ -170,9 +179,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */,
 				2133243B1D79967B0060D48C /* ViewController.xib in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
+				6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +244,7 @@
 			files = (
 				21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */,
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,
+				648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */,
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
 				2133243A1D79967B0060D48C /* ViewController.swift in Sources */,
 			);

@@ -50,6 +50,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Issues", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: "I"))
         menu.addItem(NSMenuItem(title: " - kmikiy - ", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Preferences...", action: nil, keyEquivalent: ","))
+        
         
         popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
         //popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
@@ -151,7 +154,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if popover.isShown {
                 closePopover(sender)
             } else {
-                popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
+                popover.contentViewController = ViewController(nibName: "PopOver", bundle: nil)
                 Spotify.startSpotify(hidden: true)
                 showPopover(sender)
             }
