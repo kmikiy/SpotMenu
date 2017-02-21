@@ -36,9 +36,13 @@ Second, you'll need [CocoaPods](https://guides.cocoapods.org/using/getting-start
 
 Now, use [Git](http://git-scm.com/) to clone the repository.
 
-    git clone https://github.com/kmikiy/SpotMenu.git
+```sh
+git clone https://github.com/kmikiy/SpotMenu.git
+cd SpotMenu
+pod install
+```
 
-Finally, open up the SpotMenu.xcodeproj. Set the "Scheme" to build the "SpotMenu" target for "My Mac". Then Product > Run (or the shortcut ⌘R).
+Finally, open up the SpotMenu.xcworkspace. Set the "Scheme" to build the "SpotMenu" target for "My Mac". Then Product > Run (or the shortcut ⌘R).
 
 Note: 
 + Version 1.2 has been updated to swift 3.0 therefore Xcode 8 is required.
