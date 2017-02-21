@@ -132,6 +132,10 @@ extension ViewController {
         NSApplication.shared().terminate(sender)
     }
     
+    @IBAction func openSpotify(_ sender: Any) {
+        Spotify.activateSpotify()
+    }
+    
     @IBAction func positionSliderAction(_ sender: AnyObject) {
         Spotify.currentTrack.positionPercentage = positionSlider.doubleValue/100.0
     }
