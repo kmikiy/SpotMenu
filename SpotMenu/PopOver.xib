@@ -102,7 +102,7 @@
                 <visualEffectView appearanceType="vibrantDark" blendingMode="withinWindow" material="dark" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="Z1i-Qx-pwO" customClass="CustomVisualEffect" customModule="SpotMenu" customModuleProvider="target">
                     <rect key="frame" x="25" y="30" width="250" height="250"/>
                     <subviews>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ah-DM-iSN" customClass="CustomButton" customModule="SpotMenu" customModuleProvider="target">
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ah-DM-iSN">
                             <rect key="frame" x="25" y="25" width="200" height="200"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="NKr-aZ-7KR"/>
