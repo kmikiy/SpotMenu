@@ -12,9 +12,9 @@ Note: The animated gif currently demonstrates the functionality of version 1.3
 
 New Features in Version 1.3
 ---------------------------
-+ New layout (with the help of @maurojuniorr)
-+ Exit button moved to right click menu on menubar (credits: @Triloworld)
-+ Issues added to right click (credits: @Triloworld)
++ New layout (with the help of [maurojuniorr](https://github.com/maurojuniorr))
++ Exit button moved to right click menu on menubar (credits: [Triloworld](https://github.com/Triloworld))
++ Issues added to right click (credits: [Triloworld](https://github.com/Triloworld))
 + Created a seperate pod for controlling Spotify on a mac. You can find the library [here](https://github.com/kmikiy/Spotify)
 
 New Features in Version 1.2
