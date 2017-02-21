@@ -82,7 +82,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func updateTitle(){
         let state = Spotify.playerState
-        if let artist = Spotify.currentTrack.artist {
+        if let artist = Spotify.currentTrack.albumArtist {
             if let title = Spotify.currentTrack.title , lastTitle != title || lastArtist != artist || lastState != state {
                 switch state {
                 case .playing:

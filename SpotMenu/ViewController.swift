@@ -51,7 +51,7 @@ class ViewController: NSViewController {
             artworkImageView.image = defaultImage
         }
         
-        if let artist = Spotify.currentTrack.artist {
+        if let artist = Spotify.currentTrack.albumArtist {
             artistLabel.stringValue = artist
             artistLabel.textColor = nil
             

@@ -1,12 +1,12 @@
 PODS:
-  - Spotify (0.1.0)
+  - Spotify (0.2.0)
 
 DEPENDENCIES:
-  - Spotify (~> 0.1)
+  - Spotify (~> 0.2)
 
 SPEC CHECKSUMS:
-  Spotify: bddc9cea36c82468ca82f40bf815d0445edb0988
+  Spotify: 38b2ed451fea44870f9f4d9ab6d539f61cec3a83
 
-PODFILE CHECKSUM: c9d8619b1852aaef75398476b7ed9c39cebe7352
+PODFILE CHECKSUM: b37c5057fca2023fa0406e41ee4972e3483ed98a
 
 COCOAPODS: 1.2.0
