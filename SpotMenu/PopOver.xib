@@ -32,40 +32,6 @@
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSUserGuest" id="Rvb-hn-QkR"/>
                 </imageView>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zUg-Zj-zxq">
-                    <rect key="frame" x="25" y="30" width="250" height="250"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="square" title="  " bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="JuP-Oi-Eu3">
-                        <behavior key="behavior" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ZD-MG0">
-                    <rect key="frame" x="2" y="8" width="40" height="282"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="GAV-fG-8yr"/>
-                    </constraints>
-                    <buttonCell key="cell" type="square" title="&lt;" bezelStyle="shadowlessSquare" alignment="left" inset="2" id="eyZ-Np-WLr">
-                        <behavior key="behavior" lightByContents="YES"/>
-                        <font key="font" size="20" name="AlNile"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="goLeft:" target="-2" id="Nm1-Pi-Fbf"/>
-                    </connections>
-                </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="pgo-pN-r7b">
-                    <rect key="frame" x="258" y="8" width="40" height="282"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="LyG-WF-Fdz"/>
-                    </constraints>
-                    <buttonCell key="cell" type="square" title="&gt;" bezelStyle="shadowlessSquare" alignment="right" inset="2" id="FxM-QC-fqk">
-                        <behavior key="behavior" lightByContents="YES"/>
-                        <font key="font" size="20" name="AlNile"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="goRight:" target="-2" id="7Pz-U6-kvG"/>
-                    </connections>
-                </button>
                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tik-b2-9He">
                     <rect key="frame" x="54" y="3" width="192" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -147,10 +113,36 @@
                         </button>
                     </subviews>
                 </visualEffectView>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ZD-MG0">
+                    <rect key="frame" x="2" y="30" width="20" height="253"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="GAV-fG-8yr"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" title="&lt;" bezelStyle="shadowlessSquare" alignment="left" inset="2" id="eyZ-Np-WLr">
+                        <behavior key="behavior" lightByContents="YES"/>
+                        <font key="font" size="20" name="AlNile"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="goLeft:" target="-2" id="Nm1-Pi-Fbf"/>
+                    </connections>
+                </button>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="pgo-pN-r7b">
+                    <rect key="frame" x="278" y="30" width="20" height="253"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="LyG-WF-Fdz"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" title="&gt;" bezelStyle="shadowlessSquare" alignment="right" inset="2" id="FxM-QC-fqk">
+                        <behavior key="behavior" lightByContents="YES"/>
+                        <font key="font" size="20" name="AlNile"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="goRight:" target="-2" id="7Pz-U6-kvG"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="MYl-ZD-MG0" secondAttribute="bottom" constant="8" id="4Yn-xy-6tc"/>
-                <constraint firstAttribute="bottom" secondItem="pgo-pN-r7b" secondAttribute="bottom" constant="8" id="4sg-cH-tAt"/>
+                <constraint firstAttribute="bottom" secondItem="MYl-ZD-MG0" secondAttribute="bottom" constant="30" id="4Yn-xy-6tc"/>
+                <constraint firstAttribute="bottom" secondItem="pgo-pN-r7b" secondAttribute="bottom" constant="30" id="4sg-cH-tAt"/>
                 <constraint firstItem="Z1i-Qx-pwO" firstAttribute="leading" secondItem="wMa-mO-ZXq" secondAttribute="leading" id="5FK-Fb-lzE"/>
                 <constraint firstItem="Z1i-Qx-pwO" firstAttribute="top" secondItem="wMa-mO-ZXq" secondAttribute="top" id="Bbc-WB-S85"/>
                 <constraint firstItem="wMa-mO-ZXq" firstAttribute="top" secondItem="CVq-A1-mDa" secondAttribute="top" constant="18" id="Bk8-0J-Mee"/>
@@ -158,8 +150,8 @@
                 <constraint firstItem="MYl-ZD-MG0" firstAttribute="leading" secondItem="CVq-A1-mDa" secondAttribute="leading" constant="2" id="KhB-DB-8eM"/>
                 <constraint firstItem="8Ah-DM-iSN" firstAttribute="centerY" secondItem="wMa-mO-ZXq" secondAttribute="centerY" id="NnS-GD-uFq"/>
                 <constraint firstItem="8Ah-DM-iSN" firstAttribute="centerX" secondItem="wMa-mO-ZXq" secondAttribute="centerX" id="POx-aJ-JRR"/>
-                <constraint firstItem="pgo-pN-r7b" firstAttribute="top" secondItem="CVq-A1-mDa" secondAttribute="top" constant="8" id="U6h-sK-e9U"/>
-                <constraint firstItem="MYl-ZD-MG0" firstAttribute="top" secondItem="CVq-A1-mDa" secondAttribute="top" constant="8" id="Vpd-Sf-IxC"/>
+                <constraint firstItem="pgo-pN-r7b" firstAttribute="top" secondItem="CVq-A1-mDa" secondAttribute="top" constant="15" id="U6h-sK-e9U"/>
+                <constraint firstItem="MYl-ZD-MG0" firstAttribute="top" secondItem="CVq-A1-mDa" secondAttribute="top" constant="15" id="Vpd-Sf-IxC"/>
                 <constraint firstItem="Z1i-Qx-pwO" firstAttribute="width" secondItem="wMa-mO-ZXq" secondAttribute="width" id="ZWD-nD-L4c"/>
                 <constraint firstItem="Z1i-Qx-pwO" firstAttribute="height" secondItem="wMa-mO-ZXq" secondAttribute="height" id="abi-ou-Tzz"/>
                 <constraint firstItem="wMa-mO-ZXq" firstAttribute="centerX" secondItem="CVq-A1-mDa" secondAttribute="centerX" id="ois-R8-L6U"/>
