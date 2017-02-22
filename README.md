@@ -17,6 +17,7 @@ New Features in Version 1.3
 + Exit button moved to right click menu on menubar (credits: [Triloworld](https://github.com/Triloworld))
 + Issues added to right click (credits: [Triloworld](https://github.com/Triloworld))
 + Created a seperate pod for controlling Spotify on a mac. You can find the library [here](https://github.com/kmikiy/Spotify)
++ Display album artist instead of current track artist
 
 New Features in Version 1.2
 ---------------------------
