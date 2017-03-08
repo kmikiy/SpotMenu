@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Dn-fO-hmO">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="QXx-Et-w8z">
+            <objects>
+                <windowController id="8Dn-fO-hmO" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="X8e-dx-k49">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="1734" y="279" width="480" height="443"/>
+                        <rect key="screenRect" x="1440" y="-34" width="1920" height="1057"/>
+                    </window>
+                    <connections>
+                        <segue destination="aiZ-Tr-0PA" kind="relationship" relationship="window.shadowedContentViewController" id="bVy-db-Hhz"/>
+                    </connections>
+                </windowController>
+                <customObject id="ct4-6i-LoP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="114" y="58.5"/>
+        </scene>
+        <!--L-->
+        <scene sceneID="nQz-n8-pmb">
+            <objects>
+                <viewController id="aiZ-Tr-0PA" customClass="L" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="FKO-YA-HGK">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="455"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <webView translatesAutoresizingMaskIntoConstraints="NO" id="aMh-8G-IOp">
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="455"/>
+                                <webPreferences key="preferences" defaultFontSize="16" defaultFixedFontSize="13" minimumFontSize="0" javaEnabled="NO">
+                                    <nil key="identifier"/>
+                                </webPreferences>
+                            </webView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="aMh-8G-IOp" firstAttribute="centerY" secondItem="FKO-YA-HGK" secondAttribute="centerY" id="07r-mT-5rd"/>
+                            <constraint firstItem="aMh-8G-IOp" firstAttribute="width" secondItem="FKO-YA-HGK" secondAttribute="width" id="4bg-b1-HPQ"/>
+                            <constraint firstItem="aMh-8G-IOp" firstAttribute="centerX" secondItem="FKO-YA-HGK" secondAttribute="centerX" id="5PA-tB-odh"/>
+                            <constraint firstItem="aMh-8G-IOp" firstAttribute="height" secondItem="FKO-YA-HGK" secondAttribute="height" id="j6t-UV-0dm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="aMh-8G-IOp" id="RNg-t8-4fc"/>
+                    </connections>
+                </viewController>
+                <customObject id="sqe-hE-Cnc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="822" y="58.5"/>
+        </scene>
+    </scenes>
+</document>

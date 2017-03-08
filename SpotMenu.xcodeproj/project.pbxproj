@@ -14,9 +14,16 @@
 		2133243B1D79967B0060D48C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213324391D79967B0060D48C /* ViewController.xib */; };
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
 		21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A668171D7F13CE009813E5 /* CustomButton.swift */; };
+		642A55331E6DE3E900A334EA /* L.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 642A55321E6DE3E900A334EA /* L.storyboard */; };
 		6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */; };
+		646802BC1E6DE506005C9063 /* L.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646802BB1E6DE506005C9063 /* L.swift */; };
 		647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647BEE611E5B2037007E3AB5 /* PopOver.xib */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
+		64A406B31E658E76004E3485 /* SpotifyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A406B21E658E76004E3485 /* SpotifyClient.swift */; };
+		64A406B51E659E76004E3485 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A406B41E659E76004E3485 /* Config.swift */; };
+		64A406B71E65A3D4004E3485 /* SpotifyLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A406B61E65A3D4004E3485 /* SpotifyLogin.xib */; };
+		64A406B91E65A447004E3485 /* SpotifyLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A406B81E65A447004E3485 /* SpotifyLogin.swift */; };
+		64A406BB1E65B16D004E3485 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A406BA1E65B16D004E3485 /* WebKit.framework */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,9 +51,16 @@
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		21A668171D7F13CE009813E5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
+		642A55321E6DE3E900A334EA /* L.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = L.storyboard; sourceTree = "<group>"; };
 		6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		646802BB1E6DE506005C9063 /* L.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L.swift; sourceTree = "<group>"; };
 		647BEE611E5B2037007E3AB5 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
+		64A406B21E658E76004E3485 /* SpotifyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyClient.swift; sourceTree = "<group>"; };
+		64A406B41E659E76004E3485 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		64A406B61E65A3D4004E3485 /* SpotifyLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotifyLogin.xib; sourceTree = "<group>"; };
+		64A406B81E65A447004E3485 /* SpotifyLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyLogin.swift; sourceTree = "<group>"; };
+		64A406BA1E65B16D004E3485 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -56,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64A406BB1E65B16D004E3485 /* WebKit.framework in Frameworks */,
 				98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,24 +99,71 @@
 		2133242A1D79801E0060D48C /* SpotMenu */ = {
 			isa = PBXGroup;
 			children = (
-				21A668171D7F13CE009813E5 /* CustomButton.swift */,
-				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
+				64A406AE1E65761C004E3485 /* Custom */,
+				64A406B41E659E76004E3485 /* Config.swift */,
 				2133243E1D7999180060D48C /* EventMonitor.swift */,
 				2133242B1D79801E0060D48C /* AppDelegate.swift */,
-				213324381D79967B0060D48C /* ViewController.swift */,
-				213324391D79967B0060D48C /* ViewController.xib */,
-				647BEE611E5B2037007E3AB5 /* PopOver.xib */,
+				64A406AD1E6575FB004E3485 /* Spotify */,
+				64A406AF1E657640004E3485 /* UI */,
 				2133242D1D79801E0060D48C /* Assets.xcassets */,
 				2133242F1D79801E0060D48C /* MainMenu.xib */,
 				213324321D79801E0060D48C /* Info.plist */,
-				6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */,
 			);
 			path = SpotMenu;
+			sourceTree = "<group>";
+		};
+		64A406AD1E6575FB004E3485 /* Spotify */ = {
+			isa = PBXGroup;
+			children = (
+				64A406B21E658E76004E3485 /* SpotifyClient.swift */,
+				64A406B61E65A3D4004E3485 /* SpotifyLogin.xib */,
+				64A406B81E65A447004E3485 /* SpotifyLogin.swift */,
+				642A55321E6DE3E900A334EA /* L.storyboard */,
+				646802BB1E6DE506005C9063 /* L.swift */,
+			);
+			name = Spotify;
+			sourceTree = "<group>";
+		};
+		64A406AE1E65761C004E3485 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				21A668171D7F13CE009813E5 /* CustomButton.swift */,
+				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
+		64A406AF1E657640004E3485 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				64A406B11E658C04004E3485 /* Preferences */,
+				64A406B01E658BE1004E3485 /* PopOver */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		64A406B01E658BE1004E3485 /* PopOver */ = {
+			isa = PBXGroup;
+			children = (
+				213324381D79967B0060D48C /* ViewController.swift */,
+				213324391D79967B0060D48C /* ViewController.xib */,
+				647BEE611E5B2037007E3AB5 /* PopOver.xib */,
+			);
+			name = PopOver;
+			sourceTree = "<group>";
+		};
+		64A406B11E658C04004E3485 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */,
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		A41E658F2A33A401D35F4C51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64A406BA1E65B16D004E3485 /* WebKit.framework */,
 				ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */,
 			);
 			name = Frameworks;
@@ -180,9 +242,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */,
+				642A55331E6DE3E900A334EA /* L.storyboard in Resources */,
 				2133243B1D79967B0060D48C /* ViewController.xib in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
+				64A406B71E65A3D4004E3485 /* SpotifyLogin.xib in Resources */,
 				6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,8 +309,12 @@
 				21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */,
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,
 				648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */,
+				646802BC1E6DE506005C9063 /* L.swift in Sources */,
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
+				64A406B91E65A447004E3485 /* SpotifyLogin.swift in Sources */,
+				64A406B51E659E76004E3485 /* Config.swift in Sources */,
 				2133243A1D79967B0060D48C /* ViewController.swift in Sources */,
+				64A406B31E658E76004E3485 /* SpotifyClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

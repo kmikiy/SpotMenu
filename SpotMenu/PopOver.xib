@@ -111,6 +111,17 @@
                                 <action selector="openSpotify:" target="-2" id="cpn-ij-wmt"/>
                             </connections>
                         </button>
+                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LKK-is-601">
+                            <rect key="frame" x="34" y="226" width="13" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6Bu-Jg-Jaz">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="openSpotifyWindow:" target="-2" id="JNf-Ok-3oM"/>
+                            </connections>
+                        </button>
                     </subviews>
                 </visualEffectView>
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ZD-MG0">
@@ -160,6 +171,7 @@
         </customView>
     </objects>
     <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSUserGuest" width="32" height="32"/>
         <image name="StatusBarButtonImage" width="32" height="32"/>
     </resources>
