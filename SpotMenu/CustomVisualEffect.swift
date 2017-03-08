@@ -20,7 +20,7 @@ class CustomVisualEffect: NSVisualEffectView {
         trackingArea = NSTrackingArea(rect: bounds, options: opts, owner: self, userInfo: nil)
         self.addTrackingArea(trackingArea)
         
-        var fadeAnim = CABasicAnimation(keyPath: "opacity")
+        let fadeAnim = CABasicAnimation(keyPath: "opacity")
         fadeAnim.fromValue = 1.0
         fadeAnim.toValue = 0
         fadeAnim.duration = 0.1
@@ -36,7 +36,7 @@ class CustomVisualEffect: NSVisualEffectView {
         trackingArea = NSTrackingArea(rect: bounds, options: opts, owner: self, userInfo: nil)
         self.addTrackingArea(trackingArea)
         
-        var fadeAnim = CABasicAnimation(keyPath: "opacity")
+        let fadeAnim = CABasicAnimation(keyPath: "opacity")
         fadeAnim.fromValue = 1.0
         fadeAnim.toValue = 0
         fadeAnim.duration = 0.1
@@ -50,7 +50,7 @@ class CustomVisualEffect: NSVisualEffectView {
     
     // MARK: mouse events
     override func mouseEntered(with theEvent: NSEvent) {
-        var fadeAnim = CABasicAnimation(keyPath: "opacity")
+        let fadeAnim = CABasicAnimation(keyPath: "opacity")
         fadeAnim.fromValue = 0.0
         fadeAnim.toValue = 1
         fadeAnim.duration = 0.1
@@ -60,7 +60,7 @@ class CustomVisualEffect: NSVisualEffectView {
     }
     
     override func mouseExited(with theEvent: NSEvent) {
-        var fadeAnim = CABasicAnimation(keyPath: "opacity")
+        let fadeAnim = CABasicAnimation(keyPath: "opacity")
         fadeAnim.fromValue = 1.0
         fadeAnim.toValue = 0
         fadeAnim.duration = 0.1
