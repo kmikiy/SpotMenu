@@ -12,7 +12,7 @@ import Spotify
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet weak var window: NSWindow!
+    //@IBOutlet weak var window: NSWindow!
 
     var eventMonitor: EventMonitor?
 

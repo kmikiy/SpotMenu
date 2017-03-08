@@ -21,8 +21,6 @@
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		64A406B31E658E76004E3485 /* SpotifyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A406B21E658E76004E3485 /* SpotifyClient.swift */; };
 		64A406B51E659E76004E3485 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A406B41E659E76004E3485 /* Config.swift */; };
-		64A406B71E65A3D4004E3485 /* SpotifyLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A406B61E65A3D4004E3485 /* SpotifyLogin.xib */; };
-		64A406B91E65A447004E3485 /* SpotifyLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A406B81E65A447004E3485 /* SpotifyLogin.swift */; };
 		64A406BB1E65B16D004E3485 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64A406BA1E65B16D004E3485 /* WebKit.framework */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 /* End PBXBuildFile section */
@@ -58,8 +56,6 @@
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		64A406B21E658E76004E3485 /* SpotifyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyClient.swift; sourceTree = "<group>"; };
 		64A406B41E659E76004E3485 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		64A406B61E65A3D4004E3485 /* SpotifyLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotifyLogin.xib; sourceTree = "<group>"; };
-		64A406B81E65A447004E3485 /* SpotifyLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyLogin.swift; sourceTree = "<group>"; };
 		64A406BA1E65B16D004E3485 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,8 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				64A406B21E658E76004E3485 /* SpotifyClient.swift */,
-				64A406B61E65A3D4004E3485 /* SpotifyLogin.xib */,
-				64A406B81E65A447004E3485 /* SpotifyLogin.swift */,
 				642A55321E6DE3E900A334EA /* L.storyboard */,
 				646802BB1E6DE506005C9063 /* L.swift */,
 			);
@@ -246,7 +240,6 @@
 				2133243B1D79967B0060D48C /* ViewController.xib in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
-				64A406B71E65A3D4004E3485 /* SpotifyLogin.xib in Resources */,
 				6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,7 +304,6 @@
 				648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */,
 				646802BC1E6DE506005C9063 /* L.swift in Sources */,
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
-				64A406B91E65A447004E3485 /* SpotifyLogin.swift in Sources */,
 				64A406B51E659E76004E3485 /* Config.swift in Sources */,
 				2133243A1D79967B0060D48C /* ViewController.swift in Sources */,
 				64A406B31E658E76004E3485 /* SpotifyClient.swift in Sources */,

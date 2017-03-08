@@ -16,14 +16,14 @@ class ViewController: NSViewController {
     var rightTimeIsDuration: Bool = true
     var timer: Timer!
     var defaultImage: NSImage!
-    var window: NSWindow?
-    var wC: NSWindowController?
-    var sb: NSStoryboard?
-    var vc: NSViewController?
+
+    //var wC: NSWindowController?
+    //var sb: NSStoryboard?
+    //var vC: NSViewController?
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        
+        //vC = nil
         updateInfo()
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateInfo), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
         
@@ -122,19 +122,11 @@ class ViewController: NSViewController {
 
     @IBAction func openSpotifyWindow(_ sender: Any) {
         print("hh")
-        //let windowRect = NSRect(x: 30, y: 30, width: 400, height: 400)
         
-        //window = NSWindow(contentRect: NSRect(x: 30, y: 30, width: 400, height: 400), styleMask: NSTitledWindowMask, backing: .buffered, defer: false)
-        //wC = SpotifyLogin()
-        //viewController.show
-        //window = viewController.window
-        //window?.makeKeyAndOrderFront(nil)
-        //wC?.showWindow(nil)
-        sb = NSStoryboard.init(name: "L", bundle: nil)
-        wC = sb?.instantiateInitialController() as! NSWindowController?
-        //wC?.showWindow(self)
-        self.presentViewControllerAsSheet((wC?.contentViewController)!)
-        
+        var sb = NSStoryboard.init(name: "L", bundle: nil)
+        let vC = sb.instantiateController(withIdentifier: "login") as! NSViewController
+        self.presentViewControllerAsSheet(vC)
+        //print(self.presentedViewControllers)
     }
 }
 

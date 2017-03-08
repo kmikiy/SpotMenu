@@ -1,33 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Dn-fO-hmO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <plugIn identifier="com.apple.WebKitIBPlugin" version="11762"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Window Controller-->
-        <scene sceneID="QXx-Et-w8z">
-            <objects>
-                <windowController id="8Dn-fO-hmO" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="X8e-dx-k49">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="1734" y="279" width="480" height="443"/>
-                        <rect key="screenRect" x="1440" y="-34" width="1920" height="1057"/>
-                    </window>
-                    <connections>
-                        <segue destination="aiZ-Tr-0PA" kind="relationship" relationship="window.shadowedContentViewController" id="bVy-db-Hhz"/>
-                    </connections>
-                </windowController>
-                <customObject id="ct4-6i-LoP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="114" y="58.5"/>
-        </scene>
         <!--L-->
         <scene sceneID="nQz-n8-pmb">
             <objects>
-                <viewController id="aiZ-Tr-0PA" customClass="L" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="aiZ-Tr-0PA" customClass="L" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="FKO-YA-HGK">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="455"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -38,6 +20,17 @@
                                     <nil key="identifier"/>
                                 </webPreferences>
                             </webView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQc-Oc-L1E">
+                                <rect key="frame" x="6" y="434" width="16" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="close" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="dY2-U1-g7T">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dissmissAction:" target="aiZ-Tr-0PA" id="SFt-6A-2O5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="aMh-8G-IOp" firstAttribute="centerY" secondItem="FKO-YA-HGK" secondAttribute="centerY" id="07r-mT-5rd"/>
@@ -55,4 +48,7 @@
             <point key="canvasLocation" x="822" y="58.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="close" width="16" height="16"/>
+    </resources>
 </document>
