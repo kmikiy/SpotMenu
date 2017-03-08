@@ -123,7 +123,7 @@ class ViewController: NSViewController {
     @IBAction func openSpotifyWindow(_ sender: Any) {
         print("hh")
         
-        var sb = NSStoryboard.init(name: "L", bundle: nil)
+        let sb = NSStoryboard.init(name: "L", bundle: nil)
         let vC = sb.instantiateController(withIdentifier: "login") as! NSViewController
         self.presentViewControllerAsSheet(vC)
         //print(self.presentedViewControllers)
