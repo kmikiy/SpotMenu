@@ -11,19 +11,20 @@ class ViewController: NSViewController {
     @IBOutlet weak var artworkImageView: NSImageView!
     @IBOutlet weak var leftTime: NSTextField!
     @IBOutlet weak var rightTime: NSTextField!
+    @IBOutlet weak var saveButton: NSButton!
     
     var lastArtworkUrl = ""
     var rightTimeIsDuration: Bool = true
     var timer: Timer!
     var defaultImage: NSImage!
 
-    //var wC: NSWindowController?
-    //var sb: NSStoryboard?
-    //var vC: NSViewController?
+    var trackId = ""
+    var trackIsSaved = false;
+    
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        //vC = nil
+
         updateInfo()
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateInfo), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
         
@@ -70,6 +71,21 @@ class ViewController: NSViewController {
         } else {
             titleLabel.stringValue = "Title"
             titleLabel.textColor = NSColor.gray
+        }
+        if let id = Spotify.currentTrack.id {
+            if (trackId != id){
+                SpotifyClient.shared.me.tracks.isTrackSaved(id: id.components(separatedBy: ":")[2]){ result in
+                    if (result){
+                        self.saveButton.image = NSImage(named: "NSMenuOnStateTemplate") //check button
+                        self.trackIsSaved = true
+                        
+                    } else {
+                        self.saveButton.image = NSImage(named: "NSAddTemplate")  //plus button
+                        self.trackIsSaved = false
+                    }
+                }
+            }
+            trackId = id
         }
         
         let position = Spotify.currentTrack.positionPercentage
@@ -121,13 +137,27 @@ class ViewController: NSViewController {
     }
 
     @IBAction func openSpotifyWindow(_ sender: Any) {
-        print(Spotify.currentTrack.id?.components(separatedBy: ":")[2])
-        print("hh")
-        SpotifyClient.shared.me.signOut()
-        let sb = NSStoryboard.init(name: "L", bundle: nil)
-        let vC = sb.instantiateController(withIdentifier: "login") as! NSViewController
-        self.presentViewControllerAsSheet(vC)
-        //print(self.presentedViewControllers)
+        if SpotifyClient.shared.me.accessToken == nil {
+            SpotifyClient.shared.me.signOut()
+            
+            let sb = NSStoryboard.init(name: "L", bundle: nil)
+            let vC = sb.instantiateController(withIdentifier: "login") as! NSViewController
+            self.presentViewControllerAsSheet(vC)
+        } else {
+            switch trackIsSaved {
+            case true:
+                SpotifyClient.shared.me.tracks.deleteTrack(id: trackId.components(separatedBy: ":")[2]){
+                    self.saveButton.image = NSImage(named: "NSAddTemplate")  //plus button
+                    self.trackIsSaved = false
+                }
+            case false:
+                SpotifyClient.shared.me.tracks.saveTrack(id: trackId.components(separatedBy: ":")[2]){
+                    self.saveButton.image = NSImage(named: "NSMenuOnStateTemplate") //check button
+                    self.trackIsSaved = true
+                }
+            }
+        }
+        
     }
 }
 

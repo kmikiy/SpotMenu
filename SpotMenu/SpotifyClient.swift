@@ -17,6 +17,12 @@ open class SpotifyClient {
     let sessionManager = SessionManager()
 }
 
+
+struct Token {
+    var accessToken: String
+    var refreshToken: String
+}
+
 class Me {
     static let shared = Me()
     let tracks: Tracks = Tracks.shared
@@ -24,6 +30,7 @@ class Me {
     var accessToken: String?
     var refreshToken: String?
     var id: String?
+    var bestBefore: Date?
     
     func about(completion: ((_ result:String) -> Void)?) {
         
@@ -32,6 +39,7 @@ class Me {
     func signOut() -> Void {
         accessToken = nil
         refreshToken = nil
+        bestBefore = nil
         URLCache.shared.removeAllCachedResponses()
         if let cookies = HTTPCookieStorage.shared.cookies {
             for cookie in cookies {
@@ -39,6 +47,35 @@ class Me {
             }
         }
     }
+    
+    func setUser(tokens: Token) -> Void {
+        accessToken = tokens.accessToken
+        refreshToken = tokens.refreshToken
+        bestBefore = Date(timeIntervalSinceNow: 20)
+        SpotifyClient.shared.sessionManager.adapter = AccessTokenAdapter(accessToken: tokens.accessToken)
+    }
+    
+    func refresh() {
+        if let _refreshToken = refreshToken {
+            Alamofire.request(Config.authUrls.refreshToken, parameters: ["refresh_token": _refreshToken]).responseJSON{ response in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    self.accessToken = json["access_token"].stringValue
+                    let delta = json["expires_in"].intValue - 200
+                    self.bestBefore = Date(timeIntervalSinceNow: TimeInterval(delta))
+                    
+                    //print("JSON: \(json)")
+                case .failure(let error):
+                    print("EERROR ÁG")
+                    print(error)
+                }
+                
+            }
+        }
+        
+    }
+    
     private init(){}
 }
 
@@ -46,28 +83,49 @@ class Tracks {
     static let shared = Tracks()
     private init(){}
     
-    static func saveTrack(completion: (_ result: String) -> Void){
-        //TODO
-        print("save track")
+    func saveTrack(id: String, completion: @escaping () -> Void){
+        let url = "https://api.spotify.com/v1/me/tracks"
+        let ids = [id]
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "PUT"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try! JSONSerialization.data(withJSONObject: ids)
+        SpotifyClient.shared.sessionManager.request(request).responseData { response in
+            switch response.result{
+            case .success(let value):
+                completion()
+                
+            case .failure(let error):
+                print("EERROR ÁG")
+                print(error)
+                
+            }
+        }
     }
     
-    func deleteTrack(completion: (_ result: String) -> Void) -> Void {
-        
+    func deleteTrack(id: String, completion: @escaping () -> Void) {
+        let url = "https://api.spotify.com/v1/me/tracks"
+        SpotifyClient.shared.sessionManager.request(url, method: .delete, parameters: ["ids": id]).responseData { response in
+            switch response.result{
+            case .success(let value):
+                completion()
+                
+            case .failure(let error):
+                print("EERROR ÁG")
+                print(error)
+            }
+        }
     }
     
-    func isTrackSaved(id: String, completion: (_ result: Bool) -> Void) {
-        
-        print("printing access token")
-        print(SpotifyClient.shared.me.accessToken!)
-        SpotifyClient.shared.sessionManager.adapter = AccessTokenAdapter(accessToken: SpotifyClient.shared.me.accessToken!)
+    func isTrackSaved(id: String, completion: @escaping (_ result: Bool) -> Void) {
         
         let url = "https://api.spotify.com/v1/me/tracks/contains"
-        let _id = "1YpGWVpnewRIuodSTJ3WGs"
-        SpotifyClient.shared.sessionManager.request(url, parameters: ["ids": _id]).responseJSON { response in
+        SpotifyClient.shared.sessionManager.request(url, parameters: ["ids": id]).responseJSON { response in
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
-                json[0].boolValue
+                completion(json[0].boolValue)
+                
                 print("JSON: \(json)")
             case .failure(let error):
                 print("EERROR ÁG")
@@ -90,6 +148,13 @@ class AccessTokenAdapter: RequestAdapter {
         
         if let urlString = urlRequest.url?.absoluteString, urlString.hasPrefix("https://api.spotify.com") {
             urlRequest.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
+        }
+        
+        if let bestBeforeDate = SpotifyClient.shared.me.bestBefore {
+            let delta = Date().timeIntervalSince(bestBeforeDate)
+            if delta > -20 {
+                SpotifyClient.shared.me.refresh()
+            }
         }
         
         return urlRequest

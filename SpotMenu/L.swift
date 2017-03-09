@@ -23,7 +23,7 @@ class L: NSViewController, WebFrameLoadDelegate , WebResourceLoadDelegate{
     }
     
     func webView(_ sender: WebView!, willPerformClientRedirectTo URL: URL!, delay seconds: TimeInterval, fire date: Date!, for frame: WebFrame!) {
-        print(URL)
+        //print(URL)
     }
     
     @IBAction func dissmissAction(_ sender: Any) {
@@ -33,8 +33,9 @@ class L: NSViewController, WebFrameLoadDelegate , WebResourceLoadDelegate{
     func webView(_ sender: WebView!, resource identifier: Any!, willSend request: URLRequest!, redirectResponse: URLResponse!, from dataSource: WebDataSource!) -> URLRequest! {
 
         if let fragmentDictionary = request.url?.fragmentDictionary {
-            SpotifyClient.shared.me.accessToken = fragmentDictionary["access_token"]?[0]
-            SpotifyClient.shared.me.refreshToken = fragmentDictionary["refresh_token"]?[0]
+            let accessToken = fragmentDictionary["access_token"]?[0]
+            let refreshToken = fragmentDictionary["refresh_token"]?[0]
+            SpotifyClient.shared.me.setUser(tokens: Token(accessToken: accessToken!, refreshToken: refreshToken!))
 
             self.presenting?.dismissViewController(self)
             return nil

@@ -14,6 +14,7 @@
                 <outlet property="playerStateButton" destination="8Ah-DM-iSN" id="ofG-4I-1Kw"/>
                 <outlet property="positionSlider" destination="tik-b2-9He" id="qyI-6l-HxF"/>
                 <outlet property="rightTime" destination="0C8-6B-MD2" id="Ikx-HM-ev3"/>
+                <outlet property="saveButton" destination="LKK-is-601" id="Wwc-PG-yRq"/>
                 <outlet property="titleLabel" destination="712-s0-u2W" id="VHb-Kz-6ol"/>
                 <outlet property="view" destination="CVq-A1-mDa" id="DNI-2T-3Ga"/>
             </connections>
