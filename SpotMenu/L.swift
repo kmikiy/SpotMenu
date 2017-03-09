@@ -33,8 +33,8 @@ class L: NSViewController, WebFrameLoadDelegate , WebResourceLoadDelegate{
     func webView(_ sender: WebView!, resource identifier: Any!, willSend request: URLRequest!, redirectResponse: URLResponse!, from dataSource: WebDataSource!) -> URLRequest! {
 
         if let fragmentDictionary = request.url?.fragmentDictionary {
-            print("fragment dictionary")
-            print(fragmentDictionary)
+            SpotifyClient.shared.me.accessToken = fragmentDictionary["access_token"]?[0]
+            SpotifyClient.shared.me.refreshToken = fragmentDictionary["refresh_token"]?[0]
 
             self.presenting?.dismissViewController(self)
             return nil

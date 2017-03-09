@@ -1,12 +1,18 @@
 PODS:
-  - Spotify (0.2.0)
+  - Alamofire (4.4.0)
+  - Spotify (0.2.1)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.4)
   - Spotify (~> 0.2)
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Spotify: 38b2ed451fea44870f9f4d9ab6d539f61cec3a83
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Spotify: 1a8015435b824eb097e43e8bd059ee7c2ae7512e
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: b37c5057fca2023fa0406e41ee4972e3483ed98a
+PODFILE CHECKSUM: 6e58f5713c5317bcc28c0223fee213d8ee331b17
 
 COCOAPODS: 1.2.0

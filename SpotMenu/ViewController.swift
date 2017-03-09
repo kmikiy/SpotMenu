@@ -121,8 +121,9 @@ class ViewController: NSViewController {
     }
 
     @IBAction func openSpotifyWindow(_ sender: Any) {
+        print(Spotify.currentTrack.id?.components(separatedBy: ":")[2])
         print("hh")
-        
+        SpotifyClient.shared.me.signOut()
         let sb = NSStoryboard.init(name: "L", bundle: nil)
         let vC = sb.instantiateController(withIdentifier: "login") as! NSViewController
         self.presentViewControllerAsSheet(vC)
