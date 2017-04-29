@@ -34,7 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		213324281D79801E0060D48C /* SpotMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		213324281D79801E0060D48C /* SpStreamer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpStreamer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2133242B1D79801E0060D48C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2133242D1D79801E0060D48C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		213324301D79801E0060D48C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 		2133241F1D79801E0060D48C = {
 			isa = PBXGroup;
 			children = (
-				2133242A1D79801E0060D48C /* SpotMenu */,
+				2133242A1D79801E0060D48C /* SpStreamer */,
 				213324291D79801E0060D48C /* Products */,
 				D5261F6E7BEA36A23255A84A /* Pods */,
 				A41E658F2A33A401D35F4C51 /* Frameworks */,
@@ -76,12 +76,12 @@
 		213324291D79801E0060D48C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				213324281D79801E0060D48C /* SpotMenu.app */,
+				213324281D79801E0060D48C /* SpStreamer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2133242A1D79801E0060D48C /* SpotMenu */ = {
+		2133242A1D79801E0060D48C /* SpStreamer */ = {
 			isa = PBXGroup;
 			children = (
 				21A668171D7F13CE009813E5 /* CustomButton.swift */,
@@ -96,6 +96,7 @@
 				213324321D79801E0060D48C /* Info.plist */,
 				6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */,
 			);
+			name = SpStreamer;
 			path = SpotMenu;
 			sourceTree = "<group>";
 		};
@@ -119,9 +120,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		213324271D79801E0060D48C /* SpotMenu */ = {
+		213324271D79801E0060D48C /* SpStreamer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 213324351D79801E0060D48C /* Build configuration list for PBXNativeTarget "SpotMenu" */;
+			buildConfigurationList = 213324351D79801E0060D48C /* Build configuration list for PBXNativeTarget "SpStreamer" */;
 			buildPhases = (
 				BCC3DC66AF67FE7C48F9B35A /* [CP] Check Pods Manifest.lock */,
 				213324241D79801E0060D48C /* Sources */,
@@ -135,9 +136,9 @@
 			);
 			dependencies = (
 			);
-			name = SpotMenu;
+			name = SpStreamer;
 			productName = SpotMenu;
-			productReference = 213324281D79801E0060D48C /* SpotMenu.app */;
+			productReference = 213324281D79801E0060D48C /* SpStreamer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +157,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 213324231D79801E0060D48C /* Build configuration list for PBXProject "SpotMenu" */;
+			buildConfigurationList = 213324231D79801E0060D48C /* Build configuration list for PBXProject "SpStreamer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -169,7 +170,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				213324271D79801E0060D48C /* SpotMenu */,
+				213324271D79801E0060D48C /* SpStreamer */,
 			);
 		};
 /* End PBXProject section */
@@ -217,7 +218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F8E0917400630BBF5370A313 /* [CP] Embed Pods Frameworks */ = {
@@ -355,11 +356,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.framirez.SpStreamer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -369,11 +370,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.framirez.SpStreamer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -382,7 +383,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		213324231D79801E0060D48C /* Build configuration list for PBXProject "SpotMenu" */ = {
+		213324231D79801E0060D48C /* Build configuration list for PBXProject "SpStreamer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				213324331D79801E0060D48C /* Debug */,
@@ -391,7 +392,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		213324351D79801E0060D48C /* Build configuration list for PBXNativeTarget "SpotMenu" */ = {
+		213324351D79801E0060D48C /* Build configuration list for PBXNativeTarget "SpStreamer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				213324361D79801E0060D48C /* Debug */,

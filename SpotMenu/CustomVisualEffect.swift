@@ -1,6 +1,5 @@
 //
 //  CustomVisualEffect.swift
-//  SpotMenu
 //
 //  Created by Miklós Kristyán on 2017. 02. 21..
 //  Copyright © 2017. KM. All rights reserved.

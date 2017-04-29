@@ -1,6 +1,5 @@
 //
 //  AppDelegate.swift
-//  SpotMenu
 //
 //  Created by Miklós Kristyán on 02/09/16.
 //  Copyright © 2016 KM. All rights reserved.
@@ -26,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var initialWidth:CGFloat = 0
     
-    let url = URL(string: "https://github.com/kmikiy/SpotMenu")
+    let url = URL(string: "https://github.com/kmikiy")
     
     let menu = NSMenu()
     

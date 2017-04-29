@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SpotMenu.xcodeproj">
+      location = "group:/Users/fernando/Documents/1-work/1-Personal/SpStreamer/SpStreamer.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
