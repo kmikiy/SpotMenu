@@ -32,9 +32,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var hiddenView: NSView = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 1))
     
+    // Settings
+    var isDarkThemeToggled = true
+    var isArtistNameToggled = true
+    var isSongNameToggled = true
+    var isPlayPauseIconsToggled = true
+    var isSpotIconToggled = true
+    var isScrollingSongNameToggled = true
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-//        UserPreferences.clearAllSettings()
+        //        UserPreferences.clearAllSettings()
+        readSettings()
         
         if let button = statusItem.button {
             button.image = NSImage(named: "no-image")
@@ -127,9 +136,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func openSettings(_ sender: NSMenuItem) {
         if let button = statusItem.button {
+            updateHidden()
             settingsPopover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
-        } else {
-            print("NO")
+            eventMonitor?.start()
         }
     }
     
@@ -146,20 +155,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func closePopover(_ sender: AnyObject?) {
         popover.performClose(sender)
-        if settingsPopover.isShown {
-            settingsPopover.performClose(sender)
-        }
+        settingsPopover.performClose(sender)
         eventMonitor?.stop()
     }
     
     func togglePopover(_ sender: AnyObject?) {
+        checkTheme()
         let event = NSApp.currentEvent!
         
         if event.type == NSEventType.rightMouseUp {
             if popover.isShown{
                 closePopover(sender)
             }
-                
+            
+            if settingsPopover.isShown{
+                closePopover(sender)
+            }
+            
             statusItem.menu = menu
             statusItem.popUpMenu(menu)
             
@@ -168,6 +180,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
         } else {
             statusItem.menu = nil
+            if settingsPopover.isShown{
+                closePopover(sender)
+            }
             if popover.isShown {
                 closePopover(sender)
             } else {
@@ -177,5 +192,72 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
+    
+    func readSettings() {
+        print("[AppDelegate - readSettings] Reading settings")
+        isDarkThemeToggled = UserPreferences.readSetting(key: UserPreferences.darkTheme)
+        isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
+        isSongNameToggled = UserPreferences.readSetting(key: UserPreferences.songName)
+        isPlayPauseIconsToggled = UserPreferences.readSetting(key: UserPreferences.playPauseIcons)
+        isSpotIconToggled = UserPreferences.readSetting(key: UserPreferences.spotIcon)
+        isScrollingSongNameToggled = UserPreferences.readSetting(key: UserPreferences.scrollingSongName)
+        
+        
+        checkTheme()
+        
+//        if isArtistNameToggled {
+//            
+//        } else {
+//            
+//        }
+//        
+//        if isSongNameToggled {
+//      
+//        } else {
+//            
+//        }
+//        
+//        if isPlayPauseIconsToggled {
+//           
+//        } else {
+//            
+//        }
+//        
+//        if isSpotIconToggled {
+//           
+//        } else {
+//          
+//        }
+//        
+//        if isScrollingSongNameToggled {
+//       
+//        } else {
+//          
+//        }
+    }
+    
+    func checkTheme() {
+        isDarkThemeToggled = UserPreferences.readSetting(key: UserPreferences.darkTheme)
+        if isDarkThemeToggled {
+            toggleDarkTheme(isDark: true)
+        } else {
+            toggleDarkTheme(isDark: false)
+        }
+    }
+    
+    func toggleDarkTheme(isDark: Bool) {
+        if isDark {
+            popover.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+            settingsPopover.appearance = NSAppearance(named: NSAppearanceNameVibrantDark)
+            UserPreferences.setSetting(key: UserPreferences.darkTheme, value: true)
+        } else {
+            popover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+            settingsPopover.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
+            UserPreferences.setSetting(key: UserPreferences.darkTheme, value: false)
+        }
+    }
+    
+    
+    
 }
 

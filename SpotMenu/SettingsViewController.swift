@@ -17,6 +17,8 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var playPauseCB: NSButton!
     @IBOutlet weak var spotIconCB: NSButton!
     @IBOutlet weak var scrollingSongNameCB: NSButton!
+    @IBOutlet weak var alertMessageLabel: NSTextField!
+    
     
     // Vars
     var isDarkThemeToggled = true
@@ -25,8 +27,9 @@ class SettingsViewController: NSViewController {
     var isPlayPauseIconsToggled = true
     var isSpotIconToggled = true
     var isScrollingSongNameToggled = true
-    
     var isFirstTimeLaunchingSettings = true
+    
+    let appDel = AppDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,7 @@ class SettingsViewController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        alertMessageLabel.isHidden = true
         readSettings()
         initCheckboxStates()
     }
@@ -57,6 +61,7 @@ class SettingsViewController: NSViewController {
     }
     
     func readSettings() {
+        print("[SettingsViewController - readSettings()] Reading settings")
         isDarkThemeToggled = UserPreferences.readSetting(key: UserPreferences.darkTheme)
         isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
         isSongNameToggled = UserPreferences.readSetting(key: UserPreferences.songName)
@@ -64,8 +69,6 @@ class SettingsViewController: NSViewController {
         isSpotIconToggled = UserPreferences.readSetting(key: UserPreferences.spotIcon)
         isScrollingSongNameToggled = UserPreferences.readSetting(key: UserPreferences.scrollingSongName)
         isFirstTimeLaunchingSettings = UserPreferences.readSetting(key: UserPreferences.other.firstSettingsLaunch)
-        
-        
     }
     
     func initCheckboxStates() {
@@ -109,11 +112,16 @@ class SettingsViewController: NSViewController {
     // Checked state = 1
     // Not checked state = 0
     @IBAction func toggleDarkTheme(_ sender: Any) {
+        isDarkThemeToggled = UserPreferences.readSetting(key: UserPreferences.darkTheme)
         if !isDarkThemeToggled {
             UserPreferences.setSetting(key: UserPreferences.darkTheme, value: true)
+            appDel.toggleDarkTheme(isDark: true)
         } else {
             UserPreferences.setSetting(key: UserPreferences.darkTheme, value: false)
+            appDel.toggleDarkTheme(isDark: false)
         }
+        alertMessageLabel.isHidden = false
+        alertMessageLabel.stringValue = "Theme change will occurr as soon as you click outside the app"
     }
     
     @IBAction func toggleArtistName(_ sender: Any) {
