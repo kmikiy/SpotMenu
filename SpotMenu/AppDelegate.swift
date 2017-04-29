@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     let popover = NSPopover()
+    let settingsPopover = NSPopover()
     var timer: Timer?
     
     var lastTitle = ""
@@ -25,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var initialWidth:CGFloat = 0
     
-    let url = URL(string: "https://github.com/kmikiy")
+    let projectURL = URL(string: "https://github.com/FernandoX7/SpStreamer")
     
     let menu = NSMenu()
     
@@ -36,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         if let button = statusItem.button {
-            button.image = NSImage(named: "StatusBarButtonImage")
+            button.image = NSImage(named: "no-image")
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             button.action = #selector(AppDelegate.togglePopover(_:))
             button.addSubview(hiddenView)
@@ -47,17 +48,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(AppDelegate.quit(_:)), keyEquivalent: "Q"))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Issues", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: "I"))
-        menu.addItem(NSMenuItem(title: " - kmikiy - ", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Github Project", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: "I"))
+        menu.addItem(NSMenuItem(title: "Settings", action: #selector(AppDelegate.openSettings(_:)), keyEquivalent: "O"))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Preferences...", action: nil, keyEquivalent: ","))
+        menu.addItem(NSMenuItem(title: "Empty", action: nil, keyEquivalent: ","))
         
         
         popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
-        //popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        settingsPopover.contentViewController = SettingsViewController(nibName: "SettingsViewController", bundle: nil)
+        //        popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
         
         eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [unowned self] event in
             if self.popover.isShown {
+                self.closePopover(event)
+            }
+            if self.settingsPopover.isShown {
                 self.closePopover(event)
             }
         }
@@ -85,9 +90,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if let title = Spotify.currentTrack.title , lastTitle != title || lastArtist != artist || lastState != state {
                 switch state {
                 case .playing:
-                    statusItem.title = "♫ \(artist) - \(title)  "
+                    statusItem.button?.image = NSImage(named: "StatusBarButtonImage")
+                    statusItem.title = "❚❚ \(artist) - \(title)  "
                 default:
-                    statusItem.title = "\(artist) - \(title)  "
+                    statusItem.button?.image = NSImage(named: "no-image")
+                    statusItem.title = "▶ \(artist) - \(title)  "
                 }
                 
                 lastArtist = artist
@@ -113,8 +120,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Popover
     func openSite(_ sender: NSMenuItem) {
-        if let url = url, NSWorkspace.shared().open(url) {
-            print("default browser was successfully opened")
+        if let url = projectURL, NSWorkspace.shared().open(url) {
+            print("Default browser successfully opened and pointed to: \(url)")
+        }
+    }
+    
+    func openSettings(_ sender: NSMenuItem) {
+        if let button = statusItem.button {
+            settingsPopover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+        } else {
+            print("NO")
         }
     }
     
@@ -131,6 +146,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func closePopover(_ sender: AnyObject?) {
         popover.performClose(sender)
+        if settingsPopover.isShown {
+            settingsPopover.performClose(sender)
+        }
         eventMonitor?.stop()
     }
     
