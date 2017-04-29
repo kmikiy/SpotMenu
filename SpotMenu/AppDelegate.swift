@@ -32,9 +32,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var hiddenView: NSView = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 1))
     
-
-    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+//        UserPreferences.clearAllSettings()
         
         if let button = statusItem.button {
             button.image = NSImage(named: "no-image")

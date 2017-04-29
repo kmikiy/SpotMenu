@@ -21,6 +21,7 @@
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 		ED32BD461EB42A26005F68C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */; };
 		ED32BD471EB42A26005F68C2 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */; };
+		ED32BD4A1EB431A2005F68C2 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD491EB431A2005F68C2 /* UserPreferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,7 @@
 		D957B916D9B0D4C74B4EFF54 /* Pods-SpStreamer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpStreamer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpStreamer/Pods-SpStreamer.debug.xcconfig"; sourceTree = "<group>"; };
 		ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		ED32BD491EB431A2005F68C2 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */,
+				ED32BD491EB431A2005F68C2 /* UserPreferences.swift */,
 				ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */,
 			);
 			name = Settings;
@@ -272,6 +275,7 @@
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
 				2133243A1D79967B0060D48C /* ViewController.swift in Sources */,
 				ED32BD461EB42A26005F68C2 /* SettingsViewController.swift in Sources */,
+				ED32BD4A1EB431A2005F68C2 /* UserPreferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
