@@ -57,13 +57,6 @@ class SettingsViewController: NSViewController {
     }
     
     func readSettings() {
-        print(UserPreferences.readSetting(key: UserPreferences.darkTheme))
-        print(UserPreferences.readSetting(key: UserPreferences.artistName))
-        print(UserPreferences.readSetting(key: UserPreferences.songName))
-        print(UserPreferences.readSetting(key: UserPreferences.playPauseIcons))
-        print(UserPreferences.readSetting(key: UserPreferences.spotIcon))
-        print(UserPreferences.readSetting(key: UserPreferences.scrollingSongName))
-        
         isDarkThemeToggled = UserPreferences.readSetting(key: UserPreferences.darkTheme)
         isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
         isSongNameToggled = UserPreferences.readSetting(key: UserPreferences.songName)
