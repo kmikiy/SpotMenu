@@ -87,7 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.removeObserver(self)
         timer!.invalidate()
     }
-
+    
     
     func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
@@ -100,9 +100,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
                 isSongNameToggled = UserPreferences.readSetting(key: UserPreferences.songName)
                 isPlayPauseIconsToggled = UserPreferences.readSetting(key: UserPreferences.playPauseIcons)
+                isSpotIconToggled = UserPreferences.readSetting(key: UserPreferences.spotIcon)
                 var playIcon = "❚❚ "
                 var pauseIcon = "▶ "
                 var connectArtistAndSong = " -"
+                var spotIconName = "StatusBarButtonImage"
                 
                 if isArtistNameToggled {
                     if !isSongNameToggled {
@@ -128,14 +130,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     pauseIcon = "▶  "
                 }
                 
+                if !isSpotIconToggled {
+                    spotIconName = "no-image"
+                } else {
+                    spotIconName = "StatusBarButtonImage"
+                }
+                
                 switch state {
                 case .playing:
-                    statusItem.button?.image = NSImage(named: "StatusBarButtonImage")
+                    statusItem.button?.image = NSImage(named: spotIconName)
                     statusItem.title = "\(playIcon)\(artist) \(title)  "
                 default:
-                    statusItem.button?.image = NSImage(named: "StatusBarButtonImage")
+                    statusItem.button?.image = NSImage(named: spotIconName)
                     statusItem.title = "\(pauseIcon)\(artist) \(title)  "
-                    statusItem.button?.image = NSImage(named: "no-image")
                 }
                 
                 lastArtist = artist

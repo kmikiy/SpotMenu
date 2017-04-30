@@ -161,11 +161,15 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func toggleSpotIcon(_ sender: Any) {
+        isSpotIconToggled = UserPreferences.readSetting(key: UserPreferences.spotIcon)
         if !isSpotIconToggled {
             UserPreferences.setSetting(key: UserPreferences.spotIcon, value: true)
+            alertMessageLabel.stringValue = "Will display icon as soon as you click outside the app"
         } else {
             UserPreferences.setSetting(key: UserPreferences.spotIcon, value: false)
+            alertMessageLabel.stringValue = "Will hide icon as soon as you click outside the app"
         }
+        alertMessageLabel.isHidden = false
     }
     
     @IBAction func toggleScrollingSongName(_ sender: Any) {
