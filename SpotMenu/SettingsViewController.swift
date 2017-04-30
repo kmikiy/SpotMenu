@@ -137,11 +137,15 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func toggleSongName(_ sender: Any) {
+        isSongNameToggled = UserPreferences.readSetting(key: UserPreferences.songName)
         if !isSongNameToggled {
             UserPreferences.setSetting(key: UserPreferences.songName, value: true)
+            alertMessageLabel.stringValue = "Will display song name as soon as you click outside the app"
         } else {
             UserPreferences.setSetting(key: UserPreferences.songName, value: false)
+            alertMessageLabel.stringValue = "Will hide song name as soon as you click outside the app"
         }
+        alertMessageLabel.isHidden = false
     }
     
     @IBAction func togglePlayPauseIcons(_ sender: Any) {

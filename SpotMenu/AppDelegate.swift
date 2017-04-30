@@ -96,14 +96,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func updateTitle(){
         let state = Spotify.playerState
         if var artist = Spotify.currentTrack.albumArtist {
-            if let title = Spotify.currentTrack.title , lastTitle != title || lastArtist != artist || lastState != state {
+            if var title = Spotify.currentTrack.title , lastTitle != title || lastArtist != artist || lastState != state {
                 isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
+                isSongNameToggled = UserPreferences.readSetting(key: UserPreferences.songName)
                 let playIcon = "❚❚"
                 let pauseIcon = "▶"
+                var connectArtistAndSong = " -"
+                
                 if isArtistNameToggled {
-                    artist = artist + " -"
+                    if !isSongNameToggled {
+                        connectArtistAndSong = ""
+                    }
+                    artist = artist + connectArtistAndSong
                 } else {
+                    
                     artist = ""
+                }
+                
+                if isSongNameToggled {
+                    title = title + "  "
+                } else {
+                    title = ""
                 }
                 
                 switch state {
