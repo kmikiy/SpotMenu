@@ -7,6 +7,11 @@ About
 
 SpStreamer is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay), [Statusfy](https://github.com/paulyoung/Statusfy), and [SpotMenu](https://github.com/kmikiy/SpotMenu) written entirely in swift. 
 
+Features include
++ Dark and light theme
++ Customizing the status bar - hide/show icons
++ Displaying song and/or artist name on status bar
+
 Easy Install
 ------------
 + Download the zip file [Version 1](https://github.com/FernandoX7/SpStreamer/archive/master.zip). 
@@ -41,7 +46,7 @@ Finally, open up the SpStreamer.xcworkspace. Set the "Scheme" to build the "SpSt
 
 Note: 
 + App is made with Swift 3.0 therefore Xcode 8 is required.
-+ In some cases it might be required to select the "Spotify" scheme and build it before selecting "SpotMenu".
++ In some cases it might be required to select the "Spotify" scheme and build it before selecting "SpStreamer".
 
 Help
 ----
