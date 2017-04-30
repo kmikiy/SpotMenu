@@ -149,11 +149,15 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func togglePlayPauseIcons(_ sender: Any) {
+        isPlayPauseIconsToggled = UserPreferences.readSetting(key: UserPreferences.playPauseIcons)
         if !isPlayPauseIconsToggled {
             UserPreferences.setSetting(key: UserPreferences.playPauseIcons, value: true)
+            alertMessageLabel.stringValue = "Will display icons as soon as you click outside the app"
         } else {
             UserPreferences.setSetting(key: UserPreferences.playPauseIcons, value: false)
+            alertMessageLabel.stringValue = "Will hide icons as soon as you click outside the app"
         }
+        alertMessageLabel.isHidden = false
     }
     
     @IBAction func toggleSpotIcon(_ sender: Any) {

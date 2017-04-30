@@ -99,8 +99,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if var title = Spotify.currentTrack.title , lastTitle != title || lastArtist != artist || lastState != state {
                 isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
                 isSongNameToggled = UserPreferences.readSetting(key: UserPreferences.songName)
-                let playIcon = "❚❚"
-                let pauseIcon = "▶"
+                isPlayPauseIconsToggled = UserPreferences.readSetting(key: UserPreferences.playPauseIcons)
+                var playIcon = "❚❚ "
+                var pauseIcon = "▶ "
                 var connectArtistAndSong = " -"
                 
                 if isArtistNameToggled {
@@ -119,13 +120,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     title = ""
                 }
                 
+                if !isPlayPauseIconsToggled {
+                    playIcon = ""
+                    pauseIcon = ""
+                } else {
+                    playIcon = "❚❚  "
+                    pauseIcon = "▶  "
+                }
+                
                 switch state {
                 case .playing:
                     statusItem.button?.image = NSImage(named: "StatusBarButtonImage")
-                    statusItem.title = "\(playIcon) \(artist) \(title)  "
+                    statusItem.title = "\(playIcon)\(artist) \(title)  "
                 default:
                     statusItem.button?.image = NSImage(named: "StatusBarButtonImage")
-                    statusItem.title = "\(pauseIcon) \(artist) \(title)  "
+                    statusItem.title = "\(pauseIcon)\(artist) \(title)  "
                     statusItem.button?.image = NSImage(named: "no-image")
                 }
                 
