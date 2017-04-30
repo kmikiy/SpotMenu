@@ -106,6 +106,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 var connectArtistAndSong = " -"
                 var spotIconName = "StatusBarButtonImage"
                 
+                // Make sure to show at least one thing on the statusbar at all times
+                if (!isArtistNameToggled && !isSongNameToggled && !isPlayPauseIconsToggled && !isSpotIconToggled) {
+                    UserPreferences.setSetting(key: UserPreferences.spotIcon, value: true)
+                }
+                
                 if isArtistNameToggled {
                     if !isSongNameToggled {
                         connectArtistAndSong = ""
