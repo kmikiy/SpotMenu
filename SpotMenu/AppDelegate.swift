@@ -95,15 +95,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func updateTitle(){
         let state = Spotify.playerState
-        if let artist = Spotify.currentTrack.albumArtist {
+        if var artist = Spotify.currentTrack.albumArtist {
             if let title = Spotify.currentTrack.title , lastTitle != title || lastArtist != artist || lastState != state {
+                isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
+                let playIcon = "❚❚"
+                let pauseIcon = "▶"
+                if isArtistNameToggled {
+                    artist = artist + " -"
+                } else {
+                    artist = ""
+                }
+                
                 switch state {
                 case .playing:
                     statusItem.button?.image = NSImage(named: "StatusBarButtonImage")
-                    statusItem.title = "❚❚ \(artist) - \(title)  "
+                    statusItem.title = "\(playIcon) \(artist) \(title)  "
                 default:
+                    statusItem.button?.image = NSImage(named: "StatusBarButtonImage")
+                    statusItem.title = "\(pauseIcon) \(artist) \(title)  "
                     statusItem.button?.image = NSImage(named: "no-image")
-                    statusItem.title = "▶ \(artist) - \(title)  "
                 }
                 
                 lastArtist = artist

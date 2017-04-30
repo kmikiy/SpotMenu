@@ -125,11 +125,15 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func toggleArtistName(_ sender: Any) {
+        isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
         if !isArtistNameToggled {
             UserPreferences.setSetting(key: UserPreferences.artistName, value: true)
+            alertMessageLabel.stringValue = "Will display artist name as soon as you click outside the app"
         } else {
             UserPreferences.setSetting(key: UserPreferences.artistName, value: false)
+            alertMessageLabel.stringValue = "Will hide artist name as soon as you click outside the app"
         }
+        alertMessageLabel.isHidden = false
     }
     
     @IBAction func toggleSongName(_ sender: Any) {
