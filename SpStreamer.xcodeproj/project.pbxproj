@@ -19,6 +19,9 @@
 		647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647BEE611E5B2037007E3AB5 /* PopOver.xib */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
+		ED32BD461EB42A26005F68C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */; };
+		ED32BD471EB42A26005F68C2 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */; };
+		ED32BD4A1EB431A2005F68C2 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD491EB431A2005F68C2 /* UserPreferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +56,9 @@
 		966021F96AC8DD6D8E4A6DAF /* Pods-SpStreamer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpStreamer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpStreamer/Pods-SpStreamer.release.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D957B916D9B0D4C74B4EFF54 /* Pods-SpStreamer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpStreamer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpStreamer/Pods-SpStreamer.debug.xcconfig"; sourceTree = "<group>"; };
+		ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		ED32BD491EB431A2005F68C2 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,7 @@
 		2133242A1D79801E0060D48C /* SpStreamer */ = {
 			isa = PBXGroup;
 			children = (
+				ED32BD481EB42E36005F68C2 /* Settings */,
 				21A668171D7F13CE009813E5 /* CustomButton.swift */,
 				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
 				2133243E1D7999180060D48C /* EventMonitor.swift */,
@@ -123,6 +130,16 @@
 				966021F96AC8DD6D8E4A6DAF /* Pods-SpStreamer.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		ED32BD481EB42E36005F68C2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */,
+				ED32BD491EB431A2005F68C2 /* UserPreferences.swift */,
+				ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */,
+				ED32BD471EB42A26005F68C2 /* SettingsViewController.xib in Resources */,
 				2133243B1D79967B0060D48C /* ViewController.xib in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
@@ -256,6 +274,8 @@
 				648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */,
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
 				2133243A1D79967B0060D48C /* ViewController.swift in Sources */,
+				ED32BD461EB42A26005F68C2 /* SettingsViewController.swift in Sources */,
+				ED32BD4A1EB431A2005F68C2 /* UserPreferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

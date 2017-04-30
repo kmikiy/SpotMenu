@@ -115,6 +115,7 @@ class ViewController: NSViewController {
     private func getTimeString(tuple: (Int,Int,Int))-> String {
         return String(format: "%02d:%02d", tuple.1, tuple.2)
     }
+    
 }
 
 // MARK: Actions
