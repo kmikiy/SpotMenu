@@ -5,11 +5,12 @@
     },
     {
       "idiom" : "mac",
+      "filename" : "spot-icon@1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "mac",
-      "filename" : "Spotify Filled-50.png",
+      "filename" : "spot-icon@2x.png",
       "scale" : "2x"
     }
   ],
