@@ -10,11 +10,11 @@ import Spotify
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    
     @IBOutlet weak var window: NSWindow!
-
+    
     var eventMonitor: EventMonitor?
-
+    
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     let popover = NSPopover()
     let settingsPopover = NSPopover()
@@ -80,7 +80,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.updateTitleAndPopover), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
         eventMonitor?.stop()
@@ -144,7 +144,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 switch state {
                 case .playing:
                     statusItem.button?.image = NSImage(named: spotIconName)
-                    statusItem.title = "\(playIcon)\(artist) \(title)  "
+                    if (isSpotIconToggled && !isArtistNameToggled && !isSongNameToggled && !isPlayPauseIconsToggled) {
+                        statusItem.title = nil
+                    } else {
+                        statusItem.title = "\(playIcon)\(artist) \(title)  "
+                    }
                 default:
                     statusItem.button?.image = NSImage(named: spotIconName)
                     statusItem.title = "\(pauseIcon)\(artist) \(title)  "
@@ -170,7 +174,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateHidden()
     }
     
-
+    
     // MARK: - Popover
     func openSite(_ sender: NSMenuItem) {
         if let url = projectURL, NSWorkspace.shared().open(url) {
@@ -187,9 +191,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func quit(_ sender: NSMenuItem) {
-       NSApp.terminate(self)
+        NSApp.terminate(self)
     }
-
+    
     func showPopover(_ sender: AnyObject?) {
         initialWidth = statusItem.button!.bounds.width
         updateHidden()
@@ -238,7 +242,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func readSettings() {
-        print("[AppDelegate - readSettings] Reading settings")
         isDarkThemeToggled = UserPreferences.readSetting(key: UserPreferences.darkTheme)
         isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
         isSongNameToggled = UserPreferences.readSetting(key: UserPreferences.songName)
@@ -248,36 +251,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         
         checkTheme()
-        
-//        if isArtistNameToggled {
-//            
-//        } else {
-//            
-//        }
-//        
-//        if isSongNameToggled {
-//      
-//        } else {
-//            
-//        }
-//        
-//        if isPlayPauseIconsToggled {
-//           
-//        } else {
-//            
-//        }
-//        
-//        if isSpotIconToggled {
-//           
-//        } else {
-//          
-//        }
-//        
-//        if isScrollingSongNameToggled {
-//       
-//        } else {
-//          
-//        }
     }
     
     func checkTheme() {

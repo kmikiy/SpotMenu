@@ -61,7 +61,6 @@ class SettingsViewController: NSViewController {
     }
     
     func readSettings() {
-        print("[SettingsViewController - readSettings()] Reading settings")
         isDarkThemeToggled = UserPreferences.readSetting(key: UserPreferences.darkTheme)
         isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
         isSongNameToggled = UserPreferences.readSetting(key: UserPreferences.songName)

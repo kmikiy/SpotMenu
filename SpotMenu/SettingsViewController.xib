@@ -99,7 +99,7 @@
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9jp-YT-6OK">
                     <rect key="frame" x="18" y="75" width="145" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Scrolling song name" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="750-Wv-xsW">
+                    <buttonCell key="cell" type="check" title="Scrolling song name" bezelStyle="regularSquare" imagePosition="left" state="on" transparent="YES" inset="2" id="750-Wv-xsW">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
