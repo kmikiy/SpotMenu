@@ -125,51 +125,56 @@ class SettingsViewController: NSViewController {
     }
     
     @IBAction func toggleArtistName(_ sender: Any) {
+        appDel.postUpdateNotification()
         isArtistNameToggled = UserPreferences.readSetting(key: UserPreferences.artistName)
         if !isArtistNameToggled {
             UserPreferences.setSetting(key: UserPreferences.artistName, value: true)
-            alertMessageLabel.stringValue = "Will display artist name as soon as you click outside the app"
+            alertMessageLabel.stringValue = "Artist name will now be shown"
         } else {
             UserPreferences.setSetting(key: UserPreferences.artistName, value: false)
-            alertMessageLabel.stringValue = "Will hide artist name as soon as you click outside the app"
+            alertMessageLabel.stringValue = "Artist name is now hidden"
         }
         alertMessageLabel.isHidden = false
+        appDel.postUpdateNotification()
     }
     
     @IBAction func toggleSongName(_ sender: Any) {
         isSongNameToggled = UserPreferences.readSetting(key: UserPreferences.songName)
         if !isSongNameToggled {
             UserPreferences.setSetting(key: UserPreferences.songName, value: true)
-            alertMessageLabel.stringValue = "Will display song name as soon as you click outside the app"
+            alertMessageLabel.stringValue = "Song name will now be shown"
         } else {
             UserPreferences.setSetting(key: UserPreferences.songName, value: false)
-            alertMessageLabel.stringValue = "Will hide song name as soon as you click outside the app"
+            alertMessageLabel.stringValue = "Song name is now hidden"
         }
         alertMessageLabel.isHidden = false
+        appDel.postUpdateNotification()
     }
     
     @IBAction func togglePlayPauseIcons(_ sender: Any) {
         isPlayPauseIconsToggled = UserPreferences.readSetting(key: UserPreferences.playPauseIcons)
         if !isPlayPauseIconsToggled {
             UserPreferences.setSetting(key: UserPreferences.playPauseIcons, value: true)
-            alertMessageLabel.stringValue = "Will display icons as soon as you click outside the app"
+            alertMessageLabel.stringValue = "Icons will now be shown"
         } else {
             UserPreferences.setSetting(key: UserPreferences.playPauseIcons, value: false)
-            alertMessageLabel.stringValue = "Will hide icons as soon as you click outside the app"
+            alertMessageLabel.stringValue = "Icons are now hidden"
         }
         alertMessageLabel.isHidden = false
+        appDel.postUpdateNotification()
     }
     
     @IBAction func toggleSpotIcon(_ sender: Any) {
         isSpotIconToggled = UserPreferences.readSetting(key: UserPreferences.spotIcon)
         if !isSpotIconToggled {
             UserPreferences.setSetting(key: UserPreferences.spotIcon, value: true)
-            alertMessageLabel.stringValue = "Will display icon as soon as you click outside the app"
+            alertMessageLabel.stringValue = "Spotify icon will now be shown"
         } else {
             UserPreferences.setSetting(key: UserPreferences.spotIcon, value: false)
-            alertMessageLabel.stringValue = "Will hide icon as soon as you click outside the app"
+            alertMessageLabel.stringValue = "Spotify icon is now hidden"
         }
         alertMessageLabel.isHidden = false
+        appDel.postUpdateNotification()
     }
     
     @IBAction func toggleScrollingSongName(_ sender: Any) {
