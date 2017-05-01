@@ -15,7 +15,6 @@
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
 		21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A668171D7F13CE009813E5 /* CustomButton.swift */; };
 		516400CAC8168D2AFC28B1AD /* Pods_SpStreamer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B883B8D878D60A6FC1ADE /* Pods_SpStreamer.framework */; };
-		6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */; };
 		647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647BEE611E5B2037007E3AB5 /* PopOver.xib */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		ED32BD461EB42A26005F68C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */; };
@@ -47,7 +46,6 @@
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		21A668171D7F13CE009813E5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		379B883B8D878D60A6FC1ADE /* Pods_SpStreamer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpStreamer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		647BEE611E5B2037007E3AB5 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		966021F96AC8DD6D8E4A6DAF /* Pods-SpStreamer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpStreamer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpStreamer/Pods-SpStreamer.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 				2133242D1D79801E0060D48C /* Assets.xcassets */,
 				2133242F1D79801E0060D48C /* MainMenu.xib */,
 				213324321D79801E0060D48C /* Info.plist */,
-				6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */,
 			);
 			name = SpStreamer;
 			path = SpotMenu;
@@ -202,7 +199,6 @@
 				2133243B1D79967B0060D48C /* ViewController.xib in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
-				6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,7 +372,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D957B916D9B0D4C74B4EFF54 /* Pods-SpStreamer.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -390,7 +386,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 966021F96AC8DD6D8E4A6DAF /* Pods-SpStreamer.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

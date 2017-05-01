@@ -150,8 +150,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         statusItem.title = "\(playIcon)\(artist) \(title)  "
                     }
                 default:
+                    if (isSpotIconToggled && !isArtistNameToggled && !isSongNameToggled && !isPlayPauseIconsToggled) {
+                        statusItem.title = nil
+                    } else {
+                        statusItem.title = "\(pauseIcon)\(artist) \(title)  "
+                    }
                     statusItem.button?.image = NSImage(named: spotIconName)
-                    statusItem.title = "\(pauseIcon)\(artist) \(title)  "
                 }
                 
                 lastArtist = artist
