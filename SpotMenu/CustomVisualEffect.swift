@@ -1,6 +1,5 @@
 //
 //  CustomVisualEffect.swift
-//  SpotMenu
 //
 //  Created by Miklós Kristyán on 2017. 02. 21..
 //  Copyright © 2017. KM. All rights reserved.
@@ -10,7 +9,9 @@ import Foundation
 import AppKit
 
 class CustomVisualEffect: NSVisualEffectView {
+    
     var trackingArea:NSTrackingArea!
+    var isDarkThemeToggled = UserPreferences.readSetting(key: UserPreferences.darkTheme)
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -24,12 +25,18 @@ class CustomVisualEffect: NSVisualEffectView {
         fadeAnim.fromValue = 1.0
         fadeAnim.toValue = 0
         fadeAnim.duration = 0.1
+        
         self.layer?.add(fadeAnim, forKey: "opacity")
         self.alphaValue = 0
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        if !isDarkThemeToggled {
+            self.material = .light
+        } else {
+            self.material = .dark
+        }
         
         // set tracking area
         let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways])

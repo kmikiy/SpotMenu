@@ -1,6 +1,5 @@
 //
 //  CustomButton.swift
-//  SpotMenu
 //
 //  Created by Miklós Kristyán on 06/09/16.
 //  Copyright © 2016 KM. All rights reserved.

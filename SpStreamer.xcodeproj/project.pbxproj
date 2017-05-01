@@ -14,10 +14,12 @@
 		2133243B1D79967B0060D48C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213324391D79967B0060D48C /* ViewController.xib */; };
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
 		21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A668171D7F13CE009813E5 /* CustomButton.swift */; };
-		6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */; };
+		516400CAC8168D2AFC28B1AD /* Pods_SpStreamer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379B883B8D878D60A6FC1ADE /* Pods_SpStreamer.framework */; };
 		647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647BEE611E5B2037007E3AB5 /* PopOver.xib */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
-		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
+		ED32BD461EB42A26005F68C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */; };
+		ED32BD471EB42A26005F68C2 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */; };
+		ED32BD4A1EB431A2005F68C2 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD491EB431A2005F68C2 /* UserPreferences.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,7 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		213324281D79801E0060D48C /* SpotMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		213324281D79801E0060D48C /* SpStreamer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpStreamer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2133242B1D79801E0060D48C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2133242D1D79801E0060D48C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		213324301D79801E0060D48C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -43,12 +45,14 @@
 		213324391D79967B0060D48C /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		21A668171D7F13CE009813E5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
-		6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		379B883B8D878D60A6FC1ADE /* Pods_SpStreamer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpStreamer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		647BEE611E5B2037007E3AB5 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
-		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
-		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		966021F96AC8DD6D8E4A6DAF /* Pods-SpStreamer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpStreamer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpStreamer/Pods-SpStreamer.release.xcconfig"; sourceTree = "<group>"; };
+		D957B916D9B0D4C74B4EFF54 /* Pods-SpStreamer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpStreamer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpStreamer/Pods-SpStreamer.debug.xcconfig"; sourceTree = "<group>"; };
+		ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		ED32BD491EB431A2005F68C2 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */,
+				516400CAC8168D2AFC28B1AD /* Pods_SpStreamer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,7 +70,7 @@
 		2133241F1D79801E0060D48C = {
 			isa = PBXGroup;
 			children = (
-				2133242A1D79801E0060D48C /* SpotMenu */,
+				2133242A1D79801E0060D48C /* SpStreamer */,
 				213324291D79801E0060D48C /* Products */,
 				D5261F6E7BEA36A23255A84A /* Pods */,
 				A41E658F2A33A401D35F4C51 /* Frameworks */,
@@ -76,14 +80,15 @@
 		213324291D79801E0060D48C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				213324281D79801E0060D48C /* SpotMenu.app */,
+				213324281D79801E0060D48C /* SpStreamer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2133242A1D79801E0060D48C /* SpotMenu */ = {
+		2133242A1D79801E0060D48C /* SpStreamer */ = {
 			isa = PBXGroup;
 			children = (
+				ED32BD481EB42E36005F68C2 /* Settings */,
 				21A668171D7F13CE009813E5 /* CustomButton.swift */,
 				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
 				2133243E1D7999180060D48C /* EventMonitor.swift */,
@@ -94,15 +99,15 @@
 				2133242D1D79801E0060D48C /* Assets.xcassets */,
 				2133242F1D79801E0060D48C /* MainMenu.xib */,
 				213324321D79801E0060D48C /* Info.plist */,
-				6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */,
 			);
+			name = SpStreamer;
 			path = SpotMenu;
 			sourceTree = "<group>";
 		};
 		A41E658F2A33A401D35F4C51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */,
+				379B883B8D878D60A6FC1ADE /* Pods_SpStreamer.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -110,18 +115,28 @@
 		D5261F6E7BEA36A23255A84A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */,
-				5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */,
+				D957B916D9B0D4C74B4EFF54 /* Pods-SpStreamer.debug.xcconfig */,
+				966021F96AC8DD6D8E4A6DAF /* Pods-SpStreamer.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		ED32BD481EB42E36005F68C2 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */,
+				ED32BD491EB431A2005F68C2 /* UserPreferences.swift */,
+				ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		213324271D79801E0060D48C /* SpotMenu */ = {
+		213324271D79801E0060D48C /* SpStreamer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 213324351D79801E0060D48C /* Build configuration list for PBXNativeTarget "SpotMenu" */;
+			buildConfigurationList = 213324351D79801E0060D48C /* Build configuration list for PBXNativeTarget "SpStreamer" */;
 			buildPhases = (
 				BCC3DC66AF67FE7C48F9B35A /* [CP] Check Pods Manifest.lock */,
 				213324241D79801E0060D48C /* Sources */,
@@ -135,9 +150,9 @@
 			);
 			dependencies = (
 			);
-			name = SpotMenu;
+			name = SpStreamer;
 			productName = SpotMenu;
-			productReference = 213324281D79801E0060D48C /* SpotMenu.app */;
+			productReference = 213324281D79801E0060D48C /* SpStreamer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +171,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 213324231D79801E0060D48C /* Build configuration list for PBXProject "SpotMenu" */;
+			buildConfigurationList = 213324231D79801E0060D48C /* Build configuration list for PBXProject "SpStreamer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -169,7 +184,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				213324271D79801E0060D48C /* SpotMenu */,
+				213324271D79801E0060D48C /* SpStreamer */,
 			);
 		};
 /* End PBXProject section */
@@ -180,10 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */,
+				ED32BD471EB42A26005F68C2 /* SettingsViewController.xib in Resources */,
 				2133243B1D79967B0060D48C /* ViewController.xib in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
-				6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +217,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpStreamer/Pods-SpStreamer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BCC3DC66AF67FE7C48F9B35A /* [CP] Check Pods Manifest.lock */ = {
@@ -217,7 +232,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		F8E0917400630BBF5370A313 /* [CP] Embed Pods Frameworks */ = {
@@ -232,7 +247,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpStreamer/Pods-SpStreamer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -247,6 +262,8 @@
 				648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */,
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
 				2133243A1D79967B0060D48C /* ViewController.swift in Sources */,
+				ED32BD461EB42A26005F68C2 /* SettingsViewController.swift in Sources */,
+				ED32BD4A1EB431A2005F68C2 /* UserPreferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,13 +370,13 @@
 		};
 		213324361D79801E0060D48C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */;
+			baseConfigurationReference = D957B916D9B0D4C74B4EFF54 /* Pods-SpStreamer.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.framirez.SpStreamer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -367,13 +384,13 @@
 		};
 		213324371D79801E0060D48C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */;
+			baseConfigurationReference = 966021F96AC8DD6D8E4A6DAF /* Pods-SpStreamer.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.framirez.SpStreamer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -382,7 +399,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		213324231D79801E0060D48C /* Build configuration list for PBXProject "SpotMenu" */ = {
+		213324231D79801E0060D48C /* Build configuration list for PBXProject "SpStreamer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				213324331D79801E0060D48C /* Debug */,
@@ -391,7 +408,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		213324351D79801E0060D48C /* Build configuration list for PBXNativeTarget "SpotMenu" */ = {
+		213324351D79801E0060D48C /* Build configuration list for PBXNativeTarget "SpStreamer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				213324361D79801E0060D48C /* Debug */,
