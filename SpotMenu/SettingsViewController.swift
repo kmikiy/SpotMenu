@@ -184,6 +184,24 @@ class SettingsViewController: NSViewController {
         }
     }
     
+    @IBAction func openTwitterProfile(_ sender: Any) {
+        if let url = URL(string: "https://twitter.com/fernando7_r"), NSWorkspace.shared().open(url) {
+        }
+    }
+    
+    @IBAction func openGithubProject(_ sender: Any) {
+        if let url = URL(string: "https://github.com/FernandoX7/SpStreamer"), NSWorkspace.shared().open(url) {
+        }
+    }
+    
+    @IBAction func buyCoffee(_ sender: Any) {
+        if let url = URL(string: "https://goo.gl/ntA8u2"), NSWorkspace.shared().open(url) {
+        }
+    }
+    
+    
+    
+    
     
     
     
