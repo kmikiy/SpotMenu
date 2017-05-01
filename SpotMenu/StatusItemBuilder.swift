@@ -19,45 +19,50 @@ class StatusItemBuilder {
     init() {
         self.state = Spotify.playerState
     }
-    func showTitle() -> StatusItemBuilder {
+    func showTitle(v: Bool) -> StatusItemBuilder {
+        if !v {
+            self.title = ""
+            return self
+        }
         if let title = Spotify.currentTrack.title {
             self.title = title + " "
         }
         return self
     }
-    func hideTitle() -> StatusItemBuilder {
-        self.title = ""
-        return self
-    }
-    func showArtist() -> StatusItemBuilder {
+    
+    func showArtist(v: Bool) -> StatusItemBuilder {
+        if !v {
+            self.artist = ""
+            return self
+        }
         if let artist = Spotify.currentTrack.artist {
             self.artist = artist + " "
         }
         return self
     }
+
     
-    func hideArtist() -> StatusItemBuilder {
-        self.artist = ""
-        return self
-    }
-    
-    func showAlbumArtist() -> StatusItemBuilder {
+    func showAlbumArtist(v: Bool) -> StatusItemBuilder {
+        if !v {
+            self.artist = ""
+            return self
+        }
         if let artist = Spotify.currentTrack.albumArtist {
             self.artist = artist + " "
         }
         return self
     }
     
-    func showPlayingIcon() -> StatusItemBuilder {
+    func showPlayingIcon(v: Bool) -> StatusItemBuilder {
+        if !v {
+            playingIcon = ""
+            return self
+        }
         if (state == PlayerState.playing) {
             playingIcon = "♫ "
         } else {
             playingIcon = ""
         }
-        return self
-    }
-    func hidePlayingIcon() -> StatusItemBuilder {
-        playingIcon = ""
         return self
     }
     

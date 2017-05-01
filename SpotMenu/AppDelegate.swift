@@ -69,7 +69,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateTitle(){
-        statusItem.title = StatusItemBuilder().showTitle().showArtist().showPlayingIcon().getString()
+        statusItem.title = StatusItemBuilder()
+            .showTitle(v: true)
+            .showArtist(v: true)
+            .showPlayingIcon(v: true)
+            .getString()
 
     }
     
