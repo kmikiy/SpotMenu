@@ -42,8 +42,8 @@ Download the zip file [version 1.4](https://github.com/kmikiy/SpotMenu/releases/
 In case of unidentified developer follow these [steps](https://mborgerson.com/trayplay)!
 
 Older versions:   
-[version 1.3](https://github.com/kmikiy/SpotMenu/releases/download/v1.3/SpotMenu_1_3.zip)   
-[version 1.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_2.zip)   
+[version 1.3](https://github.com/kmikiy/SpotMenu/releases/download/v1.3/SpotMenu.zip)
+[version 1.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_2.zip)
 ... 
 
 You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
