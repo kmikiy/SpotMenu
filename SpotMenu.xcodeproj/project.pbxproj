@@ -17,6 +17,8 @@
 		642A55331E6DE3E900A334EA /* L.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 642A55321E6DE3E900A334EA /* L.storyboard */; };
 		6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */; };
 		646802BC1E6DE506005C9063 /* L.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646802BB1E6DE506005C9063 /* L.swift */; };
+		646FB4981EB7498000435C0B /* StatusItemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB4961EB7498000435C0B /* StatusItemBuilder.swift */; };
+		646FB4991EB7498000435C0B /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB4971EB7498000435C0B /* StatusMenu.swift */; };
 		647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647BEE611E5B2037007E3AB5 /* PopOver.xib */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		64A406B31E658E76004E3485 /* SpotifyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A406B21E658E76004E3485 /* SpotifyClient.swift */; };
@@ -52,6 +54,8 @@
 		642A55321E6DE3E900A334EA /* L.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = L.storyboard; sourceTree = "<group>"; };
 		6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		646802BB1E6DE506005C9063 /* L.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L.swift; sourceTree = "<group>"; };
+		646FB4961EB7498000435C0B /* StatusItemBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemBuilder.swift; sourceTree = "<group>"; };
+		646FB4971EB7498000435C0B /* StatusMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
 		647BEE611E5B2037007E3AB5 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		64A406B21E658E76004E3485 /* SpotifyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyClient.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 		2133242A1D79801E0060D48C /* SpotMenu */ = {
 			isa = PBXGroup;
 			children = (
+				646FB4951EB7496700435C0B /* StatusBar */,
 				64A406AE1E65761C004E3485 /* Custom */,
 				64A406B41E659E76004E3485 /* Config.swift */,
 				2133243E1D7999180060D48C /* EventMonitor.swift */,
@@ -106,6 +111,15 @@
 				213324321D79801E0060D48C /* Info.plist */,
 			);
 			path = SpotMenu;
+			sourceTree = "<group>";
+		};
+		646FB4951EB7496700435C0B /* StatusBar */ = {
+			isa = PBXGroup;
+			children = (
+				646FB4961EB7498000435C0B /* StatusItemBuilder.swift */,
+				646FB4971EB7498000435C0B /* StatusMenu.swift */,
+			);
+			name = StatusBar;
 			sourceTree = "<group>";
 		};
 		64A406AD1E6575FB004E3485 /* Spotify */ = {
@@ -303,7 +317,9 @@
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,
 				648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */,
 				646802BC1E6DE506005C9063 /* L.swift in Sources */,
+				646FB4981EB7498000435C0B /* StatusItemBuilder.swift in Sources */,
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
+				646FB4991EB7498000435C0B /* StatusMenu.swift in Sources */,
 				64A406B51E659E76004E3485 /* Config.swift in Sources */,
 				2133243A1D79967B0060D48C /* ViewController.swift in Sources */,
 				64A406B31E658E76004E3485 /* SpotifyClient.swift in Sources */,
