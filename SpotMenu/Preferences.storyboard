@@ -42,7 +42,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpI-Ua-GZP">
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpI-Ua-GZP" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
                                 <rect key="frame" x="18" y="200" width="210" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Show artist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LUe-Gd-t4b">
@@ -53,7 +53,7 @@
                                     <action selector="toggleShowArtist:" target="D1B-Ck-xIn" id="qeG-tX-L8L"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FdD-gg-7Vj">
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FdD-gg-7Vj" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
                                 <rect key="frame" x="18" y="180" width="210" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Show title" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1Tp-Jw-hmh">
@@ -64,7 +64,7 @@
                                     <action selector="toggleShowTitle:" target="D1B-Ck-xIn" id="a7G-7l-7R0"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pX8-GV-b6c">
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pX8-GV-b6c" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
                                 <rect key="frame" x="18" y="160" width="210" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Show playing icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="0Xe-ev-ytf">
@@ -75,7 +75,7 @@
                                     <action selector="toggleShowPlayingIcon:" target="D1B-Ck-xIn" id="c47-x2-npz"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yws-MH-DPg">
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yws-MH-DPg" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
                                 <rect key="frame" x="18" y="140" width="210" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Show SpotMenu icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zMR-Ou-8p3">
@@ -111,6 +111,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="moreInformation" destination="MfF-Kx-p5e" id="5cW-Qx-DNJ"/>
                         <outlet property="showArtistButton" destination="QpI-Ua-GZP" id="2io-gZ-akI"/>
                         <outlet property="showPlayingIconButton" destination="pX8-GV-b6c" id="9ma-NW-XcJ"/>
                         <outlet property="showSpotMenuIconButton" destination="Yws-MH-DPg" id="RBW-LP-XZq"/>
@@ -119,7 +120,7 @@
                 </viewController>
                 <customObject id="ZTu-eg-D9Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="465" y="110"/>
+            <point key="canvasLocation" x="460" y="133"/>
         </scene>
     </scenes>
     <resources>

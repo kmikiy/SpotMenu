@@ -21,6 +21,7 @@
 		647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647BEE611E5B2037007E3AB5 /* PopOver.xib */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
+		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		647BEE611E5B2037007E3AB5 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -123,6 +125,7 @@
 				646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */,
 				646FB4A01EB765A100435C0B /* Preferences.storyboard */,
 				64A908071EB7754100566ED1 /* UserPreferences.swift */,
+				64A908091EB784E400566ED1 /* HoverButton.swift */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				646FB49D1EB75D6500435C0B /* GeneralPreferencesVC.swift in Sources */,
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
 				646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */,
+				64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */,
 				2133243A1D79967B0060D48C /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
