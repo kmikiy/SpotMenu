@@ -18,7 +18,6 @@
 		6438797E1E50E99A00DAB951 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */; };
 		647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647BEE611E5B2037007E3AB5 /* PopOver.xib */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
-		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 		ED32BD461EB42A26005F68C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */; };
 		ED32BD471EB42A26005F68C2 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */; };
 		ED32BD4A1EB431A2005F68C2 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED32BD491EB431A2005F68C2 /* UserPreferences.swift */; };
@@ -48,13 +47,10 @@
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		21A668171D7F13CE009813E5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		379B883B8D878D60A6FC1ADE /* Pods_SpStreamer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpStreamer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
 		6438797D1E50E99A00DAB951 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		647BEE611E5B2037007E3AB5 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
-		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		966021F96AC8DD6D8E4A6DAF /* Pods-SpStreamer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpStreamer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpStreamer/Pods-SpStreamer.release.xcconfig"; sourceTree = "<group>"; };
-		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D957B916D9B0D4C74B4EFF54 /* Pods-SpStreamer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpStreamer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpStreamer/Pods-SpStreamer.debug.xcconfig"; sourceTree = "<group>"; };
 		ED32BD441EB42A26005F68C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ED32BD451EB42A26005F68C2 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -66,7 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */,
 				516400CAC8168D2AFC28B1AD /* Pods_SpStreamer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,7 +110,6 @@
 		A41E658F2A33A401D35F4C51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */,
 				379B883B8D878D60A6FC1ADE /* Pods_SpStreamer.framework */,
 			);
 			name = Frameworks;
@@ -124,8 +118,6 @@
 		D5261F6E7BEA36A23255A84A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */,
-				5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */,
 				D957B916D9B0D4C74B4EFF54 /* Pods-SpStreamer.debug.xcconfig */,
 				966021F96AC8DD6D8E4A6DAF /* Pods-SpStreamer.release.xcconfig */,
 			);
