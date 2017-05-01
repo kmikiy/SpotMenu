@@ -20,10 +20,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let popover = NSPopover()
     var timer: Timer?
     
-    var lastTitle = ""
-    var lastArtist = ""
-    var lastState = PlayerState.playing
-    
     var initialWidth:CGFloat = 0
     
     let url = URL(string: "https://github.com/kmikiy/SpotMenu")
@@ -81,24 +77,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateTitle(){
-        let state = Spotify.playerState
-        if let artist = Spotify.currentTrack.albumArtist {
-            if let title = Spotify.currentTrack.title , lastTitle != title || lastArtist != artist || lastState != state {
-                switch state {
-                case .playing:
-                    statusItem.title = "♫ \(artist) - \(title)  "
-                default:
-                    statusItem.title = "\(artist) - \(title)  "
-                }
-                
-                lastArtist = artist
-                lastTitle = title
-                lastState = state
-            }
-        } else {
-            statusItem.title = nil
-        }
-        
+        statusItem.title = StatusItemBuilder().showTitle().showArtist().showPlayingIcon().getString()
+
     }
     
     func updateHidden(){
