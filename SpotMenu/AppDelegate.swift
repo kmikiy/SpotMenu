@@ -110,10 +110,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Popover
     func openPrefs(_ sender: NSMenuItem) {
         
-        // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
-        
-        //self.presentViewController(viewController, animated: false, completion: nil)
-        
         controller.showWindow(self)
     }
     

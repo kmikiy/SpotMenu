@@ -10,6 +10,10 @@ and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift.
 
 Note: The animated gif currently demonstrates the functionality of version 1.3
 
+New Features in Version 1.4
+---------------------------
++ Customization
+
 New Features in Version 1.3
 ---------------------------
 + New layout (with the help of [maurojuniorr](https://github.com/maurojuniorr))
@@ -34,12 +38,12 @@ New Features in Version 1.1
 Easy Install
 ------------
 
-Download the zip file [version 1.3](https://github.com/kmikiy/SpotMenu/releases/download/v1.3/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.4](https://github.com/kmikiy/SpotMenu/releases/download/v1.4/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
 In case of unidentified developer follow these [steps](https://mborgerson.com/trayplay)!
 
 Older versions:   
+[version 1.3](https://github.com/kmikiy/SpotMenu/releases/download/v1.3/SpotMenu_1_3.zip)   
 [version 1.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_2.zip)   
-[version 1.1](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_1.zip)   
 ... 
 
 You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
