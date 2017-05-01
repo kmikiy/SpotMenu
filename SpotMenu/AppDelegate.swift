@@ -28,13 +28,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var hiddenView: NSView = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 1))
     
+    let spotMenuIcon = NSImage(named: "StatusBarButtonImage")
+    
 
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         UserPreferences.readPrefs()
         
         if let button = statusItem.button {
-            button.image = NSImage(named: "StatusBarButtonImage")
+            if UserPreferences.showSpotMenuIcon {
+                button.image = spotMenuIcon
+            }
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             button.action = #selector(AppDelegate.togglePopover(_:))
             button.addSubview(hiddenView)
@@ -75,6 +79,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .showArtist(v: UserPreferences.showArtist)
             .showPlayingIcon(v: UserPreferences.showPlayingIcon)
             .getString()
+        
+        if (statusItem.title?.characters.count == 0){ //Show the icon regardless of setting if char count == 0
+            if let button = statusItem.button {
+                button.image = spotMenuIcon
+            }
+        }
 
     }
     
@@ -84,6 +94,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateTitleAndPopover() {
+        if let button = statusItem.button {
+            if UserPreferences.showSpotMenuIcon {
+                button.image = spotMenuIcon
+            } else {
+                button.image = nil
+            }
+        }
         updateTitle()
         updateHidden()
     }
