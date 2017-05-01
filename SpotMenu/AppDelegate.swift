@@ -12,8 +12,9 @@ import Spotify
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet weak var window: NSWindow!
 
+    let controller: NSWindowController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as! NSWindowController
+    
     var eventMonitor: EventMonitor?
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
@@ -23,7 +24,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var initialWidth:CGFloat = 0
     
     let url = URL(string: "https://github.com/kmikiy/SpotMenu")
-    
     let menu = StatusMenu().menu
     
     var hiddenView: NSView = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 1))
@@ -31,6 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        UserPreferences.readPrefs()
         
         if let button = statusItem.button {
             button.image = NSImage(named: "StatusBarButtonImage")
@@ -70,9 +71,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func updateTitle(){
         statusItem.title = StatusItemBuilder()
-            .showTitle(v: true)
-            .showArtist(v: true)
-            .showPlayingIcon(v: true)
+            .showTitle(v: UserPreferences.showTitle)
+            .showArtist(v: UserPreferences.showArtist)
+            .showPlayingIcon(v: UserPreferences.showPlayingIcon)
             .getString()
 
     }
@@ -87,8 +88,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         updateHidden()
     }
     
+    
 
     // MARK: - Popover
+    func openPrefs(_ sender: NSMenuItem) {
+        
+        // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
+        
+        //self.presentViewController(viewController, animated: false, completion: nil)
+        
+        controller.showWindow(self)
+    }
+    
     func openSite(_ sender: NSMenuItem) {
         if let url = url, NSWorkspace.shared().open(url) {
             print("default browser was successfully opened")

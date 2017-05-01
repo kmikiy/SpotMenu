@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8UQ-6W-PKd">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="1gw-ey-ZhQ">
+            <objects>
+                <windowController storyboardIdentifier="PREFFF" id="8UQ-6W-PKd" sceneMemberID="viewController">
+                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="lM3-ry-Wlz">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="578" y="607" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <toolbar key="toolbar" implicitIdentifier="CA760832-312D-49D6-8BE5-1F06E14C2290" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="J4j-tR-uTl">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="E534138B-2DDA-4651-A0BD-29114E5DD710" label="General" paletteLabel="General" tag="-1" image="NSPreferencesGeneral" id="o26-Ea-uCc"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="DpP-1R-sxp"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="w9y-Tl-Wce"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="o26-Ea-uCc"/>
+                                <toolbarItem reference="w9y-Tl-Wce"/>
+                            </defaultToolbarItems>
+                        </toolbar>
+                    </window>
+                    <connections>
+                        <segue destination="D1B-Ck-xIn" kind="relationship" relationship="window.shadowedContentViewController" id="7pI-pY-7Iy"/>
+                    </connections>
+                </windowController>
+                <customObject id="NMk-7s-OeH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-365" y="133"/>
+        </scene>
+        <!--General PreferencesVC-->
+        <scene sceneID="myU-h8-g6c">
+            <objects>
+                <viewController id="D1B-Ck-xIn" customClass="GeneralPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="iQg-fn-1YF">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpI-Ua-GZP">
+                                <rect key="frame" x="18" y="200" width="210" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Show artist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LUe-Gd-t4b">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleShowArtist:" target="D1B-Ck-xIn" id="qeG-tX-L8L"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FdD-gg-7Vj">
+                                <rect key="frame" x="18" y="180" width="210" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Show title" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1Tp-Jw-hmh">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleShowTitle:" target="D1B-Ck-xIn" id="a7G-7l-7R0"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pX8-GV-b6c">
+                                <rect key="frame" x="18" y="160" width="210" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Show playing icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="0Xe-ev-ytf">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleShowPlayingIcon:" target="D1B-Ck-xIn" id="c47-x2-npz"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yws-MH-DPg">
+                                <rect key="frame" x="18" y="140" width="210" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Show SpotMenu icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zMR-Ou-8p3">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleShowSpotMenuIcon:" target="D1B-Ck-xIn" id="hTn-c4-2Zm"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcT-XJ-dx6">
+                                <rect key="frame" x="6" y="7" width="222" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="with ♥ from kmikiy" id="Gtt-Jw-q9H">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="6gB-ng-38K">
+                                <rect key="frame" x="238" y="12" width="5" height="246"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfF-Kx-p5e">
+                                <rect key="frame" x="254" y="20" width="208" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Hover over an option for more information" id="AvK-M6-xdR">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="showArtistButton" destination="QpI-Ua-GZP" id="2io-gZ-akI"/>
+                        <outlet property="showPlayingIconButton" destination="pX8-GV-b6c" id="9ma-NW-XcJ"/>
+                        <outlet property="showSpotMenuIconButton" destination="Yws-MH-DPg" id="RBW-LP-XZq"/>
+                        <outlet property="showTitleButton" destination="FdD-gg-7Vj" id="Fki-eP-GAl"/>
+                    </connections>
+                </viewController>
+                <customObject id="ZTu-eg-D9Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="465" y="110"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
+    </resources>
+</document>

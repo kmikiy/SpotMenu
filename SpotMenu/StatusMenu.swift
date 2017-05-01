@@ -19,7 +19,7 @@ class StatusMenu {
         menu.addItem(NSMenuItem(title: "Issues", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: "I"))
         menu.addItem(NSMenuItem(title: " - kmikiy - ", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Preferences...", action: nil, keyEquivalent: ","))
+        menu.addItem(NSMenuItem(title: "Preferences...", action: #selector(AppDelegate.openPrefs(_:)), keyEquivalent: ","))
     }
     
 }
