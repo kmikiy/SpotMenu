@@ -20,15 +20,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let popover = NSPopover()
     var timer: Timer?
     
-    var lastTitle = ""
-    var lastArtist = ""
-    var lastState = PlayerState.playing
-    
     var initialWidth:CGFloat = 0
     
     let url = URL(string: "https://github.com/kmikiy/SpotMenu")
     
-    let menu = NSMenu()
+    let menu = StatusMenu().menu
     
     var hiddenView: NSView = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 1))
     
@@ -44,14 +40,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             initialWidth = statusItem.button!.bounds.width
             updateHidden()
         }
-        
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(AppDelegate.quit(_:)), keyEquivalent: "Q"))
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Issues", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: "I"))
-        menu.addItem(NSMenuItem(title: " - kmikiy - ", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: ""))
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Preferences...", action: nil, keyEquivalent: ","))
-        
         
         popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
         //popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
@@ -80,24 +68,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateTitle(){
-        let state = Spotify.playerState
-        if let artist = Spotify.currentTrack.albumArtist {
-            if let title = Spotify.currentTrack.title , lastTitle != title || lastArtist != artist || lastState != state {
-                switch state {
-                case .playing:
-                    statusItem.title = "♫ \(artist) - \(title)  "
-                default:
-                    statusItem.title = "\(artist) - \(title)  "
-                }
-                
-                lastArtist = artist
-                lastTitle = title
-                lastState = state
-            }
-        } else {
-            statusItem.title = nil
-        }
-        
+        statusItem.title = StatusItemBuilder()
+            .showTitle(v: true)
+            .showArtist(v: true)
+            .showPlayingIcon(v: true)
+            .getString()
+
     }
     
     func updateHidden(){

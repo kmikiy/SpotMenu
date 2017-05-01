@@ -42,7 +42,7 @@ Older versions:
 [version 1.1](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_1.zip)   
 ... 
 
-You can find all releases [here] (https://github.com/kmikiy/SpotMenu/releases).
+You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
 
 
 How to Build
