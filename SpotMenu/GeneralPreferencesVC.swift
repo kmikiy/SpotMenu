@@ -39,6 +39,7 @@ class GeneralPreferencesVC: NSViewController {
         showTitleButton.state =  UserPreferences.showTitle.asState
         showPlayingIconButton.state = UserPreferences.showPlayingIcon.asState
         showSpotMenuIconButton.state = UserPreferences.showSpotMenuIcon.asState
+        fixPopoverToTheRightButton.state = UserPreferences.fixPopoverToTheRight.asState
     }
     
     func initButtonHovers(){
