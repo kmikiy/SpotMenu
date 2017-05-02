@@ -89,7 +89,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateHidden(){
-        hiddenView.frame = NSRect(x: statusItem.button!.bounds.width-initialWidth/2, y: statusItem.button!.bounds.height-1, width: 1, height: 1)
+        if UserPreferences.fixPopoverToTheRight {
+            hiddenView.frame = NSRect(x: statusItem.button!.bounds.width-1, y: statusItem.button!.bounds.height-1, width: 1, height: 1)
+        } else {
+            hiddenView.frame = NSRect(x: statusItem.button!.bounds.width-initialWidth/2, y: statusItem.button!.bounds.height-1, width: 1, height: 1)
+        }
         statusItem.button!.updateLayer()
     }
     

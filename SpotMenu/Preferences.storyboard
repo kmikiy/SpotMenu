@@ -86,6 +86,17 @@
                                     <action selector="toggleShowSpotMenuIcon:" target="D1B-Ck-xIn" id="hTn-c4-2Zm"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJn-eT-QU7" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="120" width="210" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Fix popover to the right" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ynE-rG-2bC">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleFixPopoverToTheRight:" target="D1B-Ck-xIn" id="y42-rV-Nx9"/>
+                                </connections>
+                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcT-XJ-dx6">
                                 <rect key="frame" x="6" y="7" width="222" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -96,7 +107,7 @@
                                 </textFieldCell>
                             </textField>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="6gB-ng-38K">
-                                <rect key="frame" x="238" y="12" width="5" height="246"/>
+                                <rect key="frame" x="238" y="12" width="4" height="246"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfF-Kx-p5e">
@@ -111,6 +122,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="fixPopoverToTheRightButton" destination="bJn-eT-QU7" id="6jU-bf-zRu"/>
                         <outlet property="moreInformation" destination="MfF-Kx-p5e" id="5cW-Qx-DNJ"/>
                         <outlet property="showArtistButton" destination="QpI-Ua-GZP" id="2io-gZ-akI"/>
                         <outlet property="showPlayingIconButton" destination="pX8-GV-b6c" id="9ma-NW-XcJ"/>

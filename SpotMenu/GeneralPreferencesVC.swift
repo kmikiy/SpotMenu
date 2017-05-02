@@ -17,10 +17,11 @@ class GeneralPreferencesVC: NSViewController {
     @IBOutlet weak var showTitleButton: HoverButton!
     @IBOutlet weak var showPlayingIconButton: HoverButton!
     @IBOutlet weak var showSpotMenuIconButton: HoverButton!
-    
+    @IBOutlet weak var fixPopoverToTheRightButton: HoverButton!
     @IBOutlet weak var moreInformation: NSTextField!
     var defaultMoreInformationText: String = ""
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         defaultMoreInformationText = moreInformation.stringValue
@@ -45,6 +46,7 @@ class GeneralPreferencesVC: NSViewController {
         showTitleButton.mouseEnteredFunc = hoverShowTitle
         showPlayingIconButton.mouseEnteredFunc = hoverShowPlayingIcon
         showSpotMenuIconButton.mouseEnteredFunc = hoverShowSpotMenuIcon
+        fixPopoverToTheRightButton.mouseEnteredFunc = hoverFixPopoverToTheRight
         showArtistButton.mouseExitedFunc = hoverAway
     }
     
@@ -68,6 +70,11 @@ class GeneralPreferencesVC: NSViewController {
         postUpdateNotification()
     }
     
+    @IBAction func toggleFixPopoverToTheRight(_ sender: Any) {
+        UserPreferences.fixPopoverToTheRight = fixPopoverToTheRightButton.state.asBool
+        //postUpdateNotification()
+    }
+    
     func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
@@ -89,6 +96,10 @@ extension GeneralPreferencesVC {
     
     func hoverShowSpotMenuIcon() {
         moreInformation.stringValue = "When checked the SpotMenu icon will be shown in the menubar\n\nNote\nIf there is now music information to be shown the SpotMenu icon will be visible"
+    }
+    
+    func hoverFixPopoverToTheRight() {
+        moreInformation.stringValue = "When checked the popover will be fixed to the right corner"
     }
     
     func hoverAway() {

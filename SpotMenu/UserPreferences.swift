@@ -14,11 +14,13 @@ struct UserPreferences {
     private static let _showTitleConst = "showTitle"
     private static let _showPlayingIconConst = "showPlayingIcon"
     private static let _showSpotMenuIconConst = "showSpotMenuIcon"
+    private static let _fixPopoverToTheRightConst = "dropDownToTheRight"
     
     private static var _showArtist: Bool = false
     private static var _showTitle: Bool = false
     private static var _showPlayingIcon: Bool = false
     private static var _showSpotMenuIcon: Bool = false
+    private static var _fixPopoverToTheRight: Bool = false
     
     private static func setSetting(key: String, value: Bool) {
         UserDefaults.standard.set(value, forKey: key)
@@ -40,15 +42,16 @@ struct UserPreferences {
         _showTitle = UserPreferences.readSetting(key: _showTitleConst)
         _showPlayingIcon = UserPreferences.readSetting(key: _showPlayingIconConst)
         _showSpotMenuIcon = UserPreferences.readSetting(key: _showSpotMenuIconConst)
+        _fixPopoverToTheRight = UserPreferences.readSetting(key: _fixPopoverToTheRightConst)
     }
     
     static var showArtist: Bool {
         get {
             return _showArtist
         }
-        set{
+        set {
             _showArtist = newValue
-            return UserPreferences.setSetting(key: _showArtistConst, value: newValue)
+            UserPreferences.setSetting(key: _showArtistConst, value: newValue)
         }
     }
     
@@ -56,9 +59,9 @@ struct UserPreferences {
         get {
             return _showTitle
         }
-        set{
+        set {
             _showTitle = newValue
-            return UserPreferences.setSetting(key: _showTitleConst, value: newValue)
+            UserPreferences.setSetting(key: _showTitleConst, value: newValue)
         }
     }
     
@@ -66,9 +69,9 @@ struct UserPreferences {
         get {
             return _showPlayingIcon
         }
-        set{
+        set {
             _showPlayingIcon = newValue
-            return UserPreferences.setSetting(key: _showPlayingIconConst, value: newValue)
+            UserPreferences.setSetting(key: _showPlayingIconConst, value: newValue)
         }
     }
     
@@ -76,9 +79,19 @@ struct UserPreferences {
         get {
             return _showSpotMenuIcon
         }
-        set{
+        set {
             _showSpotMenuIcon = newValue
-            return UserPreferences.setSetting(key: _showSpotMenuIconConst, value: newValue)
+            UserPreferences.setSetting(key: _showSpotMenuIconConst, value: newValue)
+        }
+    }
+    
+    static var fixPopoverToTheRight: Bool {
+        get {
+            return _fixPopoverToTheRight
+        }
+        set {
+            _fixPopoverToTheRight = newValue
+            UserPreferences.setSetting(key: _fixPopoverToTheRightConst, value: newValue)
         }
     }
 }
