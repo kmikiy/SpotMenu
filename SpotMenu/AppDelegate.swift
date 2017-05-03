@@ -80,7 +80,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .showPlayingIcon(v: UserPreferences.showPlayingIcon)
             .getString()
         
-        if (statusItem.title?.characters.count == 0){ //Show the icon regardless of setting if char count == 0
+        if let button = statusItem.button {
+            if UserPreferences.showSpotMenuIcon {
+                button.image = spotMenuIcon
+            } else {
+                button.image = nil
+            }
+        }
+        
+        if (statusItem.title?.characters.count == 0 && statusItem.button != nil ){ //Show the icon regardless of setting if char count == 0
             if let button = statusItem.button {
                 button.image = spotMenuIcon
             }
@@ -98,13 +106,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func updateTitleAndPopover() {
-        if let button = statusItem.button {
-            if UserPreferences.showSpotMenuIcon {
-                button.image = spotMenuIcon
-            } else {
-                button.image = nil
-            }
-        }
         updateTitle()
         updateHidden()
     }
@@ -113,7 +114,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Popover
     func openPrefs(_ sender: NSMenuItem) {
-        
         controller.showWindow(self)
     }
     

@@ -69,6 +69,7 @@ class GeneralPreferencesVC: NSViewController {
     @IBAction func toggleShowSpotMenuIcon(_ sender: Any) {
         UserPreferences.showSpotMenuIcon = showSpotMenuIconButton.state.asBool
         postUpdateNotification()
+        postUpdateNotification()
     }
     
     @IBAction func toggleFixPopoverToTheRight(_ sender: Any) {
