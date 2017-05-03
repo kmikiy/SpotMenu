@@ -8,11 +8,16 @@ About
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
 and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift. 
 
-Note: The animated gif currently demonstrates the functionality of version 1.3
+Note: The animated gif currently demonstrates the functionality of version 1.4
 
-New Features in Version 1.4
+New Features in Version 1.4.1
 ---------------------------
 + Customization
+  - Show/hide Artist
+  - Show/hide Title
+  - Show/hide SpotMenu icon
+  - Show/hide Playing symbol
+  - Fix popover to the right (new in 1.4.1)
 
 New Features in Version 1.3
 ---------------------------
@@ -38,10 +43,11 @@ New Features in Version 1.1
 Easy Install
 ------------
 
-Download the zip file [version 1.4](https://github.com/kmikiy/SpotMenu/releases/download/v1.4/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.4.1](https://github.com/kmikiy/SpotMenu/releases/download/v1.4.1/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
 In case of unidentified developer follow these [steps](https://mborgerson.com/trayplay)!
 
 Older versions:   
+[version 1.4](https://github.com/kmikiy/SpotMenu/releases/download/v1.4/SpotMenu.zip)   
 [version 1.3](https://github.com/kmikiy/SpotMenu/releases/download/v1.3/SpotMenu.zip)   
 [version 1.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_2.zip)   
 ... 
