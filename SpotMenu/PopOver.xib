@@ -32,10 +32,10 @@
                     </constraints>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSUserGuest" id="Rvb-hn-QkR"/>
                 </imageView>
-                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tik-b2-9He">
+                <slider focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tik-b2-9He">
                     <rect key="frame" x="54" y="3" width="192" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="HCf-Xj-pwi"/>
+                    <sliderCell key="cell" state="on" focusRingType="none" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="HCf-Xj-pwi"/>
                     <connections>
                         <action selector="positionSliderAction:" target="-2" id="DWJ-be-dtI"/>
                     </connections>
@@ -68,13 +68,13 @@
                 <visualEffectView appearanceType="vibrantDark" blendingMode="withinWindow" material="dark" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="Z1i-Qx-pwO" customClass="CustomVisualEffect" customModule="SpotMenu" customModuleProvider="target">
                     <rect key="frame" x="25" y="30" width="250" height="250"/>
                     <subviews>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ah-DM-iSN">
+                        <button focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ah-DM-iSN">
                             <rect key="frame" x="25" y="25" width="200" height="200"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="NKr-aZ-7KR"/>
                                 <constraint firstAttribute="width" secondItem="8Ah-DM-iSN" secondAttribute="height" multiplier="1:1" id="UDk-9g-jcf"/>
                             </constraints>
-                            <buttonCell key="cell" type="square" title="▶︎" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" inset="2" id="4BI-ev-3Vo">
+                            <buttonCell key="cell" type="square" title="▶︎" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" focusRingType="none" inset="2" id="4BI-ev-3Vo">
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" metaFont="system" size="90"/>
                             </buttonCell>
@@ -100,10 +100,10 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sfg-o1-GVi">
+                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sfg-o1-GVi">
                             <rect key="frame" x="0.0" y="224" width="26" height="26"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="StatusBarButtonImage" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="OgE-Cq-jHl">
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="StatusBarButtonImage" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="OgE-Cq-jHl">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -113,12 +113,12 @@
                         </button>
                     </subviews>
                 </visualEffectView>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ZD-MG0">
+                <button focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ZD-MG0">
                     <rect key="frame" x="2" y="30" width="20" height="253"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="GAV-fG-8yr"/>
                     </constraints>
-                    <buttonCell key="cell" type="square" title="&lt;" bezelStyle="shadowlessSquare" alignment="left" inset="2" id="eyZ-Np-WLr">
+                    <buttonCell key="cell" type="square" title="&lt;" bezelStyle="shadowlessSquare" alignment="left" focusRingType="none" inset="2" id="eyZ-Np-WLr">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" size="20" name="AlNile"/>
                     </buttonCell>
@@ -126,12 +126,12 @@
                         <action selector="goLeft:" target="-2" id="Nm1-Pi-Fbf"/>
                     </connections>
                 </button>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="pgo-pN-r7b">
+                <button focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="pgo-pN-r7b">
                     <rect key="frame" x="278" y="30" width="20" height="253"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="LyG-WF-Fdz"/>
                     </constraints>
-                    <buttonCell key="cell" type="square" title="&gt;" bezelStyle="shadowlessSquare" alignment="right" inset="2" id="FxM-QC-fqk">
+                    <buttonCell key="cell" type="square" title="&gt;" bezelStyle="shadowlessSquare" alignment="right" focusRingType="none" inset="2" id="FxM-QC-fqk">
                         <behavior key="behavior" lightByContents="YES"/>
                         <font key="font" size="20" name="AlNile"/>
                     </buttonCell>
