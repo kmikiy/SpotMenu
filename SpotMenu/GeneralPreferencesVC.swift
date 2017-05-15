@@ -97,7 +97,7 @@ extension GeneralPreferencesVC {
     }
     
     func hoverShowSpotMenuIcon() {
-        moreInformation.stringValue = "When checked the SpotMenu icon will be shown in the menubar\n\nNote\nIf there is now music information to be shown the SpotMenu icon will be visible"
+        moreInformation.stringValue = "When checked the SpotMenu icon will be shown in the menubar\n\nNote:\nIf there is no music information to be shown the SpotMenu icon will be visible"
     }
     
     func hoverFixPopoverToTheRight() {
