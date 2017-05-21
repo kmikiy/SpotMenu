@@ -1,29 +1,40 @@
 # SpotMenu ![demo](https://github.com/kmikiy/SpotMenu/blob/master/SpotMenu/Assets.xcassets/AppIcon.appiconset/spotmenu%20(5)-1.png)
 Spotify in your menu bar
 
-About
------
+## About
+
 ![demo](https://github.com/kmikiy/SpotMenu/blob/master/demo.gif)
 
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
 and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift. 
 
-Notes
-----
+## Notes
+
 + The default behavior is to only show the SpotMenu icon in the menubar. Right click -> Preferences to customize.    
 + The animated gif currently demonstrates the functionality of version 1.4   
 
-New Features in Version 1.4.1
----------------------------
+## New Features in Version 1.4.2
+
++ Customization
+  - Open at login
+
+## All features
+
+### Added in Version 1.4.1
+
++ Customization
+  - Fix popover to the right
+  
+### Added in Version 1.4
+
 + Customization
   - Show/hide Artist
   - Show/hide Title
   - Show/hide SpotMenu icon
   - Show/hide Playing symbol
-  - Fix popover to the right (new in 1.4.1)
 
-New Features in Version 1.3
----------------------------
+### Added in Version 1.3
+
 + New layout (with the help of [maurojuniorr](https://github.com/maurojuniorr))
 + Open Spotify UI from SpotMenu
 + Exit button moved to right click menu on menubar (credits: [Triloworld](https://github.com/Triloworld))
@@ -31,29 +42,29 @@ New Features in Version 1.3
 + Created a seperate pod for controlling Spotify on a mac. You can find the library [here](https://github.com/kmikiy/Spotify)
 + Display album artist instead of current track artist
 
-New Features in Version 1.2
----------------------------
+### Added in Version 1.2
+
 + Scrollbar now updates its position more frequently
 + Current track position is shown in text also (minutes:seconds)
 + The ability to toggle between the duration of the current track and the time remaining
 
-New Features in Version 1.1
----------------------------
+### Added in Version 1.1
+
 + Added play/pause functionality
 + Added a scrollbar to jump to a position of the currently playing song
 + The menu bar now shows an icon if music is playing
 
+### Added in Version 1.0
+
++ Show playing music in menubar
++ Popover to show album artwork
++ Skip to next/previous song
+
 Easy Install
 ------------
 
-Download the zip file [version 1.4.1](https://github.com/kmikiy/SpotMenu/releases/download/v1.4.1/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.4.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.4.2/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
 In case of unidentified developer follow these [steps](https://mborgerson.com/trayplay)!
-
-Older versions:   
-[version 1.4](https://github.com/kmikiy/SpotMenu/releases/download/v1.4/SpotMenu.zip)   
-[version 1.3](https://github.com/kmikiy/SpotMenu/releases/download/v1.3/SpotMenu.zip)   
-[version 1.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.2/SpotMenu_1_2.zip)   
-... 
 
 You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
 
