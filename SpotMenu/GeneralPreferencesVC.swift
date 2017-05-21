@@ -18,6 +18,8 @@ class GeneralPreferencesVC: NSViewController {
     @IBOutlet weak var showPlayingIconButton: HoverButton!
     @IBOutlet weak var showSpotMenuIconButton: HoverButton!
     @IBOutlet weak var fixPopoverToTheRightButton: HoverButton!
+    
+    @IBOutlet weak var openAtLoginButton: HoverButton!
     @IBOutlet weak var moreInformation: NSTextField!
     var defaultMoreInformationText: String = ""
     
@@ -40,6 +42,7 @@ class GeneralPreferencesVC: NSViewController {
         showPlayingIconButton.state = UserPreferences.showPlayingIcon.asState
         showSpotMenuIconButton.state = UserPreferences.showSpotMenuIcon.asState
         fixPopoverToTheRightButton.state = UserPreferences.fixPopoverToTheRight.asState
+        openAtLoginButton.state = applicationIsInStartUpItems().asState
     }
     
     func initButtonHovers(){
@@ -77,6 +80,12 @@ class GeneralPreferencesVC: NSViewController {
         //postUpdateNotification()
     }
     
+    @IBAction func toggleOpenAtLogin(_ sender: Any) {
+        toggleLaunchAtStartup()
+        openAtLoginButton.state = applicationIsInStartUpItems().asState
+    }
+    
+    
     func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
@@ -103,6 +112,11 @@ extension GeneralPreferencesVC {
     func hoverFixPopoverToTheRight() {
         moreInformation.stringValue = "When checked the popover will be fixed to the right corner"
     }
+    
+    func hoverOpenAtLogin() {
+        moreInformation.stringValue = "When checked SpotMenu will start automatically at login"
+    }
+    
     
     func hoverAway() {
         moreInformation.stringValue = defaultMoreInformationText
