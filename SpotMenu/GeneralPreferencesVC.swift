@@ -47,11 +47,22 @@ class GeneralPreferencesVC: NSViewController {
     
     func initButtonHovers(){
         showArtistButton.mouseEnteredFunc = hoverShowArtist
-        showTitleButton.mouseEnteredFunc = hoverShowTitle
-        showPlayingIconButton.mouseEnteredFunc = hoverShowPlayingIcon
-        showSpotMenuIconButton.mouseEnteredFunc = hoverShowSpotMenuIcon
-        fixPopoverToTheRightButton.mouseEnteredFunc = hoverFixPopoverToTheRight
         showArtistButton.mouseExitedFunc = hoverAway
+        
+        showTitleButton.mouseEnteredFunc = hoverShowTitle
+        showTitleButton.mouseExitedFunc = hoverAway
+        
+        showPlayingIconButton.mouseEnteredFunc = hoverShowPlayingIcon
+        showPlayingIconButton.mouseExitedFunc = hoverAway
+        
+        showSpotMenuIconButton.mouseEnteredFunc = hoverShowSpotMenuIcon
+        showSpotMenuIconButton.mouseExitedFunc = hoverAway
+        
+        fixPopoverToTheRightButton.mouseEnteredFunc = hoverFixPopoverToTheRight
+        fixPopoverToTheRightButton.mouseExitedFunc = hoverAway
+        
+        openAtLoginButton.mouseEnteredFunc = hoverOpenAtLogin
+        openAtLoginButton.mouseExitedFunc = hoverAway
     }
     
     @IBAction func toggleShowArtist(_ sender: Any) {
