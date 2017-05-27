@@ -47,9 +47,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             updateHidden()
         }
         
-        popover.contentViewController = ViewController(nibName: "ViewController", bundle: nil)
-        //popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
-        
         eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [unowned self] event in
             if self.popover.isShown {
                 self.closePopover(event)
@@ -57,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         eventMonitor?.start()
         
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.updateTitleAndPopover), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
     }
 
@@ -158,7 +155,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if popover.isShown {
                 closePopover(sender)
             } else {
-                popover.contentViewController = ViewController(nibName: "PopOver", bundle: nil)
+                popover.contentViewController = PopOverViewController(nibName: "PopOver", bundle: nil)
                 Spotify.startSpotify(hidden: true)
                 showPopover(sender)
             }

@@ -2,7 +2,7 @@ import Cocoa
 import WebKit
 import Spotify
 
-class ViewController: NSViewController {
+class PopOverViewController: NSViewController {
     
     @IBOutlet weak var positionSlider: NSSlider!
     @IBOutlet weak var artistLabel: NSTextField!
@@ -21,9 +21,9 @@ class ViewController: NSViewController {
         super.viewWillAppear()
         
         updateInfo()
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.updateInfo), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PopOverViewController.updateInfo), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
         
-        timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(ViewController.postUpdateNotification), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(PopOverViewController.postUpdateNotification), userInfo: nil, repeats: true)
     }
     
     func postUpdateNotification(){
@@ -119,7 +119,7 @@ class ViewController: NSViewController {
 
 // MARK: Actions
 
-extension ViewController {
+extension PopOverViewController {
     @IBAction func goLeft(_ sender: NSButton) {
         Spotify.playPrevious()
     }

@@ -10,8 +10,7 @@
 		2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133242B1D79801E0060D48C /* AppDelegate.swift */; };
 		2133242E1D79801E0060D48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2133242D1D79801E0060D48C /* Assets.xcassets */; };
 		213324311D79801E0060D48C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2133242F1D79801E0060D48C /* MainMenu.xib */; };
-		2133243A1D79967B0060D48C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* ViewController.swift */; };
-		2133243B1D79967B0060D48C /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 213324391D79967B0060D48C /* ViewController.xib */; };
+		2133243A1D79967B0060D48C /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* PopOverViewController.swift */; };
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
 		21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A668171D7F13CE009813E5 /* CustomButton.swift */; };
 		6415E1391ED1BF8500051EB5 /* LaunchStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */; };
@@ -45,8 +44,7 @@
 		2133242D1D79801E0060D48C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		213324301D79801E0060D48C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		213324321D79801E0060D48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		213324381D79967B0060D48C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		213324391D79967B0060D48C /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		213324381D79967B0060D48C /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		21A668171D7F13CE009813E5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,20 +94,27 @@
 		2133242A1D79801E0060D48C /* SpotMenu */ = {
 			isa = PBXGroup;
 			children = (
+				641FF0391ED961BD00093D32 /* CustomViews */,
 				646FB49B1EB74A9700435C0B /* Preferences */,
 				646FB48C1EB740D600435C0B /* StatusBar */,
-				21A668171D7F13CE009813E5 /* CustomButton.swift */,
-				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
 				2133243E1D7999180060D48C /* EventMonitor.swift */,
 				2133242B1D79801E0060D48C /* AppDelegate.swift */,
-				213324381D79967B0060D48C /* ViewController.swift */,
-				213324391D79967B0060D48C /* ViewController.xib */,
+				213324381D79967B0060D48C /* PopOverViewController.swift */,
 				647BEE611E5B2037007E3AB5 /* PopOver.xib */,
 				2133242D1D79801E0060D48C /* Assets.xcassets */,
 				2133242F1D79801E0060D48C /* MainMenu.xib */,
 				213324321D79801E0060D48C /* Info.plist */,
 			);
 			path = SpotMenu;
+			sourceTree = "<group>";
+		};
+		641FF0391ED961BD00093D32 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				21A668171D7F13CE009813E5 /* CustomButton.swift */,
+				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
+			);
+			name = CustomViews;
 			sourceTree = "<group>";
 		};
 		646FB48C1EB740D600435C0B /* StatusBar */ = {
@@ -214,7 +219,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */,
-				2133243B1D79967B0060D48C /* ViewController.xib in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
 				646FB4A11EB765A100435C0B /* Preferences.storyboard in Resources */,
@@ -286,7 +290,7 @@
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
 				646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */,
 				64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */,
-				2133243A1D79967B0060D48C /* ViewController.swift in Sources */,
+				2133243A1D79967B0060D48C /* PopOverViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
