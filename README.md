@@ -24,7 +24,7 @@ Easy Install
 ------------
 
 Download the zip file [version 1.4.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.4.2/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
-In case of unidentified developer follow these [steps](https://mborgerson.com/trayplay)!
+In case of unidentified developer follow these [steps](https://support.apple.com/kb/PH21769?locale=en_US)!
 
 You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
 
