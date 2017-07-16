@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C62E29C241D0358B936C134 /* Pods_SpotMenuToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5325CBE9807E5B7BDCB8234D /* Pods_SpotMenuToday.framework */; };
 		2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133242B1D79801E0060D48C /* AppDelegate.swift */; };
 		2133242E1D79801E0060D48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2133242D1D79801E0060D48C /* Assets.xcassets */; };
 		213324311D79801E0060D48C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2133242F1D79801E0060D48C /* MainMenu.xib */; };
@@ -14,6 +15,16 @@
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
 		21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A668171D7F13CE009813E5 /* CustomButton.swift */; };
 		6415E1391ED1BF8500051EB5 /* LaunchStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */; };
+		64185C0E1F1B8DC400CA23A0 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64185C0D1F1B8DC400CA23A0 /* NotificationCenter.framework */; };
+		64185C131F1B8DC400CA23A0 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64185C121F1B8DC400CA23A0 /* TodayViewController.swift */; };
+		64185C161F1B8DC400CA23A0 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64185C141F1B8DC400CA23A0 /* TodayViewController.xib */; };
+		64185C1A1F1B8DC400CA23A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64185C181F1B8DC400CA23A0 /* InfoPlist.strings */; };
+		64185C1D1F1B8DC400CA23A0 /* SpotMenuToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 64185C0C1F1B8DC400CA23A0 /* SpotMenuToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		64185C231F1B93D500CA23A0 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64185C221F1B93D500CA23A0 /* PopOver.xib */; };
+		64185C251F1B944A00CA23A0 /* PopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64185C241F1B944A00CA23A0 /* PopOver.swift */; };
+		64185C271F1B98C600CA23A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64185C261F1B98C600CA23A0 /* Assets.xcassets */; };
+		64185C2A1F1B9AC800CA23A0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64185C281F1B9AC800CA23A0 /* CustomButton.swift */; };
+		64185C2B1F1B9AC800CA23A0 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64185C291F1B9AC800CA23A0 /* CustomVisualEffect.swift */; };
 		646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */; };
 		646FB48F1EB741E700435C0B /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48E1EB741E700435C0B /* StatusMenu.swift */; };
 		646FB49D1EB75D6500435C0B /* GeneralPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */; };
@@ -25,6 +36,16 @@
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		64185C1B1F1B8DC400CA23A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 213324201D79801E0060D48C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64185C0B1F1B8DC400CA23A0;
+			remoteInfo = SpotMenuToday;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		210C64531D7EB3E4001318FF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -34,6 +55,17 @@
 			files = (
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64185C211F1B8DC400CA23A0 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				64185C1D1F1B8DC400CA23A0 /* SpotMenuToday.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -47,8 +79,21 @@
 		213324381D79967B0060D48C /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		21A668171D7F13CE009813E5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		5325CBE9807E5B7BDCB8234D /* Pods_SpotMenuToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenuToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
 		6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchStarter.swift; sourceTree = "<group>"; };
+		64185C0C1F1B8DC400CA23A0 /* SpotMenuToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SpotMenuToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		64185C0D1F1B8DC400CA23A0 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		64185C111F1B8DC400CA23A0 /* SpotMenuToday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpotMenuToday.entitlements; sourceTree = "<group>"; };
+		64185C121F1B8DC400CA23A0 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		64185C151F1B8DC400CA23A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
+		64185C171F1B8DC400CA23A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64185C191F1B8DC400CA23A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		64185C221F1B93D500CA23A0 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
+		64185C241F1B944A00CA23A0 /* PopOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOver.swift; sourceTree = "<group>"; };
+		64185C261F1B98C600CA23A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		64185C281F1B9AC800CA23A0 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		64185C291F1B9AC800CA23A0 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemBuilder.swift; sourceTree = "<group>"; };
 		646FB48E1EB741E700435C0B /* StatusMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
 		646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesVC.swift; sourceTree = "<group>"; };
@@ -59,6 +104,8 @@
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenuToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday.release.xcconfig"; sourceTree = "<group>"; };
+		FD5C41D09992EC74D74ADE15 /* Pods-SpotMenuToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenuToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +117,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64185C091F1B8DC400CA23A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64185C0E1F1B8DC400CA23A0 /* NotificationCenter.framework in Frameworks */,
+				1C62E29C241D0358B936C134 /* Pods_SpotMenuToday.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				2133242A1D79801E0060D48C /* SpotMenu */,
+				64185C0F1F1B8DC400CA23A0 /* SpotMenuToday */,
 				213324291D79801E0060D48C /* Products */,
 				D5261F6E7BEA36A23255A84A /* Pods */,
 				A41E658F2A33A401D35F4C51 /* Frameworks */,
@@ -87,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				213324281D79801E0060D48C /* SpotMenu.app */,
+				64185C0C1F1B8DC400CA23A0 /* SpotMenuToday.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,13 +157,38 @@
 				646FB48C1EB740D600435C0B /* StatusBar */,
 				2133243E1D7999180060D48C /* EventMonitor.swift */,
 				2133242B1D79801E0060D48C /* AppDelegate.swift */,
-				213324381D79967B0060D48C /* PopOverViewController.swift */,
 				647BEE611E5B2037007E3AB5 /* PopOver.xib */,
+				213324381D79967B0060D48C /* PopOverViewController.swift */,
 				2133242D1D79801E0060D48C /* Assets.xcassets */,
 				2133242F1D79801E0060D48C /* MainMenu.xib */,
 				213324321D79801E0060D48C /* Info.plist */,
 			);
 			path = SpotMenu;
+			sourceTree = "<group>";
+		};
+		64185C0F1F1B8DC400CA23A0 /* SpotMenuToday */ = {
+			isa = PBXGroup;
+			children = (
+				64185C281F1B9AC800CA23A0 /* CustomButton.swift */,
+				64185C291F1B9AC800CA23A0 /* CustomVisualEffect.swift */,
+				64185C121F1B8DC400CA23A0 /* TodayViewController.swift */,
+				64185C141F1B8DC400CA23A0 /* TodayViewController.xib */,
+				64185C241F1B944A00CA23A0 /* PopOver.swift */,
+				64185C221F1B93D500CA23A0 /* PopOver.xib */,
+				64185C171F1B8DC400CA23A0 /* Info.plist */,
+				64185C181F1B8DC400CA23A0 /* InfoPlist.strings */,
+				64185C261F1B98C600CA23A0 /* Assets.xcassets */,
+				64185C101F1B8DC400CA23A0 /* Supporting Files */,
+			);
+			path = SpotMenuToday;
+			sourceTree = "<group>";
+		};
+		64185C101F1B8DC400CA23A0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				64185C111F1B8DC400CA23A0 /* SpotMenuToday.entitlements */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		641FF0391ED961BD00093D32 /* CustomViews */ = {
@@ -142,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */,
+				64185C0D1F1B8DC400CA23A0 /* NotificationCenter.framework */,
+				5325CBE9807E5B7BDCB8234D /* Pods_SpotMenuToday.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -151,6 +236,8 @@
 			children = (
 				6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */,
 				5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */,
+				FD5C41D09992EC74D74ADE15 /* Pods-SpotMenuToday.debug.xcconfig */,
+				BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -169,15 +256,36 @@
 				210C64531D7EB3E4001318FF /* Embed Frameworks */,
 				F8E0917400630BBF5370A313 /* [CP] Embed Pods Frameworks */,
 				AAC6D2D89D08D17D0DB46A69 /* [CP] Copy Pods Resources */,
+				64185C211F1B8DC400CA23A0 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				64185C1C1F1B8DC400CA23A0 /* PBXTargetDependency */,
 			);
 			name = SpotMenu;
 			productName = SpotMenu;
 			productReference = 213324281D79801E0060D48C /* SpotMenu.app */;
 			productType = "com.apple.product-type.application";
+		};
+		64185C0B1F1B8DC400CA23A0 /* SpotMenuToday */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64185C201F1B8DC400CA23A0 /* Build configuration list for PBXNativeTarget "SpotMenuToday" */;
+			buildPhases = (
+				69303F770BC8D0F207586118 /* [CP] Check Pods Manifest.lock */,
+				64185C081F1B8DC400CA23A0 /* Sources */,
+				64185C091F1B8DC400CA23A0 /* Frameworks */,
+				64185C0A1F1B8DC400CA23A0 /* Resources */,
+				EDE1A24A35F73C972F4DD8AA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpotMenuToday;
+			productName = SpotMenuToday;
+			productReference = 64185C0C1F1B8DC400CA23A0 /* SpotMenuToday.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -185,13 +293,23 @@
 		213324201D79801E0060D48C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = KM;
 				TargetAttributes = {
 					213324271D79801E0060D48C = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0800;
+					};
+					64185C0B1F1B8DC400CA23A0 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 3K79XCJYWL;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -209,6 +327,7 @@
 			projectRoot = "";
 			targets = (
 				213324271D79801E0060D48C /* SpotMenu */,
+				64185C0B1F1B8DC400CA23A0 /* SpotMenuToday */,
 			);
 		};
 /* End PBXProject section */
@@ -225,9 +344,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64185C0A1F1B8DC400CA23A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64185C161F1B8DC400CA23A0 /* TodayViewController.xib in Resources */,
+				64185C1A1F1B8DC400CA23A0 /* InfoPlist.strings in Resources */,
+				64185C271F1B98C600CA23A0 /* Assets.xcassets in Resources */,
+				64185C231F1B93D500CA23A0 /* PopOver.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		69303F770BC8D0F207586118 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		AAC6D2D89D08D17D0DB46A69 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,6 +401,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EDE1A24A35F73C972F4DD8AA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F8E0917400630BBF5370A313 /* [CP] Embed Pods Frameworks */ = {
@@ -294,7 +454,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		64185C081F1B8DC400CA23A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64185C131F1B8DC400CA23A0 /* TodayViewController.swift in Sources */,
+				64185C251F1B944A00CA23A0 /* PopOver.swift in Sources */,
+				64185C2A1F1B9AC800CA23A0 /* CustomButton.swift in Sources */,
+				64185C2B1F1B9AC800CA23A0 /* CustomVisualEffect.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		64185C1C1F1B8DC400CA23A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64185C0B1F1B8DC400CA23A0 /* SpotMenuToday */;
+			targetProxy = 64185C1B1F1B8DC400CA23A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2133242F1D79801E0060D48C /* MainMenu.xib */ = {
@@ -303,6 +482,22 @@
 				213324301D79801E0060D48C /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		64185C141F1B8DC400CA23A0 /* TodayViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64185C151F1B8DC400CA23A0 /* Base */,
+			);
+			name = TodayViewController.xib;
+			sourceTree = "<group>";
+		};
+		64185C181F1B8DC400CA23A0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64185C191F1B8DC400CA23A0 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -399,6 +594,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
@@ -413,12 +609,56 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		64185C1E1F1B8DC400CA23A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD5C41D09992EC74D74ADE15 /* Pods-SpotMenuToday.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = SpotMenuToday/SpotMenuToday.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3K79XCJYWL;
+				INFOPLIST_FILE = SpotMenuToday/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu.SpotMenuToday;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		64185C1F1F1B8DC400CA23A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = SpotMenuToday/SpotMenuToday.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3K79XCJYWL;
+				INFOPLIST_FILE = SpotMenuToday/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu.SpotMenuToday;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -440,6 +680,15 @@
 			buildConfigurations = (
 				213324361D79801E0060D48C /* Debug */,
 				213324371D79801E0060D48C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64185C201F1B8DC400CA23A0 /* Build configuration list for PBXNativeTarget "SpotMenuToday" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64185C1E1F1B8DC400CA23A0 /* Debug */,
+				64185C1F1F1B8DC400CA23A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

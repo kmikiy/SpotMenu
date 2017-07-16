@@ -1,0 +1,4 @@
+/* Display name and description for this extension. */
+"CFBundleDisplayName" = "SpotMenuToday";
+"com.apple.notificationcenter.widget.description" = "Sample description";
+

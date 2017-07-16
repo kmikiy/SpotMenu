@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TodayViewController" customModule="SpotMenuToday" customModuleProvider="target">
+            <connections>
+                <outlet property="popOver" destination="rSZ-4I-LQ1" id="fSt-it-zN5"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView simulatedAppContext="notificationCenter" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="293"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="rSZ-4I-LQ1" customClass="PopOver" customModule="SpotMenuToday" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="298"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="298" id="MsI-h4-goC"/>
+                        <constraint firstAttribute="width" constant="300" id="VDx-fe-CY0"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="rSZ-4I-LQ1" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="-5" id="FNg-oW-7V7"/>
+                <constraint firstAttribute="trailing" secondItem="rSZ-4I-LQ1" secondAttribute="trailing" id="G5s-ru-VBA"/>
+                <constraint firstItem="rSZ-4I-LQ1" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="c6f-2f-MOT"/>
+                <constraint firstItem="rSZ-4I-LQ1" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="iOA-dD-EeW"/>
+                <constraint firstAttribute="bottom" secondItem="rSZ-4I-LQ1" secondAttribute="bottom" id="oMG-bn-FjW"/>
+            </constraints>
+            <point key="canvasLocation" x="132" y="256"/>
+        </customView>
+    </objects>
+</document>
