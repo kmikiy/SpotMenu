@@ -3,7 +3,7 @@ Spotify in your menu bar
 
 ## About
 
-![demo](https://github.com/kmikiy/SpotMenu/blob/master/demo.gif)
+![demo](https://github.com/kmikiy/SpotMenu/blob/master/Demo/demo.gif)
 
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
 and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift. 
@@ -11,19 +11,26 @@ and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift.
 ## Notes
 
 + The default behavior is to only show the SpotMenu icon in the menubar. Right click -> Preferences to customize.    
-+ The animated gif currently demonstrates the functionality of version 1.4   
++ The animated gif currently demonstrates the functionality of version 1.5   
 
-## New Features in Version 1.4.2
+## New Features in Version 1.5
 
-+ Customization
-  - Open at login
++ Toast
+
+![toast](https://github.com/kmikiy/SpotMenu/blob/master/Demo/toast.gif)
+
++ Today Extension
+
+![today](https://github.com/kmikiy/SpotMenu/blob/master/Demo/today.gif)
 
 [List of all features](https://github.com/kmikiy/SpotMenu/blob/master/FEATURES.md)
+
++ Preferences bugfix
 
 Easy Install
 ------------
 
-Download the zip file [version 1.4.2](https://github.com/kmikiy/SpotMenu/releases/download/v1.4.2/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.5](https://github.com/kmikiy/SpotMenu/releases/download/v1.5/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
 In case of unidentified developer follow these [steps](https://support.apple.com/kb/PH21769?locale=en_US)!
 
 You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
