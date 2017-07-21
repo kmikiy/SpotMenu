@@ -1,5 +1,10 @@
 ## All Features
 
+### Added in Version 1.4.2
+
++ Customization
+  - Open at login
+  
 ### Added in Version 1.4.1
 
 + Customization
