@@ -25,10 +25,19 @@
 		64185C271F1B98C600CA23A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64185C261F1B98C600CA23A0 /* Assets.xcassets */; };
 		64185C2A1F1B9AC800CA23A0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64185C281F1B9AC800CA23A0 /* CustomButton.swift */; };
 		64185C2B1F1B9AC800CA23A0 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64185C291F1B9AC800CA23A0 /* CustomVisualEffect.swift */; };
+		645F8E6F1F22AEDE007AEEE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */; };
+		645F8E701F22AEDE007AEEE7 /* SharedFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */; };
+		645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6E1F22AEDE007AEEE7 /* Toast.swift */; };
+		645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645F8E721F22B12D007AEEE7 /* Hud.storyboard */; };
+		645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E741F22B136007AEEE7 /* HudViewController.swift */; };
 		646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */; };
 		646FB48F1EB741E700435C0B /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48E1EB741E700435C0B /* StatusMenu.swift */; };
 		646FB49D1EB75D6500435C0B /* GeneralPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */; };
 		646FB4A11EB765A100435C0B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646FB4A01EB765A100435C0B /* Preferences.storyboard */; };
+		647087D51F2299F40054CC48 /* DDHotKeyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087CE1F2299F40054CC48 /* DDHotKeyAppDelegate.m */; };
+		647087D61F2299F40054CC48 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D01F2299F40054CC48 /* DDHotKeyCenter.m */; };
+		647087D71F2299F40054CC48 /* DDHotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D21F2299F40054CC48 /* DDHotKeyTextField.m */; };
+		647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */; };
 		647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647BEE611E5B2037007E3AB5 /* PopOver.xib */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
@@ -94,10 +103,24 @@
 		64185C261F1B98C600CA23A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64185C281F1B9AC800CA23A0 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		64185C291F1B9AC800CA23A0 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
+		645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFunctionality.swift; sourceTree = "<group>"; };
+		645F8E6E1F22AEDE007AEEE7 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		645F8E721F22B12D007AEEE7 /* Hud.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Hud.storyboard; sourceTree = "<group>"; };
+		645F8E741F22B136007AEEE7 /* HudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudViewController.swift; sourceTree = "<group>"; };
 		646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemBuilder.swift; sourceTree = "<group>"; };
 		646FB48E1EB741E700435C0B /* StatusMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
 		646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesVC.swift; sourceTree = "<group>"; };
 		646FB4A01EB765A100435C0B /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
+		647087CC1F2299F30054CC48 /* SpotMenu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpotMenu-Bridging-Header.h"; sourceTree = "<group>"; };
+		647087CD1F2299F40054CC48 /* DDHotKeyAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyAppDelegate.h; sourceTree = "<group>"; };
+		647087CE1F2299F40054CC48 /* DDHotKeyAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyAppDelegate.m; sourceTree = "<group>"; };
+		647087CF1F2299F40054CC48 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyCenter.h; sourceTree = "<group>"; };
+		647087D01F2299F40054CC48 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyCenter.m; sourceTree = "<group>"; };
+		647087D11F2299F40054CC48 /* DDHotKeyTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyTextField.h; sourceTree = "<group>"; };
+		647087D21F2299F40054CC48 /* DDHotKeyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyTextField.m; sourceTree = "<group>"; };
+		647087D31F2299F40054CC48 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyUtilities.h; sourceTree = "<group>"; };
+		647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyUtilities.m; sourceTree = "<group>"; };
 		647BEE611E5B2037007E3AB5 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
@@ -152,15 +175,20 @@
 		2133242A1D79801E0060D48C /* SpotMenu */ = {
 			isa = PBXGroup;
 			children = (
+				647087D91F2299FC0054CC48 /* DDHotKey */,
 				641FF0391ED961BD00093D32 /* CustomViews */,
 				646FB49B1EB74A9700435C0B /* Preferences */,
 				646FB48C1EB740D600435C0B /* StatusBar */,
+				645F8E6B1F22AEDE007AEEE7 /* Toast */,
 				2133243E1D7999180060D48C /* EventMonitor.swift */,
 				2133242B1D79801E0060D48C /* AppDelegate.swift */,
 				647BEE611E5B2037007E3AB5 /* PopOver.xib */,
 				213324381D79967B0060D48C /* PopOverViewController.swift */,
+				645F8E721F22B12D007AEEE7 /* Hud.storyboard */,
+				645F8E741F22B136007AEEE7 /* HudViewController.swift */,
 				2133242D1D79801E0060D48C /* Assets.xcassets */,
 				2133242F1D79801E0060D48C /* MainMenu.xib */,
+				647087CC1F2299F30054CC48 /* SpotMenu-Bridging-Header.h */,
 				213324321D79801E0060D48C /* Info.plist */,
 			);
 			path = SpotMenu;
@@ -200,6 +228,16 @@
 			name = CustomViews;
 			sourceTree = "<group>";
 		};
+		645F8E6B1F22AEDE007AEEE7 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */,
+				645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */,
+				645F8E6E1F22AEDE007AEEE7 /* Toast.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		646FB48C1EB740D600435C0B /* StatusBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +257,21 @@
 				6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */,
 			);
 			name = Preferences;
+			sourceTree = "<group>";
+		};
+		647087D91F2299FC0054CC48 /* DDHotKey */ = {
+			isa = PBXGroup;
+			children = (
+				647087CD1F2299F40054CC48 /* DDHotKeyAppDelegate.h */,
+				647087CE1F2299F40054CC48 /* DDHotKeyAppDelegate.m */,
+				647087CF1F2299F40054CC48 /* DDHotKeyCenter.h */,
+				647087D01F2299F40054CC48 /* DDHotKeyCenter.m */,
+				647087D11F2299F40054CC48 /* DDHotKeyTextField.h */,
+				647087D21F2299F40054CC48 /* DDHotKeyTextField.m */,
+				647087D31F2299F40054CC48 /* DDHotKeyUtilities.h */,
+				647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */,
+			);
+			name = DDHotKey;
 			sourceTree = "<group>";
 		};
 		A41E658F2A33A401D35F4C51 /* Frameworks */ = {
@@ -299,7 +352,7 @@
 				TargetAttributes = {
 					213324271D79801E0060D48C = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 					};
 					64185C0B1F1B8DC400CA23A0 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -338,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */,
+				645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
 				646FB4A11EB765A100435C0B /* Preferences.storyboard in Resources */,
@@ -440,13 +494,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				647087D51F2299F40054CC48 /* DDHotKeyAppDelegate.m in Sources */,
+				645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */,
 				21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */,
+				647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */,
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,
+				647087D71F2299F40054CC48 /* DDHotKeyTextField.m in Sources */,
 				648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */,
 				646FB48F1EB741E700435C0B /* StatusMenu.swift in Sources */,
+				645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */,
+				645F8E701F22AEDE007AEEE7 /* SharedFunctionality.swift in Sources */,
 				6415E1391ED1BF8500051EB5 /* LaunchStarter.swift in Sources */,
+				647087D61F2299F40054CC48 /* DDHotKeyCenter.m in Sources */,
 				64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */,
 				646FB49D1EB75D6500435C0B /* GeneralPreferencesVC.swift in Sources */,
+				645F8E6F1F22AEDE007AEEE7 /* Extensions.swift in Sources */,
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
 				646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */,
 				64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */,
@@ -596,11 +658,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SpotMenu/SpotMenu-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -611,11 +676,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SpotMenu/SpotMenu-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

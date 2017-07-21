@@ -8,3 +8,4 @@ end
 target 'SpotMenuToday' do
     pod 'Spotify', '~> 0.2'
 end
+

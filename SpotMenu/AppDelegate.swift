@@ -8,10 +8,12 @@
 
 import Cocoa
 import Spotify
+import Carbon.HIToolbox
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    var windowController: NSWindowController?
 
     let controller: NSWindowController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as! NSWindowController
     
@@ -56,6 +58,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.updateTitleAndPopover), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
+    
+        registerHotkey()
+    }
+    
+
+    func registerHotkey() {
+        guard let hotkeyCenter = DDHotKeyCenter.shared() else { return }
+        
+        let modifiers: UInt = NSEventModifierFlags.control.rawValue | NSEventModifierFlags.command.rawValue
+        
+        // Register system-wide summon hotkey
+        hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_ANSI_M),
+                                    modifierFlags: modifiers,
+                                    target: self,
+                                    action: #selector(hotkeyAction),
+                                    object: nil)
+    }
+    
+    var removeHudTimer: Timer?
+    func hotkeyAction() {
+        //if let window = self.window { window.toggleVisibility() }
+    
+        let sb = NSStoryboard.init(name: "Hud", bundle: nil)
+        windowController = sb.instantiateInitialController() as? NSWindowController
+
+        windowController?.showWindow(nil)
+        windowController?.window?.makeKeyAndOrderFront(self)
+        NSApp.activate(ignoringOtherApps: true)
+        if let t = removeHudTimer {
+            t.invalidate()
+        }
+        removeHudTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(AppDelegate.removeHud), userInfo: nil, repeats: false)
+    }
+    
+    func removeHud() {
+        windowController = nil
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

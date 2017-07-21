@@ -34,6 +34,7 @@ class GeneralPreferencesVC: NSViewController {
         moreInformation.stringValue = defaultMoreInformationText
         initButtonStates()
         initButtonHovers()
+        NSApp.activate(ignoringOtherApps: true)
     }
     
     func initButtonStates(){

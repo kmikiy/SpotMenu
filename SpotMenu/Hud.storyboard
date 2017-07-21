@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4kX-Ha-p3j">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="Ynm-dT-ElI">
+            <objects>
+                <windowController id="4kX-Ha-p3j" customClass="WindowController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Nhd-UD-u36">
+                        <windowCollectionBehavior key="collectionBehavior" stationary="YES" ignoresCycle="YES" fullScreenNone="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES"/>
+                        <rect key="contentRect" x="362" y="668" width="947" height="91"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                    </window>
+                    <connections>
+                        <segue destination="vgs-qk-2Ky" kind="relationship" relationship="window.shadowedContentViewController" id="jLK-cO-lRC"/>
+                    </connections>
+                </windowController>
+                <customObject id="rxs-Qb-p9V" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="189.5" y="296.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2CV-mN-NwN">
+            <objects>
+                <viewController id="vgs-qk-2Ky" customClass="ViewController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="5GJ-ke-0f3">
+                        <rect key="frame" x="0.0" y="0.0" width="845" height="101"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="EG2-5a-c9N" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1373.5" y="291.5"/>
+        </scene>
+    </scenes>
+</document>
