@@ -8,6 +8,10 @@ Spotify in your menu bar
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
 and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift. 
 
+![toast](https://github.com/kmikiy/SpotMenu/blob/master/Demo/toast.gif)
+
+<kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
+
 ## Notes
 
 + The default behavior is to only show the SpotMenu icon in the menubar. Right click -> Preferences to customize.    
@@ -15,9 +19,7 @@ and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift.
 
 ## New Features in Version 1.5
 
-+ Toast
-
-![toast](https://github.com/kmikiy/SpotMenu/blob/master/Demo/toast.gif)
++ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
 
 + Today Extension
 
