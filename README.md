@@ -23,9 +23,11 @@ and [Statusfy](https://github.com/paulyoung/Statusfy) written entirely in swift.
 
 ![today](https://github.com/kmikiy/SpotMenu/blob/master/Demo/today.gif)
 
++ Preferences bugfix
+  - Preferences window now opens infront of other apps
+
 [List of all features](https://github.com/kmikiy/SpotMenu/blob/master/FEATURES.md)
 
-+ Preferences bugfix
 
 Easy Install
 ------------
