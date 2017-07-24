@@ -44,7 +44,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             button.action = #selector(AppDelegate.togglePopover(_:))
             button.addSubview(hiddenView)
-            updateTitle()
+            updateTitle(newTitle: StatusItemBuilder()
+                .showTitle(v: UserPreferences.showTitle)
+                .showArtist(v: UserPreferences.showArtist)
+                .showPlayingIcon(v: UserPreferences.showPlayingIcon)
+                .getString())
             initialWidth = statusItem.button!.bounds.width
             updateHidden()
         }
@@ -56,7 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         eventMonitor?.start()
         
-        timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(AppDelegate.postUpdateNotification), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.updateTitleAndPopover), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
     
         registerHotkey()
@@ -108,13 +112,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
     
-    func updateTitle(){
-        statusItem.title = StatusItemBuilder()
-            .showTitle(v: UserPreferences.showTitle)
-            .showArtist(v: UserPreferences.showArtist)
-            .showPlayingIcon(v: UserPreferences.showPlayingIcon)
-            .getString()
-        
+    func updateTitle(newTitle: String){
+        statusItem.title = newTitle
+        lastStatusTitle = newTitle
         if let button = statusItem.button {
             if UserPreferences.showSpotMenuIcon {
                 button.image = spotMenuIcon
@@ -140,9 +140,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button!.updateLayer()
     }
     
+    var lastStatusTitle: String = ""
     func updateTitleAndPopover() {
-        updateTitle()
-        updateHidden()
+        let statusItemTitle = StatusItemBuilder()
+            .showTitle(v: UserPreferences.showTitle)
+            .showArtist(v: UserPreferences.showArtist)
+            .showPlayingIcon(v: UserPreferences.showPlayingIcon)
+            .getString()
+        if lastStatusTitle != statusItemTitle {
+            updateTitle(newTitle: statusItemTitle)
+        }
+        if popover.isShown {
+            updateHidden()
+        }
+
     }
     
     
