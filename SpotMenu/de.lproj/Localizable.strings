@@ -6,16 +6,14 @@
   Copyright © 2017 KM. All rights reserved.
 */
 
-"Issues" = "Probleme"
-"Preferences..." = "Einstellungen..."
-"Quit" = "Beenden"
-
-"Now playing" = "Aktueller Titel"
-
-"Hover over an option for more information." = "Halte dem Mauszeiger über eine Option, um weitere Informationen anzuzeigen."
-"When checked the Artist will be shown in the menu bar." = "Auswählen, um den Künstler in der Menüleiste anzuzeigen."
-"When checked the Title will be shown in the menu bar." = "Auswählen, um den Titel in der Menüleiste anzuzeigen."
-"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Auswählen, um das Wiedergabe Icon (♫) in der Menüleiste anzuzeigen, wenn Musik gespielt wird."
-"When checked the SpotMenu icon will be shown in the menu bar.\n\nNote:\nIf there is no music information to be shown the SpotMenu icon will be visible." = "Auswählen, um das SpotMenu Icon in der Menüleiste anzuzeigen.\n\nHinweis:\nDas SpotMenu Icon wird angezeigt, wenn keine Informationen zur Musikwiedergabe verfügbar sind."
-"When checked the popover will be fixed to the right corner." = "Auswählen, um das Popover an den rechten Rand zu fixieren."
-"When checked SpotMenu will start automatically at login."="Auswählen, um SpotMenu nach der Anmeldung automatisch zu starten."
+"Issues" = "Probleme";
+"Preferences..." = "Einstellungen...";
+"Quit" = "Beenden";
+"Now playing" = "Aktueller Titel";
+"Hover over an option for more information." = "Halte dem Mauszeiger über eine Option, um weitere Informationen anzuzeigen.";
+"When checked the Artist will be shown in the menu bar." = "Auswählen, um den Künstler in der Menüleiste anzuzeigen.";
+"When checked the Title will be shown in the menu bar." = "Auswählen, um den Titel in der Menüleiste anzuzeigen.";
+"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Auswählen, um das Wiedergabe Icon (♫) in der Menüleiste anzuzeigen, wenn Musik gespielt wird.";
+"When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Auswählen, um das SpotMenu Icon in der Menüleiste anzuzeigen.\n\nHinweis:\nDas SpotMenu Icon wird angezeigt, wenn keine Informationen zur Musikwiedergabe verfügbar sind.";
+"When checked the popover will be fixed to the right corner." = "Auswählen, um das Popover an den rechten Rand zu fixieren.";
+"When checked SpotMenu will start automatically at login."="Auswählen, um SpotMenu nach der Anmeldung automatisch zu starten.";

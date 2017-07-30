@@ -106,27 +106,27 @@ class GeneralPreferencesVC: NSViewController {
 
 extension GeneralPreferencesVC {
     func hoverShowArtist() {
-       moreInformation.stringValue = "When checked the Artist will be shown in the menu bar"
+        moreInformation.stringValue = NSLocalizedString("When checked the Artist will be shown in the menu bar.", comment: "")
     }
     
     func hoverShowTitle() {
-        moreInformation.stringValue = "When checked the Title will be shown in the menu bar"
+        moreInformation.stringValue = NSLocalizedString("When checked the Title will be shown in the menu bar.", comment: "")
     }
     
     func hoverShowPlayingIcon() {
-        moreInformation.stringValue = "When checked the playing icon (♫) will be shown in the menu bar if the music is playing"
+        moreInformation.stringValue = NSLocalizedString("When checked the playing icon (♫) will be shown in the menu bar if music is played.", comment: "")
     }
     
     func hoverShowSpotMenuIcon() {
-        moreInformation.stringValue = "When checked the SpotMenu icon will be shown in the menubar\n\nNote:\nIf there is no music information to be shown the SpotMenu icon will be visible"
+        moreInformation.stringValue = NSLocalizedString("When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible.", comment: "")
     }
     
     func hoverFixPopoverToTheRight() {
-        moreInformation.stringValue = "When checked the popover will be fixed to the right corner"
+        moreInformation.stringValue = NSLocalizedString("When checked the popover will be fixed to the right corner.", comment: "")
     }
     
     func hoverOpenAtLogin() {
-        moreInformation.stringValue = "When checked SpotMenu will start automatically at login"
+        moreInformation.stringValue = NSLocalizedString("When checked SpotMenu will start automatically at login.", comment: "")
     }
     
     
