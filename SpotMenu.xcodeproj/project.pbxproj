@@ -30,6 +30,7 @@
 		645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6E1F22AEDE007AEEE7 /* Toast.swift */; };
 		645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645F8E721F22B12D007AEEE7 /* Hud.storyboard */; };
 		645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E741F22B136007AEEE7 /* HudViewController.swift */; };
+		6463E9D41F2E541100F71A09 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6463E9D61F2E541100F71A09 /* PopOver.xib */; };
 		646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */; };
 		646FB48F1EB741E700435C0B /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48E1EB741E700435C0B /* StatusMenu.swift */; };
 		646FB49D1EB75D6500435C0B /* GeneralPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */; };
@@ -38,7 +39,6 @@
 		647087D61F2299F40054CC48 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D01F2299F40054CC48 /* DDHotKeyCenter.m */; };
 		647087D71F2299F40054CC48 /* DDHotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D21F2299F40054CC48 /* DDHotKeyTextField.m */; };
 		647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */; };
-		647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 647BEE611E5B2037007E3AB5 /* PopOver.xib */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
@@ -108,6 +108,12 @@
 		645F8E6E1F22AEDE007AEEE7 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		645F8E721F22B12D007AEEE7 /* Hud.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Hud.storyboard; sourceTree = "<group>"; };
 		645F8E741F22B136007AEEE7 /* HudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudViewController.swift; sourceTree = "<group>"; };
+		6463E9D11F2E53F300F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		6463E9D21F2E53F300F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TodayViewController.strings; sourceTree = "<group>"; };
+		6463E9D31F2E53F400F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6463E9D51F2E541100F71A09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PopOver.xib; sourceTree = "<group>"; };
+		6463E9D81F2E541600F71A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PopOver.strings; sourceTree = "<group>"; };
+		6463E9DA1F2E541700F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PopOver.strings; sourceTree = "<group>"; };
 		646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemBuilder.swift; sourceTree = "<group>"; };
 		646FB48E1EB741E700435C0B /* StatusMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
 		646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesVC.swift; sourceTree = "<group>"; };
@@ -121,7 +127,6 @@
 		647087D21F2299F40054CC48 /* DDHotKeyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyTextField.m; sourceTree = "<group>"; };
 		647087D31F2299F40054CC48 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyUtilities.h; sourceTree = "<group>"; };
 		647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyUtilities.m; sourceTree = "<group>"; };
-		647BEE611E5B2037007E3AB5 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
@@ -182,7 +187,7 @@
 				645F8E6B1F22AEDE007AEEE7 /* Toast */,
 				2133243E1D7999180060D48C /* EventMonitor.swift */,
 				2133242B1D79801E0060D48C /* AppDelegate.swift */,
-				647BEE611E5B2037007E3AB5 /* PopOver.xib */,
+				6463E9D61F2E541100F71A09 /* PopOver.xib */,
 				213324381D79967B0060D48C /* PopOverViewController.swift */,
 				645F8E721F22B12D007AEEE7 /* Hud.storyboard */,
 				645F8E741F22B136007AEEE7 /* HudViewController.swift */,
@@ -373,6 +378,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 2133241F1D79801E0060D48C;
 			productRefGroup = 213324291D79801E0060D48C /* Products */;
@@ -390,7 +396,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				647BEE621E5B2037007E3AB5 /* PopOver.xib in Resources */,
+				6463E9D41F2E541100F71A09 /* PopOver.xib in Resources */,
 				645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
@@ -542,6 +548,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				213324301D79801E0060D48C /* Base */,
+				6463E9D11F2E53F300F71A09 /* de */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -550,6 +557,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				64185C151F1B8DC400CA23A0 /* Base */,
+				6463E9D21F2E53F300F71A09 /* de */,
 			);
 			name = TodayViewController.xib;
 			sourceTree = "<group>";
@@ -558,8 +566,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				64185C191F1B8DC400CA23A0 /* en */,
+				6463E9D31F2E53F400F71A09 /* de */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6463E9D61F2E541100F71A09 /* PopOver.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6463E9D51F2E541100F71A09 /* Base */,
+				6463E9D81F2E541600F71A09 /* en */,
+				6463E9DA1F2E541700F71A09 /* de */,
+			);
+			name = PopOver.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -569,6 +588,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -616,6 +636,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
