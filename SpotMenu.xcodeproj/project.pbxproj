@@ -34,7 +34,6 @@
 		646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */; };
 		646FB48F1EB741E700435C0B /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48E1EB741E700435C0B /* StatusMenu.swift */; };
 		646FB49D1EB75D6500435C0B /* GeneralPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */; };
-		646FB4A11EB765A100435C0B /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646FB4A01EB765A100435C0B /* Preferences.storyboard */; };
 		647087D51F2299F40054CC48 /* DDHotKeyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087CE1F2299F40054CC48 /* DDHotKeyAppDelegate.m */; };
 		647087D61F2299F40054CC48 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D01F2299F40054CC48 /* DDHotKeyCenter.m */; };
 		647087D71F2299F40054CC48 /* DDHotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D21F2299F40054CC48 /* DDHotKeyTextField.m */; };
@@ -42,6 +41,7 @@
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
+		64F299FB1F2E599100E48BBD /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F299FD1F2E599100E48BBD /* Preferences.storyboard */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,7 +117,6 @@
 		646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemBuilder.swift; sourceTree = "<group>"; };
 		646FB48E1EB741E700435C0B /* StatusMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
 		646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesVC.swift; sourceTree = "<group>"; };
-		646FB4A01EB765A100435C0B /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		647087CC1F2299F30054CC48 /* SpotMenu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpotMenu-Bridging-Header.h"; sourceTree = "<group>"; };
 		647087CD1F2299F40054CC48 /* DDHotKeyAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyAppDelegate.h; sourceTree = "<group>"; };
 		647087CE1F2299F40054CC48 /* DDHotKeyAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyAppDelegate.m; sourceTree = "<group>"; };
@@ -130,6 +129,9 @@
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
+		64F299FC1F2E599100E48BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
+		64F299FE1F2E599600E48BBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
+		64F299FF1F2E599900E48BBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Preferences.strings; sourceTree = "<group>"; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenuToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday.release.xcconfig"; sourceTree = "<group>"; };
@@ -256,7 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */,
-				646FB4A01EB765A100435C0B /* Preferences.storyboard */,
+				64F299FD1F2E599100E48BBD /* Preferences.storyboard */,
 				64A908071EB7754100566ED1 /* UserPreferences.swift */,
 				64A908091EB784E400566ED1 /* HoverButton.swift */,
 				6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */,
@@ -400,7 +402,7 @@
 				645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
-				646FB4A11EB765A100435C0B /* Preferences.storyboard in Resources */,
+				64F299FB1F2E599100E48BBD /* Preferences.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +581,16 @@
 				6463E9DA1F2E541700F71A09 /* de */,
 			);
 			name = PopOver.xib;
+			sourceTree = "<group>";
+		};
+		64F299FD1F2E599100E48BBD /* Preferences.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64F299FC1F2E599100E48BBD /* Base */,
+				64F299FE1F2E599600E48BBD /* en */,
+				64F299FF1F2E599900E48BBD /* de */,
+			);
+			name = Preferences.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
