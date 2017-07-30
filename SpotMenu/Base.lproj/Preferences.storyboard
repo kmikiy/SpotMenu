@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8UQ-6W-PKd">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8UQ-6W-PKd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -42,9 +42,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpI-Ua-GZP" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="200" width="210" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="QpI-Ua-GZP" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="234" width="209" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show artist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LUe-Gd-t4b">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -53,9 +52,8 @@
                                     <action selector="toggleShowArtist:" target="D1B-Ck-xIn" id="qeG-tX-L8L"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FdD-gg-7Vj" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="180" width="210" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="FdD-gg-7Vj" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="214" width="209" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show title" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1Tp-Jw-hmh">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -64,9 +62,8 @@
                                     <action selector="toggleShowTitle:" target="D1B-Ck-xIn" id="a7G-7l-7R0"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pX8-GV-b6c" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="160" width="210" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="pX8-GV-b6c" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="194" width="209" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show playing icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="0Xe-ev-ytf">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -75,9 +72,8 @@
                                     <action selector="toggleShowPlayingIcon:" target="D1B-Ck-xIn" id="c47-x2-npz"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yws-MH-DPg" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="140" width="210" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Yws-MH-DPg" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="174" width="209" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show SpotMenu icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zMR-Ou-8p3">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -86,9 +82,8 @@
                                     <action selector="toggleShowSpotMenuIcon:" target="D1B-Ck-xIn" id="hTn-c4-2Zm"/>
                                 </connections>
                             </button>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bJn-eT-QU7" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="120" width="210" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="bJn-eT-QU7" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="154" width="209" height="18"/>
                                 <buttonCell key="cell" type="check" title="Fix popover to the right" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ynE-rG-2bC">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -97,22 +92,19 @@
                                     <action selector="toggleFixPopoverToTheRight:" target="D1B-Ck-xIn" id="y42-rV-Nx9"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcT-XJ-dx6">
-                                <rect key="frame" x="6" y="7" width="222" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcT-XJ-dx6">
+                                <rect key="frame" x="6" y="7" width="119" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="with ♥ from kmikiy" id="Gtt-Jw-q9H">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="6gB-ng-38K">
+                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="6gB-ng-38K">
                                 <rect key="frame" x="238" y="12" width="5" height="246"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
-                            <textField setsMaxLayoutWidthAtFirstLayout="YES"  verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfF-Kx-p5e">
-                                <rect key="frame" x="254" y="20" width="208" height="230"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfF-Kx-p5e">
+                                <rect key="frame" x="254" y="216" width="208" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Hover over an option for more information" id="AvK-M6-xdR">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -122,13 +114,11 @@
                                     <action selector="toggleFixPopoverToTheRight:" target="D1B-Ck-xIn" id="j8z-F1-UxJ"/>
                                 </connections>
                             </textField>
-                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="oRn-cm-TWU">
-                                <rect key="frame" x="20" y="103" width="206" height="5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="oRn-cm-TWU">
+                                <rect key="frame" x="20" y="145" width="205" height="5"/>
                             </box>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="prI-iA-udw" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="81" width="210" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="prI-iA-udw" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="123" width="209" height="18"/>
                                 <buttonCell key="cell" type="check" title="Open at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yfF-XT-sHt">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -138,6 +128,39 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="6gB-ng-38K" firstAttribute="centerX" secondItem="iQg-fn-1YF" secondAttribute="centerX" id="1Gz-M8-upo"/>
+                            <constraint firstItem="pX8-GV-b6c" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="2nz-6b-vRq"/>
+                            <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="FdD-gg-7Vj" secondAttribute="trailing" constant="15" id="4hr-TH-2vf"/>
+                            <constraint firstItem="FdD-gg-7Vj" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="8U3-hM-rkj"/>
+                            <constraint firstItem="prI-iA-udw" firstAttribute="top" secondItem="oRn-cm-TWU" secondAttribute="bottom" constant="8" id="AgU-ge-sZY"/>
+                            <constraint firstItem="oRn-cm-TWU" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="Bnj-dX-zU1"/>
+                            <constraint firstItem="FdD-gg-7Vj" firstAttribute="top" secondItem="QpI-Ua-GZP" secondAttribute="bottom" constant="6" id="CQr-hN-j5W"/>
+                            <constraint firstItem="6gB-ng-38K" firstAttribute="top" secondItem="iQg-fn-1YF" secondAttribute="top" constant="12" id="CwX-Qf-1X7"/>
+                            <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="prI-iA-udw" secondAttribute="trailing" constant="15" id="E2h-eT-jy2"/>
+                            <constraint firstItem="MfF-Kx-p5e" firstAttribute="top" secondItem="iQg-fn-1YF" secondAttribute="top" constant="20" id="EBF-TW-HlJ"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MfF-Kx-p5e" secondAttribute="bottom" priority="999" constant="20" id="Eif-bt-ycN"/>
+                            <constraint firstItem="oRn-cm-TWU" firstAttribute="top" secondItem="bJn-eT-QU7" secondAttribute="bottom" constant="8" id="LUl-Af-I8F"/>
+                            <constraint firstAttribute="trailing" secondItem="MfF-Kx-p5e" secondAttribute="trailing" constant="20" id="Ntf-6b-6z1"/>
+                            <constraint firstAttribute="bottom" secondItem="AcT-XJ-dx6" secondAttribute="bottom" constant="7" id="OhN-VB-wzP"/>
+                            <constraint firstItem="QpI-Ua-GZP" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="SGw-wO-TdC"/>
+                            <constraint firstItem="AcT-XJ-dx6" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="8" id="W1O-Oj-0g9"/>
+                            <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="pX8-GV-b6c" secondAttribute="trailing" constant="15" id="XF8-BH-Tcn"/>
+                            <constraint firstItem="Yws-MH-DPg" firstAttribute="top" secondItem="pX8-GV-b6c" secondAttribute="bottom" constant="6" id="XpX-b7-vsE"/>
+                            <constraint firstAttribute="bottom" secondItem="6gB-ng-38K" secondAttribute="bottom" constant="12" id="ZPd-V0-7fG"/>
+                            <constraint firstItem="bJn-eT-QU7" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="b9q-Yq-4R2"/>
+                            <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="bJn-eT-QU7" secondAttribute="trailing" constant="15" id="bHD-aB-QdF"/>
+                            <constraint firstItem="Yws-MH-DPg" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="c91-AK-d5b"/>
+                            <constraint firstItem="AcT-XJ-dx6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="prI-iA-udw" secondAttribute="bottom" constant="60" id="g8z-sR-sio"/>
+                            <constraint firstItem="pX8-GV-b6c" firstAttribute="top" secondItem="FdD-gg-7Vj" secondAttribute="bottom" constant="6" id="hhX-vw-d3t"/>
+                            <constraint firstItem="prI-iA-udw" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="ojg-hw-Tr7"/>
+                            <constraint firstItem="QpI-Ua-GZP" firstAttribute="top" secondItem="iQg-fn-1YF" secondAttribute="top" constant="20" id="vfp-Sl-jxx"/>
+                            <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="QpI-Ua-GZP" secondAttribute="trailing" constant="15" id="wVu-4s-LcV"/>
+                            <constraint firstItem="bJn-eT-QU7" firstAttribute="top" secondItem="Yws-MH-DPg" secondAttribute="bottom" constant="6" id="xJW-vK-xko"/>
+                            <constraint firstItem="MfF-Kx-p5e" firstAttribute="leading" secondItem="6gB-ng-38K" secondAttribute="trailing" constant="15" id="y0x-33-B2W"/>
+                            <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="oRn-cm-TWU" secondAttribute="trailing" constant="15" id="y1n-Kd-Zub"/>
+                            <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="Yws-MH-DPg" secondAttribute="trailing" constant="15" id="z29-tg-Ic9"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="fixPopoverToTheRightButton" destination="bJn-eT-QU7" id="6jU-bf-zRu"/>
@@ -151,7 +174,7 @@
                 </viewController>
                 <customObject id="ZTu-eg-D9Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="460" y="133"/>
+            <point key="canvasLocation" x="460" y="210"/>
         </scene>
     </scenes>
     <resources>
