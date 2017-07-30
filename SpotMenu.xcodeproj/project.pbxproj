@@ -42,6 +42,7 @@
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
 		64F299FB1F2E599100E48BBD /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F299FD1F2E599100E48BBD /* Preferences.storyboard */; };
+		64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64F29A0B1F2E5F1100E48BBD /* Localizable.strings */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +133,9 @@
 		64F299FC1F2E599100E48BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		64F299FE1F2E599600E48BBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
 		64F299FF1F2E599900E48BBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Preferences.strings; sourceTree = "<group>"; };
+		64F29A0A1F2E5F1100E48BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		64F29A0E1F2E5FDB00E48BBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		64F29A0F1F2E5FDD00E48BBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenuToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday.release.xcconfig"; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 				2133242F1D79801E0060D48C /* MainMenu.xib */,
 				647087CC1F2299F30054CC48 /* SpotMenu-Bridging-Header.h */,
 				213324321D79801E0060D48C /* Info.plist */,
+				64F29A0B1F2E5F1100E48BBD /* Localizable.strings */,
 			);
 			path = SpotMenu;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6463E9D41F2E541100F71A09 /* PopOver.xib in Resources */,
+				64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */,
 				645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
@@ -591,6 +597,16 @@
 				64F299FF1F2E599900E48BBD /* de */,
 			);
 			name = Preferences.storyboard;
+			sourceTree = "<group>";
+		};
+		64F29A0B1F2E5F1100E48BBD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				64F29A0A1F2E5F1100E48BBD /* Base */,
+				64F29A0E1F2E5FDB00E48BBD /* en */,
+				64F29A0F1F2E5FDD00E48BBD /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

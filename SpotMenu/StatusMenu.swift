@@ -16,12 +16,12 @@ class StatusMenu {
     init() {
        
        
-        menu.addItem(NSMenuItem(title: "Issues", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: "I"))
-        menu.addItem(NSMenuItem(title: " - kmikiy - ", action: #selector(AppDelegate.openSite(_:)), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title:  NSLocalizedString("Issues", comment:""), action: #selector(AppDelegate.openSite(_:)), keyEquivalent: "I"))
+        menu.addItem(NSMenuItem(title: NSLocalizedString(" - kmikiy - ", comment:""), action: #selector(AppDelegate.openSite(_:)), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Preferences...", action: #selector(AppDelegate.openPrefs(_:)), keyEquivalent: ","))
+        menu.addItem(NSMenuItem(title: NSLocalizedString("Preferences...", comment:""), action: #selector(AppDelegate.openPrefs(_:)), keyEquivalent: ","))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(AppDelegate.quit(_:)), keyEquivalent: "Q"))
+        menu.addItem(NSMenuItem(title: NSLocalizedString("Quit", comment:""), action: #selector(AppDelegate.quit(_:)), keyEquivalent: "Q"))
     }
     
 }
