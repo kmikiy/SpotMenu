@@ -33,7 +33,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let spotMenuIcon = NSImage(named: "StatusBarButtonImage")
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        SUUpdater.shared().checkForUpdates(nil)
         
         UserPreferences.readPrefs()
         
@@ -209,6 +208,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 showPopover(sender)
             }
         }
+    }
+    
+    func checkForUpdates(_ sender: NSMenuItem) {
+        SUUpdater.shared().checkForUpdates(nil)
     }
 }
 
