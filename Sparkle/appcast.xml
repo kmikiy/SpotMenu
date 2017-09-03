@@ -1,13 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
-  <channel>
-    <title>Sparkle Test App Changelog</title>
-    <link>http://sparkle-project.org/files/sparkletestcast.xml</link>
-    <description>Most recent changes with links to updates.</description>
-    <language>en</language>
-      <item>
-        <title>Version 2.0</title>
-        <description>
+<?xml version="1.0" standalone="yes"?><rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+<channel>
+<title>SpotMenu</title>
+<item>
+<title>1.5.1</title>
+    <description>
           <![CDATA[
             <ul>
               <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
@@ -17,8 +13,8 @@
             </ul>
           ]]>
         </description>
-        <pubDate>Sat, 26 Jul 2016 15:20:11 +0000</pubDate>
-        <enclosure url="https://sparkle-project.org/files/Sparkle%20Test%20App.zip" sparkle:version="2.0" />
-      </item>
-  </channel>
-</rss>
+<pubDate>Sun, 03 Sep 2017 12PM 12:10:06 +0200</pubDate>
+<sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.5/SpotMenu151.zip" sparkle:version="1.5.1" sparkle:shortVersionString="1.5.1" length="4527645" type="application/octet-stream" sparkle:dsaSignature="MCwCFF1UakLimPKKB1gKhUV9HjtOar14AhQHKoATt65tVrWTO2E9IKfQbbL1BA=="/>
+</item>
+</channel></rss>
