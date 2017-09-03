@@ -7,12 +7,17 @@
 //
 
 import Cocoa
+import Sparkle
 
 class UpdatesPreferencesVC: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        //SUUpdater.shared().automaticallyChecksForUpdates
+        //SUUpdater.shared().automaticallyDownloadsUpdates
+        
     }
     
 }

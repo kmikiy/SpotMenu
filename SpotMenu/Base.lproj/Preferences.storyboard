@@ -49,11 +49,11 @@
             <objects>
                 <viewController storyboardIdentifier="GeneralID" id="D1B-Ck-xIn" customClass="GeneralPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" identifier="General" id="iQg-fn-1YF">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="QpI-Ua-GZP" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="234" width="209" height="18"/>
+                                <rect key="frame" x="18" y="234" width="218" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show artist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="LUe-Gd-t4b">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -63,7 +63,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="FdD-gg-7Vj" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="214" width="209" height="18"/>
+                                <rect key="frame" x="18" y="214" width="218" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show title" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1Tp-Jw-hmh">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -73,7 +73,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="pX8-GV-b6c" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="194" width="209" height="18"/>
+                                <rect key="frame" x="18" y="194" width="218" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show playing icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="0Xe-ev-ytf">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -83,7 +83,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Yws-MH-DPg" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="174" width="209" height="18"/>
+                                <rect key="frame" x="18" y="174" width="218" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show SpotMenu icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zMR-Ou-8p3">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -93,7 +93,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="bJn-eT-QU7" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="154" width="209" height="18"/>
+                                <rect key="frame" x="18" y="154" width="218" height="18"/>
                                 <buttonCell key="cell" type="check" title="Fix popover to the right" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ynE-rG-2bC">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -111,10 +111,10 @@
                                 </textFieldCell>
                             </textField>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="6gB-ng-38K">
-                                <rect key="frame" x="238" y="12" width="5" height="246"/>
+                                <rect key="frame" x="247" y="12" width="5" height="246"/>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfF-Kx-p5e">
-                                <rect key="frame" x="254" y="216" width="208" height="34"/>
+                                <rect key="frame" x="263" y="216" width="219" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Hover over an option for more information" id="AvK-M6-xdR">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -125,10 +125,10 @@
                                 </connections>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="oRn-cm-TWU">
-                                <rect key="frame" x="20" y="145" width="205" height="5"/>
+                                <rect key="frame" x="20" y="145" width="214" height="5"/>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="prI-iA-udw" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="123" width="209" height="18"/>
+                                <rect key="frame" x="18" y="123" width="218" height="18"/>
                                 <buttonCell key="cell" type="check" title="Open at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yfF-XT-sHt">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -191,39 +191,39 @@
             <objects>
                 <viewController storyboardIdentifier="UpdatesID" id="fEd-oz-QyX" customClass="UpdatesPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" identifier="Updates" id="gc4-iw-T2T">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="xKY-wY-Heb" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="234" width="209" height="18"/>
-                                <buttonCell key="cell" type="check" title="Update automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Rt5-h2-wag">
+                                <rect key="frame" x="18" y="234" width="219" height="18"/>
+                                <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Rt5-h2-wag">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="j0d-Qh-Oyw" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="214" width="209" height="18"/>
-                                <buttonCell key="cell" type="check" title="Show title" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MEM-dH-H4q">
+                                <rect key="frame" x="18" y="214" width="219" height="18"/>
+                                <buttonCell key="cell" type="check" title="Automatically download updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MEM-dH-H4q">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="doa-yg-Ydk" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="194" width="209" height="18"/>
+                                <rect key="frame" x="18" y="194" width="219" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show playing icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tZk-IZ-uos">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="gAY-0v-eaa" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="174" width="209" height="18"/>
+                                <rect key="frame" x="18" y="174" width="219" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show SpotMenu icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7as-X8-PSq">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Ad4-Xb-znP" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="154" width="209" height="18"/>
+                                <rect key="frame" x="18" y="154" width="219" height="18"/>
                                 <buttonCell key="cell" type="check" title="Fix popover to the right" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="PPd-Wy-oFY">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -238,10 +238,10 @@
                                 </textFieldCell>
                             </textField>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dGK-1e-nDX">
-                                <rect key="frame" x="238" y="12" width="5" height="246"/>
+                                <rect key="frame" x="248" y="12" width="5" height="246"/>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uaz-pE-joS">
-                                <rect key="frame" x="254" y="216" width="208" height="34"/>
+                                <rect key="frame" x="264" y="216" width="218" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Hover over an option for more information" id="3NO-fM-cop">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -249,10 +249,10 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="AQj-Fm-2wo">
-                                <rect key="frame" x="20" y="145" width="205" height="5"/>
+                                <rect key="frame" x="20" y="145" width="215" height="5"/>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="xOr-ab-XBP" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="123" width="209" height="18"/>
+                                <rect key="frame" x="18" y="123" width="219" height="18"/>
                                 <buttonCell key="cell" type="check" title="Open at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="FRx-gS-oeC">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
