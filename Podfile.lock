@@ -1,12 +1,15 @@
 PODS:
+  - Sparkle (1.17.0)
   - Spotify (0.2.0)
 
 DEPENDENCIES:
+  - Sparkle
   - Spotify (~> 0.2)
 
 SPEC CHECKSUMS:
+  Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
   Spotify: 38b2ed451fea44870f9f4d9ab6d539f61cec3a83
 
-PODFILE CHECKSUM: c6bed3a238d75d0fb6ad1be9bbb5cea6e226b616
+PODFILE CHECKSUM: 062057d9f03dc1cb98ae9766cd2af1c47db3b965
 
 COCOAPODS: 1.2.0
