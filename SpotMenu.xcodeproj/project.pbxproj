@@ -40,6 +40,7 @@
 		647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */; };
 		6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
+		649D6C7E1F5C82CE000A6DDF /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D6C7D1F5C82CE000A6DDF /* PreferencesWindowController.swift */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
 		64F299FB1F2E599100E48BBD /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F299FD1F2E599100E48BBD /* Preferences.storyboard */; };
@@ -130,6 +131,7 @@
 		647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyUtilities.m; sourceTree = "<group>"; };
 		6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
+		649D6C7D1F5C82CE000A6DDF /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
 		64F299FC1F2E599100E48BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */,
 				64F299FD1F2E599100E48BBD /* Preferences.storyboard */,
+				649D6C7D1F5C82CE000A6DDF /* PreferencesWindowController.swift */,
 				64A908071EB7754100566ED1 /* UserPreferences.swift */,
 				64A908091EB784E400566ED1 /* HoverButton.swift */,
 				6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */,
@@ -514,6 +517,7 @@
 			files = (
 				647087D51F2299F40054CC48 /* DDHotKeyAppDelegate.m in Sources */,
 				645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */,
+				649D6C7E1F5C82CE000A6DDF /* PreferencesWindowController.swift in Sources */,
 				21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */,
 				647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */,
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,

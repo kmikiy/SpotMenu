@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var windowController: NSWindowController?
 
-    let controller: NSWindowController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as! NSWindowController
+    var preferencesController: NSWindowController?
     
     var eventMonitor: EventMonitor?
 
@@ -159,7 +159,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Popover
     func openPrefs(_ sender: NSMenuItem) {
-        controller.showWindow(self)
+        preferencesController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as! NSWindowController
+        preferencesController?.showWindow(self)
     }
     
     func openSite(_ sender: NSMenuItem) {

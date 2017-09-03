@@ -8,7 +8,7 @@
         <!--Window Controller-->
         <scene sceneID="1gw-ey-ZhQ">
             <objects>
-                <windowController storyboardIdentifier="PREFFF" id="8UQ-6W-PKd" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="PREFFF" id="8UQ-6W-PKd" customClass="PreferencesWindowController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="lM3-ry-Wlz">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -16,18 +16,28 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <toolbar key="toolbar" implicitIdentifier="CA760832-312D-49D6-8BE5-1F06E14C2290" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="J4j-tR-uTl">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="E534138B-2DDA-4651-A0BD-29114E5DD710" label="General" paletteLabel="General" tag="-1" image="NSPreferencesGeneral" id="o26-Ea-uCc"/>
+                                <toolbarItem implicitItemIdentifier="E534138B-2DDA-4651-A0BD-29114E5DD710" explicitItemIdentifier="general" label="General" paletteLabel="General" tag="-1" image="NSPreferencesGeneral" autovalidates="NO" selectable="YES" id="o26-Ea-uCc">
+                                    <connections>
+                                        <action selector="GeneralSelected:" target="8UQ-6W-PKd" id="WBF-it-a9I"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="2C439ED8-61D0-4B12-BA00-DB2CF8C70465" explicitItemIdentifier="updates" label="Updates" paletteLabel="Updates" tag="-1" image="NSRefreshFreestandingTemplate" autovalidates="NO" selectable="YES" id="IMI-oL-Ve1">
+                                    <connections>
+                                        <action selector="UpdatesSelected:" target="8UQ-6W-PKd" id="yqh-5Q-afk"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="DpP-1R-sxp"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="w9y-Tl-Wce"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="o26-Ea-uCc"/>
+                                <toolbarItem reference="IMI-oL-Ve1"/>
                                 <toolbarItem reference="w9y-Tl-Wce"/>
                             </defaultToolbarItems>
                         </toolbar>
                     </window>
                     <connections>
-                        <segue destination="D1B-Ck-xIn" kind="relationship" relationship="window.shadowedContentViewController" id="7pI-pY-7Iy"/>
+                        <outlet property="toolbar" destination="J4j-tR-uTl" id="1jl-Tf-gcb"/>
                     </connections>
                 </windowController>
                 <customObject id="NMk-7s-OeH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -37,8 +47,8 @@
         <!--General PreferencesVC-->
         <scene sceneID="myU-h8-g6c">
             <objects>
-                <viewController id="D1B-Ck-xIn" customClass="GeneralPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="iQg-fn-1YF">
+                <viewController storyboardIdentifier="General" id="D1B-Ck-xIn" customClass="GeneralPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" identifier="General" id="iQg-fn-1YF">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -174,10 +184,11 @@
                 </viewController>
                 <customObject id="ZTu-eg-D9Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="460" y="210"/>
+            <point key="canvasLocation" x="322" y="118"/>
         </scene>
     </scenes>
     <resources>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
+        <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
     </resources>
 </document>
