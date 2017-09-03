@@ -9,7 +9,7 @@
 import Cocoa
 import Spotify
 import Carbon.HIToolbox
-
+import Sparkle
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -32,9 +32,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let spotMenuIcon = NSImage(named: "StatusBarButtonImage")
     
-
-    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        SUUpdater.shared().checkForUpdates(nil)
+        
         UserPreferences.readPrefs()
         
         if let button = statusItem.button {
