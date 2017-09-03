@@ -41,6 +41,7 @@
 		6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		649D6C7E1F5C82CE000A6DDF /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D6C7D1F5C82CE000A6DDF /* PreferencesWindowController.swift */; };
+		649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
 		64F299FB1F2E599100E48BBD /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F299FD1F2E599100E48BBD /* Preferences.storyboard */; };
@@ -132,6 +133,7 @@
 		6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		649D6C7D1F5C82CE000A6DDF /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesPreferencesVC.swift; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
 		64F299FC1F2E599100E48BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
@@ -267,7 +269,7 @@
 		646FB49B1EB74A9700435C0B /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */,
+				649D6C811F5C8A18000A6DDF /* ViewControllers */,
 				64F299FD1F2E599100E48BBD /* Preferences.storyboard */,
 				649D6C7D1F5C82CE000A6DDF /* PreferencesWindowController.swift */,
 				64A908071EB7754100566ED1 /* UserPreferences.swift */,
@@ -290,6 +292,15 @@
 				647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */,
 			);
 			name = DDHotKey;
+			sourceTree = "<group>";
+		};
+		649D6C811F5C8A18000A6DDF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */,
+				649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		A41E658F2A33A401D35F4C51 /* Frameworks */ = {
@@ -515,6 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */,
 				647087D51F2299F40054CC48 /* DDHotKeyAppDelegate.m in Sources */,
 				645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */,
 				649D6C7E1F5C82CE000A6DDF /* PreferencesWindowController.swift in Sources */,

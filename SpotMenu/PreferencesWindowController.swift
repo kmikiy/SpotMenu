@@ -15,17 +15,18 @@ class PreferencesWindowController: NSWindowController {
         super.windowDidLoad()
         
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-        self.contentViewController =  NSStoryboard(name: "Preferences", bundle: nil).instantiateController(withIdentifier: "General") as? NSViewController
+        self.contentViewController =  NSStoryboard(name: "Preferences", bundle: nil).instantiateController(withIdentifier: "GeneralID") as? NSViewController
         toolbar.selectedItemIdentifier = "general"
     }
 
     @IBAction func GeneralSelected(_ sender: Any) {
         toolbar.selectedItemIdentifier = "general"
-        self.contentViewController =  NSStoryboard(name: "Preferences", bundle: nil).instantiateController(withIdentifier: "General") as? NSViewController
+        self.contentViewController =  NSStoryboard(name: "Preferences", bundle: nil).instantiateController(withIdentifier: "GeneralID") as? NSViewController
     }
     
     @IBAction func UpdatesSelected(_ sender: Any) {
         toolbar.selectedItemIdentifier = "updates"
+        self.contentViewController =  NSStoryboard(name: "Preferences", bundle: nil).instantiateController(withIdentifier: "UpdatesID") as? NSViewController
     }
     
     

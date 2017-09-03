@@ -47,7 +47,7 @@
         <!--General PreferencesVC-->
         <scene sceneID="myU-h8-g6c">
             <objects>
-                <viewController storyboardIdentifier="General" id="D1B-Ck-xIn" customClass="GeneralPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GeneralID" id="D1B-Ck-xIn" customClass="GeneralPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" identifier="General" id="iQg-fn-1YF">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -184,7 +184,119 @@
                 </viewController>
                 <customObject id="ZTu-eg-D9Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="322" y="118"/>
+            <point key="canvasLocation" x="260" y="-3"/>
+        </scene>
+        <!--Updates PreferencesVC-->
+        <scene sceneID="meb-Rd-8pt">
+            <objects>
+                <viewController storyboardIdentifier="UpdatesID" id="fEd-oz-QyX" customClass="UpdatesPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" identifier="Updates" id="gc4-iw-T2T">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="xKY-wY-Heb" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="234" width="209" height="18"/>
+                                <buttonCell key="cell" type="check" title="Update automatically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Rt5-h2-wag">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="j0d-Qh-Oyw" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="214" width="209" height="18"/>
+                                <buttonCell key="cell" type="check" title="Show title" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MEM-dH-H4q">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="doa-yg-Ydk" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="194" width="209" height="18"/>
+                                <buttonCell key="cell" type="check" title="Show playing icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tZk-IZ-uos">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="gAY-0v-eaa" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="174" width="209" height="18"/>
+                                <buttonCell key="cell" type="check" title="Show SpotMenu icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7as-X8-PSq">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Ad4-Xb-znP" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="154" width="209" height="18"/>
+                                <buttonCell key="cell" type="check" title="Fix popover to the right" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="PPd-Wy-oFY">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DsL-1J-anU">
+                                <rect key="frame" x="6" y="7" width="119" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="with ♥ from kmikiy" id="w7w-D5-gWN">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dGK-1e-nDX">
+                                <rect key="frame" x="238" y="12" width="5" height="246"/>
+                            </box>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uaz-pE-joS">
+                                <rect key="frame" x="254" y="216" width="208" height="34"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Hover over an option for more information" id="3NO-fM-cop">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="AQj-Fm-2wo">
+                                <rect key="frame" x="20" y="145" width="205" height="5"/>
+                            </box>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="xOr-ab-XBP" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="123" width="209" height="18"/>
+                                <buttonCell key="cell" type="check" title="Open at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="FRx-gS-oeC">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="doa-yg-Ydk" firstAttribute="leading" secondItem="gc4-iw-T2T" secondAttribute="leading" constant="20" id="0Ox-Qb-lBX"/>
+                            <constraint firstItem="Uaz-pE-joS" firstAttribute="top" secondItem="gc4-iw-T2T" secondAttribute="top" constant="20" id="2FK-15-307"/>
+                            <constraint firstItem="dGK-1e-nDX" firstAttribute="centerX" secondItem="gc4-iw-T2T" secondAttribute="centerX" id="2rV-zd-FrG"/>
+                            <constraint firstItem="doa-yg-Ydk" firstAttribute="top" secondItem="j0d-Qh-Oyw" secondAttribute="bottom" constant="6" id="5T8-pG-oyD"/>
+                            <constraint firstItem="Uaz-pE-joS" firstAttribute="leading" secondItem="dGK-1e-nDX" secondAttribute="trailing" constant="15" id="6R8-h6-TSM"/>
+                            <constraint firstItem="j0d-Qh-Oyw" firstAttribute="top" secondItem="xKY-wY-Heb" secondAttribute="bottom" constant="6" id="6eD-V4-9IW"/>
+                            <constraint firstAttribute="bottom" secondItem="DsL-1J-anU" secondAttribute="bottom" constant="7" id="8aJ-m7-Mdp"/>
+                            <constraint firstItem="DsL-1J-anU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xOr-ab-XBP" secondAttribute="bottom" constant="60" id="CE1-jb-rsh"/>
+                            <constraint firstItem="dGK-1e-nDX" firstAttribute="leading" secondItem="xOr-ab-XBP" secondAttribute="trailing" constant="15" id="DIT-gh-KcA"/>
+                            <constraint firstItem="xOr-ab-XBP" firstAttribute="top" secondItem="AQj-Fm-2wo" secondAttribute="bottom" constant="8" id="DOL-Kz-gCH"/>
+                            <constraint firstItem="Ad4-Xb-znP" firstAttribute="top" secondItem="gAY-0v-eaa" secondAttribute="bottom" constant="6" id="E99-jh-y32"/>
+                            <constraint firstItem="gAY-0v-eaa" firstAttribute="leading" secondItem="gc4-iw-T2T" secondAttribute="leading" constant="20" id="Eld-p8-A16"/>
+                            <constraint firstItem="dGK-1e-nDX" firstAttribute="leading" secondItem="AQj-Fm-2wo" secondAttribute="trailing" constant="15" id="FMr-8d-1KZ"/>
+                            <constraint firstItem="Ad4-Xb-znP" firstAttribute="leading" secondItem="gc4-iw-T2T" secondAttribute="leading" constant="20" id="Gjw-vy-qwS"/>
+                            <constraint firstItem="dGK-1e-nDX" firstAttribute="leading" secondItem="doa-yg-Ydk" secondAttribute="trailing" constant="15" id="Had-G3-l4A"/>
+                            <constraint firstItem="xKY-wY-Heb" firstAttribute="leading" secondItem="gc4-iw-T2T" secondAttribute="leading" constant="20" id="IvQ-rh-zqd"/>
+                            <constraint firstItem="AQj-Fm-2wo" firstAttribute="leading" secondItem="gc4-iw-T2T" secondAttribute="leading" constant="20" id="JBK-Zi-IKc"/>
+                            <constraint firstItem="xKY-wY-Heb" firstAttribute="top" secondItem="gc4-iw-T2T" secondAttribute="top" constant="20" id="Lg2-7A-4gr"/>
+                            <constraint firstItem="gAY-0v-eaa" firstAttribute="top" secondItem="doa-yg-Ydk" secondAttribute="bottom" constant="6" id="N5d-4q-WOz"/>
+                            <constraint firstAttribute="trailing" secondItem="Uaz-pE-joS" secondAttribute="trailing" constant="20" id="N7M-xS-3ni"/>
+                            <constraint firstItem="dGK-1e-nDX" firstAttribute="top" secondItem="gc4-iw-T2T" secondAttribute="top" constant="12" id="So4-uX-RNT"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Uaz-pE-joS" secondAttribute="bottom" priority="999" constant="20" id="TJl-Bw-wd1"/>
+                            <constraint firstAttribute="bottom" secondItem="dGK-1e-nDX" secondAttribute="bottom" constant="12" id="Xaz-Q3-vBI"/>
+                            <constraint firstItem="dGK-1e-nDX" firstAttribute="leading" secondItem="xKY-wY-Heb" secondAttribute="trailing" constant="15" id="YGj-Xu-zGZ"/>
+                            <constraint firstItem="dGK-1e-nDX" firstAttribute="leading" secondItem="Ad4-Xb-znP" secondAttribute="trailing" constant="15" id="ZAM-WO-iBJ"/>
+                            <constraint firstItem="DsL-1J-anU" firstAttribute="leading" secondItem="gc4-iw-T2T" secondAttribute="leading" constant="8" id="bQk-Q4-pJK"/>
+                            <constraint firstItem="dGK-1e-nDX" firstAttribute="leading" secondItem="gAY-0v-eaa" secondAttribute="trailing" constant="15" id="g2J-8E-FDD"/>
+                            <constraint firstItem="j0d-Qh-Oyw" firstAttribute="leading" secondItem="gc4-iw-T2T" secondAttribute="leading" constant="20" id="gn5-57-a88"/>
+                            <constraint firstItem="dGK-1e-nDX" firstAttribute="leading" secondItem="j0d-Qh-Oyw" secondAttribute="trailing" constant="15" id="iP2-PF-AMe"/>
+                            <constraint firstItem="AQj-Fm-2wo" firstAttribute="top" secondItem="Ad4-Xb-znP" secondAttribute="bottom" constant="8" id="vEP-9y-gFZ"/>
+                            <constraint firstItem="xOr-ab-XBP" firstAttribute="leading" secondItem="gc4-iw-T2T" secondAttribute="leading" constant="20" id="w5v-xU-gtu"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="yjQ-PJ-A73" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="260" y="359"/>
         </scene>
     </scenes>
     <resources>
