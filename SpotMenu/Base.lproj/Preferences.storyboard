@@ -29,10 +29,10 @@
         <!--Tab View Controller-->
         <scene sceneID="diG-YW-wYQ">
             <objects>
-                <tabViewController selectedTabViewItemIndex="1" tabStyle="toolbar" canPropagateSelectedChildViewControllerTitle="NO" id="L3n-s3-rOr" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" canPropagateSelectedChildViewControllerTitle="NO" id="L3n-s3-rOr" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="General" identifier="general" image="NSInfo" id="g7m-Zo-MWm"/>
-                        <tabViewItem label="Updates" identifier="updates" image="NSRefreshTemplate" id="93o-J6-5JH"/>
+                        <tabViewItem label="General" identifier="general" image="NSPreferencesGeneral" id="g7m-Zo-MWm"/>
+                        <tabViewItem label="Updates" identifier="updates" image="NSRefreshFreestandingTemplate" id="93o-J6-5JH"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="RYW-RI-FWg">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -305,7 +305,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSInfo" width="32" height="32"/>
-        <image name="NSRefreshTemplate" width="11" height="15"/>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
+        <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
     </resources>
 </document>
