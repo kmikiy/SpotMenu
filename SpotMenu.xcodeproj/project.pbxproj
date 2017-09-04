@@ -40,7 +40,6 @@
 		647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */; };
 		6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
-		649D6C7E1F5C82CE000A6DDF /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D6C7D1F5C82CE000A6DDF /* PreferencesWindowController.swift */; };
 		649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
@@ -132,7 +131,6 @@
 		647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyUtilities.m; sourceTree = "<group>"; };
 		6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
-		649D6C7D1F5C82CE000A6DDF /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesPreferencesVC.swift; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 			children = (
 				649D6C811F5C8A18000A6DDF /* ViewControllers */,
 				64F299FD1F2E599100E48BBD /* Preferences.storyboard */,
-				649D6C7D1F5C82CE000A6DDF /* PreferencesWindowController.swift */,
 				64A908071EB7754100566ED1 /* UserPreferences.swift */,
 				64A908091EB784E400566ED1 /* HoverButton.swift */,
 				6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */,
@@ -385,7 +382,7 @@
 					};
 					64185C0B1F1B8DC400CA23A0 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 3K79XCJYWL;
+						DevelopmentTeam = F6W8CTW858;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -456,7 +453,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		AAC6D2D89D08D17D0DB46A69 /* [CP] Copy Pods Resources */ = {
@@ -486,7 +483,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EDE1A24A35F73C972F4DD8AA /* [CP] Copy Pods Resources */ = {
@@ -529,7 +526,6 @@
 				649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */,
 				647087D51F2299F40054CC48 /* DDHotKeyAppDelegate.m in Sources */,
 				645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */,
-				649D6C7E1F5C82CE000A6DDF /* PreferencesWindowController.swift in Sources */,
 				21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */,
 				647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */,
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,
@@ -765,11 +761,11 @@
 				CODE_SIGN_ENTITLEMENTS = SpotMenuToday/SpotMenuToday.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3K79XCJYWL;
+				DEVELOPMENT_TEAM = F6W8CTW858;
 				INFOPLIST_FILE = SpotMenuToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu.SpotMenuToday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu.tmbrtoday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -787,11 +783,11 @@
 				CODE_SIGN_ENTITLEMENTS = SpotMenuToday/SpotMenuToday.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3K79XCJYWL;
+				DEVELOPMENT_TEAM = F6W8CTW858;
 				INFOPLIST_FILE = SpotMenuToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu.SpotMenuToday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu.tmbrtoday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;

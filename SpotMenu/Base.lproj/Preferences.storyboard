@@ -8,41 +8,46 @@
         <!--Window Controller-->
         <scene sceneID="1gw-ey-ZhQ">
             <objects>
-                <windowController storyboardIdentifier="PREFFF" id="8UQ-6W-PKd" customClass="PreferencesWindowController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="PREFFF" id="8UQ-6W-PKd" sceneMemberID="viewController">
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="lM3-ry-Wlz">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="578" y="607" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <toolbar key="toolbar" implicitIdentifier="CA760832-312D-49D6-8BE5-1F06E14C2290" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="J4j-tR-uTl">
-                            <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="E534138B-2DDA-4651-A0BD-29114E5DD710" explicitItemIdentifier="general" label="General" paletteLabel="General" tag="-1" image="NSPreferencesGeneral" autovalidates="NO" selectable="YES" id="o26-Ea-uCc">
-                                    <connections>
-                                        <action selector="GeneralSelected:" target="8UQ-6W-PKd" id="WBF-it-a9I"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="2C439ED8-61D0-4B12-BA00-DB2CF8C70465" explicitItemIdentifier="updates" label="Updates" paletteLabel="Updates" tag="-1" image="NSRefreshFreestandingTemplate" autovalidates="NO" selectable="YES" id="IMI-oL-Ve1">
-                                    <connections>
-                                        <action selector="UpdatesSelected:" target="8UQ-6W-PKd" id="yqh-5Q-afk"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="DpP-1R-sxp"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="w9y-Tl-Wce"/>
-                            </allowedToolbarItems>
-                            <defaultToolbarItems>
-                                <toolbarItem reference="o26-Ea-uCc"/>
-                                <toolbarItem reference="IMI-oL-Ve1"/>
-                                <toolbarItem reference="w9y-Tl-Wce"/>
-                            </defaultToolbarItems>
-                        </toolbar>
+                        <connections>
+                            <outlet property="delegate" destination="8UQ-6W-PKd" id="t8l-q0-gjE"/>
+                        </connections>
                     </window>
                     <connections>
-                        <outlet property="toolbar" destination="J4j-tR-uTl" id="1jl-Tf-gcb"/>
+                        <segue destination="L3n-s3-rOr" kind="relationship" relationship="window.shadowedContentViewController" id="QEZ-A4-brR"/>
                     </connections>
                 </windowController>
                 <customObject id="NMk-7s-OeH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-365" y="133"/>
+            <point key="canvasLocation" x="-391" y="45"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="diG-YW-wYQ">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="1" tabStyle="toolbar" canPropagateSelectedChildViewControllerTitle="NO" id="L3n-s3-rOr" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="General" identifier="general" image="NSInfo" id="g7m-Zo-MWm"/>
+                        <tabViewItem label="Updates" identifier="updates" image="NSRefreshTemplate" id="93o-J6-5JH"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="RYW-RI-FWg">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="D1B-Ck-xIn" kind="relationship" relationship="tabItems" id="WM0-n8-Yx4"/>
+                        <segue destination="fEd-oz-QyX" kind="relationship" relationship="tabItems" id="8Qp-NI-2vj"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="gRK-JW-MeB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-391" y="525"/>
         </scene>
         <!--General PreferencesVC-->
         <scene sceneID="myU-h8-g6c">
@@ -184,7 +189,7 @@
                 </viewController>
                 <customObject id="ZTu-eg-D9Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="-3"/>
+            <point key="canvasLocation" x="-700" y="990"/>
         </scene>
         <!--Updates PreferencesVC-->
         <scene sceneID="meb-Rd-8pt">
@@ -296,11 +301,11 @@
                 </viewController>
                 <customObject id="yjQ-PJ-A73" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="359"/>
+            <point key="canvasLocation" x="-82" y="990"/>
         </scene>
     </scenes>
     <resources>
-        <image name="NSPreferencesGeneral" width="32" height="32"/>
-        <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
+        <image name="NSInfo" width="32" height="32"/>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
     </resources>
 </document>
