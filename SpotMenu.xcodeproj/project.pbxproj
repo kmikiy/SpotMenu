@@ -13,7 +13,6 @@
 		213324311D79801E0060D48C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2133242F1D79801E0060D48C /* MainMenu.xib */; };
 		2133243A1D79967B0060D48C /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* PopOverViewController.swift */; };
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
-		21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A668171D7F13CE009813E5 /* CustomButton.swift */; };
 		6415E1391ED1BF8500051EB5 /* LaunchStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */; };
 		64185C0E1F1B8DC400CA23A0 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64185C0D1F1B8DC400CA23A0 /* NotificationCenter.framework */; };
 		64185C131F1B8DC400CA23A0 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64185C121F1B8DC400CA23A0 /* TodayViewController.swift */; };
@@ -44,7 +43,6 @@
 		64F299FB1F2E599100E48BBD /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F299FD1F2E599100E48BBD /* Preferences.storyboard */; };
 		64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64F29A0B1F2E5F1100E48BBD /* Localizable.strings */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
-		E2D35CCA1F60827800EB5D67 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A668171D7F13CE009813E5 /* CustomButton.swift */; };
 		E2D35CCB1F60827B00EB5D67 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		E2D35CCE1F60879700EB5D67 /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */; };
 		E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */; };
@@ -92,7 +90,6 @@
 		213324321D79801E0060D48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		213324381D79967B0060D48C /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
-		21A668171D7F13CE009813E5 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5325CBE9807E5B7BDCB8234D /* Pods_SpotMenuToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenuToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
 		6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchStarter.swift; sourceTree = "<group>"; };
@@ -239,7 +236,7 @@
 		641FF0391ED961BD00093D32 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				21A668171D7F13CE009813E5 /* CustomButton.swift */,
+				64A908091EB784E400566ED1 /* HoverButton.swift */,
 				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
 			);
 			name = CustomViews;
@@ -270,7 +267,6 @@
 				649D6C811F5C8A18000A6DDF /* ViewControllers */,
 				64F299FD1F2E599100E48BBD /* Preferences.storyboard */,
 				64A908071EB7754100566ED1 /* UserPreferences.swift */,
-				64A908091EB784E400566ED1 /* HoverButton.swift */,
 				6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */,
 			);
 			name = Preferences;
@@ -534,7 +530,6 @@
 				649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */,
 				647087D51F2299F40054CC48 /* DDHotKeyAppDelegate.m in Sources */,
 				645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */,
-				21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */,
 				647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */,
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,
 				647087D71F2299F40054CC48 /* DDHotKeyTextField.m in Sources */,
@@ -562,7 +557,6 @@
 				64185C131F1B8DC400CA23A0 /* TodayViewController.swift in Sources */,
 				64185C251F1B944A00CA23A0 /* PopOver.swift in Sources */,
 				E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */,
-				E2D35CCA1F60827800EB5D67 /* CustomButton.swift in Sources */,
 				E2D35CCB1F60827B00EB5D67 /* CustomVisualEffect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

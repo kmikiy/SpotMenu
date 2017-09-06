@@ -17,7 +17,5 @@ final class UpdatesPreferencesVC: NSViewController {
         
         //SUUpdater.shared().automaticallyChecksForUpdates
         //SUUpdater.shared().automaticallyDownloadsUpdates
-        
     }
-    
 }

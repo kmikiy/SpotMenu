@@ -33,9 +33,9 @@ extension CGRect {
 extension NSString {
     func toast_size(with attributes: [String: Any]?) -> CGSize {
         #if os(OSX)
-            return self.size(withAttributes: attributes)
+            return size(withAttributes: attributes)
         #elseif os(iOS) || os(tvOS)
-            return self.size(attributes: attributes)
+            return size(attributes: attributes)
         #endif
     }
 }
