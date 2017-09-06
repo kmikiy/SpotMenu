@@ -23,19 +23,29 @@ final class PopOverViewController: NSViewController {
     
     // MARK: - Lifecycle methods
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        defaultImage = artworkImageView.image
+        self.preferredContentSize = NSSize(width: 300, height: 298)
+    }
+    
     override func viewWillAppear() {
         super.viewWillAppear()
         
         updateInfo()
-        NotificationCenter.default.addObserver(self, selector: #selector(PopOverViewController.updateInfo), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
+        NotificationCenter.default
+            .addObserver(
+                self,
+                selector: #selector(PopOverViewController.updateInfo),
+                name: NSNotification.Name(rawValue: InternalNotification.key),
+                object: nil)
         
-        timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(PopOverViewController.postUpdateNotification), userInfo: nil, repeats: true)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        defaultImage = artworkImageView.image
-        
+        timer = Timer.scheduledTimer(
+            timeInterval: 0.8,
+            target: self,
+            selector: #selector(PopOverViewController.postUpdateNotification),
+            userInfo: nil,
+            repeats: true)
     }
     
     override func viewDidDisappear() {
@@ -178,12 +188,9 @@ extension NSImageView {
     
     func downloadImage(url: URL) {
         
-//        Swift.print("Download Started")
         getDataFromUrl(url: url) { (data, response, error)  in
             DispatchQueue.main.sync() { () -> Void in
                 guard let data = data, error == nil else { return }
-//                Swift.print(response?.suggestedFilename ?? url.lastPathComponent)
-//                Swift.print("Download Finished")
                 self.image = NSImage(data: data)
             }
         }

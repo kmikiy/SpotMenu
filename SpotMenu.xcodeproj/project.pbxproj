@@ -15,19 +15,15 @@
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
 		6415E1391ED1BF8500051EB5 /* LaunchStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */; };
 		64185C0E1F1B8DC400CA23A0 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64185C0D1F1B8DC400CA23A0 /* NotificationCenter.framework */; };
-		64185C131F1B8DC400CA23A0 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64185C121F1B8DC400CA23A0 /* TodayViewController.swift */; };
-		64185C161F1B8DC400CA23A0 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64185C141F1B8DC400CA23A0 /* TodayViewController.xib */; };
 		64185C1A1F1B8DC400CA23A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64185C181F1B8DC400CA23A0 /* InfoPlist.strings */; };
 		64185C1D1F1B8DC400CA23A0 /* SpotMenuToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 64185C0C1F1B8DC400CA23A0 /* SpotMenuToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		64185C231F1B93D500CA23A0 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64185C221F1B93D500CA23A0 /* PopOver.xib */; };
-		64185C251F1B944A00CA23A0 /* PopOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64185C241F1B944A00CA23A0 /* PopOver.swift */; };
 		64185C271F1B98C600CA23A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64185C261F1B98C600CA23A0 /* Assets.xcassets */; };
 		645F8E6F1F22AEDE007AEEE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */; };
 		645F8E701F22AEDE007AEEE7 /* SharedFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */; };
 		645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6E1F22AEDE007AEEE7 /* Toast.swift */; };
 		645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645F8E721F22B12D007AEEE7 /* Hud.storyboard */; };
 		645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E741F22B136007AEEE7 /* HudViewController.swift */; };
-		6463E9D41F2E541100F71A09 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6463E9D61F2E541100F71A09 /* PopOver.xib */; };
+		6463E9D41F2E541100F71A09 /* PopOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6463E9D61F2E541100F71A09 /* PopOverViewController.xib */; };
 		646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */; };
 		646FB48F1EB741E700435C0B /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48E1EB741E700435C0B /* StatusMenu.swift */; };
 		646FB49D1EB75D6500435C0B /* GeneralPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */; };
@@ -46,6 +42,9 @@
 		E2D35CCB1F60827B00EB5D67 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		E2D35CCE1F60879700EB5D67 /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */; };
 		E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */; };
+		E2D35CD01F609F8A00EB5D67 /* PopOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6463E9D61F2E541100F71A09 /* PopOverViewController.xib */; };
+		E2D35CD11F60A08800EB5D67 /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* PopOverViewController.swift */; };
+		E2D35CD91F60B0CF00EB5D67 /* PopOverViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CD21F60A1DC00EB5D67 /* PopOverViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,12 +95,8 @@
 		64185C0C1F1B8DC400CA23A0 /* SpotMenuToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SpotMenuToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		64185C0D1F1B8DC400CA23A0 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		64185C111F1B8DC400CA23A0 /* SpotMenuToday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpotMenuToday.entitlements; sourceTree = "<group>"; };
-		64185C121F1B8DC400CA23A0 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
-		64185C151F1B8DC400CA23A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
 		64185C171F1B8DC400CA23A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64185C191F1B8DC400CA23A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		64185C221F1B93D500CA23A0 /* PopOver.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
-		64185C241F1B944A00CA23A0 /* PopOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOver.swift; sourceTree = "<group>"; };
 		64185C261F1B98C600CA23A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFunctionality.swift; sourceTree = "<group>"; };
@@ -109,11 +104,10 @@
 		645F8E721F22B12D007AEEE7 /* Hud.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Hud.storyboard; sourceTree = "<group>"; };
 		645F8E741F22B136007AEEE7 /* HudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudViewController.swift; sourceTree = "<group>"; };
 		6463E9D11F2E53F300F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
-		6463E9D21F2E53F300F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TodayViewController.strings; sourceTree = "<group>"; };
 		6463E9D31F2E53F400F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6463E9D51F2E541100F71A09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PopOver.xib; sourceTree = "<group>"; };
-		6463E9D81F2E541600F71A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PopOver.strings; sourceTree = "<group>"; };
-		6463E9DA1F2E541700F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PopOver.strings; sourceTree = "<group>"; };
+		6463E9D51F2E541100F71A09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PopOverViewController.xib; sourceTree = "<group>"; };
+		6463E9D81F2E541600F71A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PopOverViewController.strings; sourceTree = "<group>"; };
+		6463E9DA1F2E541700F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PopOverViewController.strings; sourceTree = "<group>"; };
 		646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemBuilder.swift; sourceTree = "<group>"; };
 		646FB48E1EB741E700435C0B /* StatusMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
 		646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesVC.swift; sourceTree = "<group>"; };
@@ -141,6 +135,7 @@
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenuToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday.release.xcconfig"; sourceTree = "<group>"; };
 		E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewExtension.swift; sourceTree = "<group>"; };
+		E2D35CD21F60A1DC00EB5D67 /* PopOverViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewControllerExtension.swift; sourceTree = "<group>"; };
 		FD5C41D09992EC74D74ADE15 /* Pods-SpotMenuToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenuToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,15 +183,15 @@
 		2133242A1D79801E0060D48C /* SpotMenu */ = {
 			isa = PBXGroup;
 			children = (
-				E2D35CCC1F60877C00EB5D67 /* Extensions */,
 				647087D91F2299FC0054CC48 /* DDHotKey */,
+				E2D35CCC1F60877C00EB5D67 /* Extensions */,
 				641FF0391ED961BD00093D32 /* CustomViews */,
 				646FB49B1EB74A9700435C0B /* Preferences */,
 				646FB48C1EB740D600435C0B /* StatusBar */,
 				645F8E6B1F22AEDE007AEEE7 /* Toast */,
 				2133243E1D7999180060D48C /* EventMonitor.swift */,
 				2133242B1D79801E0060D48C /* AppDelegate.swift */,
-				6463E9D61F2E541100F71A09 /* PopOver.xib */,
+				6463E9D61F2E541100F71A09 /* PopOverViewController.xib */,
 				213324381D79967B0060D48C /* PopOverViewController.swift */,
 				645F8E721F22B12D007AEEE7 /* Hud.storyboard */,
 				645F8E741F22B136007AEEE7 /* HudViewController.swift */,
@@ -213,10 +208,7 @@
 		64185C0F1F1B8DC400CA23A0 /* SpotMenuToday */ = {
 			isa = PBXGroup;
 			children = (
-				64185C121F1B8DC400CA23A0 /* TodayViewController.swift */,
-				64185C141F1B8DC400CA23A0 /* TodayViewController.xib */,
-				64185C241F1B944A00CA23A0 /* PopOver.swift */,
-				64185C221F1B93D500CA23A0 /* PopOver.xib */,
+				E2D35CD21F60A1DC00EB5D67 /* PopOverViewControllerExtension.swift */,
 				64185C171F1B8DC400CA23A0 /* Info.plist */,
 				64185C181F1B8DC400CA23A0 /* InfoPlist.strings */,
 				64185C261F1B98C600CA23A0 /* Assets.xcassets */,
@@ -422,7 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */,
-				6463E9D41F2E541100F71A09 /* PopOver.xib in Resources */,
+				6463E9D41F2E541100F71A09 /* PopOverViewController.xib in Resources */,
 				64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */,
 				645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
@@ -435,10 +427,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64185C161F1B8DC400CA23A0 /* TodayViewController.xib in Resources */,
+				E2D35CD01F609F8A00EB5D67 /* PopOverViewController.xib in Resources */,
 				64185C1A1F1B8DC400CA23A0 /* InfoPlist.strings in Resources */,
 				64185C271F1B98C600CA23A0 /* Assets.xcassets in Resources */,
-				64185C231F1B93D500CA23A0 /* PopOver.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,9 +545,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64185C131F1B8DC400CA23A0 /* TodayViewController.swift in Sources */,
-				64185C251F1B944A00CA23A0 /* PopOver.swift in Sources */,
+				E2D35CD11F60A08800EB5D67 /* PopOverViewController.swift in Sources */,
 				E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */,
+				E2D35CD91F60B0CF00EB5D67 /* PopOverViewControllerExtension.swift in Sources */,
 				E2D35CCB1F60827B00EB5D67 /* CustomVisualEffect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -581,15 +572,6 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		64185C141F1B8DC400CA23A0 /* TodayViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				64185C151F1B8DC400CA23A0 /* Base */,
-				6463E9D21F2E53F300F71A09 /* de */,
-			);
-			name = TodayViewController.xib;
-			sourceTree = "<group>";
-		};
 		64185C181F1B8DC400CA23A0 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -599,14 +581,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		6463E9D61F2E541100F71A09 /* PopOver.xib */ = {
+		6463E9D61F2E541100F71A09 /* PopOverViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6463E9D51F2E541100F71A09 /* Base */,
 				6463E9D81F2E541600F71A09 /* en */,
 				6463E9DA1F2E541700F71A09 /* de */,
 			);
-			name = PopOver.xib;
+			name = PopOverViewController.xib;
 			sourceTree = "<group>";
 		};
 		64F299FD1F2E599100E48BBD /* Preferences.storyboard */ = {
