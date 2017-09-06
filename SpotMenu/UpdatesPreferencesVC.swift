@@ -9,7 +9,7 @@
 import Cocoa
 import Sparkle
 
-class UpdatesPreferencesVC: NSViewController {
+final class UpdatesPreferencesVC: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

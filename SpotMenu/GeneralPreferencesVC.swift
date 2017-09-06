@@ -10,8 +10,7 @@ import Foundation
 import Cocoa
 import Spotify
 
-
-class GeneralPreferencesVC: NSViewController {
+final class GeneralPreferencesVC: NSViewController {
     
     @IBOutlet weak var showArtistButton: HoverButton!
     @IBOutlet weak var showTitleButton: HoverButton!

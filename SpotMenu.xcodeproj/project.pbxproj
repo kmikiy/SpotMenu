@@ -46,6 +46,8 @@
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 		E2D35CCA1F60827800EB5D67 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A668171D7F13CE009813E5 /* CustomButton.swift */; };
 		E2D35CCB1F60827B00EB5D67 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
+		E2D35CCE1F60879700EB5D67 /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */; };
+		E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +143,7 @@
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenuToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday.release.xcconfig"; sourceTree = "<group>"; };
+		E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewExtension.swift; sourceTree = "<group>"; };
 		FD5C41D09992EC74D74ADE15 /* Pods-SpotMenuToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenuToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,6 +191,7 @@
 		2133242A1D79801E0060D48C /* SpotMenu */ = {
 			isa = PBXGroup;
 			children = (
+				E2D35CCC1F60877C00EB5D67 /* Extensions */,
 				647087D91F2299FC0054CC48 /* DDHotKey */,
 				641FF0391ED961BD00093D32 /* CustomViews */,
 				646FB49B1EB74A9700435C0B /* Preferences */,
@@ -315,6 +319,14 @@
 				BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E2D35CCC1F60877C00EB5D67 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -526,6 +538,7 @@
 				647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */,
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,
 				647087D71F2299F40054CC48 /* DDHotKeyTextField.m in Sources */,
+				E2D35CCE1F60879700EB5D67 /* NSViewExtension.swift in Sources */,
 				648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */,
 				646FB48F1EB741E700435C0B /* StatusMenu.swift in Sources */,
 				645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */,
@@ -548,6 +561,7 @@
 			files = (
 				64185C131F1B8DC400CA23A0 /* TodayViewController.swift in Sources */,
 				64185C251F1B944A00CA23A0 /* PopOver.swift in Sources */,
+				E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */,
 				E2D35CCA1F60827800EB5D67 /* CustomButton.swift in Sources */,
 				E2D35CCB1F60827B00EB5D67 /* CustomVisualEffect.swift in Sources */,
 			);

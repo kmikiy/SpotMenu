@@ -11,34 +11,36 @@ import Foundation
 import Foundation
 import AppKit
 
-class HoverButton: NSButton {
-    var trackingArea:NSTrackingArea!
+final class HoverButton: NSButton {
+  
+    // MARK: - Properties
+  
+    private lazy var trackingArea: NSTrackingArea = self.createTrackingArea()
+  
     var mouseEnteredFunc: (()->Void)?
+  
     var mouseExitedFunc: (()->Void)?
+  
+    // MARK: - Lifecycle methods
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        
         // set tracking area
-        let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways])
-        trackingArea = NSTrackingArea(rect: bounds, options: opts, owner: self, userInfo: nil)
-        self.addTrackingArea(trackingArea)
+        addTrackingArea(trackingArea)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         // set tracking area
-        let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways])
-        trackingArea = NSTrackingArea(rect: bounds, options: opts, owner: self, userInfo: nil)
-        self.addTrackingArea(trackingArea)
+        addTrackingArea(trackingArea)
     }
     
     deinit {
-        self.removeTrackingArea(trackingArea)
+        removeTrackingArea(trackingArea)
     }
     
-    // MARK: mouse events
+    // MARK: - Mouse methods
+    
     override func mouseEntered(with theEvent: NSEvent) {
         mouseEnteredFunc?()
     }
@@ -46,4 +48,5 @@ class HoverButton: NSButton {
     override func mouseExited(with theEvent: NSEvent) {
         mouseExitedFunc?()
     }
+    
 }

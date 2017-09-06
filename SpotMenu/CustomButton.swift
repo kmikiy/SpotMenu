@@ -10,40 +10,39 @@ import Foundation
 import AppKit
 
 class CustomButton: NSButton {
-    var trackingArea:NSTrackingArea!
+    
+    // MARK: - Properties
+    
+    private lazy var trackingArea: NSTrackingArea = self.createTrackingArea()
+    
+    // MARK: - Lifecycle methods
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        
-        // set tracking area
-        let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways])
-        trackingArea = NSTrackingArea(rect: bounds, options: opts, owner: self, userInfo: nil)
-        self.addTrackingArea(trackingArea)
-        
-        self.alphaValue = 0
+        setup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-        // set tracking area
-        let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways])
-        trackingArea = NSTrackingArea(rect: bounds, options: opts, owner: self, userInfo: nil)
-        self.addTrackingArea(trackingArea)
-        
-        self.alphaValue = 0
+        setup()
     }
     
     deinit {
-        self.removeTrackingArea(trackingArea)
+        removeTrackingArea(trackingArea)
     }
     
-    // MARK: mouse events
+    private func setup() {
+        addTrackingArea(trackingArea)
+        alphaValue = 0
+    }
+    
+    // MARK: - Mouse events
+    
     override func mouseEntered(with theEvent: NSEvent) {
-        self.alphaValue = 1
+        alphaValue = 1
     }
     
     override func mouseExited(with theEvent: NSEvent) {
-        self.alphaValue = 0
+        alphaValue = 0
     }
 }
