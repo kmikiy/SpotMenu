@@ -9,13 +9,13 @@
 import Cocoa
 import Spotify
 import Carbon.HIToolbox
-
+import Sparkle
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var windowController: NSWindowController?
 
-    let controller: NSWindowController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as! NSWindowController
+    var preferencesController: NSWindowController?
     
     var eventMonitor: EventMonitor?
 
@@ -32,9 +32,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let spotMenuIcon = NSImage(named: "StatusBarButtonImage")
     
-
-    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
         UserPreferences.readPrefs()
         
         if let button = statusItem.button {
@@ -160,7 +159,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Popover
     func openPrefs(_ sender: NSMenuItem) {
-        controller.showWindow(self)
+        preferencesController = NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as! NSWindowController
+        preferencesController?.showWindow(self)
     }
     
     func openSite(_ sender: NSMenuItem) {
@@ -209,6 +209,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 showPopover(sender)
             }
         }
+    }
+    
+    func checkForUpdates(_ sender: NSMenuItem) {
+        SUUpdater.shared().checkForUpdates(nil)
     }
 }
 

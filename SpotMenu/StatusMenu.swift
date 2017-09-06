@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import Sparkle
 
 class StatusMenu {
     
@@ -19,6 +20,7 @@ class StatusMenu {
         menu.addItem(NSMenuItem(title:  NSLocalizedString("Issues", comment:""), action: #selector(AppDelegate.openSite(_:)), keyEquivalent: "I"))
         menu.addItem(NSMenuItem(title: NSLocalizedString(" - kmikiy - ", comment:""), action: #selector(AppDelegate.openSite(_:)), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: NSLocalizedString("Check for Updates...", comment:""), action: #selector(AppDelegate.checkForUpdates(_:)), keyEquivalent: ""))
         menu.addItem(NSMenuItem(title: NSLocalizedString("Preferences...", comment:""), action: #selector(AppDelegate.openPrefs(_:)), keyEquivalent: ","))
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: NSLocalizedString("Quit", comment:""), action: #selector(AppDelegate.quit(_:)), keyEquivalent: "Q"))

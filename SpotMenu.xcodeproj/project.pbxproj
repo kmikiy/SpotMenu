@@ -38,7 +38,9 @@
 		647087D61F2299F40054CC48 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D01F2299F40054CC48 /* DDHotKeyCenter.m */; };
 		647087D71F2299F40054CC48 /* DDHotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D21F2299F40054CC48 /* DDHotKeyTextField.m */; };
 		647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */; };
+		6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
+		649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
 		64F299FB1F2E599100E48BBD /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F299FD1F2E599100E48BBD /* Preferences.storyboard */; };
@@ -127,7 +129,9 @@
 		647087D21F2299F40054CC48 /* DDHotKeyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyTextField.m; sourceTree = "<group>"; };
 		647087D31F2299F40054CC48 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyUtilities.h; sourceTree = "<group>"; };
 		647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyUtilities.m; sourceTree = "<group>"; };
+		6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
+		649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesPreferencesVC.swift; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
 		64F299FC1F2E599100E48BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				2133242F1D79801E0060D48C /* MainMenu.xib */,
 				647087CC1F2299F30054CC48 /* SpotMenu-Bridging-Header.h */,
 				213324321D79801E0060D48C /* Info.plist */,
+				6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */,
 				64F29A0B1F2E5F1100E48BBD /* Localizable.strings */,
 			);
 			path = SpotMenu;
@@ -262,7 +267,7 @@
 		646FB49B1EB74A9700435C0B /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */,
+				649D6C811F5C8A18000A6DDF /* ViewControllers */,
 				64F299FD1F2E599100E48BBD /* Preferences.storyboard */,
 				64A908071EB7754100566ED1 /* UserPreferences.swift */,
 				64A908091EB784E400566ED1 /* HoverButton.swift */,
@@ -284,6 +289,15 @@
 				647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */,
 			);
 			name = DDHotKey;
+			sourceTree = "<group>";
+		};
+		649D6C811F5C8A18000A6DDF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */,
+				649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		A41E658F2A33A401D35F4C51 /* Frameworks */ = {
@@ -403,6 +417,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */,
 				6463E9D41F2E541100F71A09 /* PopOver.xib in Resources */,
 				64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */,
 				645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */,
@@ -508,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */,
 				647087D51F2299F40054CC48 /* DDHotKeyAppDelegate.m in Sources */,
 				645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */,
 				21A668181D7F13CE009813E5 /* CustomButton.swift in Sources */,
@@ -749,7 +765,7 @@
 				INFOPLIST_FILE = SpotMenuToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu.SpotMenuToday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu.tmbrtoday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -771,7 +787,7 @@
 				INFOPLIST_FILE = SpotMenuToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu.SpotMenuToday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu.tmbrtoday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
