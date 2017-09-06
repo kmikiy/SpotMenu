@@ -46,31 +46,29 @@ fileprivate class ShowAnimationDelegate: NSObject, CAAnimationDelegate {
 }
 
 func showAnimation(view: View, style: Style) {
-    let anim = CABasicAnimation(keyPath: "opacity")
-    let timing = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-    anim.timingFunction = timing
-    let currentLayerTime = view._layer.convertTime(CACurrentMediaTime(), from: nil)
-    anim.beginTime = currentLayerTime + CFTimeInterval(style.fadeInOutDelay)
-    anim.duration = CFTimeInterval(style.fadeInOutDuration)
-    anim.fromValue = 0.0
-    anim.toValue = 1.0
-    anim.isRemovedOnCompletion = false
-    anim.delegate = ShowAnimationDelegate.delegate(forView: view)
-
-    view._layer.add(anim, forKey: "show animation")
+    addAnimation(to: view, style: style, show: true)
 }
 
 func hideAnimation(view: View, style: Style) {
+    addAnimation(to: view, style: style, show: false)
+}
+
+private func addAnimation(to view: View, style: Style, show: Bool) {
+    
+    let from = show ? 0 : 1
+    let to = 1 - from
+    let key = show ? "show animation" : "hide animation"
+    
     let anim = CABasicAnimation(keyPath: "opacity")
     let timing = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
     anim.timingFunction = timing
     let currentLayerTime = view._layer.convertTime(CACurrentMediaTime(), from: nil)
     anim.beginTime = currentLayerTime + CFTimeInterval(style.fadeInOutDelay)
     anim.duration = CFTimeInterval(style.fadeInOutDuration)
-    anim.fromValue = 1.0
-    anim.toValue = 0.0
+    anim.fromValue = from
+    anim.toValue = to
     anim.isRemovedOnCompletion = false
     anim.delegate = HideAnimationDelegate.delegate(forView: view)
-
-    view._layer.add(anim, forKey: "hide animation")
+    
+    view._layer.add(anim, forKey: key)
 }

@@ -2,20 +2,26 @@ import Cocoa
 import WebKit
 import Spotify
 
-class PopOverViewController: NSViewController {
+final class PopOverViewController: NSViewController {
     
-    @IBOutlet weak var positionSlider: NSSlider!
-    @IBOutlet weak var artistLabel: NSTextField!
-    @IBOutlet weak var titleLabel: NSTextField!
-    @IBOutlet weak var playerStateButton: NSButton!
-    @IBOutlet weak var artworkImageView: NSImageView!
-    @IBOutlet weak var leftTime: NSTextField!
-    @IBOutlet weak var rightTime: NSTextField!
+    // MARK: - Properties
     
-    var lastArtworkUrl = ""
-    var rightTimeIsDuration: Bool = true
-    var timer: Timer!
-    var defaultImage: NSImage!
+    private var lastArtworkUrl = ""
+    fileprivate var rightTimeIsDuration: Bool = true
+    private var timer: Timer!
+    private var defaultImage: NSImage!
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak fileprivate var positionSlider: NSSlider!
+    @IBOutlet weak private var artistLabel: NSTextField!
+    @IBOutlet weak private var titleLabel: NSTextField!
+    @IBOutlet weak private var playerStateButton: NSButton!
+    @IBOutlet weak private var artworkImageView: NSImageView!
+    @IBOutlet weak private var leftTime: NSTextField!
+    @IBOutlet weak private var rightTime: NSTextField!
+    
+    // MARK: - Lifecycle methods
     
     override func viewWillAppear() {
         super.viewWillAppear()
@@ -24,10 +30,6 @@ class PopOverViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(PopOverViewController.updateInfo), name: NSNotification.Name(rawValue: InternalNotification.key), object: nil)
         
         timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(PopOverViewController.postUpdateNotification), userInfo: nil, repeats: true)
-    }
-    
-    func postUpdateNotification(){
-        NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
     
     override func viewDidLoad() {
@@ -40,6 +42,12 @@ class PopOverViewController: NSViewController {
         super.viewDidDisappear()
         NotificationCenter.default.removeObserver(self)
         timer.invalidate()
+    }
+    
+    // MARK: - Public methods
+    
+    func postUpdateNotification(){
+        NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
 
     func updateInfo() {
@@ -75,20 +83,9 @@ class PopOverViewController: NSViewController {
         updateButton()
     }
     
-    func updateButton() {
-        updateButton(Spotify.playerState)
-    }
+    // MARK: - Private methods
     
-    func updateButton(_ state: PlayerState){
-        switch state {
-        case .paused:
-            playerStateButton.title = "▶︎"
-        case .playing:
-            playerStateButton.title = "❚❚"
-        }
-    }
-    
-    func updateTime() {
+    fileprivate func updateTime() {
         let leftTimeTuple = secondsToHoursMinutesSeconds(seconds: Spotify.currentTrack.position)
         leftTime.stringValue = getTimeString(tuple: leftTimeTuple)
         
@@ -102,7 +99,19 @@ class PopOverViewController: NSViewController {
             rightTime.stringValue = "-" + getTimeString(tuple: rightTimeTuple)
         }
         
-        
+    }
+
+    private func updateButton() {
+        updateButton(Spotify.playerState)
+    }
+    
+    private func updateButton(_ state: PlayerState){
+        switch state {
+        case .paused:
+            playerStateButton.title = "▶︎"
+        case .playing:
+            playerStateButton.title = "❚❚"
+        }
     }
     
     private func secondsToHoursMinutesSeconds (seconds : Double) -> (Int, Int, Int) {
@@ -119,7 +128,8 @@ class PopOverViewController: NSViewController {
 
 // MARK: Actions
 
-extension PopOverViewController {
+private extension PopOverViewController {
+    
     @IBAction func goLeft(_ sender: NSButton) {
         Spotify.playPrevious()
     }
@@ -155,7 +165,10 @@ extension PopOverViewController {
     }
 }
 
+// MARK: - NSImageView image download
+
 extension NSImageView {
+    
     private func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
         URLSession.shared.dataTask(with: url) {
             (data, response, error) in

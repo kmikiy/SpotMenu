@@ -94,13 +94,13 @@ struct UserPreferences {
     }
 }
 
-fileprivate extension Bool {
+extension Bool {
     var asState: Int {
         return self ? 1 : 0
     }
 }
 
-fileprivate extension Int {
+extension Int {
     var asBool: Bool {
         return Bool(self as NSNumber)
     }

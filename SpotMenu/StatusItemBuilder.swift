@@ -9,19 +9,29 @@
 import Foundation
 import Spotify
 
-class StatusItemBuilder {
+final class StatusItemBuilder {
     
-    var title = ""
-    var artist = ""
-    var state: PlayerState
-    var playingIcon = ""
+    // MARK: - Properties
+    
+    private var title = ""
+    
+    private var artist = ""
+    
+    private var playingIcon = ""
+    
+    private var state: PlayerState
+    
+    // MARK: - Lifecycle method
     
     init() {
-        self.state = Spotify.playerState
+        state = Spotify.playerState
     }
+    
+    // MARK: - Methods
+    
     func showTitle(v: Bool) -> StatusItemBuilder {
         if !v {
-            self.title = ""
+            title = ""
             return self
         }
         if let title = Spotify.currentTrack.title {
@@ -32,7 +42,7 @@ class StatusItemBuilder {
     
     func showArtist(v: Bool) -> StatusItemBuilder {
         if !v {
-            self.artist = ""
+            artist = ""
             return self
         }
         if let artist = Spotify.currentTrack.artist {
@@ -40,11 +50,10 @@ class StatusItemBuilder {
         }
         return self
     }
-
     
     func showAlbumArtist(v: Bool) -> StatusItemBuilder {
         if !v {
-            self.artist = ""
+            artist = ""
             return self
         }
         if let artist = Spotify.currentTrack.albumArtist {
@@ -71,7 +80,5 @@ class StatusItemBuilder {
             return "\(playingIcon)\(artist)- \(title)"
         }
         return "\(playingIcon)\(artist)\(title)"
-        
-        //  statusItem.title = "♫ \(artist) - \(title)  "
     }
 }
