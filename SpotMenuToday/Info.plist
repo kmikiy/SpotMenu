@@ -34,12 +34,10 @@
 			<key>NSExtensionPointVersion</key>
 			<string>2.0</string>
 		</dict>
-		<key>NSExtensionMainNibFile</key>
-		<string>PopOverViewController</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widget-extension</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>PopOverViewController</string>
+		<string>$(PRODUCT_MODULE_NAME).PopOverViewController</string>
 		<key>com.apple.notificationcenter.widget.description</key>
 		<string>SpotMenuToday</string>
 	</dict>
