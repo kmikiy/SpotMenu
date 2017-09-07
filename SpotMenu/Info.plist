@@ -38,7 +38,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>https://raw.githubusercontent.com/kmikiy/SpotMenu/sparkle-%2349/Sparkle/appcast.xml</string>
+	<string>https://raw.githubusercontent.com/kmikiy/SpotMenu/master/Sparkle/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 </dict>
