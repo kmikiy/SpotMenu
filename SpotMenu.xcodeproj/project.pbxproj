@@ -378,7 +378,7 @@
 					};
 					64185C0B1F1B8DC400CA23A0 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = F6W8CTW858;
+                        DevelopmentTeam = 3K79XCJYWL;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -747,7 +747,7 @@
 				CODE_SIGN_ENTITLEMENTS = SpotMenuToday/SpotMenuToday.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = F6W8CTW858;
+				DevelopmentTeam = 3K79XCJYWL;
 				INFOPLIST_FILE = SpotMenuToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -769,7 +769,7 @@
 				CODE_SIGN_ENTITLEMENTS = SpotMenuToday/SpotMenuToday.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = F6W8CTW858;
+				DevelopmentTeam = 3K79XCJYWL;
 				INFOPLIST_FILE = SpotMenuToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
