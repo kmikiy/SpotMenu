@@ -10,19 +10,23 @@ import Foundation
 import Cocoa
 import Spotify
 
-
-class GeneralPreferencesVC: NSViewController {
+final class GeneralPreferencesVC: NSViewController {
     
-    @IBOutlet weak var showArtistButton: HoverButton!
-    @IBOutlet weak var showTitleButton: HoverButton!
-    @IBOutlet weak var showPlayingIconButton: HoverButton!
-    @IBOutlet weak var showSpotMenuIconButton: HoverButton!
-    @IBOutlet weak var fixPopoverToTheRightButton: HoverButton!
+    // MARK: - Properties
     
-    @IBOutlet weak var openAtLoginButton: HoverButton!
-    @IBOutlet weak var moreInformation: NSTextField!
-    var defaultMoreInformationText: String = ""
+    fileprivate var defaultMoreInformationText: String = ""
     
+    // MARK: - IBOutlets
+    
+    @IBOutlet fileprivate weak var showArtistButton: HoverButton!
+    @IBOutlet fileprivate weak var showTitleButton: HoverButton!
+    @IBOutlet fileprivate weak var showPlayingIconButton: HoverButton!
+    @IBOutlet fileprivate weak var showSpotMenuIconButton: HoverButton!
+    @IBOutlet fileprivate weak var fixPopoverToTheRightButton: HoverButton!
+    @IBOutlet fileprivate weak var openAtLoginButton: HoverButton!
+    @IBOutlet fileprivate weak var moreInformation: NSTextField!
+    
+    // MARK: - Lifecycle methods
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +41,7 @@ class GeneralPreferencesVC: NSViewController {
         NSApp.activate(ignoringOtherApps: true)
     }
     
-    func initButtonStates(){
+    private func initButtonStates(){
         showArtistButton.state = UserPreferences.showArtist.asState
         showTitleButton.state =  UserPreferences.showTitle.asState
         showPlayingIconButton.state = UserPreferences.showPlayingIcon.asState
@@ -46,7 +50,7 @@ class GeneralPreferencesVC: NSViewController {
         openAtLoginButton.state = applicationIsInStartUpItems().asState
     }
     
-    func initButtonHovers(){
+    private func initButtonHovers(){
         showArtistButton.mouseEnteredFunc = hoverShowArtist
         showArtistButton.mouseExitedFunc = hoverAway
         
@@ -66,71 +70,76 @@ class GeneralPreferencesVC: NSViewController {
         openAtLoginButton.mouseExitedFunc = hoverAway
     }
     
-    @IBAction func toggleShowArtist(_ sender: Any) {
+    // MARK: - IBActions
+    
+    @IBAction private func toggleShowArtist(_ sender: Any) {
         UserPreferences.showArtist = showArtistButton.state.asBool
         postUpdateNotification()
     }
     
-    @IBAction func toggleShowTitle(_ sender: Any) {
+    @IBAction private func toggleShowTitle(_ sender: Any) {
         UserPreferences.showTitle = showTitleButton.state.asBool
         postUpdateNotification()
     }
     
-    @IBAction func toggleShowPlayingIcon(_ sender: Any) {
+    @IBAction private func toggleShowPlayingIcon(_ sender: Any) {
         UserPreferences.showPlayingIcon = showPlayingIconButton.state.asBool
         postUpdateNotification()
     }
     
-    @IBAction func toggleShowSpotMenuIcon(_ sender: Any) {
+    @IBAction private func toggleShowSpotMenuIcon(_ sender: Any) {
         UserPreferences.showSpotMenuIcon = showSpotMenuIconButton.state.asBool
         postUpdateNotification()
         postUpdateNotification()
     }
     
-    @IBAction func toggleFixPopoverToTheRight(_ sender: Any) {
+    @IBAction private func toggleFixPopoverToTheRight(_ sender: Any) {
         UserPreferences.fixPopoverToTheRight = fixPopoverToTheRightButton.state.asBool
         //postUpdateNotification()
     }
     
-    @IBAction func toggleOpenAtLogin(_ sender: Any) {
+    @IBAction private func toggleOpenAtLogin(_ sender: Any) {
         toggleLaunchAtStartup()
         openAtLoginButton.state = applicationIsInStartUpItems().asState
     }
     
+    // MARK: - Private methods
     
-    func postUpdateNotification(){
+    private func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
     
 }
 
+// MARK: - Hover button methods
+
 extension GeneralPreferencesVC {
-    func hoverShowArtist() {
+    
+    fileprivate func hoverShowArtist() {
         moreInformation.stringValue = NSLocalizedString("When checked the Artist will be shown in the menu bar.", comment: "")
     }
     
-    func hoverShowTitle() {
+    fileprivate func hoverShowTitle() {
         moreInformation.stringValue = NSLocalizedString("When checked the Title will be shown in the menu bar.", comment: "")
     }
     
-    func hoverShowPlayingIcon() {
+    fileprivate func hoverShowPlayingIcon() {
         moreInformation.stringValue = NSLocalizedString("When checked the playing icon (♫) will be shown in the menu bar if music is played.", comment: "")
     }
     
-    func hoverShowSpotMenuIcon() {
+    fileprivate func hoverShowSpotMenuIcon() {
         moreInformation.stringValue = NSLocalizedString("When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible.", comment: "")
     }
     
-    func hoverFixPopoverToTheRight() {
+    fileprivate func hoverFixPopoverToTheRight() {
         moreInformation.stringValue = NSLocalizedString("When checked the popover will be fixed to the right corner.", comment: "")
     }
     
-    func hoverOpenAtLogin() {
+    fileprivate func hoverOpenAtLogin() {
         moreInformation.stringValue = NSLocalizedString("When checked SpotMenu will start automatically at login.", comment: "")
     }
     
-    
-    func hoverAway() {
+    fileprivate func hoverAway() {
         moreInformation.stringValue = defaultMoreInformationText
     }
 }

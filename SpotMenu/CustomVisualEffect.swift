@@ -10,62 +10,60 @@ import Foundation
 import AppKit
 
 class CustomVisualEffect: NSVisualEffectView {
-    var trackingArea:NSTrackingArea!
+    
+    private enum FadeType {
+        case fadeIn, fadeOut
+    }
+    
+    // MARK: - Properties
+    
+    private lazy var trackingArea: NSTrackingArea = self.createTrackingArea()
+    
+    // MARK: - Lifecycle methods
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        
-        // set tracking area
-        let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways])
-        trackingArea = NSTrackingArea(rect: bounds, options: opts, owner: self, userInfo: nil)
-        self.addTrackingArea(trackingArea)
-        
-        let fadeAnim = CABasicAnimation(keyPath: "opacity")
-        fadeAnim.fromValue = 1.0
-        fadeAnim.toValue = 0
-        fadeAnim.duration = 0.1
-        self.layer?.add(fadeAnim, forKey: "opacity")
-        self.alphaValue = 0
+        setup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-        // set tracking area
-        let opts: NSTrackingAreaOptions = ([NSTrackingAreaOptions.mouseEnteredAndExited, NSTrackingAreaOptions.activeAlways])
-        trackingArea = NSTrackingArea(rect: bounds, options: opts, owner: self, userInfo: nil)
-        self.addTrackingArea(trackingArea)
-        
-        let fadeAnim = CABasicAnimation(keyPath: "opacity")
-        fadeAnim.fromValue = 1.0
-        fadeAnim.toValue = 0
-        fadeAnim.duration = 0.1
-        self.layer?.add(fadeAnim, forKey: "opacity")
-        self.alphaValue = 0
+        setup()
     }
     
     deinit {
-        self.removeTrackingArea(trackingArea)
+        removeTrackingArea(trackingArea)
     }
     
-    // MARK: mouse events
+    private func setup() {
+        addTrackingArea(trackingArea)
+        fade()
+    }
+    
+    // MARK: - Mouse events
+    
     override func mouseEntered(with theEvent: NSEvent) {
-        let fadeAnim = CABasicAnimation(keyPath: "opacity")
-        fadeAnim.fromValue = 0.0
-        fadeAnim.toValue = 1
-        fadeAnim.duration = 0.1
-        self.layer?.add(fadeAnim, forKey: "opacity")
-        //self.alphaValue = 0
-        self.alphaValue = 1
+        fade(type: .fadeIn)
     }
     
     override func mouseExited(with theEvent: NSEvent) {
+        fade()
+    }
+    
+    // MARK: - Private helper methods
+    
+    private func fade(type: FadeType = .fadeOut) {
+        
+        let from = type == .fadeOut ? 1 : 0
+        let to = 1 - from
+        
         let fadeAnim = CABasicAnimation(keyPath: "opacity")
-        fadeAnim.fromValue = 1.0
-        fadeAnim.toValue = 0
+        fadeAnim.fromValue = from
+        fadeAnim.toValue = to
         fadeAnim.duration = 0.1
-        self.layer?.add(fadeAnim, forKey: "opacity")
-        self.alphaValue = 0
+        layer?.add(fadeAnim, forKey: "opacity")
+        
+        alphaValue = CGFloat(to)
     }
 
 }

@@ -9,7 +9,7 @@
 import Cocoa
 import Sparkle
 
-class UpdatesPreferencesVC: NSViewController {
+final class UpdatesPreferencesVC: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,5 @@ class UpdatesPreferencesVC: NSViewController {
         
         //SUUpdater.shared().automaticallyChecksForUpdates
         //SUUpdater.shared().automaticallyDownloadsUpdates
-        
     }
-    
 }

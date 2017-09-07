@@ -10,25 +10,70 @@ import Foundation
 
 struct UserPreferences {
     
-    private static let _showArtistConst = "showArtist"
-    private static let _showTitleConst = "showTitle"
-    private static let _showPlayingIconConst = "showPlayingIcon"
-    private static let _showSpotMenuIconConst = "showSpotMenuIcon"
-    private static let _fixPopoverToTheRightConst = "dropDownToTheRight"
+    // MARK: - Constant keys
     
-    private static var _showArtist: Bool = false
-    private static var _showTitle: Bool = false
-    private static var _showPlayingIcon: Bool = false
-    private static var _showSpotMenuIcon: Bool = false
-    private static var _fixPopoverToTheRight: Bool = false
-    
-    private static func setSetting(key: String, value: Bool) {
-        UserDefaults.standard.set(value, forKey: key)
+    private struct Keys {
+        
+        static let showArtist = "showArtist"
+        
+        static let showTitle = "showTitle"
+        
+        static let showPlayIcon = "showPlayingIcon"
+        
+        static let showSpotMenuIcon = "showSpotMenuIcon"
+        
+        static let fixPopoverToRight = "dropDownToTheRight"
+        
     }
     
-    private static func readSetting(key: String) -> Bool {
-        return UserDefaults.standard.bool(forKey: key)
+    // MARK: - Properties
+    
+    static var showArtist: Bool {
+        get {
+            return UserPreferences.readSetting(key: Keys.showArtist)
+        }
+        set {
+            UserPreferences.setSetting(key: Keys.showArtist, value: newValue)
+        }
     }
+    
+    static var showTitle: Bool {
+        get {
+            return  UserPreferences.readSetting(key: Keys.showTitle)
+        }
+        set {
+            UserPreferences.setSetting(key: Keys.showTitle, value: newValue)
+        }
+    }
+    
+    static var showPlayingIcon: Bool {
+        get {
+            return UserPreferences.readSetting(key: Keys.showPlayIcon)
+        }
+        set {
+            UserPreferences.setSetting(key: Keys.showPlayIcon, value: newValue)
+        }
+    }
+    
+    static var showSpotMenuIcon: Bool {
+        get {
+            return UserPreferences.readSetting(key: Keys.showSpotMenuIcon)
+        }
+        set {
+            UserPreferences.setSetting(key: Keys.showSpotMenuIcon, value: newValue)
+        }
+    }
+    
+    static var fixPopoverToTheRight: Bool {
+        get {
+            return UserPreferences.readSetting(key: Keys.fixPopoverToRight)
+        }
+        set {
+            UserPreferences.setSetting(key: Keys.fixPopoverToRight, value: newValue)
+        }
+    }
+    
+    // MARK: - Public methods
     
     static func clearAllSettings() {
         print("clearing user settings")
@@ -37,72 +82,26 @@ struct UserPreferences {
         }
     }
     
-    static func readPrefs(){
-        _showArtist = UserPreferences.readSetting(key: _showArtistConst)
-        _showTitle = UserPreferences.readSetting(key: _showTitleConst)
-        _showPlayingIcon = UserPreferences.readSetting(key: _showPlayingIconConst)
-        _showSpotMenuIcon = UserPreferences.readSetting(key: _showSpotMenuIconConst)
-        _fixPopoverToTheRight = UserPreferences.readSetting(key: _fixPopoverToTheRightConst)
+    // MARK: - Private helper methods
+    
+    private static func setSetting(key: String, value: Bool) {
+        UserDefaults.standard.set(value, forKey: key)
+        UserDefaults.standard.synchronize()
     }
     
-    static var showArtist: Bool {
-        get {
-            return _showArtist
-        }
-        set {
-            _showArtist = newValue
-            UserPreferences.setSetting(key: _showArtistConst, value: newValue)
-        }
-    }
-    
-    static var showTitle: Bool {
-        get {
-            return _showTitle
-        }
-        set {
-            _showTitle = newValue
-            UserPreferences.setSetting(key: _showTitleConst, value: newValue)
-        }
-    }
-    
-    static var showPlayingIcon: Bool {
-        get {
-            return _showPlayingIcon
-        }
-        set {
-            _showPlayingIcon = newValue
-            UserPreferences.setSetting(key: _showPlayingIconConst, value: newValue)
-        }
-    }
-    
-    static var showSpotMenuIcon: Bool {
-        get {
-            return _showSpotMenuIcon
-        }
-        set {
-            _showSpotMenuIcon = newValue
-            UserPreferences.setSetting(key: _showSpotMenuIconConst, value: newValue)
-        }
-    }
-    
-    static var fixPopoverToTheRight: Bool {
-        get {
-            return _fixPopoverToTheRight
-        }
-        set {
-            _fixPopoverToTheRight = newValue
-            UserPreferences.setSetting(key: _fixPopoverToTheRightConst, value: newValue)
-        }
+    private static func readSetting(key: String) -> Bool {
+        return UserDefaults.standard.bool(forKey: key)
     }
 }
 
 extension Bool {
     var asState: Int {
-        let r = self ? 1:0
-        return r
+        return self ? 1 : 0
     }
 }
 
 extension Int {
-    var asBool: Bool {return Bool(self as NSNumber)}
+    var asBool: Bool {
+        return Bool(self as NSNumber)
+    }
 }

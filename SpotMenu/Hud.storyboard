@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4kX-Ha-p3j">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4kX-Ha-p3j">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -8,7 +8,7 @@
         <!--Window Controller-->
         <scene sceneID="Ynm-dT-ElI">
             <objects>
-                <windowController id="4kX-Ha-p3j" customClass="WindowController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="4kX-Ha-p3j" customClass="HudWindowController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Nhd-UD-u36">
                         <windowCollectionBehavior key="collectionBehavior" stationary="YES" ignoresCycle="YES" fullScreenNone="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES"/>
@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="189.5" y="296.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Hud View Controller-->
         <scene sceneID="2CV-mN-NwN">
             <objects>
-                <viewController id="vgs-qk-2Ky" customClass="ViewController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vgs-qk-2Ky" customClass="HudViewController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5GJ-ke-0f3">
                         <rect key="frame" x="0.0" y="0.0" width="845" height="101"/>
                         <autoresizingMask key="autoresizingMask"/>

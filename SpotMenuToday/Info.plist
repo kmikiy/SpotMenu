@@ -37,7 +37,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widget-extension</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).TodayViewController</string>
+		<string>$(PRODUCT_MODULE_NAME).PopOverViewController</string>
 		<key>com.apple.notificationcenter.widget.description</key>
 		<string>SpotMenuToday</string>
 	</dict>
