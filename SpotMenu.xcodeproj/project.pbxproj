@@ -120,6 +120,12 @@
 		647087D21F2299F40054CC48 /* DDHotKeyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyTextField.m; sourceTree = "<group>"; };
 		647087D31F2299F40054CC48 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyUtilities.h; sourceTree = "<group>"; };
 		647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyUtilities.m; sourceTree = "<group>"; };
+		647E54281F67023B00D2F72A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Preferences.strings; sourceTree = "<group>"; };
+		647E54291F67023B00D2F72A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PopOverViewController.strings; sourceTree = "<group>"; };
+		647E542A1F67023B00D2F72A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		647E542B1F67023B00D2F72A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		647E542C1F67023B00D2F72A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		647E542D1F67041300D2F72A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Preferences.strings; sourceTree = "<group>"; };
 		6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesPreferencesVC.swift; sourceTree = "<group>"; };
@@ -127,7 +133,6 @@
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
 		64F299FC1F2E599100E48BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		64F299FE1F2E599600E48BBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
-		64F299FF1F2E599900E48BBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Preferences.strings; sourceTree = "<group>"; };
 		64F29A0A1F2E5F1100E48BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64F29A0E1F2E5FDB00E48BBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64F29A0F1F2E5FDD00E48BBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -396,6 +401,7 @@
 				en,
 				Base,
 				de,
+				nl,
 			);
 			mainGroup = 2133241F1D79801E0060D48C;
 			productRefGroup = 213324291D79801E0060D48C /* Products */;
@@ -581,6 +587,7 @@
 			children = (
 				213324301D79801E0060D48C /* Base */,
 				6463E9D11F2E53F300F71A09 /* de */,
+				647E542A1F67023B00D2F72A /* nl */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -590,6 +597,7 @@
 			children = (
 				64185C191F1B8DC400CA23A0 /* en */,
 				6463E9D31F2E53F400F71A09 /* de */,
+				647E542C1F67023B00D2F72A /* nl */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -600,6 +608,7 @@
 				6463E9D51F2E541100F71A09 /* Base */,
 				6463E9D81F2E541600F71A09 /* en */,
 				6463E9DA1F2E541700F71A09 /* de */,
+				647E54291F67023B00D2F72A /* nl */,
 			);
 			name = PopOverViewController.xib;
 			sourceTree = "<group>";
@@ -609,7 +618,8 @@
 			children = (
 				64F299FC1F2E599100E48BBD /* Base */,
 				64F299FE1F2E599600E48BBD /* en */,
-				64F299FF1F2E599900E48BBD /* de */,
+				647E54281F67023B00D2F72A /* nl */,
+				647E542D1F67041300D2F72A /* de */,
 			);
 			name = Preferences.storyboard;
 			sourceTree = "<group>";
@@ -620,6 +630,7 @@
 				64F29A0A1F2E5F1100E48BBD /* Base */,
 				64F29A0E1F2E5FDB00E48BBD /* en */,
 				64F29A0F1F2E5FDD00E48BBD /* de */,
+				647E542B1F67023B00D2F72A /* nl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

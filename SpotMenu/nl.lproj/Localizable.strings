@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  SpotMenu
+
+  Created by Miklós Kristyán on 30.07.17.
+  Copyright © 2017 KM. All rights reserved.
+*/
+
+"Issues" = "Problemen";
+"Preferences..." = "Instellingen...";
+"Quit" = "Afsluiten";
+"Now playing" = "Speelt nu";
+"Hover over an option for more information." = "Houdt de cursor boven een optie voor meer informatie.";
+"When checked the Artist will be shown in the menu bar." = "Indien aangevinkt wordt de artiest getoond in de menu bar.";
+"When checked the Title will be shown in the menu bar." = "Indien aangevinkt wordt de titel getoond in de menu bar.";
+"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Indien aangevinkt wordt  de afspeel Icon (♫) in de menubar getoond als er muziek wordt gespeeld.";
+"When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Indien aangevinkt wordt het SpotMenu icon in de menubar getoond.\n\nNoot:\nAls er geen muziek informatie kan worden getoond dan is het SpotMenu icon zichtbaar.";
+"When checked the popover will be fixed to the right corner." = "Aanvinken om de popover aan de rechter kant te fixeren.";
+"When checked SpotMenu will start automatically at login." = "Aanvinken om SpotMenu bij het inloggen automatisch op te starten.";

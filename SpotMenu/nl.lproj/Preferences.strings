@@ -1,0 +1,57 @@
+
+/* Class = "NSButtonCell"; title = "Show playing icon"; ObjectID = "0Xe-ev-ytf"; */
+"0Xe-ev-ytf.title" = "Afspeel icon tonen";
+
+/* Class = "NSButtonCell"; title = "Show title"; ObjectID = "1Tp-Jw-hmh"; */
+"1Tp-Jw-hmh.title" = "Titel tonen";
+
+/* Class = "NSTextFieldCell"; title = "Hover over an option for more information"; ObjectID = "3NO-fM-cop"; */
+"3NO-fM-cop.title" = "Houdt de cursor boven een optie voor meer informatie";
+
+/* Class = "NSButtonCell"; title = "Show SpotMenu icon"; ObjectID = "7as-X8-PSq"; */
+"7as-X8-PSq.title" = "Toon SpotMenu Icon";
+
+/* Class = "NSTabViewItem"; label = "Updates"; ObjectID = "93o-J6-5JH"; */
+"93o-J6-5JH.label" = "Updates";
+
+/* Class = "NSTextFieldCell"; title = "Hover over an option for more information"; ObjectID = "AvK-M6-xdR"; */
+"AvK-M6-xdR.title" = "Houdt de cursor boven een optie voor meer informatie";
+
+/* Class = "NSButtonCell"; title = "Open at login"; ObjectID = "FRx-gS-oeC"; */
+"FRx-gS-oeC.title" = "Bij het opstarten automatisch openen";
+
+/* Class = "NSTextFieldCell"; title = "with ♥ from kmikiy"; ObjectID = "Gtt-Jw-q9H"; */
+"Gtt-Jw-q9H.title" = "van kmiky met ♥";
+
+/* Class = "NSButtonCell"; title = "Show artist"; ObjectID = "LUe-Gd-t4b"; */
+"LUe-Gd-t4b.title" = "Artiest tonen";
+
+/* Class = "NSButtonCell"; title = "Automatically download updates"; ObjectID = "MEM-dH-H4q"; */
+"MEM-dH-H4q.title" = "Automatically download updates";
+
+/* Class = "NSButtonCell"; title = "Fix popover to the right"; ObjectID = "PPd-Wy-oFY"; */
+"PPd-Wy-oFY.title" = "Popover naar rechts fixeren";
+
+/* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "Rt5-h2-wag"; */
+"Rt5-h2-wag.title" = "Automatically check for updates";
+
+/* Class = "NSTabViewItem"; label = "General"; ObjectID = "g7m-Zo-MWm"; */
+"g7m-Zo-MWm.label" = "Algemeen";
+
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "lM3-ry-Wlz"; */
+"lM3-ry-Wlz.title" = "Instellingen";
+
+/* Class = "NSButtonCell"; title = "Show playing icon"; ObjectID = "tZk-IZ-uos"; */
+"tZk-IZ-uos.title" = "Afspeel icon tonen";
+
+/* Class = "NSTextFieldCell"; title = "with ♥ from kmikiy"; ObjectID = "w7w-D5-gWN"; */
+"w7w-D5-gWN.title" = "van kmiky met ♥";
+
+/* Class = "NSButtonCell"; title = "Open at login"; ObjectID = "yfF-XT-sHt"; */
+"yfF-XT-sHt.title" = "Bij het opstarten automatisch openen";
+
+/* Class = "NSButtonCell"; title = "Fix popover to the right"; ObjectID = "ynE-rG-2bC"; */
+"ynE-rG-2bC.title" = "Popover naar rechts fixeren";
+
+/* Class = "NSButtonCell"; title = "Show SpotMenu icon"; ObjectID = "zMR-Ou-8p3"; */
+"zMR-Ou-8p3.title" = "Toon SpotMenu Icon";
