@@ -9,13 +9,13 @@
 "FxM-QC-fqk.title" = ">";
 
 /* Class = "NSTextFieldCell"; title = "Artist"; ObjectID = "XBm-VG-2KI"; */
-"XBm-VG-2KI.title" = "Artist";
+"XBm-VG-2KI.title" = "Artiest";
 
 /* Class = "NSButtonCell"; title = "<"; ObjectID = "eyZ-Np-WLr"; */
 "eyZ-Np-WLr.title" = "<";
 
 /* Class = "NSTextFieldCell"; title = "Title"; ObjectID = "uZD-Z5-fdA"; */
-"uZD-Z5-fdA.title" = "Title";
+"uZD-Z5-fdA.title" = "Titel";
 
 /* Class = "NSTextFieldCell"; title = "left"; ObjectID = "waw-na-Cdz"; */
 "waw-na-Cdz.title" = "left";
