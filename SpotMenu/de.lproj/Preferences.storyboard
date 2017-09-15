@@ -8,7 +8,7 @@
         <!--Window Controller-->
         <scene sceneID="1gw-ey-ZhQ">
             <objects>
-                <windowController storyboardIdentifier="PREFFF" id="8UQ-6W-PKd" customClass="PreferencesWindowController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="PREFFF" id="8UQ-6W-PKd" sceneMemberID="viewController">
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="lM3-ry-Wlz">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -19,7 +19,6 @@
                         </connections>
                     </window>
                     <connections>
-                        <outlet property="preferencesWindow" destination="lM3-ry-Wlz" id="dlC-OC-2id"/>
                         <segue destination="L3n-s3-rOr" kind="relationship" relationship="window.shadowedContentViewController" id="QEZ-A4-brR"/>
                     </connections>
                 </windowController>
@@ -27,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-391" y="45"/>
         </scene>
-        <!--Preferences Tab View Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="diG-YW-wYQ">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" canPropagateSelectedChildViewControllerTitle="NO" id="L3n-s3-rOr" customClass="PreferencesTabViewController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" canPropagateSelectedChildViewControllerTitle="NO" id="L3n-s3-rOr" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="general" image="NSPreferencesGeneral" id="g7m-Zo-MWm"/>
                         <tabViewItem label="Updates" identifier="updates" image="NSRefreshFreestandingTemplate" id="93o-J6-5JH"/>
@@ -42,8 +41,6 @@
                         <tabViewItems/>
                     </tabView>
                     <connections>
-                        <outlet property="generalTabViewItem" destination="g7m-Zo-MWm" id="M1g-C5-64T"/>
-                        <outlet property="updatesTabViewItem" destination="93o-J6-5JH" id="eht-sw-lSu"/>
                         <segue destination="D1B-Ck-xIn" kind="relationship" relationship="tabItems" id="WM0-n8-Yx4"/>
                         <segue destination="fEd-oz-QyX" kind="relationship" relationship="tabItems" id="8Qp-NI-2vj"/>
                     </connections>
@@ -298,8 +295,6 @@
                     <connections>
                         <outlet property="automaticallyCheckForUpdatesButton" destination="xKY-wY-Heb" id="8QB-MA-jqx"/>
                         <outlet property="automaticallyDownloadUpdatesButton" destination="j0d-Qh-Oyw" id="guT-dh-HeD"/>
-                        <outlet property="checkForUpdatesButton" destination="460-r0-bTi" id="hMS-Nq-2GF"/>
-                        <outlet property="lastCheckedLabel" destination="ce6-61-2rt" id="4qS-dX-Rik"/>
                         <outlet property="lastUpdateCheckLabel" destination="6mS-Le-4Cw" id="qc5-yN-fD7"/>
                         <outlet property="moreInformation" destination="Uaz-pE-joS" id="1Xo-KW-97u"/>
                     </connections>

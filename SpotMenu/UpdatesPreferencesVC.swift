@@ -10,28 +10,53 @@ import Cocoa
 import Sparkle
 
 final class UpdatesPreferencesVC: NSViewController {
+    
+    // MARK: - Properties
+    
+    fileprivate var defaultMoreInformationText: String =  NSLocalizedString("Hover over an option for more information.", comment: "")
 
     // MARK: - IBOutlets
     
     @IBOutlet fileprivate weak var automaticallyCheckForUpdatesButton: HoverButton!
     @IBOutlet fileprivate weak var automaticallyDownloadUpdatesButton: HoverButton!
     @IBOutlet fileprivate weak var lastUpdateCheckLabel: NSTextField!
+    @IBOutlet fileprivate weak var moreInformation: NSTextField!
+    @IBOutlet weak var checkForUpdatesButton: NSButton!
+    @IBOutlet weak var lastCheckedLabel: NSTextField!
 
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initLabels()
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        moreInformation.stringValue = defaultMoreInformationText
         initButtonStates()
+        initButtonHovers()
         lastUpdateCheckLabel.stringValue = SUUpdater.shared().lastUpdateCheckDate.asString()
+    }
+    
+    private func initLabels(){
+        automaticallyCheckForUpdatesButton.title = NSLocalizedString("Automatically check for updates", comment: "")
+        automaticallyDownloadUpdatesButton.title =  NSLocalizedString("Automatically download updates", comment: "")
+        lastCheckedLabel.stringValue = NSLocalizedString("Last checked:", comment: "")
+        checkForUpdatesButton.title = NSLocalizedString("Check for Updates", comment: "")
     }
     
     private func initButtonStates(){
         automaticallyCheckForUpdatesButton.state = SUUpdater.shared().automaticallyChecksForUpdates.asState
         automaticallyDownloadUpdatesButton.state = SUUpdater.shared().automaticallyDownloadsUpdates.asState
+    }
+    
+    private func initButtonHovers(){
+        automaticallyCheckForUpdatesButton.mouseEnteredFunc = hoverAutomaticallyCheckForUpdates
+        automaticallyCheckForUpdatesButton.mouseExitedFunc = hoverAway
+        
+        automaticallyDownloadUpdatesButton.mouseEnteredFunc = hoverAutomaticallyDownloadUpdates
+        automaticallyDownloadUpdatesButton.mouseExitedFunc = hoverAway
     }
     
     // MARK: - IBActions
@@ -50,6 +75,24 @@ final class UpdatesPreferencesVC: NSViewController {
         lastUpdateCheckLabel.stringValue = SUUpdater.shared().lastUpdateCheckDate.asString()
     }
 }
+
+// MARK: - Hover button methods
+
+extension UpdatesPreferencesVC {
+    
+    fileprivate func hoverAutomaticallyCheckForUpdates() {
+        moreInformation.stringValue = NSLocalizedString("Indicates whether or not to check for updates automatically.", comment: "")
+    }
+    
+    fileprivate func hoverAutomaticallyDownloadUpdates() {
+        moreInformation.stringValue = NSLocalizedString("Indicates whether or not updates can be automatically downloaded in the background.", comment: "")
+    }
+    
+    fileprivate func hoverAway() {
+        moreInformation.stringValue = defaultMoreInformationText
+    }
+}
+
 
 extension Date {
     func asString() -> String {

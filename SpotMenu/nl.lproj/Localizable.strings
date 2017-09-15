@@ -8,6 +8,7 @@
 
 "Issues" = "Problemen";
 "Preferences..." = "Instellingen...";
+"Check for Updates..." = "Controleer op updates...";
 "Quit" = "Afsluiten";
 "Now playing" = "Speelt nu";
 "Hover over an option for more information." = "Houdt de cursor boven een optie voor meer informatie.";
@@ -17,3 +18,22 @@
 "When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Indien aangevinkt wordt het SpotMenu icon in de menubar getoond.\n\nNoot:\nAls er geen muziek informatie kan worden getoond dan is het SpotMenu icon zichtbaar.";
 "When checked the popover will be fixed to the right corner." = "Aanvinken om de popover aan de rechter kant te fixeren.";
 "When checked SpotMenu will start automatically at login." = "Aanvinken om SpotMenu bij het inloggen automatisch op te starten.";
+"Artist" = "Artiest";
+"Title" = "Titel";
+"Show playing icon" = "Afspeel icon tonen";
+"Show title" = "Titel tonen";
+"with ♥ from kmikiy" = "van kmiky met ♥";
+"Show artist" = "Artiest tonen";
+"Preferences" = "Instellingen";
+"General" = "Algemeen";
+"Updates" = "Updates";
+"Open at login" = "Bij het opstarten automatisch openen";
+"Fix popover to the right" = "Popover naar rechts fixeren";
+"Show SpotMenu icon" = "Toon SpotMenu Icon";
+"Automatically check for updates" = "Automatisch checken voor updates";
+"Automatically download updates" = "Updates automatisch downloaden";
+"Check for Updates" = "Controleer op updates";
+"Last checked:" = "Voor het laatst gecontroleerd:";
+"Preferences" = "Voorkeuren";
+"Indicates whether or not to check for updates automatically." = "Geeft aan of wel of niet op automatische updates moet worden gecontroleerd";
+"Indicates whether or not updates can be automatically downloaded in the background." = "Geeft aan of updates automatisch op de achtergrond kunnen worden gedownload";

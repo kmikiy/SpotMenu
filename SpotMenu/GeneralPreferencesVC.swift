@@ -14,7 +14,7 @@ final class GeneralPreferencesVC: NSViewController {
     
     // MARK: - Properties
     
-    fileprivate var defaultMoreInformationText: String = ""
+    fileprivate var defaultMoreInformationText: String = NSLocalizedString("Hover over an option for more information.", comment: "")
     
     // MARK: - IBOutlets
     
@@ -30,7 +30,7 @@ final class GeneralPreferencesVC: NSViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        defaultMoreInformationText = moreInformation.stringValue
+        initLabels()
     }
     
     override func viewWillAppear() {
@@ -39,6 +39,15 @@ final class GeneralPreferencesVC: NSViewController {
         initButtonStates()
         initButtonHovers()
         NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    private func initLabels(){
+        showArtistButton.title = NSLocalizedString("Show artist", comment: "")
+        showTitleButton.title =  NSLocalizedString("Show title", comment: "")
+        showPlayingIconButton.title = NSLocalizedString("Show playing icon", comment: "")
+        showSpotMenuIconButton.title = NSLocalizedString("Show SpotMenu icon", comment: "")
+        fixPopoverToTheRightButton.title = NSLocalizedString("Fix popover to the right", comment: "")
+        openAtLoginButton.title = NSLocalizedString("Open at login", comment: "")
     }
     
     private func initButtonStates(){

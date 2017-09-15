@@ -36,6 +36,8 @@
 		649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
+		64ED8B361F6C338E00CAA1AA /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED8B351F6C338E00CAA1AA /* PreferencesTabViewController.swift */; };
+		64ED8B381F6C351500CAA1AA /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED8B371F6C351500CAA1AA /* PreferencesWindowController.swift */; };
 		64F299FB1F2E599100E48BBD /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F299FD1F2E599100E48BBD /* Preferences.storyboard */; };
 		64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64F29A0B1F2E5F1100E48BBD /* Localizable.strings */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
@@ -103,11 +105,8 @@
 		645F8E6E1F22AEDE007AEEE7 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		645F8E721F22B12D007AEEE7 /* Hud.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Hud.storyboard; sourceTree = "<group>"; };
 		645F8E741F22B136007AEEE7 /* HudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudViewController.swift; sourceTree = "<group>"; };
-		6463E9D11F2E53F300F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		6463E9D31F2E53F400F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6463E9D51F2E541100F71A09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PopOverViewController.xib; sourceTree = "<group>"; };
-		6463E9D81F2E541600F71A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PopOverViewController.strings; sourceTree = "<group>"; };
-		6463E9DA1F2E541700F71A09 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PopOverViewController.strings; sourceTree = "<group>"; };
 		646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemBuilder.swift; sourceTree = "<group>"; };
 		646FB48E1EB741E700435C0B /* StatusMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
 		646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesVC.swift; sourceTree = "<group>"; };
@@ -120,21 +119,17 @@
 		647087D21F2299F40054CC48 /* DDHotKeyTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyTextField.m; sourceTree = "<group>"; };
 		647087D31F2299F40054CC48 /* DDHotKeyUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyUtilities.h; sourceTree = "<group>"; };
 		647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyUtilities.m; sourceTree = "<group>"; };
-		647E54281F67023B00D2F72A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Preferences.strings; sourceTree = "<group>"; };
-		647E54291F67023B00D2F72A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/PopOverViewController.strings; sourceTree = "<group>"; };
-		647E542A1F67023B00D2F72A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		647E542B1F67023B00D2F72A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		647E542C1F67023B00D2F72A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		647E542D1F67041300D2F72A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Preferences.strings; sourceTree = "<group>"; };
 		6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesPreferencesVC.swift; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
+		64ED8B341F6C2E2300CAA1AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		64ED8B351F6C338E00CAA1AA /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
+		64ED8B371F6C351500CAA1AA /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		64F299FC1F2E599100E48BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
-		64F299FE1F2E599600E48BBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
-		64F29A0A1F2E5F1100E48BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		64F29A0E1F2E5FDB00E48BBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64F29A0F1F2E5FDD00E48BBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,6 +284,8 @@
 			children = (
 				646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */,
 				649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */,
+				64ED8B351F6C338E00CAA1AA /* PreferencesTabViewController.swift */,
+				64ED8B371F6C351500CAA1AA /* PreferencesWindowController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -549,6 +546,7 @@
 				645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */,
 				645F8E701F22AEDE007AEEE7 /* SharedFunctionality.swift in Sources */,
 				6415E1391ED1BF8500051EB5 /* LaunchStarter.swift in Sources */,
+				64ED8B381F6C351500CAA1AA /* PreferencesWindowController.swift in Sources */,
 				647087D61F2299F40054CC48 /* DDHotKeyCenter.m in Sources */,
 				64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */,
 				646FB49D1EB75D6500435C0B /* GeneralPreferencesVC.swift in Sources */,
@@ -556,6 +554,7 @@
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
 				646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */,
 				64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */,
+				64ED8B361F6C338E00CAA1AA /* PreferencesTabViewController.swift in Sources */,
 				2133243A1D79967B0060D48C /* PopOverViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,8 +585,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				213324301D79801E0060D48C /* Base */,
-				6463E9D11F2E53F300F71A09 /* de */,
-				647E542A1F67023B00D2F72A /* nl */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -606,9 +603,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				6463E9D51F2E541100F71A09 /* Base */,
-				6463E9D81F2E541600F71A09 /* en */,
-				6463E9DA1F2E541700F71A09 /* de */,
-				647E54291F67023B00D2F72A /* nl */,
 			);
 			name = PopOverViewController.xib;
 			sourceTree = "<group>";
@@ -617,9 +611,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				64F299FC1F2E599100E48BBD /* Base */,
-				64F299FE1F2E599600E48BBD /* en */,
-				647E54281F67023B00D2F72A /* nl */,
-				647E542D1F67041300D2F72A /* de */,
 			);
 			name = Preferences.storyboard;
 			sourceTree = "<group>";
@@ -627,10 +618,9 @@
 		64F29A0B1F2E5F1100E48BBD /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				64F29A0A1F2E5F1100E48BBD /* Base */,
-				64F29A0E1F2E5FDB00E48BBD /* en */,
 				64F29A0F1F2E5FDD00E48BBD /* de */,
 				647E542B1F67023B00D2F72A /* nl */,
+				64ED8B341F6C2E2300CAA1AA /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
