@@ -15,25 +15,22 @@ and [Statusfy](https://github.com/paulyoung/Statusfy) written ~entirely~ _almost
 ## Notes
 
 - The default behavior is to only show the SpotMenu icon in the menubar. Right click -> Preferences to customize.    
-- The animated gif currently demonstrates the functionality of version 1.5   
+- The animated gif currently demonstrates the functionality of version 1.6   
 
-## New Features in Version 1.5
+## New Features in Version 1.6
 
-- Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
++ Automatic updates added
 
-- Today Extension
++ German translation added (credits: [fabi94music](https://github.com/fabi94music))
 
-![today](https://github.com/kmikiy/SpotMenu/blob/master/Demo/today.gif)
-
-- Preferences bugfix
-  - Preferences window now opens in front of other apps
++ Dutch translation added (credits: [rebdeb](https://github.com/rebdeg))
 
 [List of all features](https://github.com/kmikiy/SpotMenu/blob/master/FEATURES.md)
 
 
 ## Easy Install
 
-Download the zip file [version 1.5](https://github.com/kmikiy/SpotMenu/releases/download/v1.5/SpotMenu.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.6](https://github.com/kmikiy/SpotMenu/releases/download/v1.6/SpotMenu160.zip). Unarchive it. Run SpotMenu.app.
 In case of unidentified developer follow these [steps](https://support.apple.com/kb/PH21769?locale=en_US)!
 
 You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
@@ -65,6 +62,7 @@ Note:
 - [@maurojuniorr](https://github.com/maurojuniorr)
 - [@Triloworld](https://github.com/Triloworld)
 - [@fabi94music](https://github.com/fabi94music)
+- [@rebdeb](https://github.com/rebdeg)
 - Everyone who posted an [issue / pull request](https://github.com/kmikiy/SpotMenu/issues?utf8=✓&q=)
 
 ## Help
