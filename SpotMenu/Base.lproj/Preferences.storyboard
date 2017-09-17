@@ -11,8 +11,7 @@
                 <windowController storyboardIdentifier="PREFFF" id="8UQ-6W-PKd" customClass="PreferencesWindowController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="lM3-ry-Wlz">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="578" y="607" width="480" height="270"/>
+                        <rect key="contentRect" x="578" y="700" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="8UQ-6W-PKd" id="t8l-q0-gjE"/>
