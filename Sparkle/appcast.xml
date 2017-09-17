@@ -2,19 +2,19 @@
 <channel>
 <title>SpotMenu</title>
 <item>
-<title>1.5.1</title>
+<title>1.6.0</title>
     <description>
           <![CDATA[
             <ul>
-              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-              <li>Suspendisse sed felis ac ante ultrices rhoncus. Etiam quis elit vel nibh placerat facilisis in id leo.</li>
-              <li>Vestibulum nec tortor odio, nec malesuada libero. Cras vel convallis nunc.</li>
-              <li>Suspendisse tristique massa eget velit consequat tincidunt. Praesent sodales hendrerit pretium.</li>
+              <li>Automatic updates added.</li>
+              <li>German translation added.</li>
+              <li>Dutch translation added.</li>
             </ul>
           ]]>
         </description>
-<pubDate>Sun, 03 Sep 2017 12PM 12:10:06 +0200</pubDate>
+<pubDate>Sun, 17 Sep 2017 15PM 3:04:41 +0200</pubDate>
 <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
-<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.5/SpotMenu151.zip" sparkle:version="1.5.1" sparkle:shortVersionString="1.5.1" length="4527645" type="application/octet-stream" sparkle:dsaSignature="MCwCFF1UakLimPKKB1gKhUV9HjtOar14AhQHKoATt65tVrWTO2E9IKfQbbL1BA=="/>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.6/SpotMenu160.zip" sparkle:version="1.6.0" sparkle:shortVersionString="1.6.0" length="4842809" type="application/octet-stream" sparkle:dsaSignature="MCwCFBa5Sp0jTfBeb9oMVyC2Z6ugOcNzAhRVNesOZGaIqBxAGGOsNf6SdsX80g=="/>
 </item>
+
 </channel></rss>
