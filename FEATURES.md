@@ -1,5 +1,24 @@
 ## All Features
 
+## Added in Version 1.6
+
++ Automatic updates added
+
++ German translation added (credits: [fabi94music](https://github.com/fabi94music))
+
++ Dutch translation added (credits: [rebdeb](https://github.com/rebdeg))
+
+## Added in Version 1.5
+
++ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
+
++ Today Extension
+
+![today](https://github.com/kmikiy/SpotMenu/blob/master/Demo/today.gif)
+
++ Preferences bugfix
+  - Preferences window now opens in front of other apps
+
 ### Added in Version 1.4.2
 
 + Customization
