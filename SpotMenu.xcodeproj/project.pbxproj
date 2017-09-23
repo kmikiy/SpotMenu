@@ -10,7 +10,6 @@
 		1C62E29C241D0358B936C134 /* Pods_SpotMenuToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5325CBE9807E5B7BDCB8234D /* Pods_SpotMenuToday.framework */; };
 		2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133242B1D79801E0060D48C /* AppDelegate.swift */; };
 		2133242E1D79801E0060D48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2133242D1D79801E0060D48C /* Assets.xcassets */; };
-		213324311D79801E0060D48C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2133242F1D79801E0060D48C /* MainMenu.xib */; };
 		2133243A1D79967B0060D48C /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* PopOverViewController.swift */; };
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
 		6415E1391ED1BF8500051EB5 /* LaunchStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */; };
@@ -19,6 +18,7 @@
 		64185C1D1F1B8DC400CA23A0 /* SpotMenuToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 64185C0C1F1B8DC400CA23A0 /* SpotMenuToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64185C271F1B98C600CA23A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64185C261F1B98C600CA23A0 /* Assets.xcassets */; };
 		6437465C1F76A92600B16214 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6437465B1F76A92000B16214 /* Preferences.storyboard */; };
+		643746611F76AE7600B16214 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643746601F76ADA800B16214 /* MainMenu.xib */; };
 		645F8E6F1F22AEDE007AEEE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */; };
 		645F8E701F22AEDE007AEEE7 /* SharedFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */; };
 		645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6E1F22AEDE007AEEE7 /* Toast.swift */; };
@@ -87,7 +87,6 @@
 		213324281D79801E0060D48C /* SpotMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2133242B1D79801E0060D48C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2133242D1D79801E0060D48C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		213324301D79801E0060D48C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		213324321D79801E0060D48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		213324381D79967B0060D48C /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
@@ -103,6 +102,7 @@
 		64185C261F1B98C600CA23A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6437465B1F76A92000B16214 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		6437465E1F76AB3900B16214 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		643746601F76ADA800B16214 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFunctionality.swift; sourceTree = "<group>"; };
 		645F8E6E1F22AEDE007AEEE7 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 				6463E9D61F2E541100F71A09 /* PopOverViewController.xib */,
 				213324381D79967B0060D48C /* PopOverViewController.swift */,
 				2133242D1D79801E0060D48C /* Assets.xcassets */,
-				2133242F1D79801E0060D48C /* MainMenu.xib */,
+				643746601F76ADA800B16214 /* MainMenu.xib */,
 				647087CC1F2299F30054CC48 /* SpotMenu-Bridging-Header.h */,
 				213324321D79801E0060D48C /* Info.plist */,
 				6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */,
@@ -435,13 +435,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				643746611F76AE7600B16214 /* MainMenu.xib in Resources */,
 				6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */,
 				6463E9D41F2E541100F71A09 /* PopOverViewController.xib in Resources */,
 				6437465C1F76A92600B16214 /* Preferences.storyboard in Resources */,
 				64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */,
 				645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
-				213324311D79801E0060D48C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,14 +600,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2133242F1D79801E0060D48C /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				213324301D79801E0060D48C /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
 		64185C181F1B8DC400CA23A0 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
