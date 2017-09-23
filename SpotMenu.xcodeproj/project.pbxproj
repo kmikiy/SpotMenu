@@ -326,7 +326,7 @@
 			children = (
 				E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
