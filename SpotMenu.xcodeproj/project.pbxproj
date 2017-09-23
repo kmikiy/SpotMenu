@@ -251,7 +251,7 @@
 				646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */,
 				646FB48E1EB741E700435C0B /* StatusMenu.swift */,
 			);
-			name = StatusBar;
+			path = StatusBar;
 			sourceTree = "<group>";
 		};
 		646FB49B1EB74A9700435C0B /* Preferences */ = {
