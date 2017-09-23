@@ -30,7 +30,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var initialWidth: CGFloat = 0
     
-    private let url = URL(string: "https://github.com/kmikiy/SpotMenu")
+    private let issuesURL = URL(string: "https://github.com/kmikiy/SpotMenu/issues")
+    
+    private let kmikiyURL = URL(string: "https://github.com/kmikiy")
     
     private let menu = StatusMenu().menu
     
@@ -157,10 +159,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         preferencesController?.showWindow(self)
     }
     
-    func openSite(_ sender: NSMenuItem) {
+    func openURL(url :URL?) {
         if let url = url, NSWorkspace.shared().open(url) {
             print("default browser was successfully opened")
         }
+    }
+    
+    func openKmikiy(_ sender: NSMenuItem) {
+        openURL(url: kmikiyURL)
+    }
+    
+    func openIssues(_ sender: NSMenuItem) {
+        openURL(url: issuesURL)
     }
     
     func quit(_ sender: NSMenuItem) {

@@ -22,12 +22,12 @@ final class StatusMenu {
        
         menu.addItem(NSMenuItem(
             title:  NSLocalizedString("Issues", comment:""),
-            action: #selector(AppDelegate.openSite(_:)),
+            action: #selector(AppDelegate.openIssues(_:)),
             keyEquivalent: "I")
         )
         menu.addItem(NSMenuItem(
             title: NSLocalizedString(" - kmikiy - ", comment:""),
-            action: #selector(AppDelegate.openSite(_:)),
+            action: #selector(AppDelegate.openKmikiy(_:)),
             keyEquivalent: "")
         )
         menu.addItem(NSMenuItem.separator())

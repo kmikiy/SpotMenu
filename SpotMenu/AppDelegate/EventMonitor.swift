@@ -1,8 +1,11 @@
 import Cocoa
 
 open class EventMonitor {
+    
   fileprivate var monitor: AnyObject?
+    
   fileprivate let mask: NSEventMask
+    
   fileprivate let handler: (NSEvent?) -> ()
 
   public init(mask: NSEventMask, handler: @escaping (NSEvent?) -> ()) {
