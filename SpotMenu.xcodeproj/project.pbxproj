@@ -233,7 +233,7 @@
 				64A908091EB784E400566ED1 /* HoverButton.swift */,
 				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
 			);
-			name = CustomViews;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		6437465D1F76AA3A00B16214 /* Localizable */ = {
