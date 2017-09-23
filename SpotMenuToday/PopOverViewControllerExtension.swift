@@ -15,7 +15,7 @@ extension PopOverViewController: NCWidgetProviding {
     // MARK: - Properties
     
     override var nibName: String? {
-        return "PopOverViewController"
+        return "PopOver"
     }
     
     // MARK: - Public methods

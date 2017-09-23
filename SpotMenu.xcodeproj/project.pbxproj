@@ -10,21 +10,21 @@
 		1C62E29C241D0358B936C134 /* Pods_SpotMenuToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5325CBE9807E5B7BDCB8234D /* Pods_SpotMenuToday.framework */; };
 		2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133242B1D79801E0060D48C /* AppDelegate.swift */; };
 		2133242E1D79801E0060D48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2133242D1D79801E0060D48C /* Assets.xcassets */; };
-		2133243A1D79967B0060D48C /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* PopOverViewController.swift */; };
+		2133243A1D79967B0060D48C /* PopOverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* PopOverVC.swift */; };
 		2133243F1D7999180060D48C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133243E1D7999180060D48C /* EventMonitor.swift */; };
 		6415E1391ED1BF8500051EB5 /* LaunchStarter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */; };
 		64185C0E1F1B8DC400CA23A0 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64185C0D1F1B8DC400CA23A0 /* NotificationCenter.framework */; };
 		64185C1A1F1B8DC400CA23A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64185C181F1B8DC400CA23A0 /* InfoPlist.strings */; };
 		64185C1D1F1B8DC400CA23A0 /* SpotMenuToday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 64185C0C1F1B8DC400CA23A0 /* SpotMenuToday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		64185C271F1B98C600CA23A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64185C261F1B98C600CA23A0 /* Assets.xcassets */; };
-		6437465C1F76A92600B16214 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6437465B1F76A92000B16214 /* Preferences.storyboard */; };
-		643746611F76AE7600B16214 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643746601F76ADA800B16214 /* MainMenu.xib */; };
-		643746631F76AEF200B16214 /* PopOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643746621F76AEDD00B16214 /* PopOverViewController.xib */; };
-		643746641F76AF2900B16214 /* PopOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643746621F76AEDD00B16214 /* PopOverViewController.xib */; };
+		643746671F76B06900B16214 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643746621F76AEDD00B16214 /* PopOver.xib */; };
+		643746681F76B0BB00B16214 /* Hud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645F8E721F22B12D007AEEE7 /* Hud.storyboard */; };
+		643746691F76B0BB00B16214 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643746621F76AEDD00B16214 /* PopOver.xib */; };
+		6437466A1F76B0BB00B16214 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643746601F76ADA800B16214 /* MainMenu.xib */; };
+		6437466B1F76B0BB00B16214 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6437465B1F76A92000B16214 /* Preferences.storyboard */; };
 		645F8E6F1F22AEDE007AEEE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */; };
 		645F8E701F22AEDE007AEEE7 /* SharedFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */; };
 		645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6E1F22AEDE007AEEE7 /* Toast.swift */; };
-		645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 645F8E721F22B12D007AEEE7 /* Hud.storyboard */; };
 		645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E741F22B136007AEEE7 /* HudViewController.swift */; };
 		646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */; };
 		646FB48F1EB741E700435C0B /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FB48E1EB741E700435C0B /* StatusMenu.swift */; };
@@ -38,14 +38,14 @@
 		649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
-		64ED8B361F6C338E00CAA1AA /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED8B351F6C338E00CAA1AA /* PreferencesTabViewController.swift */; };
-		64ED8B381F6C351500CAA1AA /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED8B371F6C351500CAA1AA /* PreferencesWindowController.swift */; };
+		64ED8B361F6C338E00CAA1AA /* PreferencesTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED8B351F6C338E00CAA1AA /* PreferencesTabVC.swift */; };
+		64ED8B381F6C351500CAA1AA /* PreferencesWC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED8B371F6C351500CAA1AA /* PreferencesWC.swift */; };
 		64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64F29A0B1F2E5F1100E48BBD /* Localizable.strings */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 		E2D35CCB1F60827B00EB5D67 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		E2D35CCE1F60879700EB5D67 /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */; };
 		E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */; };
-		E2D35CD11F60A08800EB5D67 /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* PopOverViewController.swift */; };
+		E2D35CD11F60A08800EB5D67 /* PopOverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* PopOverVC.swift */; };
 		E2D35CD91F60B0CF00EB5D67 /* PopOverViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CD21F60A1DC00EB5D67 /* PopOverViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,7 +88,7 @@
 		2133242B1D79801E0060D48C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2133242D1D79801E0060D48C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		213324321D79801E0060D48C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		213324381D79967B0060D48C /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
+		213324381D79967B0060D48C /* PopOverVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverVC.swift; sourceTree = "<group>"; };
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		5325CBE9807E5B7BDCB8234D /* Pods_SpotMenuToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenuToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		6437465B1F76A92000B16214 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		6437465E1F76AB3900B16214 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		643746601F76ADA800B16214 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		643746621F76AEDD00B16214 /* PopOverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopOverViewController.xib; sourceTree = "<group>"; };
+		643746621F76AEDD00B16214 /* PopOver.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
 		645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFunctionality.swift; sourceTree = "<group>"; };
 		645F8E6E1F22AEDE007AEEE7 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -130,8 +130,8 @@
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
 		64ED8B341F6C2E2300CAA1AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		64ED8B351F6C338E00CAA1AA /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
-		64ED8B371F6C351500CAA1AA /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		64ED8B351F6C338E00CAA1AA /* PreferencesTabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesTabVC.swift; sourceTree = "<group>"; };
+		64ED8B371F6C351500CAA1AA /* PreferencesWC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWC.swift; sourceTree = "<group>"; };
 		64F29A0F1F2E5FDD00E48BBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,20 +185,17 @@
 		2133242A1D79801E0060D48C /* SpotMenu */ = {
 			isa = PBXGroup;
 			children = (
-				6437465F1F76AD5800B16214 /* HUD */,
 				6437465D1F76AA3A00B16214 /* Localizable */,
+				6437465F1F76AD5800B16214 /* HUD */,
 				647087D91F2299FC0054CC48 /* DDHotKey */,
 				E2D35CCC1F60877C00EB5D67 /* Extensions */,
+				643746651F76AF7500B16214 /* PopOver */,
+				643746661F76AFAF00B16214 /* AppDelegate */,
 				641FF0391ED961BD00093D32 /* CustomViews */,
 				646FB49B1EB74A9700435C0B /* Preferences */,
 				646FB48C1EB740D600435C0B /* StatusBar */,
 				645F8E6B1F22AEDE007AEEE7 /* Toast */,
-				2133243E1D7999180060D48C /* EventMonitor.swift */,
-				2133242B1D79801E0060D48C /* AppDelegate.swift */,
-				643746621F76AEDD00B16214 /* PopOverViewController.xib */,
-				213324381D79967B0060D48C /* PopOverViewController.swift */,
 				2133242D1D79801E0060D48C /* Assets.xcassets */,
-				643746601F76ADA800B16214 /* MainMenu.xib */,
 				647087CC1F2299F30054CC48 /* SpotMenu-Bridging-Header.h */,
 				213324321D79801E0060D48C /* Info.plist */,
 				6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */,
@@ -252,6 +249,25 @@
 			path = HUD;
 			sourceTree = "<group>";
 		};
+		643746651F76AF7500B16214 /* PopOver */ = {
+			isa = PBXGroup;
+			children = (
+				643746621F76AEDD00B16214 /* PopOver.xib */,
+				213324381D79967B0060D48C /* PopOverVC.swift */,
+			);
+			path = PopOver;
+			sourceTree = "<group>";
+		};
+		643746661F76AFAF00B16214 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				2133242B1D79801E0060D48C /* AppDelegate.swift */,
+				2133243E1D7999180060D48C /* EventMonitor.swift */,
+				643746601F76ADA800B16214 /* MainMenu.xib */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
 		645F8E6B1F22AEDE007AEEE7 /* Toast */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,8 +318,8 @@
 			children = (
 				646FB49C1EB75D6500435C0B /* GeneralPreferencesVC.swift */,
 				649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */,
-				64ED8B351F6C338E00CAA1AA /* PreferencesTabViewController.swift */,
-				64ED8B371F6C351500CAA1AA /* PreferencesWindowController.swift */,
+				64ED8B351F6C338E00CAA1AA /* PreferencesTabVC.swift */,
+				64ED8B371F6C351500CAA1AA /* PreferencesWC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -435,12 +451,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				643746631F76AEF200B16214 /* PopOverViewController.xib in Resources */,
-				643746611F76AE7600B16214 /* MainMenu.xib in Resources */,
+				643746681F76B0BB00B16214 /* Hud.storyboard in Resources */,
+				643746691F76B0BB00B16214 /* PopOver.xib in Resources */,
+				6437466A1F76B0BB00B16214 /* MainMenu.xib in Resources */,
+				6437466B1F76B0BB00B16214 /* Preferences.storyboard in Resources */,
 				6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */,
-				6437465C1F76A92600B16214 /* Preferences.storyboard in Resources */,
 				64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */,
-				645F8E731F22B12D007AEEE7 /* Hud.storyboard in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,7 +465,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				643746641F76AF2900B16214 /* PopOverViewController.xib in Resources */,
+				643746671F76B06900B16214 /* PopOver.xib in Resources */,
 				64185C1A1F1B8DC400CA23A0 /* InfoPlist.strings in Resources */,
 				64185C271F1B98C600CA23A0 /* Assets.xcassets in Resources */,
 			);
@@ -565,7 +581,7 @@
 				645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */,
 				645F8E701F22AEDE007AEEE7 /* SharedFunctionality.swift in Sources */,
 				6415E1391ED1BF8500051EB5 /* LaunchStarter.swift in Sources */,
-				64ED8B381F6C351500CAA1AA /* PreferencesWindowController.swift in Sources */,
+				64ED8B381F6C351500CAA1AA /* PreferencesWC.swift in Sources */,
 				647087D61F2299F40054CC48 /* DDHotKeyCenter.m in Sources */,
 				64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */,
 				646FB49D1EB75D6500435C0B /* GeneralPreferencesVC.swift in Sources */,
@@ -573,8 +589,8 @@
 				2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */,
 				646FB48B1EB733E700435C0B /* StatusItemBuilder.swift in Sources */,
 				64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */,
-				64ED8B361F6C338E00CAA1AA /* PreferencesTabViewController.swift in Sources */,
-				2133243A1D79967B0060D48C /* PopOverViewController.swift in Sources */,
+				64ED8B361F6C338E00CAA1AA /* PreferencesTabVC.swift in Sources */,
+				2133243A1D79967B0060D48C /* PopOverVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,7 +598,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2D35CD11F60A08800EB5D67 /* PopOverViewController.swift in Sources */,
+				E2D35CD11F60A08800EB5D67 /* PopOverVC.swift in Sources */,
 				E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */,
 				E2D35CD91F60B0CF00EB5D67 /* PopOverViewControllerExtension.swift in Sources */,
 				E2D35CCB1F60827B00EB5D67 /* CustomVisualEffect.swift in Sources */,

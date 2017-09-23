@@ -186,7 +186,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             if popover.isShown {
                 closePopover(sender)
             } else {
-                popover.contentViewController = PopOverViewController(nibName: "PopOverViewController", bundle: nil)
+                popover.contentViewController = PopOverViewController(nibName: "PopOver", bundle: nil)
                 Spotify.startSpotify(hidden: true)
                 showPopover(sender)
             }
