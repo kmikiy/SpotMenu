@@ -102,6 +102,7 @@
 		64185C191F1B8DC400CA23A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64185C261F1B98C600CA23A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6437465B1F76A92000B16214 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
+		6437465E1F76AB3900B16214 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFunctionality.swift; sourceTree = "<group>"; };
 		645F8E6E1F22AEDE007AEEE7 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -184,6 +185,7 @@
 		2133242A1D79801E0060D48C /* SpotMenu */ = {
 			isa = PBXGroup;
 			children = (
+				6437465D1F76AA3A00B16214 /* Localizable */,
 				647087D91F2299FC0054CC48 /* DDHotKey */,
 				E2D35CCC1F60877C00EB5D67 /* Extensions */,
 				641FF0391ED961BD00093D32 /* CustomViews */,
@@ -201,7 +203,6 @@
 				647087CC1F2299F30054CC48 /* SpotMenu-Bridging-Header.h */,
 				213324321D79801E0060D48C /* Info.plist */,
 				6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */,
-				64F29A0B1F2E5F1100E48BBD /* Localizable.strings */,
 			);
 			path = SpotMenu;
 			sourceTree = "<group>";
@@ -233,6 +234,14 @@
 				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
 			);
 			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		6437465D1F76AA3A00B16214 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				64F29A0B1F2E5F1100E48BBD /* Localizable.strings */,
+			);
+			path = Localizable;
 			sourceTree = "<group>";
 		};
 		645F8E6B1F22AEDE007AEEE7 /* Toast */ = {
@@ -597,6 +606,7 @@
 				64185C191F1B8DC400CA23A0 /* en */,
 				6463E9D31F2E53F400F71A09 /* de */,
 				647E542C1F67023B00D2F72A /* nl */,
+				6437465E1F76AB3900B16214 /* pt-PT */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
