@@ -286,7 +286,7 @@
 				647087D31F2299F40054CC48 /* DDHotKeyUtilities.h */,
 				647087D41F2299F40054CC48 /* DDHotKeyUtilities.m */,
 			);
-			name = DDHotKey;
+			path = DDHotKey;
 			sourceTree = "<group>";
 		};
 		649D6C811F5C8A18000A6DDF /* ViewControllers */ = {
