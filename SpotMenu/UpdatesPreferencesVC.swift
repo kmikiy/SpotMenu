@@ -23,7 +23,8 @@ final class UpdatesPreferencesVC: NSViewController {
     @IBOutlet fileprivate weak var moreInformation: NSTextField!
     @IBOutlet weak var checkForUpdatesButton: NSButton!
     @IBOutlet weak var lastCheckedLabel: NSTextField!
-
+    @IBOutlet weak var withLoveFromKmikiy: NSTextField!
+    
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
@@ -44,6 +45,7 @@ final class UpdatesPreferencesVC: NSViewController {
         automaticallyDownloadUpdatesButton.title =  NSLocalizedString("Automatically download updates", comment: "")
         lastCheckedLabel.stringValue = NSLocalizedString("Last checked:", comment: "")
         checkForUpdatesButton.title = NSLocalizedString("Check for Updates", comment: "")
+        withLoveFromKmikiy.stringValue = NSLocalizedString("with ♥ from kmikiy", comment: "")
     }
     
     private func initButtonStates(){

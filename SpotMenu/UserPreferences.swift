@@ -13,17 +13,11 @@ struct UserPreferences {
     // MARK: - Constant keys
     
     private struct Keys {
-        
         static let showArtist = "showArtist"
-        
         static let showTitle = "showTitle"
-        
         static let showPlayIcon = "showPlayingIcon"
-        
         static let showSpotMenuIcon = "showSpotMenuIcon"
-        
         static let fixPopoverToRight = "dropDownToTheRight"
-        
     }
     
     // MARK: - Properties

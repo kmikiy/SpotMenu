@@ -25,6 +25,7 @@ final class GeneralPreferencesVC: NSViewController {
     @IBOutlet fileprivate weak var fixPopoverToTheRightButton: HoverButton!
     @IBOutlet fileprivate weak var openAtLoginButton: HoverButton!
     @IBOutlet fileprivate weak var moreInformation: NSTextField!
+    @IBOutlet private weak var withLoveFromKmikiyText: NSTextField!
     
     // MARK: - Lifecycle methods
    
@@ -48,6 +49,7 @@ final class GeneralPreferencesVC: NSViewController {
         showSpotMenuIconButton.title = NSLocalizedString("Show SpotMenu icon", comment: "")
         fixPopoverToTheRightButton.title = NSLocalizedString("Fix popover to the right", comment: "")
         openAtLoginButton.title = NSLocalizedString("Open at login", comment: "")
+        withLoveFromKmikiyText.stringValue = NSLocalizedString("with ♥ from kmikiy", comment: "")
     }
     
     private func initButtonStates(){

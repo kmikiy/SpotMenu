@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  SpotMenu
+
+  Created by Miklós Kristyán on 30.07.17.
+  Copyright © 2017 KM. All rights reserved.
+*/
+
+"Issues" = "Problemas";
+"Preferences..." = "Preferências...";
+"Check for Updates..." = "Procurar actualizações...";
+"Quit" = "Sair";
+"Now playing" = "A reproduzir";
+"Hover over an option for more information." = "Passe o rato sobre uma opção para ver mais informações.";
+"When checked the Artist will be shown in the menu bar." = "Quando ativado, o Artista vai ser mostrado na barra de menus.";
+"When checked the Title will be shown in the menu bar." = "Quando ativado, o Título vai ser mostrado na barra de menus.";
+"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Quando ativado, o icon de reprodução (♫) vai ser mostrado na barra de menus se houver uma música em reprodução.";
+"When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Quando ativado, o icon do SpotMenu vai ser mostrado na barra de menus.\n\nNota:\nSe não houver informação sobre uma música para ser mostrada, o icon do SpotMenu vai estar visível.";
+"When checked the popover will be fixed to the right corner." = "Quando ativado, o popover vai ser fixado ao canto supeior direito.";
+"When checked SpotMenu will start automatically at login." = "Quando ativado, o SpotMenu vai iniciar automaticamente no Login.";
+"Artist" = "Artista";
+"Title" = "Título";
+"Show playing icon" = "Mostrar ícone de reprodução";
+"Show title" = "Mostrar título";
+"with ♥ from kmikiy" = "com ♥ por kmikiy";
+"Show artist" = "Mostrar artista";
+"Preferences" = "Preferências";
+"General" = "Geral";
+"Updates" = "Actualizações";
+"Open at login" = "Abrir no Login";
+"Fix popover to the right" = "Fixar popover à direita";
+"Show SpotMenu icon" = "Mostrar ícone do SpotMenu";
+"Automatically check for updates" = "Procurar actualizações automaticamente";
+"Automatically download updates" = "Transferir actualizações automaticamente";
+"Check for Updates" = "Procurar actualizações";
+"Last checked:" = "Última procura:";
+"Preferences" = "Preferências";
+"Indicates whether or not to check for updates automatically." = "Indica se deve ou não procurar actualizações automaticamente.";
+"Indicates whether or not updates can be automatically downloaded in the background." = "Indica se as actualizações devem ou não ser transferidas automaticamente em segundo plano.";
+

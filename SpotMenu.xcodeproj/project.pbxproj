@@ -93,6 +93,7 @@
 		2133243E1D7999180060D48C /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		5325CBE9807E5B7BDCB8234D /* Pods_SpotMenuToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenuToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
+		64055EDA1F766E3C00B07FB2 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6415E1381ED1BF8500051EB5 /* LaunchStarter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchStarter.swift; sourceTree = "<group>"; };
 		64185C0C1F1B8DC400CA23A0 /* SpotMenuToday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SpotMenuToday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		64185C0D1F1B8DC400CA23A0 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -399,6 +400,7 @@
 				Base,
 				de,
 				nl,
+				"pt-PT",
 			);
 			mainGroup = 2133241F1D79801E0060D48C;
 			productRefGroup = 213324291D79801E0060D48C /* Products */;
@@ -621,6 +623,7 @@
 				64F29A0F1F2E5FDD00E48BBD /* de */,
 				647E542B1F67023B00D2F72A /* nl */,
 				64ED8B341F6C2E2300CAA1AA /* en */,
+				64055EDA1F766E3C00B07FB2 /* pt-PT */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

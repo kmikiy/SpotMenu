@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8UQ-6W-PKd">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8UQ-6W-PKd">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,9 +40,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
+                        <connections>
+                            <outlet property="delegate" destination="L3n-s3-rOr" id="keC-Gt-hmu"/>
+                        </connections>
                     </tabView>
                     <connections>
                         <outlet property="generalTabViewItem" destination="g7m-Zo-MWm" id="M1g-C5-64T"/>
+                        <outlet property="tabView" destination="RYW-RI-FWg" id="zga-XO-Xia"/>
                         <outlet property="updatesTabViewItem" destination="93o-J6-5JH" id="eht-sw-lSu"/>
                         <segue destination="D1B-Ck-xIn" kind="relationship" relationship="tabItems" id="WM0-n8-Yx4"/>
                         <segue destination="fEd-oz-QyX" kind="relationship" relationship="tabItems" id="8Qp-NI-2vj"/>
@@ -109,7 +114,7 @@
                                     <action selector="toggleFixPopoverToTheRight:" target="D1B-Ck-xIn" id="y42-rV-Nx9"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AcT-XJ-dx6">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AcT-XJ-dx6">
                                 <rect key="frame" x="6" y="7" width="119" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="with ♥ from kmikiy" id="Gtt-Jw-q9H">
                                     <font key="font" metaFont="system"/>
@@ -120,7 +125,7 @@
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="6gB-ng-38K">
                                 <rect key="frame" x="247" y="12" width="5" height="246"/>
                             </box>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfF-Kx-p5e">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MfF-Kx-p5e">
                                 <rect key="frame" x="263" y="216" width="219" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Hover over an option for more information" id="AvK-M6-xdR">
                                     <font key="font" metaFont="system"/>
@@ -187,6 +192,7 @@
                         <outlet property="showPlayingIconButton" destination="pX8-GV-b6c" id="9ma-NW-XcJ"/>
                         <outlet property="showSpotMenuIconButton" destination="Yws-MH-DPg" id="RBW-LP-XZq"/>
                         <outlet property="showTitleButton" destination="FdD-gg-7Vj" id="Fki-eP-GAl"/>
+                        <outlet property="withLoveFromKmikiyText" destination="AcT-XJ-dx6" id="ocV-0j-Zf2"/>
                     </connections>
                 </viewController>
                 <customObject id="ZTu-eg-D9Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -221,7 +227,7 @@
                                     <action selector="toggleAutomaticallyDownloadUpdates:" target="fEd-oz-QyX" id="FtH-mq-Hk2"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DsL-1J-anU">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DsL-1J-anU">
                                 <rect key="frame" x="6" y="7" width="119" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="with ♥ from kmikiy" id="w7w-D5-gWN">
                                     <font key="font" metaFont="system"/>
@@ -232,7 +238,7 @@
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dGK-1e-nDX">
                                 <rect key="frame" x="248" y="12" width="5" height="246"/>
                             </box>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uaz-pE-joS">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uaz-pE-joS">
                                 <rect key="frame" x="264" y="216" width="218" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Hover over an option for more information" id="3NO-fM-cop">
                                     <font key="font" metaFont="system"/>
@@ -240,7 +246,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ce6-61-2rt">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ce6-61-2rt">
                                 <rect key="frame" x="18" y="38" width="175" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Last checked:" id="zEg-gU-Puw">
                                     <font key="font" metaFont="system"/>
@@ -248,7 +254,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mS-Le-4Cw">
+                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6mS-Le-4Cw">
                                 <rect key="frame" x="199" y="38" width="33" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Date" id="iJu-WE-VHo">
                                     <font key="font" metaFont="system"/>
@@ -301,6 +307,7 @@
                         <outlet property="lastCheckedLabel" destination="ce6-61-2rt" id="4qS-dX-Rik"/>
                         <outlet property="lastUpdateCheckLabel" destination="6mS-Le-4Cw" id="qc5-yN-fD7"/>
                         <outlet property="moreInformation" destination="Uaz-pE-joS" id="1Xo-KW-97u"/>
+                        <outlet property="withLoveFromKmikiy" destination="DsL-1J-anU" id="Anp-XM-Elp"/>
                     </connections>
                 </viewController>
                 <customObject id="yjQ-PJ-A73" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
