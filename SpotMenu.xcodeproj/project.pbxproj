@@ -185,6 +185,7 @@
 		2133242A1D79801E0060D48C /* SpotMenu */ = {
 			isa = PBXGroup;
 			children = (
+				6437465F1F76AD5800B16214 /* HUD */,
 				6437465D1F76AA3A00B16214 /* Localizable */,
 				647087D91F2299FC0054CC48 /* DDHotKey */,
 				E2D35CCC1F60877C00EB5D67 /* Extensions */,
@@ -196,8 +197,6 @@
 				2133242B1D79801E0060D48C /* AppDelegate.swift */,
 				6463E9D61F2E541100F71A09 /* PopOverViewController.xib */,
 				213324381D79967B0060D48C /* PopOverViewController.swift */,
-				645F8E721F22B12D007AEEE7 /* Hud.storyboard */,
-				645F8E741F22B136007AEEE7 /* HudViewController.swift */,
 				2133242D1D79801E0060D48C /* Assets.xcassets */,
 				2133242F1D79801E0060D48C /* MainMenu.xib */,
 				647087CC1F2299F30054CC48 /* SpotMenu-Bridging-Header.h */,
@@ -242,6 +241,15 @@
 				64F29A0B1F2E5F1100E48BBD /* Localizable.strings */,
 			);
 			path = Localizable;
+			sourceTree = "<group>";
+		};
+		6437465F1F76AD5800B16214 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				645F8E721F22B12D007AEEE7 /* Hud.storyboard */,
+				645F8E741F22B136007AEEE7 /* HudViewController.swift */,
+			);
+			path = HUD;
 			sourceTree = "<group>";
 		};
 		645F8E6B1F22AEDE007AEEE7 /* Toast */ = {
