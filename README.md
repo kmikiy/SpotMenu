@@ -14,7 +14,7 @@ and [Statusfy](https://github.com/paulyoung/Statusfy) written ~entirely~ _almost
 
 ## Notes
 
-- The default behavior is to only show the SpotMenu icon in the menubar. Right click -> Preferences to customize.    
+- The default behavior is to only show the SpotMenu icon in the menubar. Right click → Preferences to customize.    
 - The animated gif currently demonstrates the functionality of version 1.6   
 
 ## New Features in Version 1.6
@@ -35,6 +35,13 @@ In case of unidentified developer follow these [steps](https://support.apple.com
 
 You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
 
+## Advanced Install
+
+via [Homebrew Cask](https://caskroom.github.io)
+
+```sh
+brew cask install spotmenu
+```
 
 ## How to Build
 
