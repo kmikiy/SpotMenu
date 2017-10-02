@@ -12,8 +12,9 @@
                 <windowController storyboardIdentifier="PREFFF" id="8UQ-6W-PKd" customClass="PreferencesWindowController" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="lM3-ry-Wlz">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <rect key="contentRect" x="578" y="700" width="480" height="270"/>
+                        <rect key="contentRect" x="600" y="100" width="500" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="maxSize" type="size" width="600" height="300"/>
                         <connections>
                             <outlet property="delegate" destination="8UQ-6W-PKd" id="t8l-q0-gjE"/>
                         </connections>
@@ -35,6 +36,7 @@
                         <tabViewItem label="General" identifier="general" image="NSPreferencesGeneral" id="g7m-Zo-MWm"/>
                         <tabViewItem label="Updates" identifier="updates" image="NSRefreshFreestandingTemplate" id="93o-J6-5JH"/>
                     </tabViewItems>
+                    <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" type="noTabsNoBorder" id="RYW-RI-FWg">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
