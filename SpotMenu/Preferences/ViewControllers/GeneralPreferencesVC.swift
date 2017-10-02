@@ -24,6 +24,7 @@ final class GeneralPreferencesVC: NSViewController {
     @IBOutlet fileprivate weak var showSpotMenuIconButton: HoverButton!
     @IBOutlet fileprivate weak var fixPopoverToTheRightButton: HoverButton!
     @IBOutlet fileprivate weak var openAtLoginButton: HoverButton!
+    @IBOutlet weak var enableKeyboardShortcutButton: HoverButton!
     @IBOutlet fileprivate weak var moreInformation: NSTextField!
     @IBOutlet private weak var withLoveFromKmikiyText: NSTextField!
     
@@ -49,6 +50,7 @@ final class GeneralPreferencesVC: NSViewController {
         showSpotMenuIconButton.title = NSLocalizedString("Show SpotMenu icon", comment: "")
         fixPopoverToTheRightButton.title = NSLocalizedString("Fix popover to the right", comment: "")
         openAtLoginButton.title = NSLocalizedString("Open at login", comment: "")
+        enableKeyboardShortcutButton.title = NSLocalizedString("Enable keyboard shortcut", comment: "")
         withLoveFromKmikiyText.stringValue = NSLocalizedString("with ♥ from kmikiy", comment: "")
     }
     
@@ -59,6 +61,7 @@ final class GeneralPreferencesVC: NSViewController {
         showSpotMenuIconButton.state = UserPreferences.showSpotMenuIcon.asState
         fixPopoverToTheRightButton.state = UserPreferences.fixPopoverToTheRight.asState
         openAtLoginButton.state = applicationIsInStartUpItems().asState
+        enableKeyboardShortcutButton.state = UserPreferences.keyboardShortcutEnabled.asState
     }
     
     private func initButtonHovers(){
@@ -79,6 +82,9 @@ final class GeneralPreferencesVC: NSViewController {
         
         openAtLoginButton.mouseEnteredFunc = hoverOpenAtLogin
         openAtLoginButton.mouseExitedFunc = hoverAway
+        
+        enableKeyboardShortcutButton.mouseEnteredFunc = hoverEnableKeyboardShortcut
+        enableKeyboardShortcutButton.mouseExitedFunc = hoverAway
     }
     
     // MARK: - IBActions
@@ -112,6 +118,16 @@ final class GeneralPreferencesVC: NSViewController {
     @IBAction private func toggleOpenAtLogin(_ sender: Any) {
         toggleLaunchAtStartup()
         openAtLoginButton.state = applicationIsInStartUpItems().asState
+    }
+    
+    @IBAction func toggleEnableKeyboardShortcut(_ sender: Any) {
+        UserPreferences.keyboardShortcutEnabled = enableKeyboardShortcutButton.state.asBool
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+        if UserPreferences.keyboardShortcutEnabled {
+            appDelegate.registerHotkey()
+        } else {
+            appDelegate.unregisterHotKey()
+        }
     }
     
     // MARK: - Private methods
@@ -148,6 +164,10 @@ extension GeneralPreferencesVC {
     
     fileprivate func hoverOpenAtLogin() {
         moreInformation.stringValue = NSLocalizedString("When checked SpotMenu will start automatically at login.", comment: "")
+    }
+    
+    fileprivate func hoverEnableKeyboardShortcut() {
+        moreInformation.stringValue = NSLocalizedString("Display the current song artist and title by pressing ctrl + command + m.", comment: "")
     }
     
     fileprivate func hoverAway() {

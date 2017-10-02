@@ -87,7 +87,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 name: NSNotification.Name(rawValue: InternalNotification.key),
                 object: nil)
     
-        registerHotkey()
+        if UserPreferences.keyboardShortcutEnabled {
+            registerHotkey()
+        }
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -99,7 +101,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: - Public methods
 
-    private func registerHotkey() {
+    func registerHotkey() {
         guard let hotkeyCenter = DDHotKeyCenter.shared() else { return }
         
         let modifiers: UInt = NSEventModifierFlags.control.rawValue | NSEventModifierFlags.command.rawValue
@@ -108,8 +110,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_ANSI_M),
                                     modifierFlags: modifiers,
                                     target: self,
-                                    action: #selector(hotkeyAction),
+                                    action: #selector(AppDelegate.hotkeyAction),
                                     object: nil)
+    }
+    
+    func unregisterHotKey() {
+        guard let hotkeyCenter = DDHotKeyCenter.shared() else { return }
+        hotkeyCenter.unregisterAllHotKeys()
     }
     
     func hotkeyAction() {
@@ -134,6 +141,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func removeHud() {
         windowController = nil
     }
+    
     
     func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)

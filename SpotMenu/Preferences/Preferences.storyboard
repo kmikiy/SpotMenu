@@ -142,7 +142,7 @@
                                 <rect key="frame" x="20" y="145" width="214" height="5"/>
                             </box>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="prI-iA-udw" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="123" width="218" height="18"/>
+                                <rect key="frame" x="18" y="103" width="218" height="18"/>
                                 <buttonCell key="cell" type="check" title="Open at login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="yfF-XT-sHt">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -151,13 +151,25 @@
                                     <action selector="toggleOpenAtLogin:" target="D1B-Ck-xIn" id="Fxa-9D-31R"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="iBn-Og-skT" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="123" width="218" height="18"/>
+                                <buttonCell key="cell" type="check" title="Enable keyboard shortcut" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="KtD-83-7eq">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleEnableKeyboardShortcut:" target="D1B-Ck-xIn" id="oDw-Xs-PG8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="iBn-Og-skT" secondAttribute="trailing" constant="15" id="1Gd-Gx-m3o"/>
                             <constraint firstItem="6gB-ng-38K" firstAttribute="centerX" secondItem="iQg-fn-1YF" secondAttribute="centerX" id="1Gz-M8-upo"/>
                             <constraint firstItem="pX8-GV-b6c" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="2nz-6b-vRq"/>
                             <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="FdD-gg-7Vj" secondAttribute="trailing" constant="15" id="4hr-TH-2vf"/>
+                            <constraint firstItem="iBn-Og-skT" firstAttribute="top" secondItem="oRn-cm-TWU" secondAttribute="bottom" constant="8" id="5le-uk-Dqp"/>
+                            <constraint firstItem="prI-iA-udw" firstAttribute="top" secondItem="iBn-Og-skT" secondAttribute="bottom" constant="6" id="5qq-Z2-vex"/>
                             <constraint firstItem="FdD-gg-7Vj" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="8U3-hM-rkj"/>
-                            <constraint firstItem="prI-iA-udw" firstAttribute="top" secondItem="oRn-cm-TWU" secondAttribute="bottom" constant="8" id="AgU-ge-sZY"/>
                             <constraint firstItem="oRn-cm-TWU" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="Bnj-dX-zU1"/>
                             <constraint firstItem="FdD-gg-7Vj" firstAttribute="top" secondItem="QpI-Ua-GZP" secondAttribute="bottom" constant="6" id="CQr-hN-j5W"/>
                             <constraint firstItem="6gB-ng-38K" firstAttribute="top" secondItem="iQg-fn-1YF" secondAttribute="top" constant="12" id="CwX-Qf-1X7"/>
@@ -184,9 +196,11 @@
                             <constraint firstItem="MfF-Kx-p5e" firstAttribute="leading" secondItem="6gB-ng-38K" secondAttribute="trailing" constant="15" id="y0x-33-B2W"/>
                             <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="oRn-cm-TWU" secondAttribute="trailing" constant="15" id="y1n-Kd-Zub"/>
                             <constraint firstItem="6gB-ng-38K" firstAttribute="leading" secondItem="Yws-MH-DPg" secondAttribute="trailing" constant="15" id="z29-tg-Ic9"/>
+                            <constraint firstItem="iBn-Og-skT" firstAttribute="leading" secondItem="iQg-fn-1YF" secondAttribute="leading" constant="20" id="zMM-bE-HCP"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="enableKeyboardShortcutButton" destination="iBn-Og-skT" id="wcJ-bu-t3b"/>
                         <outlet property="fixPopoverToTheRightButton" destination="bJn-eT-QU7" id="6jU-bf-zRu"/>
                         <outlet property="moreInformation" destination="MfF-Kx-p5e" id="5cW-Qx-DNJ"/>
                         <outlet property="openAtLoginButton" destination="prI-iA-udw" id="xcs-AV-IkU"/>

@@ -25,6 +25,8 @@ struct UserPreferences {
         static let fixPopoverToTheRight = "dropDownToTheRight"
         
         static let hasBeenInitialized = "hasBeenInitialized"
+        
+        static let keyboardShortcutEnabled = "keyboardShortcutEnabled"
     }
     
     // MARK: - Properties
@@ -74,6 +76,15 @@ struct UserPreferences {
         }
     }
     
+    static var keyboardShortcutEnabled: Bool {
+        get {
+            return UserPreferences.readSetting(key: Keys.keyboardShortcutEnabled)
+        }
+        set {
+            UserPreferences.setSetting(key: Keys.keyboardShortcutEnabled, value: newValue)
+        }
+    }
+    
     // MARK: - Public methods
     
     static func clearAllSettings() {
@@ -108,7 +119,8 @@ struct UserPreferences {
             UserPreferences.showTitle ||
             UserPreferences.showPlayingIcon ||
             UserPreferences.showSpotMenuIcon ||
-            UserPreferences.fixPopoverToTheRight {
+            UserPreferences.fixPopoverToTheRight ||
+            UserPreferences.keyboardShortcutEnabled {
             return
         }
         
@@ -119,6 +131,7 @@ struct UserPreferences {
         UserPreferences.showTitle = true
         UserPreferences.showPlayingIcon = true
         UserPreferences.showSpotMenuIcon = true
+        UserPreferences.keyboardShortcutEnabled = true
     }
 }
 
