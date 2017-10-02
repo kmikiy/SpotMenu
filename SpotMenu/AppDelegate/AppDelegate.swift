@@ -47,6 +47,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - AppDelegate methods
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+        UserPreferences.initializeUserPreferences()
                 
         if let button = statusItem.button {
             if UserPreferences.showSpotMenuIcon {

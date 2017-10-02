@@ -18,11 +18,13 @@ struct UserPreferences {
         
         static let showTitle = "showTitle"
         
-        static let showPlayIcon = "showPlayingIcon"
+        static let showPlayingIcon = "showPlayingIcon"
         
         static let showSpotMenuIcon = "showSpotMenuIcon"
         
-        static let fixPopoverToRight = "dropDownToTheRight"
+        static let fixPopoverToTheRight = "dropDownToTheRight"
+        
+        static let hasBeenInitialized = "hasBeenInitialized"
     }
     
     // MARK: - Properties
@@ -47,10 +49,10 @@ struct UserPreferences {
     
     static var showPlayingIcon: Bool {
         get {
-            return UserPreferences.readSetting(key: Keys.showPlayIcon)
+            return UserPreferences.readSetting(key: Keys.showPlayingIcon)
         }
         set {
-            UserPreferences.setSetting(key: Keys.showPlayIcon, value: newValue)
+            UserPreferences.setSetting(key: Keys.showPlayingIcon, value: newValue)
         }
     }
     
@@ -65,10 +67,10 @@ struct UserPreferences {
     
     static var fixPopoverToTheRight: Bool {
         get {
-            return UserPreferences.readSetting(key: Keys.fixPopoverToRight)
+            return UserPreferences.readSetting(key: Keys.fixPopoverToTheRight)
         }
         set {
-            UserPreferences.setSetting(key: Keys.fixPopoverToRight, value: newValue)
+            UserPreferences.setSetting(key: Keys.fixPopoverToTheRight, value: newValue)
         }
     }
     
@@ -90,6 +92,33 @@ struct UserPreferences {
     
     private static func readSetting(key: String) -> Bool {
         return UserDefaults.standard.bool(forKey: key)
+    }
+    
+    // MARK: - Init / migrate
+    
+    static func initializeUserPreferences() {
+        let hasBeenInitialized = UserPreferences.readSetting(key: Keys.hasBeenInitialized)
+        guard !hasBeenInitialized else {
+            return
+        }
+        
+        // check if migration is needed
+        
+        if  UserPreferences.showArtist ||
+            UserPreferences.showTitle ||
+            UserPreferences.showPlayingIcon ||
+            UserPreferences.showSpotMenuIcon ||
+            UserPreferences.fixPopoverToTheRight {
+            return
+        }
+        
+        // set default settings
+        
+        UserPreferences.setSetting(key: Keys.hasBeenInitialized, value: true)
+        UserPreferences.showArtist = true
+        UserPreferences.showTitle = true
+        UserPreferences.showPlayingIcon = true
+        UserPreferences.showSpotMenuIcon = true
     }
 }
 
