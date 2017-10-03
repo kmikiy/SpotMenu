@@ -22,7 +22,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var eventMonitor: EventMonitor?
 
-    private let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     private let popover = NSPopover()
     
@@ -38,7 +38,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var hiddenView: NSView = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 1))
     
-    private let spotMenuIcon = NSImage(named: "StatusBarButtonImage")
+    private let spotMenuIcon = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
     
     private var lastStatusTitle: String = ""
     
@@ -54,7 +54,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             if UserPreferences.showSpotMenuIcon {
                 button.image = spotMenuIcon
             }
-            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
+            button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
             button.action = #selector(AppDelegate.togglePopover(_:))
             button.addSubview(hiddenView)
             updateTitle(newTitle: StatusItemBuilder()
@@ -66,7 +66,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             updateHidden()
         }
         
-        eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [unowned self] event in
+        eventMonitor = EventMonitor(mask: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown]) { [unowned self] event in
             if self.popover.isShown {
                 self.closePopover(event)
             }
@@ -104,7 +104,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func registerHotkey() {
         guard let hotkeyCenter = DDHotKeyCenter.shared() else { return }
         
-        let modifiers: UInt = NSEventModifierFlags.control.rawValue | NSEventModifierFlags.command.rawValue
+        let modifiers: UInt = NSEvent.ModifierFlags.control.rawValue | NSEvent.ModifierFlags.command.rawValue
         
         // Register system-wide summon hotkey
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_ANSI_M),
@@ -119,9 +119,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hotkeyCenter.unregisterAllHotKeys()
     }
     
-    func hotkeyAction() {
+    @objc func hotkeyAction() {
     
-        let sb = NSStoryboard.init(name: "Hud", bundle: nil)
+        let sb = NSStoryboard.init(name: NSStoryboard.Name(rawValue: "Hud"), bundle: nil)
         windowController = sb.instantiateInitialController() as? NSWindowController
 
         windowController?.showWindow(nil)
@@ -138,16 +138,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             repeats: false)
     }
     
-    func removeHud() {
+    @objc func removeHud() {
         windowController = nil
     }
     
     
-    func postUpdateNotification(){
+    @objc func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
     
-    func updateTitleAndPopover() {
+    @objc func updateTitleAndPopover() {
         let statusItemTitle = StatusItemBuilder()
             .showTitle(v: UserPreferences.showTitle)
             .showArtist(v: UserPreferences.showArtist)
@@ -155,6 +155,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .getString()
         if lastStatusTitle != statusItemTitle {
             updateTitle(newTitle: statusItemTitle)
+            updateHidden()
         }
         if popover.isShown {
             updateHidden()
@@ -165,12 +166,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Popover methods
     
     func openPrefs(_ sender: NSMenuItem) {
-        preferencesController = (NSStoryboard(name: "Preferences", bundle: nil).instantiateInitialController() as! NSWindowController)
+        preferencesController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Preferences"), bundle: nil).instantiateInitialController() as! NSWindowController)
         preferencesController?.showWindow(self)
     }
     
     func openURL(url :URL?) {
-        if let url = url, NSWorkspace.shared().open(url) {
+        if let url = url, NSWorkspace.shared.open(url) {
             print("default browser was successfully opened")
         }
     }
@@ -187,10 +188,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
        NSApp.terminate(self)
     }
     
-    func togglePopover(_ sender: AnyObject?) {
+    @objc func togglePopover(_ sender: AnyObject?) {
         let event = NSApp.currentEvent!
         
-        if event.type == NSEventType.rightMouseUp {
+        if event.type == NSEvent.EventType.rightMouseUp {
             if popover.isShown{
                 closePopover(sender)
             }
@@ -206,7 +207,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             if popover.isShown {
                 closePopover(sender)
             } else {
-                popover.contentViewController = PopOverViewController(nibName: "PopOver", bundle: nil)
+                popover.contentViewController = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
                 Spotify.startSpotify(hidden: true)
                 showPopover(sender)
             }
@@ -240,10 +241,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func updateHidden(){
         if UserPreferences.fixPopoverToTheRight {
-            hiddenView.frame = NSRect(x: statusItem.button!.bounds.width-1, y: statusItem.button!.bounds.height-1, width: 1, height: 1)
+            hiddenView.frame = NSRect(x: statusItem.button!.bounds.width-1, y: statusItem.button!.bounds.height-2, width: 10, height: 2)
         } else {
-            hiddenView.frame = NSRect(x: statusItem.button!.bounds.width-initialWidth/2, y: statusItem.button!.bounds.height-1, width: 1, height: 1)
+            hiddenView.frame = NSRect(x: statusItem.button!.bounds.width-initialWidth/2, y: statusItem.button!.bounds.height-1, width: 20, height: 1)
         }
+        hiddenView.updateLayer()
         statusItem.button!.updateLayer()
     }
     

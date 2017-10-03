@@ -31,7 +31,7 @@ extension CGRect {
 }
 
 extension NSString {
-    func toast_size(with attributes: [String: Any]?) -> CGSize {
+    func toast_size(with attributes: [NSAttributedStringKey: Any]?) -> CGSize {
         #if os(OSX)
             return size(withAttributes: attributes)
         #elseif os(iOS) || os(tvOS)
@@ -51,7 +51,7 @@ extension View {
 
 extension String {
     func size(with fontSize: CGFloat) -> CGSize {
-        let attr: [String: Any] = [NSFontAttributeName: Font.systemFont(ofSize: fontSize)]
+        let attr: [NSAttributedStringKey: Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): Font.systemFont(ofSize: fontSize)]
         let size = NSString(string: self).toast_size(with: attr)
         return size
     }

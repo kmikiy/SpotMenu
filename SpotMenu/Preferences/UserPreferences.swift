@@ -146,3 +146,10 @@ extension Int {
         return Bool(self as NSNumber)
     }
 }
+
+extension NSControl.StateValue {
+    var asBool: Bool {
+        return Bool(self.rawValue as NSNumber)
+    }
+
+}

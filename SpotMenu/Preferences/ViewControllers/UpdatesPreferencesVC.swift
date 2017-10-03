@@ -51,8 +51,8 @@ final class UpdatesPreferencesVC: NSViewController {
     }
     
     private func initButtonStates(){
-        automaticallyCheckForUpdatesButton.state = SUUpdater.shared().automaticallyChecksForUpdates.asState
-        automaticallyDownloadUpdatesButton.state = SUUpdater.shared().automaticallyDownloadsUpdates.asState
+        automaticallyCheckForUpdatesButton.state = NSControl.StateValue(rawValue: SUUpdater.shared().automaticallyChecksForUpdates.asState)
+        automaticallyDownloadUpdatesButton.state = NSControl.StateValue(rawValue: SUUpdater.shared().automaticallyDownloadsUpdates.asState)
     }
     
     private func initButtonHovers(){

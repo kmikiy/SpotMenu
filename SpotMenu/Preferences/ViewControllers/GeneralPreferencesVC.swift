@@ -55,13 +55,13 @@ final class GeneralPreferencesVC: NSViewController {
     }
     
     private func initButtonStates(){
-        showArtistButton.state = UserPreferences.showArtist.asState
-        showTitleButton.state =  UserPreferences.showTitle.asState
-        showPlayingIconButton.state = UserPreferences.showPlayingIcon.asState
-        showSpotMenuIconButton.state = UserPreferences.showSpotMenuIcon.asState
-        fixPopoverToTheRightButton.state = UserPreferences.fixPopoverToTheRight.asState
-        openAtLoginButton.state = applicationIsInStartUpItems().asState
-        enableKeyboardShortcutButton.state = UserPreferences.keyboardShortcutEnabled.asState
+        showArtistButton.state = NSControl.StateValue(rawValue: UserPreferences.showArtist.asState)
+        showTitleButton.state =  NSControl.StateValue(rawValue: UserPreferences.showTitle.asState)
+        showPlayingIconButton.state = NSControl.StateValue(rawValue: UserPreferences.showPlayingIcon.asState)
+        showSpotMenuIconButton.state = NSControl.StateValue(rawValue: UserPreferences.showSpotMenuIcon.asState)
+        fixPopoverToTheRightButton.state = NSControl.StateValue(rawValue: UserPreferences.fixPopoverToTheRight.asState)
+        openAtLoginButton.state = NSControl.StateValue(rawValue: applicationIsInStartUpItems().asState)
+        enableKeyboardShortcutButton.state = NSControl.StateValue(rawValue: UserPreferences.keyboardShortcutEnabled.asState)
     }
     
     private func initButtonHovers(){
@@ -117,12 +117,12 @@ final class GeneralPreferencesVC: NSViewController {
     
     @IBAction private func toggleOpenAtLogin(_ sender: Any) {
         toggleLaunchAtStartup()
-        openAtLoginButton.state = applicationIsInStartUpItems().asState
+        openAtLoginButton.state = NSControl.StateValue(rawValue: applicationIsInStartUpItems().asState)
     }
     
     @IBAction func toggleEnableKeyboardShortcut(_ sender: Any) {
         UserPreferences.keyboardShortcutEnabled = enableKeyboardShortcutButton.state.asBool
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
         if UserPreferences.keyboardShortcutEnabled {
             appDelegate.registerHotkey()
         } else {

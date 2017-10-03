@@ -56,11 +56,11 @@ final class PopOverViewController: NSViewController {
     
     // MARK: - Public methods
     
-    func postUpdateNotification(){
+    @objc func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
 
-    func updateInfo() {
+    @objc func updateInfo() {
         if let artworkUrl = Spotify.currentTrack.artworkUrl , artworkUrl != lastArtworkUrl {
             self.artworkImageView.downloadImage(url: URL(string: artworkUrl)!)
             lastArtworkUrl = artworkUrl
@@ -149,7 +149,7 @@ private extension PopOverViewController {
     }
     
     @IBAction func quit(_ sender: NSButton) {
-        NSApplication.shared().terminate(sender)
+        NSApplication.shared.terminate(sender)
     }
     
     @IBAction func openSpotify(_ sender: Any) {
