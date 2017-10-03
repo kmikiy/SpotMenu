@@ -165,7 +165,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Popover methods
     
-    func openPrefs(_ sender: NSMenuItem) {
+    @objc func openPrefs(_ sender: NSMenuItem) {
         preferencesController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Preferences"), bundle: nil).instantiateInitialController() as! NSWindowController)
         preferencesController?.showWindow(self)
     }
@@ -176,15 +176,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func openKmikiy(_ sender: NSMenuItem) {
+    @objc func openKmikiy(_ sender: NSMenuItem) {
         openURL(url: kmikiyURL)
     }
     
-    func openIssues(_ sender: NSMenuItem) {
+    @objc func openIssues(_ sender: NSMenuItem) {
         openURL(url: issuesURL)
     }
     
-    func quit(_ sender: NSMenuItem) {
+    @objc func quit(_ sender: NSMenuItem) {
        NSApp.terminate(self)
     }
     
@@ -214,7 +214,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func checkForUpdates(_ sender: NSMenuItem) {
+    @objc func checkForUpdates(_ sender: NSMenuItem) {
         SUUpdater.shared().checkForUpdates(nil)
     }
     

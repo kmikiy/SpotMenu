@@ -185,7 +185,7 @@ static DDHotKeyCenter *sharedHotKeyCenter = nil;
 
 - (DDHotKey *)registerHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags task:(DDHotKeyTask)task {
     //we can't add a new hotkey if something already has this combo
-    if ([self hasRegisteredHotKeyWithKeyCode:keyCode modifierFlags:flags]) { return NO; }
+    if ([self hasRegisteredHotKeyWithKeyCode:keyCode modifierFlags:flags]) { return nil; }
     
     DDHotKey *newHotKey = [[DDHotKey alloc] init];
     [newHotKey _setTask:task];
@@ -197,7 +197,7 @@ static DDHotKeyCenter *sharedHotKeyCenter = nil;
 
 - (DDHotKey *)registerHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags target:(id)target action:(SEL)action object:(id)object {
     //we can't add a new hotkey if something already has this combo
-    if ([self hasRegisteredHotKeyWithKeyCode:keyCode modifierFlags:flags]) { return NO; }
+    if ([self hasRegisteredHotKeyWithKeyCode:keyCode modifierFlags:flags]) { return nil; }
     
     //build the hotkey object:
     DDHotKey *newHotKey = [[DDHotKey alloc] init];

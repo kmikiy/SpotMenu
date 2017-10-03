@@ -143,13 +143,13 @@ extension Bool {
 
 extension Int {
     var asBool: Bool {
-        return Bool(self as NSNumber)
+        return Bool(truncating: self as NSNumber)
     }
 }
 
 extension NSControl.StateValue {
     var asBool: Bool {
-        return Bool(self.rawValue as NSNumber)
+        return Bool(truncating: self.rawValue as NSNumber)
     }
 
 }
