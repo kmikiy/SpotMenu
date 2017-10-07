@@ -193,6 +193,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             statusItem.menu = nil
             Spotify.startSpotify(hidden: true)
+            closePopover(sender)
             showPopover(nil)
         }
     }
