@@ -16,19 +16,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: - Properties
 
-    private var windowController: NSWindowController?
+    private var hudController: NSWindowController?
 
     private var preferencesController: NSWindowController?
+    
+    private var popover: NSWindowController?
     
     private var eventMonitor: EventMonitor?
 
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
-    private let popover = NSPopover()
-    
     private var timer: Timer?
-    
-    private var initialWidth: CGFloat = 0
     
     private let issuesURL = URL(string: "https://github.com/kmikiy/SpotMenu/issues")
     
@@ -43,17 +41,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var lastStatusTitle: String = ""
     
     private var removeHudTimer: Timer?
-
+    
     // MARK: - AppDelegate methods
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         UserPreferences.initializeUserPreferences()
-                
+       
+        popover = (NSStoryboard(name: NSStoryboard.Name(rawValue: "PopoverWindow"), bundle: nil).instantiateInitialController() as! NSWindowController)
+        popover?.contentViewController = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
+        popover?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
+        popover?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
+        
         if let button = statusItem.button {
             if UserPreferences.showSpotMenuIcon {
                 button.image = spotMenuIcon
             }
+            
             button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
             button.action = #selector(AppDelegate.togglePopover(_:))
             button.addSubview(hiddenView)
@@ -62,16 +66,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 .showArtist(v: UserPreferences.showArtist)
                 .showPlayingIcon(v: UserPreferences.showPlayingIcon)
                 .getString())
-            initialWidth = statusItem.button!.bounds.width
-            updateHidden()
         }
         
         eventMonitor = EventMonitor(mask: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown]) { [unowned self] event in
-            if self.popover.isShown {
-                self.closePopover(event)
-            }
+            self.closePopover(event)
         }
-        eventMonitor?.start()
         
         timer = Timer.scheduledTimer(
             timeInterval: 1.5,
@@ -120,12 +119,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func hotkeyAction() {
-    
         let sb = NSStoryboard.init(name: NSStoryboard.Name(rawValue: "Hud"), bundle: nil)
-        windowController = sb.instantiateInitialController() as? NSWindowController
+        hudController = sb.instantiateInitialController() as? NSWindowController
 
-        windowController?.showWindow(nil)
-        windowController?.window?.makeKeyAndOrderFront(self)
+        hudController?.showWindow(nil)
+        hudController?.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
         if let t = removeHudTimer {
             t.invalidate()
@@ -139,9 +137,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func removeHud() {
-        windowController = nil
+        hudController = nil
     }
-    
     
     @objc func postUpdateNotification(){
         NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
@@ -155,12 +152,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .getString()
         if lastStatusTitle != statusItemTitle {
             updateTitle(newTitle: statusItemTitle)
-            updateHidden()
         }
-        if popover.isShown {
-            updateHidden()
-        }
-
     }
 
     // MARK: - Popover methods
@@ -192,25 +184,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let event = NSApp.currentEvent!
         
         if event.type == NSEvent.EventType.rightMouseUp {
-            if popover.isShown{
-                closePopover(sender)
-            }
-                
+            closePopover(sender)
             statusItem.menu = menu
             statusItem.popUpMenu(menu)
             
             // This is critical, otherwise clicks won't be processed again
             statusItem.menu = nil
-            
         } else {
             statusItem.menu = nil
-            if popover.isShown {
-                closePopover(sender)
-            } else {
-                popover.contentViewController = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
-                Spotify.startSpotify(hidden: true)
-                showPopover(sender)
-            }
+            Spotify.startSpotify(hidden: true)
+            showPopover(nil)
         }
     }
     
@@ -239,25 +222,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    private func updateHidden(){
-        if UserPreferences.fixPopoverToTheRight {
-            hiddenView.frame = NSRect(x: statusItem.button!.bounds.width-1, y: statusItem.button!.bounds.height-2, width: 10, height: 2)
-        } else {
-            hiddenView.frame = NSRect(x: statusItem.button!.bounds.width-initialWidth/2, y: statusItem.button!.bounds.height-1, width: 20, height: 1)
-        }
-        hiddenView.updateLayer()
-        statusItem.button!.updateLayer()
-    }
-    
     private func showPopover(_ sender: AnyObject?) {
-        initialWidth = statusItem.button!.bounds.width
-        updateHidden()
-        popover.show(relativeTo: hiddenView.bounds, of: hiddenView, preferredEdge: NSRectEdge.minY)
+        
+        let rect = statusItem.button?.window?.convertToScreen((statusItem.button?.frame)!)
+
+        let xOffset = UserPreferences.fixPopoverToTheRight ? ((popover?.contentViewController?.view.frame.maxY)!-(statusItem.button?.frame.maxX)!) : 0
+        let x = (rect?.origin.x)! - xOffset
+        let y = (rect?.origin.y)! - (popover?.contentViewController?.view.frame.maxY)!
+        popover?.window?.setFrameOrigin(NSPoint(x:x , y:y))
+        popover?.showWindow(self)
+        
         eventMonitor?.start()
     }
     
     private func closePopover(_ sender: AnyObject?) {
-        popover.performClose(sender)
+        popover?.close()
         eventMonitor?.stop()
     }
 

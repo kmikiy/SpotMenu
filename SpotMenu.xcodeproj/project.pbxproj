@@ -36,6 +36,7 @@
 		6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */; };
 		648984841E5C21C200EA2234 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */; };
+		64A8E1A41F83F45F00FFF6B1 /* PopoverWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A8E1A31F83F45F00FFF6B1 /* PopoverWindow.storyboard */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
 		64ED8B361F6C338E00CAA1AA /* PreferencesTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED8B351F6C338E00CAA1AA /* PreferencesTabVC.swift */; };
@@ -127,6 +128,7 @@
 		6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesPreferencesVC.swift; sourceTree = "<group>"; };
+		64A8E1A31F83F45F00FFF6B1 /* PopoverWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PopoverWindow.storyboard; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		64A908091EB784E400566ED1 /* HoverButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
 		64ED8B341F6C2E2300CAA1AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 			children = (
 				643746621F76AEDD00B16214 /* PopOver.xib */,
 				213324381D79967B0060D48C /* PopOverVC.swift */,
+				64A8E1A31F83F45F00FFF6B1 /* PopoverWindow.storyboard */,
 			);
 			path = PopOver;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 			files = (
 				643746681F76B0BB00B16214 /* Hud.storyboard in Resources */,
 				643746691F76B0BB00B16214 /* PopOver.xib in Resources */,
+				64A8E1A41F83F45F00FFF6B1 /* PopoverWindow.storyboard in Resources */,
 				6437466A1F76B0BB00B16214 /* MainMenu.xib in Resources */,
 				6437466B1F76B0BB00B16214 /* Preferences.storyboard in Resources */,
 				6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */,

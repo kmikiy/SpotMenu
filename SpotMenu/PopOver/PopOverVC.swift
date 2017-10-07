@@ -15,6 +15,7 @@ final class PopOverViewController: NSViewController {
     
     @IBOutlet weak fileprivate var positionSlider: NSSlider!
     @IBOutlet weak private var artistLabel: NSTextField!
+    @IBOutlet weak private var aLabel: NSTextField!
     @IBOutlet weak private var titleLabel: NSTextField!
     @IBOutlet weak private var playerStateButton: NSButton!
     @IBOutlet weak private var artworkImageView: NSImageView!
