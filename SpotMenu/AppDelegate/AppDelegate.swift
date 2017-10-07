@@ -50,6 +50,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
        
         popover = (NSStoryboard(name: NSStoryboard.Name(rawValue: "PopoverWindow"), bundle: nil).instantiateInitialController() as! NSWindowController)
         popover?.contentViewController = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
+        popover?.window?.contentView?.layer?.cornerRadius = 5
+        popover?.window?.isOpaque = false
+        popover?.window?.backgroundColor = .clear
         popover?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
         popover?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
         
