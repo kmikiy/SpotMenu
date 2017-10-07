@@ -227,7 +227,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         let rect = statusItem.button?.window?.convertToScreen((statusItem.button?.frame)!)
 
-        let xOffset = UserPreferences.fixPopoverToTheRight ? ((popover?.contentViewController?.view.frame.maxY)!-(statusItem.button?.frame.maxX)!) : 0
+        let xOffset = UserPreferences.fixPopoverToTheRight ? ((popover?.contentViewController?.view.frame.maxX)!-(statusItem.button?.frame.maxX)!) : ((popover?.contentViewController?.view.frame.midX)! - (statusItem.button?.frame.midX)!)
         let x = (rect?.origin.x)! - xOffset
         let y = (rect?.origin.y)! - (popover?.contentViewController?.view.frame.maxY)!
         popover?.window?.setFrameOrigin(NSPoint(x:x , y:y))
