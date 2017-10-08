@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Spotify
+import SpotifyAppleScript
 import Carbon.HIToolbox
 import Sparkle
 import AppKit.NSAppearance
@@ -202,7 +202,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             if popover.isShown {
                 closePopover(sender)
             } else {
-                Spotify.startSpotify(hidden: true)
+                SpotifyAppleScript.startSpotify(hidden: true)
                 showPopover(sender)
             }
         }

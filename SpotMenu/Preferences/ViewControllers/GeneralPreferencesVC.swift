@@ -8,7 +8,7 @@
 
 import Foundation
 import Cocoa
-import Spotify
+import SpotifyAppleScript
 
 final class GeneralPreferencesVC: NSViewController {
     

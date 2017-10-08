@@ -1,6 +1,6 @@
 import Cocoa
 import WebKit
-import Spotify
+import SpotifyAppleScript
 
 final class PopOverViewController: NSViewController {
     
@@ -62,15 +62,15 @@ final class PopOverViewController: NSViewController {
     }
 
     @objc func updateInfo() {
-        if let artworkUrl = Spotify.currentTrack.artworkUrl , artworkUrl != lastArtworkUrl {
+        if let artworkUrl = SpotifyAppleScript.currentTrack.artworkUrl , artworkUrl != lastArtworkUrl {
             self.artworkImageView.downloadImage(url: URL(string: artworkUrl)!)
             lastArtworkUrl = artworkUrl
         }
-        if Spotify.currentTrack.artworkUrl == nil {
+        if SpotifyAppleScript.currentTrack.artworkUrl == nil {
             artworkImageView.image = defaultImage
         }
         
-        if let artist = Spotify.currentTrack.albumArtist {
+        if let artist = SpotifyAppleScript.currentTrack.albumArtist {
             artistLabel.stringValue = artist
             artistLabel.textColor = nil
             
@@ -79,7 +79,7 @@ final class PopOverViewController: NSViewController {
             artistLabel.textColor = NSColor.gray
         }
         
-        if let title = Spotify.currentTrack.title {
+        if let title = SpotifyAppleScript.currentTrack.title {
             titleLabel.stringValue = title
             titleLabel.textColor = nil
         } else {
@@ -87,7 +87,7 @@ final class PopOverViewController: NSViewController {
             titleLabel.textColor = NSColor.gray
         }
         
-        let position = Spotify.currentTrack.positionPercentage
+        let position = SpotifyAppleScript.currentTrack.positionPercentage
         positionSlider.doubleValue = floor(position * 100)
         
         updateTime()
@@ -97,23 +97,23 @@ final class PopOverViewController: NSViewController {
     // MARK: - Private methods
     
     fileprivate func updateTime() {
-        let leftTimeTuple = secondsToHoursMinutesSeconds(seconds: Spotify.currentTrack.position)
+        let leftTimeTuple = secondsToHoursMinutesSeconds(seconds: SpotifyAppleScript.currentTrack.position)
         leftTime.stringValue = getTimeString(tuple: leftTimeTuple)
         
         
         switch rightTimeIsDuration {
         case true:
-            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: Spotify.currentTrack.duration)
+            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: SpotifyAppleScript.currentTrack.duration)
             rightTime.stringValue = getTimeString(tuple: rightTimeTuple)
         case false:
-            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: Spotify.currentTrack.duration - Spotify.currentTrack.position)
+            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: SpotifyAppleScript.currentTrack.duration - SpotifyAppleScript.currentTrack.position)
             rightTime.stringValue = "-" + getTimeString(tuple: rightTimeTuple)
         }
         
     }
 
     private func updateButton() {
-        updateButton(Spotify.playerState)
+        updateButton(SpotifyAppleScript.playerState)
     }
     
     private func updateButton(_ state: PlayerState){
@@ -142,11 +142,11 @@ final class PopOverViewController: NSViewController {
 private extension PopOverViewController {
     
     @IBAction func goLeft(_ sender: NSButton) {
-        Spotify.playPrevious()
+        SpotifyAppleScript.playPrevious()
     }
     
     @IBAction func goRight(_ sender: NSButton) {
-        Spotify.playNext()
+        SpotifyAppleScript.playNext()
     }
     
     @IBAction func quit(_ sender: NSButton) {
@@ -154,19 +154,19 @@ private extension PopOverViewController {
     }
     
     @IBAction func openSpotify(_ sender: Any) {
-        Spotify.activateSpotify()
+        SpotifyAppleScript.activateSpotify()
     }
     
     @IBAction func positionSliderAction(_ sender: AnyObject) {
-        Spotify.currentTrack.positionPercentage = positionSlider.doubleValue/100.0
+        SpotifyAppleScript.currentTrack.positionPercentage = positionSlider.doubleValue/100.0
     }
     
     @IBAction func togglePlay(_ sender: AnyObject) {
-        switch Spotify.playerState {
+        switch SpotifyAppleScript.playerState {
         case .paused:
-            Spotify.playerState = .playing
+            SpotifyAppleScript.playerState = .playing
         case .playing:
-            Spotify.playerState = .paused
+            SpotifyAppleScript.playerState = .paused
         }
     }
     

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Spotify
+import SpotifyAppleScript
 
 final class StatusItemBuilder {
     
@@ -24,7 +24,7 @@ final class StatusItemBuilder {
     // MARK: - Lifecycle method
     
     init() {
-        state = Spotify.playerState
+        state = SpotifyAppleScript.playerState
     }
     
     // MARK: - Methods
@@ -34,7 +34,7 @@ final class StatusItemBuilder {
             title = ""
             return self
         }
-        if let title = Spotify.currentTrack.title {
+        if let title = SpotifyAppleScript.currentTrack.title {
             self.title = title + " "
         }
         return self
@@ -45,7 +45,7 @@ final class StatusItemBuilder {
             artist = ""
             return self
         }
-        if let artist = Spotify.currentTrack.artist {
+        if let artist = SpotifyAppleScript.currentTrack.artist {
             self.artist = artist + " "
         }
         return self
@@ -56,7 +56,7 @@ final class StatusItemBuilder {
             artist = ""
             return self
         }
-        if let artist = Spotify.currentTrack.albumArtist {
+        if let artist = SpotifyAppleScript.currentTrack.albumArtist {
             self.artist = artist + " "
         }
         return self

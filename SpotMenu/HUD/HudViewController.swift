@@ -8,7 +8,6 @@
 
 import Foundation
 import AppKit
-import Spotify
 
 final class HudViewController: NSViewController {
     

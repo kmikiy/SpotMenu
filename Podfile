@@ -2,11 +2,11 @@ platform :osx, '10.10'
 use_frameworks!
 
 target 'SpotMenu' do
-    pod 'Spotify', '~> 0.2'
+    pod 'SpotifyAppleScript', '~> 0.3'
     pod 'Sparkle'
 end
 
 target 'SpotMenuToday' do
-    pod 'Spotify', '~> 0.2'
+    pod 'SpotifyAppleScript', '~> 0.3'
 end
 
