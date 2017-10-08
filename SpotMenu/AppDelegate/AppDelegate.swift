@@ -10,6 +10,7 @@ import Cocoa
 import Spotify
 import Carbon.HIToolbox
 import Sparkle
+import AppKit.NSAppearance
 
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -20,7 +21,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var preferencesController: NSWindowController?
     
-    private var popover: NSWindowController?
+    private var hiddenController: NSWindowController?
+    
+    private let popover = NSPopover()
+    
+    private let popoverDelegate = PopOverDelegate()
     
     private var eventMonitor: EventMonitor?
 
@@ -34,8 +39,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private let menu = StatusMenu().menu
     
-    private var hiddenView: NSView = NSView(frame: NSRect(x: 0, y: 0, width: 1, height: 1))
-    
     private let spotMenuIcon = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
     
     private var lastStatusTitle: String = ""
@@ -47,14 +50,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         UserPreferences.initializeUserPreferences()
+        
+        popover.contentViewController = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
+        popover.delegate = popoverDelegate
        
-        popover = (NSStoryboard(name: NSStoryboard.Name(rawValue: "PopoverWindow"), bundle: nil).instantiateInitialController() as! NSWindowController)
-        popover?.contentViewController = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
-        popover?.window?.contentView?.layer?.cornerRadius = 5
-        popover?.window?.isOpaque = false
-        popover?.window?.backgroundColor = .clear
-        popover?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
-        popover?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
+        hiddenController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Hidden"), bundle: nil).instantiateInitialController() as! NSWindowController)
+        hiddenController?.window?.isOpaque = false
+        hiddenController?.window?.backgroundColor = .clear
+        hiddenController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
+        hiddenController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
+        hiddenController?.window?.ignoresMouseEvents = true
         
         if let button = statusItem.button {
             if UserPreferences.showSpotMenuIcon {
@@ -63,16 +68,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             
             button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
             button.action = #selector(AppDelegate.togglePopover(_:))
-            button.addSubview(hiddenView)
-            updateTitle(newTitle: StatusItemBuilder()
-                .showTitle(v: UserPreferences.showTitle)
-                .showArtist(v: UserPreferences.showArtist)
-                .showPlayingIcon(v: UserPreferences.showPlayingIcon)
-                .getString())
+            updateTitleAndPopover()
         }
         
         eventMonitor = EventMonitor(mask: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown]) { [unowned self] event in
-            self.closePopover(event)
+            if self.popover.isShown && !self.popover.isDetached {
+                self.closePopover(event)
+            }
         }
         
         timer = Timer.scheduledTimer(
@@ -186,18 +188,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func togglePopover(_ sender: AnyObject?) {
         let event = NSApp.currentEvent!
         
-        if event.type == NSEvent.EventType.rightMouseUp {
-            closePopover(sender)
+        switch event.type {
+        case NSEvent.EventType.rightMouseUp:
+            if popover.isShown{
+                closePopover(sender)
+            }
             statusItem.menu = menu
             statusItem.popUpMenu(menu)
             
             // This is critical, otherwise clicks won't be processed again
             statusItem.menu = nil
-        } else {
-            statusItem.menu = nil
-            Spotify.startSpotify(hidden: true)
-            closePopover(sender)
-            showPopover(nil)
+        default:
+            if popover.isShown {
+                closePopover(sender)
+            } else {
+                Spotify.startSpotify(hidden: true)
+                showPopover(sender)
+            }
         }
     }
     
@@ -226,23 +233,49 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    
     private func showPopover(_ sender: AnyObject?) {
+        popover.appearance = appearance()
         
         let rect = statusItem.button?.window?.convertToScreen((statusItem.button?.frame)!)
 
-        let xOffset = UserPreferences.fixPopoverToTheRight ? ((popover?.contentViewController?.view.frame.maxX)!-(statusItem.button?.frame.maxX)!) : ((popover?.contentViewController?.view.frame.midX)! - (statusItem.button?.frame.midX)!)
+        let xOffset = UserPreferences.fixPopoverToTheRight ? ((hiddenController?.window?.contentView?.frame.maxX)!-(statusItem.button?.frame.maxX)!) : ((hiddenController?.window?.contentView?.frame.midX)! - (statusItem.button?.frame.midX)!)
         let x = (rect?.origin.x)! - xOffset
-        let y = (rect?.origin.y)! - (popover?.contentViewController?.view.frame.maxY)!
-        popover?.window?.setFrameOrigin(NSPoint(x:x , y:y))
-        popover?.showWindow(self)
-        
+        let y = (rect?.origin.y)! //- (hiddenController?.contentViewController?.view.frame.maxY)!
+        hiddenController?.window?.setFrameOrigin(NSPoint(x:x , y:y))
+        hiddenController?.showWindow(self)
+        popover.show(relativeTo: (hiddenController?.window?.contentView?.bounds)!, of: (hiddenController?.window?.contentView)!, preferredEdge: NSRectEdge.minY)
         eventMonitor?.start()
     }
     
     private func closePopover(_ sender: AnyObject?) {
-        popover?.close()
+        hiddenController?.close()
+        popover.performClose(sender)
         eventMonitor?.stop()
     }
-
+    
+    enum InterfaceStyle : String {
+        case Dark, Light
+        
+        init() {
+            let type = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
+            self = InterfaceStyle(rawValue: type)!
+        }
+    }
+    
+    func appearance() -> NSAppearance? {
+        switch InterfaceStyle() {
+        case .Dark:
+            return NSAppearance(named: .vibrantDark)
+        case .Light:
+            return NSAppearance(named: .vibrantLight)
+        }
+    }
+    
+    class PopOverDelegate: NSObject, NSPopoverDelegate {
+        func popoverShouldDetach(_ popover: NSPopover) -> Bool {
+            return true
+        }
+    }
 }
 

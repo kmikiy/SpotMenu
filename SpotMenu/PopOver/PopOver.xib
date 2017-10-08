@@ -26,10 +26,6 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="298"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <visualEffectView focusRingType="none" fixedFrame="YES" blendingMode="behindWindow" material="mediumLight" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="j8M-pg-pjI">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="298"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                </visualEffectView>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wMa-mO-ZXq">
                     <rect key="frame" x="25" y="30" width="250" height="250"/>
                     <constraints>
