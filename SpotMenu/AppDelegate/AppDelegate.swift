@@ -25,7 +25,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private let popover = NSPopover()
     
-    private let popoverDelegate = PopOverDelegate()
+   // private let popoverDelegate = PopOverDelegate()
     
     private var eventMonitor: EventMonitor?
 
@@ -52,7 +52,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         UserPreferences.initializeUserPreferences()
         
         popover.contentViewController = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
-        popover.delegate = popoverDelegate
+        // popover.delegate = popoverDelegate
        
         hiddenController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Hidden"), bundle: nil).instantiateInitialController() as! NSWindowController)
         hiddenController?.window?.isOpaque = false
@@ -190,7 +190,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         switch event.type {
         case NSEvent.EventType.rightMouseUp:
-            if popover.isShown{
+            if popover.isShown && !self.popover.isDetached {
                 closePopover(sender)
             }
             statusItem.menu = menu
@@ -199,7 +199,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             // This is critical, otherwise clicks won't be processed again
             statusItem.menu = nil
         default:
-            if popover.isShown {
+            if popover.isShown && !self.popover.isDetached {
                 closePopover(sender)
             } else {
                 SpotifyAppleScript.startSpotify(hidden: true)

@@ -27,7 +27,7 @@ final class PopOverViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         defaultImage = artworkImageView.image
-        self.preferredContentSize = NSSize(width: 300, height: 298)
+        self.preferredContentSize = NSSize(width: 300, height: 300)
     }
     
     override func viewWillAppear() {
