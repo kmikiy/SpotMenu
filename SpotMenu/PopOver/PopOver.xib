@@ -54,21 +54,10 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sfg-o1-GVi">
-                            <rect key="frame" x="274" y="274" width="26" height="26"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="StatusBarButtonImage" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="OgE-Cq-jHl">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="openSpotify:" target="-2" id="cpn-ij-wmt"/>
-                            </connections>
-                        </button>
                         <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ZD-MG0">
                             <rect key="frame" x="11" y="60" width="40" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" title="&lt;" bezelStyle="shadowlessSquare" alignment="left" focusRingType="none" inset="2" id="eyZ-Np-WLr">
+                            <buttonCell key="cell" type="square" title="&lt;" bezelStyle="shadowlessSquare" alignment="center" focusRingType="none" inset="2" id="eyZ-Np-WLr">
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" size="20" name="AlNile"/>
                             </buttonCell>
@@ -79,7 +68,7 @@
                         <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pgo-pN-r7b">
                             <rect key="frame" x="252" y="60" width="40" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" title="&gt;" bezelStyle="shadowlessSquare" alignment="right" focusRingType="none" inset="2" id="FxM-QC-fqk">
+                            <buttonCell key="cell" type="square" title="&gt;" bezelStyle="shadowlessSquare" alignment="center" focusRingType="none" inset="2" id="FxM-QC-fqk">
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" size="20" name="AlNile"/>
                             </buttonCell>
@@ -138,6 +127,17 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sfg-o1-GVi">
+                            <rect key="frame" x="0.0" y="274" width="26" height="26"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="StatusBarButtonImage" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="OgE-Cq-jHl">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="openSpotify:" target="-2" id="cpn-ij-wmt"/>
+                            </connections>
+                        </button>
                     </subviews>
                 </visualEffectView>
             </subviews>
