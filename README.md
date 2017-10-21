@@ -12,7 +12,7 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
 
 ## Notes
 
-- The default behavior is to only show the SpotMenu icon in the menubar. Right click → Preferences to customize.    
+- The default behavior is to show the SpotMenu icon, Artist and Track title in the menubar. Right click → Preferences to customize.    
 - The animated gif currently demonstrates the functionality of version 1.7   
 
 ## New Features in Version 1.7
@@ -44,7 +44,7 @@ brew cask install spotmenu
 
 ## How to Build
 
-First, you'll need Xcode 8. You can download this at the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12).
+First, you'll need Xcode 9. You can download this at the [Mac App Store](https://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 Second, you'll need [CocoaPods](https://guides.cocoapods.org/using/getting-started.html). 
 
 Now, use [Git](http://git-scm.com/) to clone the repository.
@@ -70,7 +70,7 @@ Note:
 - [@fabi94music](https://github.com/fabi94music)
 - [@rebdeb](https://github.com/rebdeg)
 - [@bcubic](https://github.com/bcubic)
-- [@clinis](https://github.com/clinis))
+- [@clinis](https://github.com/clinis)
 - Everyone who posted an [issue / pull request](https://github.com/kmikiy/SpotMenu/issues?utf8=✓&q=)
 
 ## Help
