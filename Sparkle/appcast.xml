@@ -16,5 +16,27 @@
 <sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
 <enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.6/SpotMenu160.zip" sparkle:version="1.6.0" sparkle:shortVersionString="1.6.0" length="4842809" type="application/octet-stream" sparkle:dsaSignature="MCwCFBa5Sp0jTfBeb9oMVyC2Z6ugOcNzAhRVNesOZGaIqBxAGGOsNf6SdsX80g=="/>
 </item>
+<item>
+<title>1.7</title>
+    <description>
+          <![CDATA[
+            <ul>
+              <li>New layout</li>
+              <li>Option added in preferences to turn off now playing keyboard shortcut toast</li>
+              <li>Source code updated to Swift 4</li>
+              <li>Portuguese translation added (credits: [@clinis](https://github.com/clinis))</li>
+              <li>Brazilian portuguese translation added (credits: [@maurojuniorr](https://github.com/maurojuniorr))</li>
+              <li>Catalan tranlsation added (credits: [@bcubic](https://github.com/bcubic))</li>
+            </ul>
+          ]]>
+        </description>
+<pubDate>Sat, 21 Oct 2017 22PM 10:11:05 +0200</pubDate>
+<sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.7/SpotMenu170.zip" sparkle:version="1.7" sparkle:shortVersionString="1.7" length="6322073" type="application/octet-stream" sparkle:dsaSignature="MCwCFEYDgBJXx/9Wx26JOkg35q0bVRc3AhRPZ9BI9mlQP598auXZgmD5kwfsiA=="/>
+<sparkle:deltas>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.7/SpotMenu1.7-1.6.0.delta" sparkle:version="1.7" sparkle:shortVersionString="1.7" sparkle:deltaFrom="1.6.0" length="3975654" type="application/octet-stream" sparkle:dsaSignature="MCwCFH5XdC9ZqbkvElnnXRW1dt794DMxAhR+3ivu/j7RDZEUAQdPPv4IySnTrQ=="/></sparkle:deltas>
+</item>
+
+
 
 </channel></rss>
