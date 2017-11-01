@@ -80,3 +80,9 @@ Note:
 - Post new feature requests
 - Pull requests are welcome
 - [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NL4KDG65UYQB6) Help me get that new Tesla Model X 🚗 or a cup of coffee ☕️, anything helps 💸💰💵
+- Help me become a cryptocurrency  millionaire
+    - Ƀitcoin: 1Cc79kaUUWZ2fD7iFAnr5i89vb2j6JunvA
+    - Ethereum: 0xFA06Af34fd45c0213fc909F22cA7241BBD94076f
+    - Łitecoin: LS3ibFQWd2xz1ByZajrzS3Y787LgRwHYVE
+    
+![bitcoin](https://bitcoin.org/img/icons/logotop.svg)
