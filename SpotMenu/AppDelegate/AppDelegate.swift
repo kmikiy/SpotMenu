@@ -151,6 +151,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func updateTitleAndPopover() {
         let statusItemTitle = StatusItemBuilder()
+            .hideTitleArtistWhenPaused(v: UserPreferences.hideTitleArtistWhenPaused)
             .showTitle(v: UserPreferences.showTitle)
             .showArtist(v: UserPreferences.showArtist)
             .showPlayingIcon(v: UserPreferences.showPlayingIcon)
@@ -226,7 +227,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         //Show the icon regardless of setting if char count == 0
-        if (statusItem.title?.characters.count == 0 && statusItem.button != nil ){
+        if (statusItem.title?.count == 0 && statusItem.button != nil ){
             if let button = statusItem.button {
                 button.image = spotMenuIcon
             }

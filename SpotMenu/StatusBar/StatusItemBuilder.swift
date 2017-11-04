@@ -21,6 +21,8 @@ final class StatusItemBuilder {
     
     private var state: PlayerState
     
+    private var hideTitleArtistWhenPaused = false
+    
     // MARK: - Lifecycle method
     
     init() {
@@ -29,8 +31,17 @@ final class StatusItemBuilder {
     
     // MARK: - Methods
     
+    func hideTitleArtistWhenPaused(v: Bool) -> StatusItemBuilder {
+        hideTitleArtistWhenPaused = v
+        return self
+    }
+    
     func showTitle(v: Bool) -> StatusItemBuilder {
         if !v {
+            title = ""
+            return self
+        }
+        if (state == PlayerState.paused && hideTitleArtistWhenPaused) {
             title = ""
             return self
         }
@@ -45,6 +56,10 @@ final class StatusItemBuilder {
             artist = ""
             return self
         }
+        if (state == PlayerState.paused && hideTitleArtistWhenPaused) {
+            title = ""
+            return self
+        }
         if let artist = SpotifyAppleScript.currentTrack.artist {
             self.artist = artist + " "
         }
@@ -53,6 +68,10 @@ final class StatusItemBuilder {
     
     func showAlbumArtist(v: Bool) -> StatusItemBuilder {
         if !v {
+            artist = ""
+            return self
+        }
+        if (state == PlayerState.paused && hideTitleArtistWhenPaused) {
             artist = ""
             return self
         }
@@ -76,7 +95,7 @@ final class StatusItemBuilder {
     }
     
     func getString() -> String {
-        if( artist.characters.count != 0 && title.characters.count != 0 ) {
+        if( artist.count != 0 && title.count != 0 ) {
             return "\(playingIcon)\(artist)- \(title)"
         }
         return "\(playingIcon)\(artist)\(title)"

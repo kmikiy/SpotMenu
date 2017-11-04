@@ -27,6 +27,8 @@ struct UserPreferences {
         static let hasBeenInitialized = "hasBeenInitialized"
         
         static let keyboardShortcutEnabled = "keyboardShortcutEnabled"
+        
+        static let hideTitleArtistWhenPaused = "hideTitleArtistWhenPaused"
     }
     
     // MARK: - Properties
@@ -85,6 +87,15 @@ struct UserPreferences {
         }
     }
     
+    static var hideTitleArtistWhenPaused: Bool {
+        get {
+            return UserPreferences.readSetting(key: Keys.hideTitleArtistWhenPaused)
+        }
+        set {
+            UserPreferences.setSetting(key: Keys.hideTitleArtistWhenPaused, value: newValue)
+        }
+    }
+    
     // MARK: - Public methods
     
     static func clearAllSettings() {
@@ -120,7 +131,8 @@ struct UserPreferences {
             UserPreferences.showPlayingIcon ||
             UserPreferences.showSpotMenuIcon ||
             UserPreferences.fixPopoverToTheRight ||
-            UserPreferences.keyboardShortcutEnabled {
+            UserPreferences.keyboardShortcutEnabled ||
+            UserPreferences.hideTitleArtistWhenPaused {
             return
         }
         
@@ -132,6 +144,7 @@ struct UserPreferences {
         UserPreferences.showPlayingIcon = true
         UserPreferences.showSpotMenuIcon = true
         UserPreferences.keyboardShortcutEnabled = true
+        UserPreferences.hideTitleArtistWhenPaused = true
     }
 }
 

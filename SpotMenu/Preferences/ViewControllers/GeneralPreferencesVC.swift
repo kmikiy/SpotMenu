@@ -25,8 +25,10 @@ final class GeneralPreferencesVC: NSViewController {
     @IBOutlet fileprivate weak var fixPopoverToTheRightButton: HoverButton!
     @IBOutlet fileprivate weak var openAtLoginButton: HoverButton!
     @IBOutlet fileprivate weak var enableKeyboardShortcutButton: HoverButton!
+    @IBOutlet fileprivate weak var hideTextWhenPausedButton: HoverButton!
     @IBOutlet fileprivate weak var moreInformation: NSTextField!
     @IBOutlet private weak var withLoveFromKmikiyText: NSTextField!
+
     
     // MARK: - Lifecycle methods
    
@@ -51,6 +53,7 @@ final class GeneralPreferencesVC: NSViewController {
         fixPopoverToTheRightButton.title = NSLocalizedString("Fix popover to the right", comment: "")
         openAtLoginButton.title = NSLocalizedString("Open at login", comment: "")
         enableKeyboardShortcutButton.title = NSLocalizedString("Enable keyboard shortcut", comment: "")
+        hideTextWhenPausedButton.title = NSLocalizedString("Hide text when paused", comment: "")
         withLoveFromKmikiyText.stringValue = NSLocalizedString("with ♥ from kmikiy", comment: "")
     }
     
@@ -62,6 +65,7 @@ final class GeneralPreferencesVC: NSViewController {
         fixPopoverToTheRightButton.state = NSControl.StateValue(rawValue: UserPreferences.fixPopoverToTheRight.asState)
         openAtLoginButton.state = NSControl.StateValue(rawValue: applicationIsInStartUpItems().asState)
         enableKeyboardShortcutButton.state = NSControl.StateValue(rawValue: UserPreferences.keyboardShortcutEnabled.asState)
+        hideTextWhenPausedButton.state = NSControl.StateValue(rawValue: UserPreferences.hideTitleArtistWhenPaused.asState)
     }
     
     private func initButtonHovers(){
@@ -82,6 +86,9 @@ final class GeneralPreferencesVC: NSViewController {
         
         openAtLoginButton.mouseEnteredFunc = hoverOpenAtLogin
         openAtLoginButton.mouseExitedFunc = hoverAway
+        
+        hideTextWhenPausedButton.mouseEnteredFunc = hoverHideTitleWhenPaused
+        hideTextWhenPausedButton.mouseExitedFunc = hoverAway
         
         enableKeyboardShortcutButton.mouseEnteredFunc = hoverEnableKeyboardShortcut
         enableKeyboardShortcutButton.mouseExitedFunc = hoverAway
@@ -118,6 +125,11 @@ final class GeneralPreferencesVC: NSViewController {
     @IBAction private func toggleOpenAtLogin(_ sender: Any) {
         toggleLaunchAtStartup()
         openAtLoginButton.state = NSControl.StateValue(rawValue: applicationIsInStartUpItems().asState)
+    }
+    
+    @IBAction func toggleHideTextWhenPaused(_ sender: Any) {
+        UserPreferences.hideTitleArtistWhenPaused = hideTextWhenPausedButton.state.asBool
+        postUpdateNotification()
     }
     
     @IBAction func toggleEnableKeyboardShortcut(_ sender: Any) {
@@ -168,6 +180,10 @@ extension GeneralPreferencesVC {
     
     fileprivate func hoverEnableKeyboardShortcut() {
         moreInformation.stringValue = NSLocalizedString("Display the current song artist and title by pressing ctrl + command + m.", comment: "")
+    }
+    
+    fileprivate func hoverHideTitleWhenPaused() {
+        moreInformation.stringValue = NSLocalizedString("Omits the current song artist and title from the menu bar when the music is paused.", comment: "")
     }
     
     fileprivate func hoverAway() {
