@@ -37,3 +37,4 @@
 "Preferences" = "Voorkeuren";
 "Indicates whether or not to check for updates automatically." = "Geeft aan of wel of niet op automatische updates moet worden gecontroleerd";
 "Indicates whether or not updates can be automatically downloaded in the background." = "Geeft aan of updates automatisch op de achtergrond kunnen worden gedownload";
+"Enable keyboard shortcut" = "Schakel sneltoetsen in";

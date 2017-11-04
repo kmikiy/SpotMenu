@@ -37,3 +37,5 @@
 "Preferences" = "Preferences";
 "Indicates whether or not to check for updates automatically." = "Indicates whether or not to check for updates automatically.";
 "Indicates whether or not updates can be automatically downloaded in the background." = "Indicates whether or not updates can be automatically downloaded in the background.";
+"Enable keyboard shortcut" = "Enable keyboard shortcut";
+"Display the current song artist and title by pressing ctrl + command + m." = "Display the current song artist and title by pressing ctrl + command + m.";

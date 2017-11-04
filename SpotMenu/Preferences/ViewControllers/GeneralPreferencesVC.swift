@@ -24,7 +24,7 @@ final class GeneralPreferencesVC: NSViewController {
     @IBOutlet fileprivate weak var showSpotMenuIconButton: HoverButton!
     @IBOutlet fileprivate weak var fixPopoverToTheRightButton: HoverButton!
     @IBOutlet fileprivate weak var openAtLoginButton: HoverButton!
-    @IBOutlet weak var enableKeyboardShortcutButton: HoverButton!
+    @IBOutlet fileprivate weak var enableKeyboardShortcutButton: HoverButton!
     @IBOutlet fileprivate weak var moreInformation: NSTextField!
     @IBOutlet private weak var withLoveFromKmikiyText: NSTextField!
     
