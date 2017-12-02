@@ -35,6 +35,7 @@
                     <tabViewItems>
                         <tabViewItem label="General" identifier="general" image="NSPreferencesGeneral" id="g7m-Zo-MWm"/>
                         <tabViewItem label="Updates" identifier="updates" image="NSRefreshFreestandingTemplate" id="93o-J6-5JH"/>
+                        <tabViewItem label="About" identifier="about" image="NSInfo" id="tQ7-wq-2Mb"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" type="noTabsNoBorder" id="RYW-RI-FWg">
@@ -52,6 +53,7 @@
                         <outlet property="updatesTabViewItem" destination="93o-J6-5JH" id="eht-sw-lSu"/>
                         <segue destination="D1B-Ck-xIn" kind="relationship" relationship="tabItems" id="WM0-n8-Yx4"/>
                         <segue destination="fEd-oz-QyX" kind="relationship" relationship="tabItems" id="8Qp-NI-2vj"/>
+                        <segue destination="pqV-JR-Okr" kind="relationship" relationship="tabItems" id="cJC-g3-vL1"/>
                     </connections>
                 </tabViewController>
                 <customObject id="gRK-JW-MeB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -344,8 +346,30 @@
             </objects>
             <point key="canvasLocation" x="-82" y="990"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="B0H-gi-HhM">
+            <objects>
+                <viewController id="pqV-JR-Okr" sceneMemberID="viewController">
+                    <view key="view" id="qu0-gr-XuQ">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gbo-88-los">
+                                <rect key="frame" x="20" y="20" width="345" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="Goals" id="WCY-Ow-FZg"/>
+                            </imageView>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="GP6-Ib-fwr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="500" y="995"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Goals" width="153.1199951171875" height="102.23999786376953"/>
+        <image name="NSInfo" width="32" height="32"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSRefreshFreestandingTemplate" width="14" height="14"/>
     </resources>
