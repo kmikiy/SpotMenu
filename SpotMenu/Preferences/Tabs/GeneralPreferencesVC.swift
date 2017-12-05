@@ -20,6 +20,7 @@ final class GeneralPreferencesVC: NSViewController {
     
     @IBOutlet fileprivate weak var showArtistButton: HoverButton!
     @IBOutlet fileprivate weak var showTitleButton: HoverButton!
+    @IBOutlet fileprivate weak var showAlbumNameButton: HoverButton!
     @IBOutlet fileprivate weak var showPlayingIconButton: HoverButton!
     @IBOutlet fileprivate weak var showSpotMenuIconButton: HoverButton!
     @IBOutlet fileprivate weak var fixPopoverToTheRightButton: HoverButton!
@@ -48,6 +49,7 @@ final class GeneralPreferencesVC: NSViewController {
     private func initLabels(){
         showArtistButton.title = NSLocalizedString("Show artist", comment: "")
         showTitleButton.title =  NSLocalizedString("Show title", comment: "")
+        showAlbumNameButton.title = NSLocalizedString("Show album title", comment: "")
         showPlayingIconButton.title = NSLocalizedString("Show playing icon", comment: "")
         showSpotMenuIconButton.title = NSLocalizedString("Show SpotMenu icon", comment: "")
         fixPopoverToTheRightButton.title = NSLocalizedString("Fix popover to the right", comment: "")
@@ -60,6 +62,7 @@ final class GeneralPreferencesVC: NSViewController {
     private func initButtonStates(){
         showArtistButton.state = NSControl.StateValue(rawValue: UserPreferences.showArtist.asState)
         showTitleButton.state =  NSControl.StateValue(rawValue: UserPreferences.showTitle.asState)
+        showAlbumNameButton.state = NSControl.StateValue(rawValue: UserPreferences.showAlbumName.asState)
         showPlayingIconButton.state = NSControl.StateValue(rawValue: UserPreferences.showPlayingIcon.asState)
         showSpotMenuIconButton.state = NSControl.StateValue(rawValue: UserPreferences.showSpotMenuIcon.asState)
         fixPopoverToTheRightButton.state = NSControl.StateValue(rawValue: UserPreferences.fixPopoverToTheRight.asState)
@@ -74,6 +77,9 @@ final class GeneralPreferencesVC: NSViewController {
         
         showTitleButton.mouseEnteredFunc = hoverShowTitle
         showTitleButton.mouseExitedFunc = hoverAway
+        
+        showAlbumNameButton.mouseEnteredFunc = hoverShowAlbumName
+        showAlbumNameButton.mouseEnteredFunc = hoverAway
         
         showPlayingIconButton.mouseEnteredFunc = hoverShowPlayingIcon
         showPlayingIconButton.mouseExitedFunc = hoverAway
@@ -103,6 +109,11 @@ final class GeneralPreferencesVC: NSViewController {
     
     @IBAction private func toggleShowTitle(_ sender: Any) {
         UserPreferences.showTitle = showTitleButton.state.asBool
+        postUpdateNotification()
+    }
+    
+    @IBAction private func toggleShowAlbumName(_ sender: Any) {
+        UserPreferences.showAlbumName = showAlbumNameButton.state.asBool
         postUpdateNotification()
     }
     
@@ -155,11 +166,15 @@ final class GeneralPreferencesVC: NSViewController {
 extension GeneralPreferencesVC {
     
     fileprivate func hoverShowArtist() {
-        moreInformation.stringValue = NSLocalizedString("When checked the Artist will be shown in the menu bar.", comment: "")
+        moreInformation.stringValue = NSLocalizedString("When checked the artist will be shown in the menu bar.", comment: "")
     }
     
     fileprivate func hoverShowTitle() {
-        moreInformation.stringValue = NSLocalizedString("When checked the Title will be shown in the menu bar.", comment: "")
+        moreInformation.stringValue = NSLocalizedString("When checked the title will be shown in the menu bar.", comment: "")
+    }
+    
+    fileprivate func hoverShowAlbumName() {
+        moreInformation.stringValue = NSLocalizedString("When checked the album name will be shown in the menu bar.", comment: "")
     }
     
     fileprivate func hoverShowPlayingIcon() {

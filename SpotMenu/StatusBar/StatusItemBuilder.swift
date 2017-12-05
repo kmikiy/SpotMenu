@@ -17,6 +17,8 @@ final class StatusItemBuilder {
     
     private var artist = ""
     
+    private var albumName = ""
+    
     private var playingIcon = ""
     
     private var state: PlayerState
@@ -81,6 +83,19 @@ final class StatusItemBuilder {
         return self
     }
     
+    func showAlbumName(v: Bool) -> StatusItemBuilder {
+        if !v {
+            albumName = ""
+            return self
+        } else if (state == PlayerState.paused && hideTitleArtistWhenPaused) {
+            albumName = ""
+            return self
+        } else if let albumName = SpotifyAppleScript.currentTrack.albumName {
+            self.albumName = albumName + " "
+        }
+        return self
+    }
+    
     func showPlayingIcon(v: Bool) -> StatusItemBuilder {
         if !v {
             playingIcon = ""
@@ -95,7 +110,9 @@ final class StatusItemBuilder {
     }
     
     func getString() -> String {
-        if( artist.count != 0 && title.count != 0 ) {
+        if (artist.count != 0 && title.count != 0 && albumName.count != 0) {
+            return "\(playingIcon)\(artist)- \(title)- \(albumName)"
+        } else if (artist.count != 0 && title.count != 0) {
             return "\(playingIcon)\(artist)- \(title)"
         }
         return "\(playingIcon)\(artist)\(title)"
