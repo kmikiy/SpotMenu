@@ -121,7 +121,7 @@ extension iTunesTrack {
             artwork = iTunesArtwork.data
         }
         
-        return MusicTrack(id: String(id), title: name, album: album, artist: artist, duration: duration, artwork: artwork, lyrics: lyrics, url: nil, originalTrack: self as? SBObject)
+        return MusicTrack(id: String(id), title: name, album: album, artist: artist, duration: duration, artwork: artwork, artworkUrl: nil, lyrics: lyrics, url: nil, originalTrack: self as? SBObject)
     }
     
 }

@@ -16,6 +16,7 @@ public struct MusicTrack {
     public private(set) var artist: String?
     public private(set) var duration: TimeInterval
     public var artwork: NSImage?
+    public var artworkUrl: String?
     public var lyrics: String?
     public var url: URL?
     

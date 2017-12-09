@@ -159,6 +159,6 @@ extension VoxApplication {
         if let trackURL = trackUrl {
             url = URL(fileURLWithPath: trackURL)
         }
-        return MusicTrack(id: id, title: title, album: album, artist: artist, duration: totalTime, artwork: artworkImage, lyrics: nil, url: url, originalTrack: nil)
+        return MusicTrack(id: id, title: title, album: album, artist: artist, duration: totalTime, artwork: artworkImage, artworkUrl: nil, lyrics: nil, url: url, originalTrack: nil)
     }
 }
