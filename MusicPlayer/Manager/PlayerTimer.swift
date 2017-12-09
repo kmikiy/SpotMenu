@@ -89,7 +89,7 @@ class PlayerTimer {
         
         // start timer
         timer?.invalidate()
-        timer = Timer(timeInterval: minPrecision, target: self, selector: #selector(notifyAllObservers(_:)), userInfo: nil, repeats: true)
+        timer = Timer(timeInterval: 2, target: self, selector: #selector(notifyAllObservers(_:)), userInfo: nil, repeats: true)
         RunLoop.main.add(timer!, forMode: .commonModes)
     }
     

@@ -7,7 +7,6 @@
 
 import Foundation
 import ScriptingBridge
-import iTunesBridge
 
 class iTunes {
     

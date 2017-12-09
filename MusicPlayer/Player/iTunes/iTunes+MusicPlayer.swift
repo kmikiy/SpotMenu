@@ -7,7 +7,6 @@
 
 import Foundation
 import ScriptingBridge
-import iTunesBridge
 
 extension iTunes: MusicPlayer {
     
