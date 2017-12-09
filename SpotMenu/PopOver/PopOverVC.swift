@@ -34,6 +34,7 @@ final class PopOverViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         updateInfo(track: musicPlayerManager.existMusicPlayer(with: .spotify)?.currentTrack)
+        updateButton(state: musicPlayerManager.existMusicPlayer(with: .spotify)?.playbackState)
     }
     
     func setUpMusicPlayerManager() {
@@ -72,7 +73,7 @@ final class PopOverViewController: NSViewController {
             
             titleLabel.stringValue = track.title
             titleLabel.textColor = nil
- 
+            
         } else {
             artistLabel.stringValue = "Artist"
             artistLabel.textColor = NSColor.gray
@@ -85,34 +86,40 @@ final class PopOverViewController: NSViewController {
 //        let position = SpotifyAppleScript.currentTrack.positionPercentage
 //        positionSlider.doubleValue = floor(position * 100)
 
-//        updateTime()
+        updateTime(track: track)
     }
     
     // MARK: - Private methods
     
-//    fileprivate func updateTime() {
-//        let leftTimeTuple = secondsToHoursMinutesSeconds(seconds: SpotifyAppleScript.currentTrack.position)
-//        leftTime.stringValue = getTimeString(tuple: leftTimeTuple)
-//
-//
-//        switch rightTimeIsDuration {
-//        case true:
-//            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: SpotifyAppleScript.currentTrack.duration)
-//            rightTime.stringValue = getTimeString(tuple: rightTimeTuple)
-//        case false:
-//            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: SpotifyAppleScript.currentTrack.duration - SpotifyAppleScript.currentTrack.position)
-//            rightTime.stringValue = "-" + getTimeString(tuple: rightTimeTuple)
-//        }
-//
-//    }
+    fileprivate func updateTime(track: MusicTrack?) {
+        if let track = track {
+//            let leftTimeTuple = secondsToHoursMinutesSeconds(seconds: track.position)
+//            leftTime.stringValue = getTimeString(tuple: leftTimeTuple)
+            
+            
+            switch rightTimeIsDuration {
+            case true:
+                let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: track.duration/1000)
+                rightTime.stringValue = getTimeString(tuple: rightTimeTuple)
+            case false: break
+//                let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: track.duration - track.position)
+//                rightTime.stringValue = "-" + getTimeString(tuple: rightTimeTuple)
+            }
+        }
+    }
 
-    private func updateButton(state: MusicPlaybackState) {
-        switch state {
-        case .paused:
-            playerStateButton.title = "▶︎"
-        case .playing:
-            playerStateButton.title = "❚❚"
-        default:
+    private func updateButton(state: MusicPlaybackState?) {
+        if let state = state {
+            switch state {
+            case .paused:
+                playerStateButton.title = "▶︎"
+            case .playing:
+                playerStateButton.title = "❚❚"
+            default:
+                playerStateButton.title = "▶︎"
+            }
+        }
+        else {
             playerStateButton.title = "▶︎"
         }
     }
@@ -173,6 +180,9 @@ private extension PopOverViewController {
 
 extension PopOverViewController:  MusicPlayerManagerDelegate {
     func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, didChangeTrack track: MusicTrack, atPosition position: TimeInterval) {
+        print(position)
+        print(track.duration)
+        print("POSITION LKSJFLK JDFLKJ SDFL KJSDLFKJSDLF JSDLKF JSLF JDS")
         updateInfo(track: track)
     }
     

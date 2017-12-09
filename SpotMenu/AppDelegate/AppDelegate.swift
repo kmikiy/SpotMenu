@@ -62,8 +62,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         musicPlayerManager1.add(musicPlayer: .spotify)
         musicPlayerManager1.add(musicPlayer: .iTunes)
         
-        let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil) as? PopOverViewController
-        popoverVC?.setUpMusicPlayerManager()
+        let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
+        popoverVC.setUpMusicPlayerManager()
         popover.contentViewController = popoverVC
         // popover.delegate = popoverDelegate
        
