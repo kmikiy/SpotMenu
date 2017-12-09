@@ -116,7 +116,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let sb = NSStoryboard.init(name: NSStoryboard.Name(rawValue: "Hud"), bundle: nil)
         hudController = sb.instantiateInitialController() as? HudWindowController
         
-        hudController!.setText(text: "Hello ")
+        hudController!.setText(text: StatusItemBuilder(
+            title: musicPlayerManager.currentPlayer?.currentTrack?.title,
+            artist: musicPlayerManager.currentPlayer?.currentTrack?.artist,
+            albumName: musicPlayerManager.currentPlayer?.currentTrack?.album,
+            isPlaying: musicPlayerManager.currentPlayer?.playbackState == MusicPlaybackState.playing)
+            .hideWhenPaused(v: false)
+            .showTitle(v: true)
+            .showAlbumName(v: true)
+            .showArtist(v: true)
+            .showPlayingIcon(v: true)
+            .getString())
 
         hudController?.showWindow(nil)
         hudController?.window?.makeKeyAndOrderFront(self)
@@ -286,7 +296,7 @@ extension AppDelegate: MusicPlayerManagerDelegate {
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayerDidQuit player: MusicPlayer) {
-        
+        updateTitle()
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayerDidChange player: MusicPlayer) {

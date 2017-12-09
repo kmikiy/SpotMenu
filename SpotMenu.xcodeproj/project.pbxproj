@@ -69,6 +69,7 @@
 		64D5BEA51FDC736300AE5C99 /* iTunesBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5BE951FDC736300AE5C99 /* iTunesBridge.swift */; };
 		64D5BEA61FDC736300AE5C99 /* iTunes.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D5BE971FDC736300AE5C99 /* iTunes.h */; };
 		64D5BEA91FDC744C00AE5C99 /* SBProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5BEA81FDC744C00AE5C99 /* SBProtocols.swift */; };
+		64D5BEAA1FDC8E4D00AE5C99 /* MusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64D5BE541FDC714900AE5C99 /* MusicPlayer.framework */; };
 		64ED8B361F6C338E00CAA1AA /* PreferencesTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED8B351F6C338E00CAA1AA /* PreferencesTabVC.swift */; };
 		64ED8B381F6C351500CAA1AA /* PreferencesWC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64ED8B371F6C351500CAA1AA /* PreferencesWC.swift */; };
 		64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64F29A0B1F2E5F1100E48BBD /* Localizable.strings */; };
@@ -223,6 +224,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64D5BEAA1FDC8E4D00AE5C99 /* MusicPlayer.framework in Frameworks */,
 				64185C0E1F1B8DC400CA23A0 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

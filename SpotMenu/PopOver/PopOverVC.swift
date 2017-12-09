@@ -165,7 +165,10 @@ private extension PopOverViewController {
 
 extension PopOverViewController:  MusicPlayerManagerDelegate {
     func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, didChangeTrack track: MusicTrack, atPosition position: TimeInterval) {
-        
+        if let artwork = musicPlayerManager.currentPlayer?.currentTrack?.artwork{
+            
+            artworkImageView.image = artwork
+        }
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, playbackStateChanged playbackState: MusicPlaybackState, atPosition position: TimeInterval) {
