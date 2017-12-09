@@ -26,59 +26,67 @@ final class PopOverViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.musicPlayerManager = MusicPlayerManager()
-        self.musicPlayerManager.add(musicPlayer: MusicPlayerName.spotify)
-        self.musicPlayerManager.add(musicPlayer: MusicPlayerName.iTunes)
-        self.musicPlayerManager.delegate = self
-        
         
         defaultImage = artworkImageView.image
         self.preferredContentSize = NSSize(width: 300, height: 300)
     }
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        updateInfo(track: musicPlayerManager.existMusicPlayer(with: .spotify)?.currentTrack)
     }
     
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        
+        self.musicPlayerManager = MusicPlayerManager()
+        self.musicPlayerManager.add(musicPlayer: MusicPlayerName.spotify)
+        self.musicPlayerManager.add(musicPlayer: MusicPlayerName.iTunes)
+        self.musicPlayerManager.delegate = self
     }
     
     // MARK: - Public methods
     
 
-//    @objc func updateInfo() {
-//        if let artworkUrl = SpotifyAppleScript.currentTrack.artworkUrl , artworkUrl != lastArtworkUrl {
-//            self.artworkImageView.downloadImage(url: URL(string: artworkUrl)!)
-//            lastArtworkUrl = artworkUrl
-//        }
-//        if SpotifyAppleScript.currentTrack.artworkUrl == nil {
-//            artworkImageView.image = defaultImage
-//        }
-//
-//        if let artist = SpotifyAppleScript.currentTrack.albumArtist {
-//            artistLabel.stringValue = artist
-//            artistLabel.textColor = nil
-//
-//        } else {
-//            artistLabel.stringValue = "Artist"
-//            artistLabel.textColor = NSColor.gray
-//        }
-//
-//        if let title = SpotifyAppleScript.currentTrack.title {
-//            titleLabel.stringValue = title
-//            titleLabel.textColor = nil
-//        } else {
-//            titleLabel.stringValue = "Title"
-//            titleLabel.textColor = NSColor.gray
-//        }
-//
+    func updateInfo(track: MusicTrack?) {
+        if let track = track {
+            if let artworkUrl = track.artworkUrl , artworkUrl != lastArtworkUrl {
+                self.artworkImageView.downloadImage(url: URL(string: artworkUrl)!)
+                lastArtworkUrl = artworkUrl
+            }
+            if track.artworkUrl == nil {
+                artworkImageView.image = defaultImage
+            }
+            if let artwork = track.artwork {
+                artworkImageView.image = artwork
+            }
+            
+            if let artist = track.artist {
+                artistLabel.stringValue = artist
+                artistLabel.textColor = nil
+                
+            } else {
+                artistLabel.stringValue = "Artist"
+                artistLabel.textColor = NSColor.gray
+            }
+            
+            titleLabel.stringValue = track.title
+            titleLabel.textColor = nil
+ 
+        } else {
+            artistLabel.stringValue = "Artist"
+            artistLabel.textColor = NSColor.gray
+            
+            titleLabel.stringValue = "Title"
+            titleLabel.textColor = NSColor.gray
+        }
+
+
 //        let position = SpotifyAppleScript.currentTrack.positionPercentage
 //        positionSlider.doubleValue = floor(position * 100)
-//
+
 //        updateTime()
-//        updateButton()
-//    }
+    }
     
     // MARK: - Private methods
     
@@ -98,18 +106,17 @@ final class PopOverViewController: NSViewController {
 //
 //    }
 
-//    private func updateButton() {
-//        updateButton(SpotifyAppleScript.playerState)
-//    }
+    private func updateButton(state: MusicPlaybackState) {
+        switch state {
+        case .paused:
+            playerStateButton.title = "▶︎"
+        case .playing:
+            playerStateButton.title = "❚❚"
+        default:
+            playerStateButton.title = "▶︎"
+        }
+    }
     
-//    private func updateButton(_ state: PlayerState){
-//        switch state {
-//        case .paused:
-//            playerStateButton.title = "▶︎"
-//        case .playing:
-//            playerStateButton.title = "❚❚"
-//        }
-//    }
     
     private func secondsToHoursMinutesSeconds (seconds : Double) -> (Int, Int, Int) {
         return (Int(seconds / 3600),
@@ -146,15 +153,16 @@ private extension PopOverViewController {
     }
     
     @IBAction func togglePlay(_ sender: AnyObject) {
-        let state = self.musicPlayerManager.currentPlayer!.playbackState
-        switch state {
-        case .paused:
-            self.musicPlayerManager.currentPlayer?.play()
-        case .playing:
-            self.musicPlayerManager.currentPlayer?.pause()
-        default: break
-
+        if let state = self.musicPlayerManager.currentPlayer?.playbackState {
+            switch state {
+            case .paused:
+                self.musicPlayerManager.currentPlayer?.play()
+            case .playing:
+                self.musicPlayerManager.currentPlayer?.pause()
+            default: break
+            }
         }
+
     }
     
     @IBAction func toggleRightTime(_ sender: AnyObject) {
@@ -165,18 +173,16 @@ private extension PopOverViewController {
 
 extension PopOverViewController:  MusicPlayerManagerDelegate {
     func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, didChangeTrack track: MusicTrack, atPosition position: TimeInterval) {
-        if let artwork = musicPlayerManager.currentPlayer?.currentTrack?.artwork{
-            
-            artworkImageView.image = artwork
-        }
+        updateInfo(track: track)
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, playbackStateChanged playbackState: MusicPlaybackState, atPosition position: TimeInterval) {
-        
+        updateInfo(track: player.currentTrack)
+        updateButton(state: playbackState)
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayerDidQuit player: MusicPlayer) {
-        
+        updateInfo(track: nil)
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayerDidChange player: MusicPlayer) {
