@@ -153,6 +153,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let statusItemTitle = StatusItemBuilder()
             .hideTitleArtistWhenPaused(v: UserPreferences.hideTitleArtistWhenPaused)
             .showTitle(v: UserPreferences.showTitle)
+            .showAlbumName(v: UserPreferences.showAlbumName)
             .showArtist(v: UserPreferences.showArtist)
             .showPlayingIcon(v: UserPreferences.showPlayingIcon)
             .getString()

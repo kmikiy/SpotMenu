@@ -65,6 +65,7 @@ Note:
 ## Contributors
 
 - [@danieltmbr](https://github.com/danieltmbr)
+- [@KamranMackey](https://github.com/KamranMackey)
 - [@maurojuniorr](https://github.com/maurojuniorr)
 - [@Triloworld](https://github.com/Triloworld)
 - [@fabi94music](https://github.com/fabi94music)

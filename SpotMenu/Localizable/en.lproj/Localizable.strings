@@ -12,8 +12,9 @@
 "Quit" = "Quit";
 "Now playing" = "Now playing";
 "Hover over an option for more information." = "Hover over an option for more information.";
-"When checked the Artist will be shown in the menu bar." = "When checked the Artist will be shown in the menu bar.";
-"When checked the Title will be shown in the menu bar." = "When checked the Title will be shown in the menu bar.";
+"When checked the artist will be shown in the menu bar." = "When checked the artist will be shown in the menu bar.";
+"When checked the album name will be shown in the menu bar." = "When checked the album name will be shown in the menu bar.";
+"When checked the title will be shown in the menu bar." = "When checked the title will be shown in the menu bar.";
 "When checked the playing icon (♫) will be shown in the menu bar if music is played." = "When checked the playing icon (♫) will be shown in the menu bar if music is played.";
 "When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "When checked the SpotMenu icon will be shown in the menu bar.\n\nNote:\nIf there is no music information to be shown the SpotMenu icon will be visible.";
 "When checked the popover will be fixed to the right corner." = "When checked the popover will be fixed to the right corner.";
