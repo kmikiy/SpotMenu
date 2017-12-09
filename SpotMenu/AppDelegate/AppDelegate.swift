@@ -45,6 +45,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var musicPlayerManager: MusicPlayerManager!
     
+    private var musicPlayerManager1: MusicPlayerManager!
+    
     // MARK: - AppDelegate methods
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -56,7 +58,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         musicPlayerManager.add(musicPlayer: .iTunes)
         musicPlayerManager.delegate = self
         
-        popover.contentViewController = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
+        musicPlayerManager1 = MusicPlayerManager()
+        musicPlayerManager1.add(musicPlayer: .spotify)
+        musicPlayerManager1.add(musicPlayer: .iTunes)
+        
+        let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil) as? PopOverViewController
+        popoverVC?.setUpMusicPlayerManager()
+        popover.contentViewController = popoverVC
         // popover.delegate = popoverDelegate
        
         hiddenController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Hidden"), bundle: nil).instantiateInitialController() as! NSWindowController)

@@ -9,7 +9,7 @@ final class PopOverViewController: NSViewController {
     private var lastArtworkUrl = ""
     fileprivate var rightTimeIsDuration: Bool = true
     private var defaultImage: NSImage!
-    private var musicPlayerManager: MusicPlayerManager!
+    public var musicPlayerManager: MusicPlayerManager!
     
     // MARK: - IBOutlets
     
@@ -36,12 +36,12 @@ final class PopOverViewController: NSViewController {
         updateInfo(track: musicPlayerManager.existMusicPlayer(with: .spotify)?.currentTrack)
     }
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
-        
-        self.musicPlayerManager = MusicPlayerManager()
-        self.musicPlayerManager.add(musicPlayer: MusicPlayerName.spotify)
-        self.musicPlayerManager.add(musicPlayer: MusicPlayerName.iTunes)
+    func setUpMusicPlayerManager() {
+        if self.musicPlayerManager == nil {
+            self.musicPlayerManager = MusicPlayerManager()
+            self.musicPlayerManager.add(musicPlayer: MusicPlayerName.spotify)
+            self.musicPlayerManager.add(musicPlayer: MusicPlayerName.iTunes)
+        }
         self.musicPlayerManager.delegate = self
     }
     
