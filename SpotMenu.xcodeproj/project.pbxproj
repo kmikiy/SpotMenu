@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C62E29C241D0358B936C134 /* Pods_SpotMenuToday.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5325CBE9807E5B7BDCB8234D /* Pods_SpotMenuToday.framework */; };
 		2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133242B1D79801E0060D48C /* AppDelegate.swift */; };
 		2133242E1D79801E0060D48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2133242D1D79801E0060D48C /* Assets.xcassets */; };
 		2133243A1D79967B0060D48C /* PopOverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* PopOverVC.swift */; };
@@ -207,10 +206,8 @@
 		64F29A0F1F2E5FDD00E48BBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenuToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday.release.xcconfig"; sourceTree = "<group>"; };
 		E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewExtension.swift; sourceTree = "<group>"; };
 		E2D35CD21F60A1DC00EB5D67 /* PopOverViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewControllerExtension.swift; sourceTree = "<group>"; };
-		FD5C41D09992EC74D74ADE15 /* Pods-SpotMenuToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenuToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,7 +224,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				64185C0E1F1B8DC400CA23A0 /* NotificationCenter.framework in Frameworks */,
-				1C62E29C241D0358B936C134 /* Pods_SpotMenuToday.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,8 +568,6 @@
 			children = (
 				6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */,
 				5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */,
-				FD5C41D09992EC74D74ADE15 /* Pods-SpotMenuToday.debug.xcconfig */,
-				BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -630,11 +624,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 64185C201F1B8DC400CA23A0 /* Build configuration list for PBXNativeTarget "SpotMenuToday" */;
 			buildPhases = (
-				69303F770BC8D0F207586118 /* [CP] Check Pods Manifest.lock */,
 				64185C081F1B8DC400CA23A0 /* Sources */,
 				64185C091F1B8DC400CA23A0 /* Frameworks */,
 				64185C0A1F1B8DC400CA23A0 /* Resources */,
-				EDE1A24A35F73C972F4DD8AA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -760,24 +752,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		69303F770BC8D0F207586118 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SpotMenuToday-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AAC6D2D89D08D17D0DB46A69 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -811,21 +785,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EDE1A24A35F73C972F4DD8AA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMenuToday/Pods-SpotMenuToday-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F8E0917400630BBF5370A313 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -836,14 +795,12 @@
 				"${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM",
-				"${BUILT_PRODUCTS_DIR}/SpotifyAppleScript/SpotifyAppleScript.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoginServiceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/Sparkle.framework.dSYM",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpotifyAppleScript.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1114,7 +1071,6 @@
 		};
 		64185C1E1F1B8DC400CA23A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD5C41D09992EC74D74ADE15 /* Pods-SpotMenuToday.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1139,7 +1095,6 @@
 		};
 		64185C1F1F1B8DC400CA23A0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB1648CA540A2E9B4F5FCB4E /* Pods-SpotMenuToday.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;

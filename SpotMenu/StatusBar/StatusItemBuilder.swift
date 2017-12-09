@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SpotifyAppleScript
 
 final class StatusItemBuilder {
     
@@ -21,20 +20,29 @@ final class StatusItemBuilder {
     
     private var playingIcon = ""
     
-    private var state: PlayerState
+    private var isPlaying: Bool = false
     
-    private var hideTitleArtistWhenPaused = false
+    private var hideWhenPaused = false
     
     // MARK: - Lifecycle method
     
-    init() {
-        state = SpotifyAppleScript.playerState
+    init(title: String?, artist: String?, albumName: String?, isPlaying: Bool) {
+        if let v = title {
+            self.title = v
+        }
+        if let v = artist {
+            self.artist = v
+        }
+        if let v = albumName {
+            self.albumName = v
+        }
+        self.isPlaying = isPlaying
     }
     
     // MARK: - Methods
     
-    func hideTitleArtistWhenPaused(v: Bool) -> StatusItemBuilder {
-        hideTitleArtistWhenPaused = v
+    func hideWhenPaused(v: Bool) -> StatusItemBuilder {
+        hideWhenPaused = v
         return self
     }
     
@@ -43,12 +51,9 @@ final class StatusItemBuilder {
             title = ""
             return self
         }
-        if (state == PlayerState.paused && hideTitleArtistWhenPaused) {
+        if (!isPlaying && hideWhenPaused) {
             title = ""
             return self
-        }
-        if let title = SpotifyAppleScript.currentTrack.title {
-            self.title = title + " "
         }
         return self
     }
@@ -58,27 +63,9 @@ final class StatusItemBuilder {
             artist = ""
             return self
         }
-        if (state == PlayerState.paused && hideTitleArtistWhenPaused) {
-            title = ""
-            return self
-        }
-        if let artist = SpotifyAppleScript.currentTrack.artist {
-            self.artist = artist + " "
-        }
-        return self
-    }
-    
-    func showAlbumArtist(v: Bool) -> StatusItemBuilder {
-        if !v {
+        if (!isPlaying && hideWhenPaused) {
             artist = ""
             return self
-        }
-        if (state == PlayerState.paused && hideTitleArtistWhenPaused) {
-            artist = ""
-            return self
-        }
-        if let artist = SpotifyAppleScript.currentTrack.albumArtist {
-            self.artist = artist + " "
         }
         return self
     }
@@ -87,11 +74,10 @@ final class StatusItemBuilder {
         if !v {
             albumName = ""
             return self
-        } else if (state == PlayerState.paused && hideTitleArtistWhenPaused) {
+        }
+        if (!isPlaying && hideWhenPaused) {
             albumName = ""
             return self
-        } else if let albumName = SpotifyAppleScript.currentTrack.albumName {
-            self.albumName = albumName + " "
         }
         return self
     }
@@ -101,7 +87,7 @@ final class StatusItemBuilder {
             playingIcon = ""
             return self
         }
-        if (state == PlayerState.playing) {
+        if (isPlaying) {
             playingIcon = "♫ "
         } else {
             playingIcon = ""
@@ -111,9 +97,9 @@ final class StatusItemBuilder {
     
     func getString() -> String {
         if (artist.count != 0 && title.count != 0 && albumName.count != 0) {
-            return "\(playingIcon)\(artist)- \(title)- \(albumName)"
+            return "\(playingIcon)\(artist) - \(title) - \(albumName)"
         } else if (artist.count != 0 && title.count != 0) {
-            return "\(playingIcon)\(artist)- \(title)"
+            return "\(playingIcon)\(artist) - \(title)"
         }
         return "\(playingIcon)\(artist)\(title)"
     }

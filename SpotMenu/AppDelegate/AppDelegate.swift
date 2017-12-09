@@ -7,17 +7,17 @@
 //
 
 import Cocoa
-import SpotifyAppleScript
 import Carbon.HIToolbox
 import Sparkle
 import AppKit.NSAppearance
+import MusicPlayer
 
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: - Properties
 
-    private var hudController: NSWindowController?
+    private var hudController: HudWindowController?
 
     private var preferencesController: NSWindowController?
     
@@ -31,8 +31,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
-    private var timer: Timer?
-    
     private let issuesURL = URL(string: "https://github.com/kmikiy/SpotMenu/issues")
     
     private let kmikiyURL = URL(string: "https://github.com/kmikiy")
@@ -45,11 +43,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var removeHudTimer: Timer?
     
+    private var musicPlayerManager: MusicPlayerManager!
+    
     // MARK: - AppDelegate methods
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         UserPreferences.initializeUserPreferences()
+        
+        musicPlayerManager = MusicPlayerManager()
+        musicPlayerManager.add(musicPlayer: .spotify)
+        musicPlayerManager.add(musicPlayer: .iTunes)
+        musicPlayerManager.delegate = self
         
         popover.contentViewController = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
         // popover.delegate = popoverDelegate
@@ -68,7 +73,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             
             button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
             button.action = #selector(AppDelegate.togglePopover(_:))
-            updateTitleAndPopover()
+            updateTitle()
         }
         
         eventMonitor = EventMonitor(mask: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown]) { [unowned self] event in
@@ -76,20 +81,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self.closePopover(event)
             }
         }
-        
-        timer = Timer.scheduledTimer(
-            timeInterval: 1.5,
-            target: self,
-            selector: #selector(AppDelegate.postUpdateNotification),
-            userInfo: nil,
-            repeats: true)
-        
-        NotificationCenter.default
-            .addObserver(
-                self,
-                selector: #selector(AppDelegate.updateTitleAndPopover),
-                name: NSNotification.Name(rawValue: InternalNotification.key),
-                object: nil)
     
         if UserPreferences.keyboardShortcutEnabled {
             registerHotkey()
@@ -99,8 +90,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
         eventMonitor?.stop()
-        NotificationCenter.default.removeObserver(self)
-        timer!.invalidate()
     }
     
     // MARK: - Public methods
@@ -125,7 +114,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func hotkeyAction() {
         let sb = NSStoryboard.init(name: NSStoryboard.Name(rawValue: "Hud"), bundle: nil)
-        hudController = sb.instantiateInitialController() as? NSWindowController
+        hudController = sb.instantiateInitialController() as? HudWindowController
+        
+        hudController!.setText(text: "Hello ")
 
         hudController?.showWindow(nil)
         hudController?.window?.makeKeyAndOrderFront(self)
@@ -146,12 +137,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func postUpdateNotification(){
-        NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
+       // NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
     
-    @objc func updateTitleAndPopover() {
-        let statusItemTitle = StatusItemBuilder()
-            .hideTitleArtistWhenPaused(v: UserPreferences.hideTitleArtistWhenPaused)
+    @objc func updateTitle() {
+        
+        let statusItemTitle = StatusItemBuilder(
+            title: musicPlayerManager.currentPlayer?.currentTrack?.title,
+            artist: musicPlayerManager.currentPlayer?.currentTrack?.artist,
+            albumName: musicPlayerManager.currentPlayer?.currentTrack?.album,
+            isPlaying: musicPlayerManager.currentPlayer?.playbackState == MusicPlaybackState.playing)
+            .hideWhenPaused(v: UserPreferences.hideTitleArtistWhenPaused)
             .showTitle(v: UserPreferences.showTitle)
             .showAlbumName(v: UserPreferences.showAlbumName)
             .showArtist(v: UserPreferences.showArtist)
@@ -204,7 +200,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             if popover.isShown && !self.popover.isDetached {
                 closePopover(sender)
             } else {
-                SpotifyAppleScript.startSpotify(hidden: true)
+                //SpotifyAppleScript.startSpotify(hidden: true)
                 showPopover(sender)
             }
         }
@@ -280,3 +276,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
+extension AppDelegate: MusicPlayerManagerDelegate {
+    func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, didChangeTrack track: MusicTrack, atPosition position: TimeInterval) {
+        updateTitle()
+    }
+    
+    func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, playbackStateChanged playbackState: MusicPlaybackState, atPosition position: TimeInterval) {
+        updateTitle()
+    }
+    
+    func manager(_ manager: MusicPlayerManager, trackingPlayerDidQuit player: MusicPlayer) {
+        
+    }
+    
+    func manager(_ manager: MusicPlayerManager, trackingPlayerDidChange player: MusicPlayer) {
+   }
+}

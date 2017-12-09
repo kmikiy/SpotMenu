@@ -8,7 +8,6 @@
 
 import Foundation
 import Cocoa
-import SpotifyAppleScript
 
 final class GeneralPreferencesVC: NSViewController {
     
@@ -156,7 +155,7 @@ final class GeneralPreferencesVC: NSViewController {
     // MARK: - Private methods
     
     private func postUpdateNotification(){
-        NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
+       // NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
     
 }
