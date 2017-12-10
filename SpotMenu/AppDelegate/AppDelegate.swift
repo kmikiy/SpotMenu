@@ -38,14 +38,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let menu = StatusMenu().menu
     
     private let spotMenuIcon = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
+    private let spotMenuIconItunes = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImageItunes"))
     
     private var lastStatusTitle: String = ""
     
     private var removeHudTimer: Timer?
     
     private var musicPlayerManager: MusicPlayerManager!
-    
-    private var musicPlayerManager1: MusicPlayerManager!
     
     // MARK: - AppDelegate methods
     
@@ -57,10 +56,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         musicPlayerManager.add(musicPlayer: .spotify)
         musicPlayerManager.add(musicPlayer: .iTunes)
         musicPlayerManager.delegate = self
-        
-        musicPlayerManager1 = MusicPlayerManager()
-        musicPlayerManager1.add(musicPlayer: .spotify)
-        musicPlayerManager1.add(musicPlayer: .iTunes)
         
         let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
         popoverVC.setUpMusicPlayerManager()
@@ -75,9 +70,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hiddenController?.window?.ignoresMouseEvents = true
         
         if let button = statusItem.button {
-            if UserPreferences.showSpotMenuIcon {
-                button.image = spotMenuIcon
-            }
+            button.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
             
             button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
             button.action = #selector(AppDelegate.togglePopover(_:))
@@ -152,10 +145,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func removeHud() {
         hudController = nil
-    }
-    
-    @objc func postUpdateNotification(){
-       // NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
     }
     
     @objc func updateTitle() {
@@ -234,11 +223,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.title = newTitle
         lastStatusTitle = newTitle
         if let button = statusItem.button {
-            if UserPreferences.showSpotMenuIcon {
-                button.image = spotMenuIcon
-            } else {
-                button.image = nil
-            }
+            button.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
         }
         
         //Show the icon regardless of setting if char count == 0
@@ -249,6 +234,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    private func chooseIcon(musicPlayerName: MusicPlayerName?) -> NSImage! {
+        if !UserPreferences.showSpotMenuIcon {
+             return nil
+        }
+        if musicPlayerName == MusicPlayerName.iTunes {
+            return spotMenuIconItunes
+        }
+        else {
+            return spotMenuIcon
+        }
+    }
     
     private func showPopover(_ sender: AnyObject?) {
         popover.appearance = appearance()
