@@ -9,7 +9,11 @@ final class PopOverViewController: NSViewController {
     private var lastArtworkUrl = ""
     fileprivate var rightTimeIsDuration: Bool = true
     private var defaultImage: NSImage!
-    public var musicPlayerManager: MusicPlayerManager!
+    private var musicPlayerManager: MusicPlayerManager!
+    private var position: Double = 0
+    private var duration: Double = 0
+    private var isPlaying: Bool = false
+    private var timer: Timer!
     
     // MARK: - IBOutlets
     
@@ -31,11 +35,43 @@ final class PopOverViewController: NSViewController {
         self.preferredContentSize = NSSize(width: 300, height: 300)
     }
     
-    override func viewDidAppear() {
-        super.viewDidAppear()
-        updateInfo(track: musicPlayerManager.existMusicPlayer(with: .spotify)?.currentTrack)
-        updateButton(state: musicPlayerManager.existMusicPlayer(with: .spotify)?.playbackState)
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        self.musicPlayerManager.delegate = self
+        
+        let track = musicPlayerManager.existMusicPlayer(with: .spotify)?.currentTrack
+        updateInfo(track: track)
+      
+        
+        let state = musicPlayerManager.existMusicPlayer(with: .spotify)?.playbackState
+        updateButton(state: state)
+        
+        if let state = state {
+            self.isPlaying = state == .playing
+        }
+        if let track = track {
+            self.duration = track.duration
+        }
+        if let position = musicPlayerManager.existMusicPlayer(with: .spotify)?.playerPosition {
+            self.position = position
+        }
+        
+        updateTime()
+        
+        timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(self.updatePlayerPosition),
+            userInfo: nil,
+            repeats: true)
     }
+    
+    override func viewDidDisappear() {
+        timer.invalidate()
+        self.musicPlayerManager.delegate = nil
+    }
+    
+    // MARK: - Public methods
     
     func setUpMusicPlayerManager() {
         if self.musicPlayerManager == nil {
@@ -43,17 +79,26 @@ final class PopOverViewController: NSViewController {
             self.musicPlayerManager.add(musicPlayer: MusicPlayerName.spotify)
             self.musicPlayerManager.add(musicPlayer: MusicPlayerName.iTunes)
         }
-        self.musicPlayerManager.delegate = self
+    }
+
+    // MARK: - Private methods
+    
+    @objc private func updatePlayerPosition() {
+        if isPlaying {
+            
+            positionSlider.doubleValue = floor(position/duration * 100)
+            self.position = self.position + 1
+            updateTime()
+        }
     }
     
-    // MARK: - Public methods
-    
-
-    func updateInfo(track: MusicTrack?) {
+    private func updateInfo(track: MusicTrack?) {
         if let track = track {
             if let artworkUrl = track.artworkUrl , artworkUrl != lastArtworkUrl {
-                self.artworkImageView.downloadImage(url: URL(string: artworkUrl)!)
-                lastArtworkUrl = artworkUrl
+                if let url = URL(string: artworkUrl) {
+                    self.artworkImageView.downloadImage(url: url)
+                    lastArtworkUrl = artworkUrl
+                }
             }
             if track.artworkUrl == nil {
                 artworkImageView.image = defaultImage
@@ -82,30 +127,22 @@ final class PopOverViewController: NSViewController {
             titleLabel.textColor = NSColor.gray
         }
 
-
-//        let position = SpotifyAppleScript.currentTrack.positionPercentage
-//        positionSlider.doubleValue = floor(position * 100)
-
-        updateTime(track: track)
+        updateTime()
     }
     
-    // MARK: - Private methods
-    
-    fileprivate func updateTime(track: MusicTrack?) {
-        if let track = track {
-//            let leftTimeTuple = secondsToHoursMinutesSeconds(seconds: track.position)
-//            leftTime.stringValue = getTimeString(tuple: leftTimeTuple)
-            
-            
-            switch rightTimeIsDuration {
-            case true:
-                let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: track.duration/1000)
-                rightTime.stringValue = getTimeString(tuple: rightTimeTuple)
-            case false: break
-//                let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: track.duration - track.position)
-//                rightTime.stringValue = "-" + getTimeString(tuple: rightTimeTuple)
-            }
+    fileprivate func updateTime() {
+        let leftTimeTuple = secondsToHoursMinutesSeconds(seconds: self.position)
+        leftTime.stringValue = getTimeString(tuple: leftTimeTuple)
+        
+        switch rightTimeIsDuration {
+        case true:
+            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: self.duration)
+            rightTime.stringValue = getTimeString(tuple: rightTimeTuple)
+        case false:
+            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: self.duration - self.position)
+            rightTime.stringValue = "-" + getTimeString(tuple: rightTimeTuple)
         }
+        
     }
 
     private func updateButton(state: MusicPlaybackState?) {
@@ -113,7 +150,7 @@ final class PopOverViewController: NSViewController {
             switch state {
             case .paused:
                 playerStateButton.title = "▶︎"
-            case .playing:
+            case .playing, .fastForwarding, .rewinding, .reposition:
                 playerStateButton.title = "❚❚"
             default:
                 playerStateButton.title = "▶︎"
@@ -151,12 +188,11 @@ private extension PopOverViewController {
     
     @IBAction func openSpotify(_ sender: Any) {
         self.musicPlayerManager.currentPlayer?.activate()
-        //SpotifyAppleScript.activateSpotify()
     }
     
     @IBAction func positionSliderAction(_ sender: AnyObject) {
-        self.musicPlayerManager.currentPlayer?.playerPosition = positionSlider.doubleValue/100.0
-        //SpotifyAppleScript.currentTrack.positionPercentage = positionSlider.doubleValue/100.0
+        self.position = (positionSlider.doubleValue/100.0)*self.duration
+        self.musicPlayerManager.currentPlayer?.playerPosition = self.position
     }
     
     @IBAction func togglePlay(_ sender: AnyObject) {
@@ -174,19 +210,25 @@ private extension PopOverViewController {
     
     @IBAction func toggleRightTime(_ sender: AnyObject) {
         rightTimeIsDuration = !rightTimeIsDuration
-        //updateTime()
+        updateTime()
     }
 }
 
 extension PopOverViewController:  MusicPlayerManagerDelegate {
     func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, didChangeTrack track: MusicTrack, atPosition position: TimeInterval) {
-        print(position)
-        print(track.duration)
-        print("POSITION LKSJFLK JDFLKJ SDFL KJSDLFKJSDLF JSDLKF JSLF JDS")
+        self.duration = track.duration
+        self.position = position
         updateInfo(track: track)
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, playbackStateChanged playbackState: MusicPlaybackState, atPosition position: TimeInterval) {
+        self.position = position
+        switch playbackState {
+        case .playing, .fastForwarding, .rewinding, .reposition:
+            self.isPlaying = true
+        default:
+            self.isPlaying = false
+        }
         updateInfo(track: player.currentTrack)
         updateButton(state: playbackState)
     }
