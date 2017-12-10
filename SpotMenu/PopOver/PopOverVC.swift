@@ -14,6 +14,8 @@ final class PopOverViewController: NSViewController {
     private var duration: Double = 0
     private var isPlaying: Bool = false
     private var timer: Timer!
+    private let spotMenuIcon = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
+    private let spotMenuIconItunes = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImageItunes"))
     
     // MARK: - IBOutlets
     
@@ -25,6 +27,7 @@ final class PopOverViewController: NSViewController {
     @IBOutlet weak private var artworkImageView: NSImageView!
     @IBOutlet weak private var leftTime: NSTextField!
     @IBOutlet weak private var rightTime: NSTextField!
+    @IBOutlet weak private var musicPlayerButton: NSButton!
     
     // MARK: - Lifecycle methods
     
@@ -39,11 +42,12 @@ final class PopOverViewController: NSViewController {
         super.viewWillAppear()
         self.musicPlayerManager.delegate = self
         
-        let track = musicPlayerManager.existMusicPlayer(with: .spotify)?.currentTrack
+        let lastMusicPlayer = MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!
+        let track = musicPlayerManager.existMusicPlayer(with: lastMusicPlayer)?.currentTrack
         updateInfo(track: track)
       
         
-        let state = musicPlayerManager.existMusicPlayer(with: .spotify)?.playbackState
+        let state = musicPlayerManager.existMusicPlayer(with: lastMusicPlayer)?.playbackState
         updateButton(state: state)
         
         if let state = state {
@@ -52,11 +56,13 @@ final class PopOverViewController: NSViewController {
         if let track = track {
             self.duration = track.duration
         }
-        if let position = musicPlayerManager.existMusicPlayer(with: .spotify)?.playerPosition {
+        if let position = musicPlayerManager.existMusicPlayer(with: lastMusicPlayer)?.playerPosition {
             self.position = position
         }
         
+        updatePlayerPosition()
         updateTime()
+        updateMusicPlayerIcon(musicPlayerName: lastMusicPlayer)
         
         timer = Timer.scheduledTimer(
             timeInterval: 1,
@@ -85,11 +91,10 @@ final class PopOverViewController: NSViewController {
     
     @objc private func updatePlayerPosition() {
         if isPlaying {
-            
-            positionSlider.doubleValue = floor(position/duration * 100)
             self.position = self.position + 1
             updateTime()
         }
+        positionSlider.doubleValue = floor(position/duration * 100)
     }
     
     private func updateInfo(track: MusicTrack?) {
@@ -172,6 +177,16 @@ final class PopOverViewController: NSViewController {
     private func getTimeString(tuple: (Int,Int,Int))-> String {
         return String(format: "%02d:%02d", tuple.1, tuple.2)
     }
+    
+    private func updateMusicPlayerIcon(musicPlayerName: MusicPlayerName?) {
+        if musicPlayerName == MusicPlayerName.iTunes {
+            musicPlayerButton.image = spotMenuIconItunes
+        }
+        else {
+            musicPlayerButton.image = spotMenuIcon
+        }
+    }
+    
 }
 
 // MARK: Actions
@@ -198,14 +213,14 @@ private extension PopOverViewController {
     @IBAction func togglePlay(_ sender: AnyObject) {
         if let state = self.musicPlayerManager.currentPlayer?.playbackState {
             switch state {
-            case .paused:
-                self.musicPlayerManager.currentPlayer?.play()
-            case .playing:
+            case .playing, .fastForwarding, .rewinding, .reposition:
                 self.musicPlayerManager.currentPlayer?.pause()
-            default: break
+            default:
+                self.musicPlayerManager.currentPlayer?.play()
             }
+        } else {
+            self.musicPlayerManager.currentPlayer?.play()
         }
-
     }
     
     @IBAction func toggleRightTime(_ sender: AnyObject) {
@@ -219,6 +234,7 @@ extension PopOverViewController:  MusicPlayerManagerDelegate {
         self.duration = track.duration
         self.position = position
         updateInfo(track: track)
+        updateMusicPlayerIcon(musicPlayerName: player.name)
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, playbackStateChanged playbackState: MusicPlaybackState, atPosition position: TimeInterval) {
@@ -231,6 +247,7 @@ extension PopOverViewController:  MusicPlayerManagerDelegate {
         }
         updateInfo(track: player.currentTrack)
         updateButton(state: playbackState)
+        updateMusicPlayerIcon(musicPlayerName: player.name)
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayerDidQuit player: MusicPlayer) {
@@ -238,6 +255,7 @@ extension PopOverViewController:  MusicPlayerManagerDelegate {
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayerDidChange player: MusicPlayer) {
+        updateMusicPlayerIcon(musicPlayerName: player.name)
     }
     
 }

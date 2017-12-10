@@ -18,32 +18,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Properties
 
     private var hudController: HudWindowController?
-
     private var preferencesController: NSWindowController?
-    
     private var hiddenController: NSWindowController?
-    
     private let popover = NSPopover()
     
    // private let popoverDelegate = PopOverDelegate()
     
     private var eventMonitor: EventMonitor?
-
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    
     private let issuesURL = URL(string: "https://github.com/kmikiy/SpotMenu/issues")
-    
     private let kmikiyURL = URL(string: "https://github.com/kmikiy")
-    
     private let menu = StatusMenu().menu
-    
     private let spotMenuIcon = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
     private let spotMenuIconItunes = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImageItunes"))
-    
     private var lastStatusTitle: String = ""
-    
     private var removeHudTimer: Timer?
-    
     private var musicPlayerManager: MusicPlayerManager!
     
     // MARK: - AppDelegate methods
@@ -70,7 +59,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hiddenController?.window?.ignoresMouseEvents = true
         
         if let button = statusItem.button {
-            button.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
+            button.image = chooseIcon(musicPlayerName: MusicPlayerName(rawValue:UserPreferences.lastMusicPlayer)!)
             
             button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
             button.action = #selector(AppDelegate.togglePopover(_:))
@@ -304,5 +293,6 @@ extension AppDelegate: MusicPlayerManagerDelegate {
     }
     
     func manager(_ manager: MusicPlayerManager, trackingPlayerDidChange player: MusicPlayer) {
+        UserPreferences.lastMusicPlayer = player.name.rawValue
    }
 }

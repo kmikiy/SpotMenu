@@ -12,6 +12,7 @@
                 <outlet property="artistLabel" destination="91T-mi-mb9" id="Mhz-MF-AQx"/>
                 <outlet property="artworkImageView" destination="wMa-mO-ZXq" id="J3B-JE-v1D"/>
                 <outlet property="leftTime" destination="a3a-vx-FzU" id="mAS-xW-gGh"/>
+                <outlet property="musicPlayerButton" destination="Sfg-o1-GVi" id="P2f-5V-oen"/>
                 <outlet property="playerStateButton" destination="8Ah-DM-iSN" id="ofG-4I-1Kw"/>
                 <outlet property="positionSlider" destination="tik-b2-9He" id="qyI-6l-HxF"/>
                 <outlet property="rightTime" destination="0C8-6B-MD2" id="Ikx-HM-ev3"/>

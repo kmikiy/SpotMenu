@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MusicPlayer
 
 struct UserPreferences {
     
@@ -15,22 +16,16 @@ struct UserPreferences {
     private struct Keys {
         
         static let showArtist = "showArtist"
-        
         static let showTitle = "showTitle"
-        
         static let showAlbumName = "showAlbumName"
-        
         static let showPlayingIcon = "showPlayingIcon"
-        
         static let showSpotMenuIcon = "showSpotMenuIcon"
-        
         static let fixPopoverToTheRight = "dropDownToTheRight"
-        
         static let hasBeenInitialized = "hasBeenInitialized"
-        
         static let keyboardShortcutEnabled = "keyboardShortcutEnabled"
-        
         static let hideTitleArtistWhenPaused = "hideTitleArtistWhenPaused"
+        static let lastMusicPlayer = "lastMusicPlayer"
+        
     }
     
     // MARK: - Properties
@@ -107,6 +102,18 @@ struct UserPreferences {
         }
     }
     
+    static var lastMusicPlayer: String {
+        get {
+            if let val = UserPreferences.readSettingString(key: Keys.lastMusicPlayer) {
+                return val
+            }
+            return MusicPlayerName.spotify.rawValue
+        }
+        set {
+            UserPreferences.setSettingString(key: Keys.lastMusicPlayer, value: newValue)
+        }
+    }
+    
     // MARK: - Public methods
     
     static func clearAllSettings() {
@@ -123,8 +130,17 @@ struct UserPreferences {
         UserDefaults.standard.synchronize()
     }
     
+    private static func setSettingString(key: String, value: String) {
+        UserDefaults.standard.set(value, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+    
     private static func readSetting(key: String) -> Bool {
         return UserDefaults.standard.bool(forKey: key)
+    }
+    
+    private static func readSettingString(key: String) -> String? {
+        return UserDefaults.standard.string(forKey: key)
     }
     
     // MARK: - Init / migrate

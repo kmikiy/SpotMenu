@@ -42,6 +42,7 @@
 		64A8E1A41F83F45F00FFF6B1 /* Hidden.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A8E1A31F83F45F00FFF6B1 /* Hidden.storyboard */; };
 		64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64A9080A1EB784E400566ED1 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
+		64BD97A61FDD713800209B2B /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908071EB7754100566ED1 /* UserPreferences.swift */; };
 		64D5BE581FDC714900AE5C99 /* MusicPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 64D5BE561FDC714900AE5C99 /* MusicPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64D5BE731FDC731300AE5C99 /* MusicPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5BE5D1FDC731300AE5C99 /* MusicPlayerManager.swift */; };
 		64D5BE741FDC731300AE5C99 /* PlayerTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D5BE5E1FDC731300AE5C99 /* PlayerTimer.swift */; };
@@ -846,6 +847,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64BD97A61FDD713800209B2B /* UserPreferences.swift in Sources */,
 				E2D35CD11F60A08800EB5D67 /* PopOverVC.swift in Sources */,
 				E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */,
 				E2D35CD91F60B0CF00EB5D67 /* PopOverViewControllerExtension.swift in Sources */,
