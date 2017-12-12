@@ -15,6 +15,14 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
 - The default behavior is to show the SpotMenu icon, Artist and Track title in the menubar. Right click → Preferences to customize.    
 - The animated gif currently demonstrates the functionality of version 1.7   
 
+## Donate
+
+- [![Paypal](https://github.com/kmikiy/SpotMenu/blob/master/Donation/pp.png)](http://paypal.me/kmikiy) [paypal.me/kmikiy](https://paypal.me/kmikiy) Help me get that new Tesla Model X 🚗 or a cup of coffee ☕️, anything helps 💸💰💵
+- Or help me become a cryptocurrency  millionaire 🔐   
+    - ![Ƀitcoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/btc.png) 1Cc79kaUUWZ2fD7iFAnr5i89vb2j6JunvA
+    - ![Ethereum](https://github.com/kmikiy/SpotMenu/blob/master/Donation/eth.png) 0xFA06Af34fd45c0213fc909F22cA7241BBD94076f
+    - ![Łitecoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/ltc.png) LS3ibFQWd2xz1ByZajrzS3Y787LgRwHYVE
+    
 ## New Features in Version 1.7
 
 + New layout
@@ -77,13 +85,6 @@ Note:
 ## Help
 
 - Star and Fork
-- Post any issues you find
+- Post any issues you find (please check existing issues before posting!)
 - Post new feature requests
 - Pull requests are welcome
-- [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NL4KDG65UYQB6) Help me get that new Tesla Model X 🚗 or a cup of coffee ☕️, anything helps 💸💰💵
-- Help me become a cryptocurrency  millionaire
-    - Ƀitcoin: 1Cc79kaUUWZ2fD7iFAnr5i89vb2j6JunvA
-    - Ethereum: 0xFA06Af34fd45c0213fc909F22cA7241BBD94076f
-    - Łitecoin: LS3ibFQWd2xz1ByZajrzS3Y787LgRwHYVE
-    
-![bitcoin](https://bitcoin.org/img/icons/logotop.svg)
