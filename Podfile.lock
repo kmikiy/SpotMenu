@@ -1,32 +1,24 @@
 PODS:
   - LoginServiceKit (1.1.0)
   - Sparkle (1.18.1)
-  - SpotifyAppleScript (0.3.0)
 
 DEPENDENCIES:
   - LoginServiceKit (from `https://github.com/Clipy/LoginServiceKit.git`)
   - Sparkle
-  - SpotifyAppleScript (from `https://github.com/kmikiy/SpotifyAppleScript`)
 
 EXTERNAL SOURCES:
   LoginServiceKit:
     :git: https://github.com/Clipy/LoginServiceKit.git
-  SpotifyAppleScript:
-    :git: https://github.com/kmikiy/SpotifyAppleScript
 
 CHECKOUT OPTIONS:
   LoginServiceKit:
     :commit: 2f85790d6ec22e229dcbbf01bb4e4afe8e4e9a2b
     :git: https://github.com/Clipy/LoginServiceKit.git
-  SpotifyAppleScript:
-    :commit: ef4fe14fe202de196b886c79997408cbcb284cc3
-    :git: https://github.com/kmikiy/SpotifyAppleScript
 
 SPEC CHECKSUMS:
   LoginServiceKit: 1282b6588b77a8a201d6ed6c7c608f492c2e2c3d
   Sparkle: 06ea33170007c5937ee54da481b4481af98fac79
-  SpotifyAppleScript: 9e0c8f32d51ed8345db8b916f4fb379be97ea185
 
-PODFILE CHECKSUM: 91442251023e0c5b744a6ca9cc8af1d09c5c4238
+PODFILE CHECKSUM: 3f108a8c149cd1423a3fa18a867a2aba0eac7fff
 
 COCOAPODS: 1.3.1
