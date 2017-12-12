@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="LBt-HB-O2a">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="LBt-HB-O2a">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,7 +43,7 @@
                                 </textFieldCell>
                             </textField>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="wpN-8R-WEL">
-                                <rect key="frame" x="248" y="12" width="5" height="246"/>
+                                <rect key="frame" x="248" y="20" width="5" height="230"/>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4lO-md-TWp">
                                 <rect key="frame" x="264" y="216" width="218" height="34"/>
@@ -89,18 +89,18 @@
                             <constraint firstItem="Zr2-pg-mJS" firstAttribute="leading" secondItem="1ap-fy-BOA" secondAttribute="leading" constant="20" id="Msf-iJ-795"/>
                             <constraint firstItem="3lC-wO-n8A" firstAttribute="leading" secondItem="1ap-fy-BOA" secondAttribute="leading" constant="8" id="N28-p0-A94"/>
                             <constraint firstItem="4lO-md-TWp" firstAttribute="leading" secondItem="wpN-8R-WEL" secondAttribute="trailing" constant="15" id="OUx-7l-FSW"/>
-                            <constraint firstItem="wpN-8R-WEL" firstAttribute="top" secondItem="1ap-fy-BOA" secondAttribute="top" constant="12" id="Rft-wg-5q8"/>
+                            <constraint firstItem="wpN-8R-WEL" firstAttribute="top" secondItem="1ap-fy-BOA" secondAttribute="top" constant="20" id="Rft-wg-5q8"/>
                             <constraint firstItem="xXx-fi-3YP" firstAttribute="leading" secondItem="1ap-fy-BOA" secondAttribute="leading" constant="20" id="T6e-px-DZj"/>
                             <constraint firstItem="tV3-fc-Tw1" firstAttribute="leading" secondItem="1ap-fy-BOA" secondAttribute="leading" constant="20" id="TYh-e2-Tmd"/>
                             <constraint firstAttribute="trailing" secondItem="4lO-md-TWp" secondAttribute="trailing" constant="20" id="Tiw-Qw-aUa"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4lO-md-TWp" secondAttribute="bottom" priority="999" constant="20" id="UQO-68-lwx"/>
-                            <constraint firstItem="Zr2-pg-mJS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5Er-UN-mo6" secondAttribute="bottom" constant="134" id="W7N-mD-Sd2"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4lO-md-TWp" secondAttribute="bottom" priority="750" constant="20" id="UQO-68-lwx"/>
+                            <constraint firstItem="Zr2-pg-mJS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5Er-UN-mo6" secondAttribute="bottom" priority="750" constant="134" id="W7N-mD-Sd2"/>
                             <constraint firstItem="wpN-8R-WEL" firstAttribute="leading" secondItem="Y1b-6L-nsa" secondAttribute="trailing" constant="20" id="aCC-l1-vWA"/>
                             <constraint firstItem="wpN-8R-WEL" firstAttribute="centerX" secondItem="1ap-fy-BOA" secondAttribute="centerX" id="e8a-I5-kZO"/>
                             <constraint firstItem="4lO-md-TWp" firstAttribute="top" secondItem="1ap-fy-BOA" secondAttribute="top" constant="20" id="j6Y-E5-mNE"/>
                             <constraint firstItem="Y1b-6L-nsa" firstAttribute="leading" secondItem="xXx-fi-3YP" secondAttribute="trailing" constant="10" id="m5K-Qc-A9P"/>
                             <constraint firstItem="5Er-UN-mo6" firstAttribute="top" secondItem="tV3-fc-Tw1" secondAttribute="bottom" constant="6" id="naZ-h1-Cbz"/>
-                            <constraint firstAttribute="bottom" secondItem="wpN-8R-WEL" secondAttribute="bottom" constant="12" id="qqC-bX-Lad"/>
+                            <constraint firstAttribute="bottom" secondItem="wpN-8R-WEL" secondAttribute="bottom" constant="20" id="qqC-bX-Lad"/>
                             <constraint firstItem="tV3-fc-Tw1" firstAttribute="top" secondItem="1ap-fy-BOA" secondAttribute="top" constant="20" id="rLq-mQ-yai"/>
                             <constraint firstItem="wpN-8R-WEL" firstAttribute="leading" secondItem="5Er-UN-mo6" secondAttribute="trailing" constant="15" id="te7-QM-9zG"/>
                             <constraint firstItem="xXx-fi-3YP" firstAttribute="top" secondItem="Zr2-pg-mJS" secondAttribute="bottom" constant="6" id="tnD-sH-s0R"/>
