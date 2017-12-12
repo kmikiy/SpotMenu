@@ -33,9 +33,10 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="95Y-Xy-JBU">
                                                         <font key="font" metaFont="system"/>
-                                                        <string key="title">SpotMenu is free and open source📖. My goal is to keep it this way. I do not want to limit functions, nor annoy users. Unfortunately, I like money💰💵🤑 and would like to live a lavish lifestyle💎. 
+                                                        <mutableString key="title">SpotMenu is free and open source📖. My goal is to keep it this way. I do not want to limit functions, nor annoy users. Unfortunately, I like money💰💵🤑 and would like to live a lavish lifestyle💎. 
 I have included a picture of me from the future (it is NOT photoshopped)🌅. For those who would like to contribute to my wellbeing and fulfilling my destiny I have included several ways to donate that sweet sweet money.
-Ya boy, kmikiy now accepts several cryptocurrencies.</string>
+Ya boy, kmikiy now accepts several cryptocurrencies.
+Scroll down for more info ⬇️</mutableString>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -61,7 +62,7 @@ Ya boy, kmikiy now accepts several cryptocurrencies.</string>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="pp" id="IZR-qI-1YY"/>
                                                 </imageView>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jP2-DD-d5p">
-                                                    <rect key="frame" x="45" y="112" width="437" height="17"/>
+                                                    <rect key="frame" x="45" y="113" width="268" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="1Cc79kaUUWZ2fD7iFAnr5i89vb2j6JunvA" id="ABy-T5-DPy">
                                                         <font key="font" metaFont="system"/>
@@ -70,7 +71,7 @@ Ya boy, kmikiy now accepts several cryptocurrencies.</string>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mrH-HT-xCH">
-                                                    <rect key="frame" x="45" y="56" width="437" height="17"/>
+                                                    <rect key="frame" x="45" y="59" width="276" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="LS3ibFQWd2xz1ByZajrzS3Y787LgRwHYVE" id="a6S-lT-kP9">
                                                         <font key="font" metaFont="system"/>
@@ -79,7 +80,7 @@ Ya boy, kmikiy now accepts several cryptocurrencies.</string>
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a2X-b4-Ads">
-                                                    <rect key="frame" x="45" y="86" width="437" height="17"/>
+                                                    <rect key="frame" x="45" y="86" width="334" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="0xFA06Af34fd45c0213fc909F22cA7241BBD94076f" id="trq-eH-GOU">
                                                         <font key="font" metaFont="system"/>
@@ -87,15 +88,74 @@ Ya boy, kmikiy now accepts several cryptocurrencies.</string>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VHy-Hk-Lkd">
-                                                    <rect key="frame" x="45" y="31" width="437" height="17"/>
+                                                <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPU-Ee-gSf">
+                                                    <rect key="frame" x="42" y="33" width="417" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="9aV-fB-UUL">
+                                                        <rect key="frame" x="0.0" y="0.0" width="417" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <textView ambiguous="YES" editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" linkDetection="YES" smartInsertDelete="YES" id="4S6-4i-eWZ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="417" height="16"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <size key="minSize" width="417" height="16"/>
+                                                                <size key="maxSize" width="463" height="10000000"/>
+                                                                <attributedString key="textStorage">
+                                                                    <fragment content="https://paypal.me/kmikiy">
+                                                                        <attributes>
+                                                                            <font key="NSFont" metaFont="system"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
+                                                                <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </textView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </clipView>
+                                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="VUr-jJ-Xjo">
+                                                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </scroller>
+                                                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="zZ7-eV-9dR">
+                                                        <rect key="frame" x="-100" y="-100" width="16" height="27"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </scroller>
+                                                </scrollView>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ciR-m3-PlB">
+                                                    <rect key="frame" x="385" y="85" width="54" height="19"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="https://paypal.me/kmikiy" allowsEditingTextAttributes="YES" id="BlK-S6-NJl">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
+                                                    <buttonCell key="cell" type="recessed" title="copy" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jsj-R1-py3">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                        <font key="font" metaFont="systemBold" size="12"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="ethButtonAction:" target="BoH-Mq-lW7" id="Iso-To-5pJ"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yAN-j9-git">
+                                                    <rect key="frame" x="337" y="58" width="54" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="recessed" title="copy" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xFf-cQ-fVQ">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                        <font key="font" metaFont="systemBold" size="12"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="ltcButtonAction:" target="BoH-Mq-lW7" id="PLZ-E0-SGd"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7y-Id-nPV">
+                                                    <rect key="frame" x="323" y="112" width="54" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="recessed" title="copy" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pyN-GK-1Ex">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                        <font key="font" metaFont="systemBold" size="12"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="btcButtonAction:" target="BoH-Mq-lW7" id="kiF-QF-hBQ"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="630" id="FUw-jJ-y6Y"/>
@@ -128,6 +188,13 @@ Ya boy, kmikiy now accepts several cryptocurrencies.</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btcButton" destination="x7y-Id-nPV" id="Tbv-Hs-NWM"/>
+                        <outlet property="btcTextField" destination="jP2-DD-d5p" id="W8Z-Ch-J7K"/>
+                        <outlet property="ethButton" destination="ciR-m3-PlB" id="lpS-wL-WG6"/>
+                        <outlet property="ethTextField" destination="a2X-b4-Ads" id="YtT-vt-DAw"/>
+                        <outlet property="ltcButton" destination="yAN-j9-git" id="cG1-2G-NQb"/>
+                        <outlet property="ltcTextField" destination="mrH-HT-xCH" id="f05-XC-o4s"/>
+                        <outlet property="ppTextView" destination="4S6-4i-eWZ" id="ppP-4w-wL0"/>
                         <outlet property="scrollView" destination="hBX-7r-MxQ" id="96i-KA-KQW"/>
                     </connections>
                 </viewController>
