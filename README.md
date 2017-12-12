@@ -19,7 +19,7 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
 
 - [![Paypal](https://github.com/kmikiy/SpotMenu/blob/master/Donation/pp.png)](http://paypal.me/kmikiy) [paypal.me/kmikiy](https://paypal.me/kmikiy) Help me get that new Tesla Model X 🚗 or a cup of coffee ☕️, anything helps 💸💰💵
 - Or help me become a cryptocurrency  millionaire 🔐   
-    - ![Ƀitcoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/btc.png) 1Cc79kaUUWZ2fD7iFAnr5i89vb2j6JunvA
+    - ![Ƀitcoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/btc.png) 1Cc79kaUUWZ2fD7iFAnr5i89vb2j6JunvA
     - ![Ethereum](https://github.com/kmikiy/SpotMenu/blob/master/Donation/eth.png) 0xFA06Af34fd45c0213fc909F22cA7241BBD94076f
     - ![Łitecoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/ltc.png) LS3ibFQWd2xz1ByZajrzS3Y787LgRwHYVE
     
