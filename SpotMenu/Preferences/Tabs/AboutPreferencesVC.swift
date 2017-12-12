@@ -10,9 +10,15 @@ import Cocoa
 
 class AboutPreferencesVC: NSViewController {
 
+    @IBOutlet weak var scrollView: NSScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        scrollView.flashScrollers()
+    }
 }
