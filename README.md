@@ -30,7 +30,7 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
 + Source code updated to Swift 4
 + Portuguese translation added (credits: [@clinis](https://github.com/clinis))
 + Brazilian portuguese translation added (credits: [@maurojuniorr](https://github.com/maurojuniorr))
-+ Catalan tranlsation added (credits: [@bcubic](https://github.com/bcubic))
++ Catalan translation added (credits: [@bcubic](https://github.com/bcubic))
 
 [List of all features](https://github.com/kmikiy/SpotMenu/blob/master/FEATURES.md)
 
