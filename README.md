@@ -88,3 +88,5 @@ Note:
 - Post any issues you find (please check existing issues before posting!)
 - Post new feature requests
 - Pull requests are welcome
+
+[![HitCount](http://hits.dwyl.io/kmikiy/SpotMenu.svg)](http://hits.dwyl.io/kmikiy/SpotMenu)
