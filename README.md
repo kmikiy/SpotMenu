@@ -38,7 +38,7 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
 ## Easy Install
 
 Download the zip file [version 1.7](https://github.com/kmikiy/SpotMenu/releases/download/v1.7/SpotMenu170.zip). Unarchive it. Run SpotMenu.app.
-In case of unidentified developer follow these [steps](https://support.apple.com/kb/PH21769?locale=en_US)!
+I do not have an  developer account to sign the app with therefore you will most likely receive a warning that the app is from an unidentified developer. To open the app follow these [steps](https://support.apple.com/kb/PH25088?locale=en_US)!
 
 You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
 
@@ -67,7 +67,7 @@ Finally, open up the SpotMenu.xcworkspace. Set the "Scheme" to build the "SpotMe
 
 Note: 
 - Version 1.7 has been updated to swift 4.0 therefore Xcode 9 is required.
-- In some cases it might be required to select the "Spotify" scheme and build it before selecting "SpotMenu".
+- In some cases it might be required to select the "MusicPlayer" scheme and build it before selecting "SpotMenu".
 - To fix "cannot find a team matching ..." error follow these [steps](https://github.com/kmikiy/SpotMenu/issues/54)
 
 ## Contributors
