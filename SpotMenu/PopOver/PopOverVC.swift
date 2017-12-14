@@ -44,12 +44,14 @@ final class PopOverViewController: NSViewController {
         self.setUpMusicPlayerManager()
         self.musicPlayerManager.delegate = self
         
-        let lastMusicPlayer = MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!
-        let track = musicPlayerManager.existMusicPlayer(with: lastMusicPlayer)?.currentTrack
+        let lastMusicPlayerName = MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!
+        let lastMusicPlayer = musicPlayerManager.existMusicPlayer(with: lastMusicPlayerName)
+        musicPlayerManager.currentPlayer = lastMusicPlayer
+        let track = lastMusicPlayer?.currentTrack
         updateInfo(track: track)
       
         
-        let state = musicPlayerManager.existMusicPlayer(with: lastMusicPlayer)?.playbackState
+        let state = lastMusicPlayer?.playbackState
         updateButton(state: state)
         
         if let state = state {
@@ -58,13 +60,13 @@ final class PopOverViewController: NSViewController {
         if let track = track {
             self.duration = track.duration
         }
-        if let position = musicPlayerManager.existMusicPlayer(with: lastMusicPlayer)?.playerPosition {
+        if let position = lastMusicPlayer?.playerPosition {
             self.position = position
         }
         
         updatePlayerPosition()
         updateTime()
-        updateMusicPlayerIcon(musicPlayerName: lastMusicPlayer)
+        updateMusicPlayerIcon(musicPlayerName: lastMusicPlayerName)
         
         timer = Timer.scheduledTimer(
             timeInterval: 1,

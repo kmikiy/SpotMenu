@@ -44,7 +44,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         musicPlayerManager = MusicPlayerManager()
         musicPlayerManager.add(musicPlayer: .spotify)
         musicPlayerManager.add(musicPlayer: .iTunes)
+        
         musicPlayerManager.delegate = self
+        let lastMusicPlayerName = MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!
+        let lastMusicPlayer = musicPlayerManager.existMusicPlayer(with: lastMusicPlayerName)
+        musicPlayerManager.currentPlayer = lastMusicPlayer
         
         let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
         popoverVC.setUpMusicPlayerManager()

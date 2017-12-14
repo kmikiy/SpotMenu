@@ -13,7 +13,7 @@ public class MusicPlayerManager {
     
     public fileprivate(set) var musicPlayers = [MusicPlayer]()
     
-    public fileprivate(set) weak var currentPlayer: MusicPlayer?
+    public weak var currentPlayer: MusicPlayer?
     
     public init() {}
 }
