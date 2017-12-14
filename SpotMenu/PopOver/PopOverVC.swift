@@ -40,6 +40,8 @@ final class PopOverViewController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
+        
+        self.setUpMusicPlayerManager()
         self.musicPlayerManager.delegate = self
         
         let lastMusicPlayer = MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!
