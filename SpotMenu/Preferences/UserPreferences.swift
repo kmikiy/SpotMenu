@@ -131,8 +131,9 @@ struct UserPreferences {
     }
     
     private static func setSettingString(key: String, value: String) {
-        UserDefaults.standard.set(value, forKey: key)
-        UserDefaults.standard.synchronize()
+        let ud = UserDefaults.init(suiteName: "group.KMikiy.SpotMenu")
+        ud?.set(value, forKey: key)
+        ud?.synchronize()
     }
     
     private static func readSetting(key: String) -> Bool {
@@ -140,7 +141,8 @@ struct UserPreferences {
     }
     
     private static func readSettingString(key: String) -> String? {
-        return UserDefaults.standard.string(forKey: key)
+        let ud = UserDefaults.init(suiteName: "group.KMikiy.SpotMenu")
+        return ud?.string(forKey: key)
     }
     
     // MARK: - Init / migrate
