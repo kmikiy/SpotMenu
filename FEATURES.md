@@ -1,5 +1,16 @@
 ## All Features
 
+## Added in Version 1.8
+
++ SpotMenu now supports iTunes 🎉
++ About page added to preferences. Please donate 🙏
++ Option added to hide title and artist when music player is paused
++ "Quit" renamed to "Quit SpotMenu" to stay consistent with MacOS
++ Today Extension (a.k.a. Notification Center Widget) now has rounded edges
++ Minimum required version of MacOS is now 10.11 👎
++ Russian translation added (credits: [@BatyaMedic ](https://github.com/BatyaMedic))
++ Spanish tranlsation added (credits: [@Lynx901](https://github.com/Lynx901))
+
 ## Added in Version 1.7
 
 + New layout

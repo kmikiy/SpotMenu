@@ -1,5 +1,5 @@
 # SpotMenu ![demo](https://github.com/kmikiy/SpotMenu/blob/master/SpotMenu/Assets.xcassets/AppIcon.appiconset/spotmenu%20(5)-1.png)
-Spotify in your menu bar
+Spotify and iTunes in your menu bar
 
 ## About
 
@@ -13,7 +13,7 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
 ## Notes
 
 - The default behavior is to show the SpotMenu icon, Artist and Track title in the menubar. Right click → Preferences to customize.    
-- The animated gif currently demonstrates the functionality of version 1.7   
+- The animated gif currently demonstrates the functionality of version 1.7
 
 ## Donate
 
@@ -23,21 +23,23 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
     - ![Ethereum](https://github.com/kmikiy/SpotMenu/blob/master/Donation/eth.png) 0xFA06Af34fd45c0213fc909F22cA7241BBD94076f
     - ![Łitecoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/ltc.png) LS3ibFQWd2xz1ByZajrzS3Y787LgRwHYVE
     
-## New Features in Version 1.7
+## New Features in Version 1.8
 
-+ New layout
-+ Option added in preferences to turn off now playing keyboard shortcut toast
-+ Source code updated to Swift 4
-+ Portuguese translation added (credits: [@clinis](https://github.com/clinis))
-+ Brazilian portuguese translation added (credits: [@maurojuniorr](https://github.com/maurojuniorr))
-+ Catalan translation added (credits: [@bcubic](https://github.com/bcubic))
++ SpotMenu now supports iTunes 🎉
++ About page added to preferences. Please donate 🙏
++ Option added to hide title and artist when music player is paused
++ "Quit" renamed to "Quit SpotMenu" to stay consistent with MacOS
++ Today Extension (a.k.a. Notification Center Widget) now has rounded edges
++ Minimum required version of MacOS is now 10.11 👎
++ Russian translation added (credits: [@BatyaMedic ](https://github.com/BatyaMedic))
++ Spanish tranlsation added (credits: [@Lynx901](https://github.com/Lynx901))
 
 [List of all features](https://github.com/kmikiy/SpotMenu/blob/master/FEATURES.md)
 
 
 ## Easy Install
 
-Download the zip file [version 1.7](https://github.com/kmikiy/SpotMenu/releases/download/v1.7/SpotMenu170.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.8](https://github.com/kmikiy/SpotMenu/releases/download/v1.8/SpotMenu180.zip). Unarchive it. Run SpotMenu.app.
 I do not have an  developer account to sign the app with therefore you will most likely receive a warning that the app is from an unidentified developer. To open the app follow these [steps](https://support.apple.com/kb/PH25088?locale=en_US)!
 
 You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
