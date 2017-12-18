@@ -4,6 +4,8 @@
 
   Created by Miklós Kristyán on 30.07.17.
   Copyright © 2017 KM. All rights reserved.
+ 
+  Translated by @Lynx901
 */
 
 "Issues" = "Problemas";
@@ -12,8 +14,9 @@
 "Quit" = "Salir";
 "Now playing" = "Reproduciendo";
 "Hover over an option for more information." = "Pasa el ratón sobre una opción para ver más información.";
-"When checked the Artist will be shown in the menu bar." = "Cuando está activado, el Artista se mostrará en la barra de menús.";
-"When checked the Title will be shown in the menu bar." = "Cuando está activado, el Título se mostrará en la barra de menús.";
+"When checked the artist will be shown in the menu bar." = "Cuando está activado, el Artista se mostrará en la barra de menús.";
+"When checked the album name will be shown in the menu bar." = "When checked the album name will be shown in the menu bar.";
+"When checked the title will be shown in the menu bar." = "Cuando está activado, el Título se mostrará en la barra de menús.";
 "When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Cuando está activado, el icono de reproducción (♫) se mostrará en la barra de menús si hay música reproduciéndose.";
 "When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Cuando está activado, el icono de SpotMenu se mostrará en la barra de menús.\n\nNota:\nSi no hay información de la música para mostrar, se mostrará el icono de SpotMenu.";
 "When checked the popover will be fixed to the right corner." = "Cuando está activado, el popover se fijará a la esquina derecha.";
@@ -37,3 +40,7 @@
 "Preferences" = "Preferencias";
 "Indicates whether or not to check for updates automatically." = "Indica si buscar actualizaciones automáticamente o no.";
 "Indicates whether or not updates can be automatically downloaded in the background." = "Indica si las actualizaciones se descargarán automáticamente en segundo plano o no.";
+"Enable keyboard shortcut" = "Enable keyboard shortcut";
+"Display the current song artist and title by pressing ctrl + command + m." = "Display the current song artist and title by pressing ctrl + command + m.";
+"Hide text when paused" = "Hide text when paused";
+"Omits the current song artist and title from the menu bar when the music is paused." = "Omits the current song artist and title from the menu bar when the music is paused.";

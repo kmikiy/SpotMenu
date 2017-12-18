@@ -4,6 +4,8 @@
 
   Created by Miklós Kristyán on 30.07.17.
   Copyright © 2017 KM. All rights reserved.
+ 
+  Translated by @fabi94music
 */
 
 "Issues" = "Probleme";
@@ -12,8 +14,9 @@
 "Quit" = "Beenden";
 "Now playing" = "Aktueller Titel";
 "Hover over an option for more information." = "Halte den Mauszeiger über eine Option, um weitere Informationen anzuzeigen.";
-"When checked the Artist will be shown in the menu bar." = "Auswählen, um den Künstler in der Menüleiste anzuzeigen.";
-"When checked the Title will be shown in the menu bar." = "Auswählen, um den Titel in der Menüleiste anzuzeigen.";
+"When checked the artist will be shown in the menu bar." = "Auswählen, um den Künstler in der Menüleiste anzuzeigen.";
+"When checked the album name will be shown in the menu bar." = "When checked the album name will be shown in the menu bar.";
+"When checked the title will be shown in the menu bar." = "Auswählen, um den Titel in der Menüleiste anzuzeigen.";
 "When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Auswählen, um das Wiedergabe Icon (♫) in der Menüleiste anzuzeigen, wenn Musik gespielt wird.";
 "When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Auswählen, um das SpotMenu Icon in der Menüleiste anzuzeigen.\n\nHinweis:\nDas SpotMenu Icon wird angezeigt, wenn keine Informationen zur Musikwiedergabe verfügbar sind.";
 "When checked the popover will be fixed to the right corner." = "Auswählen, um das Popover an den rechten Rand zu fixieren.";
@@ -38,4 +41,6 @@
 "Indicates whether or not to check for updates automatically." = "Zeigt an, ob automatisch nach Updates gesucht werden soll oder nicht.";
 "Indicates whether or not updates can be automatically downloaded in the background." = "Zeigt an, ob Updates automatisch im Hintergrund geladen werden können.";
 "Enable keyboard shortcut" = "Tastatur Kurzbefehl aktivieren";
-"Display the current song artist and title by pressing ctrl + command + m." = "Drücke die Tastenkombination ctrl + command + m, um den aktuellen Titel und Künstler anzuzeigen.";
+"Display the current song artist and title by pressing ctrl + command + m." = "Display the current song artist and title by pressing ctrl + command + m.";
+"Hide text when paused" = "Hide text when paused";
+"Omits the current song artist and title from the menu bar when the music is paused." = "Omits the current song artist and title from the menu bar when the music is paused.";

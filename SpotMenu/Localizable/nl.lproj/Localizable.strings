@@ -4,6 +4,8 @@
 
   Created by Miklós Kristyán on 30.07.17.
   Copyright © 2017 KM. All rights reserved.
+ 
+  Translated by @rebdeg 
 */
 
 "Issues" = "Problemen";
@@ -12,8 +14,9 @@
 "Quit" = "Afsluiten";
 "Now playing" = "Speelt nu";
 "Hover over an option for more information." = "Houdt de cursor boven een optie voor meer informatie.";
-"When checked the Artist will be shown in the menu bar." = "Indien aangevinkt wordt de artiest getoond in de menu bar.";
-"When checked the Title will be shown in the menu bar." = "Indien aangevinkt wordt de titel getoond in de menu bar.";
+"When checked the artist will be shown in the menu bar." = "Indien aangevinkt wordt de artiest getoond in de menu bar.";
+"When checked the album name will be shown in the menu bar." = "When checked the album name will be shown in the menu bar.";
+"When checked the title will be shown in the menu bar." = "Indien aangevinkt wordt de titel getoond in de menu bar.";
 "When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Indien aangevinkt wordt  de afspeel Icon (♫) in de menubar getoond als er muziek wordt gespeeld.";
 "When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Indien aangevinkt wordt het SpotMenu icon in de menubar getoond.\n\nNoot:\nAls er geen muziek informatie kan worden getoond dan is het SpotMenu icon zichtbaar.";
 "When checked the popover will be fixed to the right corner." = "Aanvinken om de popover aan de rechter kant te fixeren.";
@@ -38,3 +41,6 @@
 "Indicates whether or not to check for updates automatically." = "Geeft aan of wel of niet op automatische updates moet worden gecontroleerd";
 "Indicates whether or not updates can be automatically downloaded in the background." = "Geeft aan of updates automatisch op de achtergrond kunnen worden gedownload";
 "Enable keyboard shortcut" = "Schakel sneltoetsen in";
+"Display the current song artist and title by pressing ctrl + command + m." = "Display the current song artist and title by pressing ctrl + command + m.";
+"Hide text when paused" = "Hide text when paused";
+"Omits the current song artist and title from the menu bar when the music is paused." = "Omits the current song artist and title from the menu bar when the music is paused.";
