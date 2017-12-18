@@ -78,7 +78,7 @@ final class GeneralPreferencesVC: NSViewController {
         showTitleButton.mouseExitedFunc = hoverAway
         
         showAlbumNameButton.mouseEnteredFunc = hoverShowAlbumName
-        showAlbumNameButton.mouseEnteredFunc = hoverAway
+        showAlbumNameButton.mouseExitedFunc = hoverAway
         
         showPlayingIconButton.mouseEnteredFunc = hoverShowPlayingIcon
         showPlayingIconButton.mouseExitedFunc = hoverAway
@@ -103,33 +103,26 @@ final class GeneralPreferencesVC: NSViewController {
     
     @IBAction private func toggleShowArtist(_ sender: Any) {
         UserPreferences.showArtist = showArtistButton.state.asBool
-        postUpdateNotification()
     }
     
     @IBAction private func toggleShowTitle(_ sender: Any) {
         UserPreferences.showTitle = showTitleButton.state.asBool
-        postUpdateNotification()
     }
     
     @IBAction private func toggleShowAlbumName(_ sender: Any) {
         UserPreferences.showAlbumName = showAlbumNameButton.state.asBool
-        postUpdateNotification()
     }
     
     @IBAction private func toggleShowPlayingIcon(_ sender: Any) {
         UserPreferences.showPlayingIcon = showPlayingIconButton.state.asBool
-        postUpdateNotification()
     }
     
     @IBAction private func toggleShowSpotMenuIcon(_ sender: Any) {
         UserPreferences.showSpotMenuIcon = showSpotMenuIconButton.state.asBool
-        postUpdateNotification()
-        postUpdateNotification()
     }
     
     @IBAction private func toggleFixPopoverToTheRight(_ sender: Any) {
         UserPreferences.fixPopoverToTheRight = fixPopoverToTheRightButton.state.asBool
-        //postUpdateNotification()
     }
     
     @IBAction private func toggleOpenAtLogin(_ sender: Any) {
@@ -139,7 +132,6 @@ final class GeneralPreferencesVC: NSViewController {
     
     @IBAction func toggleHideTextWhenPaused(_ sender: Any) {
         UserPreferences.hideTitleArtistWhenPaused = hideTextWhenPausedButton.state.asBool
-        postUpdateNotification()
     }
     
     @IBAction func toggleEnableKeyboardShortcut(_ sender: Any) {
@@ -151,13 +143,6 @@ final class GeneralPreferencesVC: NSViewController {
             appDelegate.unregisterHotKey()
         }
     }
-    
-    // MARK: - Private methods
-    
-    private func postUpdateNotification(){
-       // NotificationCenter.default.post(name: Notification.Name(rawValue: InternalNotification.key), object: self)
-    }
-    
 }
 
 // MARK: - Hover button methods
