@@ -24,10 +24,9 @@
               <li>New layout</li>
               <li>Option added in preferences to turn off now playing keyboard shortcut toast</li>
               <li>Source code updated to Swift 4</li>
-              <li>Portuguese translation added (credits: [@clinis](https://github.com/clinis))</li>
-              <li>Brazilian portuguese translation added (credits: [@maurojuniorr](https://github.com/maurojuniorr))</li>
-              <li>Catalan tranlsation added (credits: [@bcubic](https://github.com/bcubic))</li>
-              <li>@fabi94music, @rebdeg, @clinis, @maurojuniorr, @bcubic, @Lynx901 and @BatyaMedic Please help me keep the translations up-to-date!🙌 </li>
+              <li>Portuguese translation added (credits: @clinis)</li>
+              <li>Brazilian portuguese translation added (credits: @maurojuniorr)</li>
+              <li>Catalan tranlsation added (credits: @bcubic)</li>
             </ul>
           ]]>
         </description>
@@ -48,8 +47,9 @@
               <li>"Quit" renamed to "Quit SpotMenu" to stay consistent with MacOS </li>
               <li>Today Extension (a.k.a. Notification Center Widget) now has rounded edges</li>
               <li>Minimum required version of MacOS is now 10.11 👎</li>
-              <li>Russian translation added (credits: [@BatyaMedic ](https://github.com/BatyaMedic))</li>
-              <li>Spanish tranlsation added (credits: [@Lynx901](https://github.com/Lynx901))</li>
+              <li>Russian translation added (credits: @BatyaMedic)</li>
+              <li>Spanish tranlsation added (credits: @Lynx901)</li>
+              <li>@fabi94music, @rebdeg, @clinis, @maurojuniorr, @bcubic, @Lynx901 and @BatyaMedic Please help me keep the translations up-to-date!🙌 </li>
             </ul>
           ]]>
         </description>
