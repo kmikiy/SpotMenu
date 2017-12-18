@@ -8,7 +8,7 @@
 "When checked the Title will be shown in the menu bar." = "При отметке информация о названии песни будет показана в статус-баре.";
 "When checked the playing icon (♫) will be shown in the menu bar if music is played." = "При отметке иконка проигрывания (♫) будет показана в статус-баре если проигрывается музыка.";
 "When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "При отметке этой опции иконка SpotMenu появится в статус-баре.\n\nNПримечание:\nЕсли никакой информации о проигрывании нет, иконка будет видима.";
-"When checked the popover will be fixed to the right corner." = "При отметке этой опции будет применен фикс перемещения в право.";
+"When checked the popover will be fixed to the right corner." = "При отметке этой опции будет применен фикс перемещения вправо.";
 "When checked SpotMenu will start automatically at login." = "При отметке этой опции SpotMenu будет открываться при входе.";
 "Artist" = "Исполнитель";
 "Title" = "Название";
@@ -20,7 +20,7 @@
 "General" = "Общие";
 "Updates" = "Обновления";
 "Open at login" = "Открывать при входе";
-"Fix popover to the right" = "Фикс для перемещения в право";
+"Fix popover to the right" = "Фикс для перемещения вправо";
 "Show SpotMenu icon" = "Показать икнонку SpotMenu";
 "Automatically check for updates" = "Автоматические проверять обновления";
 "Automatically download updates" = "Автоматически скачивать обновления";
