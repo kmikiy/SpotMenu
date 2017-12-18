@@ -1,4 +1,4 @@
-"Issues" = "Issues";
+"Issues" = "Проблемы";
 "Preferences..." = "Настройки...";
 "Check for Updates..." = "Проверить обновления...";
 "Quit" = "Выйти";
