@@ -14,6 +14,7 @@ class PreferencesTabViewController: NSTabViewController {
     
     @IBOutlet private weak var generalTabViewItem: NSTabViewItem!
     @IBOutlet private weak var updatesTabViewItem: NSTabViewItem!
+    @IBOutlet private weak var aboutTabViewItem: NSTabViewItem!
     
    // MARK: - Lifecycle methods
     
@@ -24,6 +25,7 @@ class PreferencesTabViewController: NSTabViewController {
     
     private func initLabels(){
         generalTabViewItem.label = NSLocalizedString("General", comment: "")
-        updatesTabViewItem.label =  NSLocalizedString("Updates", comment: "")
+        updatesTabViewItem.label = NSLocalizedString("Updates", comment: "")
+        aboutTabViewItem.label = NSLocalizedString("About", comment: "")
     }
 }

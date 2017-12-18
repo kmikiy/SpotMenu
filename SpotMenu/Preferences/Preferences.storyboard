@@ -47,6 +47,7 @@
                         </connections>
                     </tabView>
                     <connections>
+                        <outlet property="aboutTabViewItem" destination="y3e-uB-KDb" id="ZHF-DA-UTf"/>
                         <outlet property="generalTabViewItem" destination="uoz-w0-4ar" id="fnl-KM-rGv"/>
                         <outlet property="tabView" destination="RYW-RI-FWg" id="zga-XO-Xia"/>
                         <outlet property="updatesTabViewItem" destination="BcJ-Oz-hfW" id="RXd-BV-nOK"/>

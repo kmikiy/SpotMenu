@@ -188,6 +188,7 @@ Scroll down for more info ⬇️</string>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="aboutDescTextField" destination="pEO-x1-z4G" id="cLh-uA-fhi"/>
                         <outlet property="btcButton" destination="x7y-Id-nPV" id="Tbv-Hs-NWM"/>
                         <outlet property="btcTextField" destination="jP2-DD-d5p" id="W8Z-Ch-J7K"/>
                         <outlet property="ethButton" destination="ciR-m3-PlB" id="lpS-wL-WG6"/>

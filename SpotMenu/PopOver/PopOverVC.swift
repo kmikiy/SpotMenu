@@ -118,22 +118,17 @@ final class PopOverViewController: NSViewController {
             
             if let artist = track.artist {
                 artistLabel.stringValue = artist
-                artistLabel.textColor = nil
                 
             } else {
-                artistLabel.stringValue = "Artist"
-                artistLabel.textColor = NSColor.gray
+                artistLabel.stringValue = NSLocalizedString("Artist", comment: "")
             }
             
             titleLabel.stringValue = track.title
             titleLabel.textColor = nil
             
         } else {
-            artistLabel.stringValue = "Artist"
-            artistLabel.textColor = NSColor.gray
-            
-            titleLabel.stringValue = "Title"
-            titleLabel.textColor = NSColor.gray
+            artistLabel.stringValue = NSLocalizedString("Artist", comment: "")
+            titleLabel.stringValue = NSLocalizedString("Title", comment: "")
         }
 
         updateTime()

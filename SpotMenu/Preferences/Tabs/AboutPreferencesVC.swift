@@ -36,9 +36,14 @@ class AboutPreferencesVC: NSViewController {
     
     
     @IBOutlet var ppTextView: NSTextView!
+    
+    @IBOutlet weak var aboutDescTextField: NSTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        aboutDescTextField.stringValue = NSLocalizedString("about-description", comment: "")
     }
     
     override func viewDidAppear() {
@@ -46,6 +51,7 @@ class AboutPreferencesVC: NSViewController {
         scrollView.flashScrollers()
         
         props.buttons = [btcButton, ethButton, ltcButton]
+        
         ppTextView.isEditable=true
         ppTextView.checkTextInDocument(nil)
         ppTextView.isEditable=false
@@ -53,6 +59,8 @@ class AboutPreferencesVC: NSViewController {
         btcTextField.stringValue = props.btc
         ethTextField.stringValue = props.eth
         ltcTextField.stringValue = props.ltc
+        
+        updateFields()
     }
     
     @IBAction func btcButtonAction(_ sender: Any) {
@@ -80,10 +88,10 @@ class AboutPreferencesVC: NSViewController {
     private func updateFields() {
         for button in props.buttons {
             if button === state.lastPressed {
-                button.title = "copied"
+                button.title = NSLocalizedString("copied", comment: "")
                 button.state = .off
             } else {
-                button.title = "copy"
+                button.title = NSLocalizedString("copy", comment: "")
                 button.state = .on
             }
         }
