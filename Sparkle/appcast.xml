@@ -4,7 +4,7 @@
 <item>
 <title>1.6.0</title>
     <description>
-          <![CDATA[
+        <![CDATA[
             <ul>
               <li>Automatic updates added.</li>
               <li>German translation added.</li>
@@ -36,6 +36,30 @@
 <sparkle:deltas>
 <enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.7/SpotMenu1.7-1.6.0.delta" sparkle:version="1.7" sparkle:shortVersionString="1.7" sparkle:deltaFrom="1.6.0" length="3975654" type="application/octet-stream" sparkle:dsaSignature="MCwCFH5XdC9ZqbkvElnnXRW1dt794DMxAhR+3ivu/j7RDZEUAQdPPv4IySnTrQ=="/></sparkle:deltas>
 </item>
+<item>
+<title>1.8.0</title>
+    <description>
+          <![CDATA[
+            <ul>
+              <li>SpotMenu now supports iTunes 🎉</li>
+              <li>About page added to preferences. Please donate 🙏</li>
+              <li>Option added to hide title and artist when music player is paused</li>
+              <li>"Quit" renamed to "Quit SpotMenu" to stay consistent with MacOS </li>
+              <li>Today Extension (a.k.a. Notification Center Widget) now has rounded edges</li>
+              <li>Minimum required version of MacOS is now 10.11 👎</li>
+              <li>Russian translation added (credits: [@BatyaMedic ](https://github.com/BatyaMedic))</li>
+              <li>Spanish tranlsation added (credits: [@Lynx901](https://github.com/Lynx901))</li>
+            </ul>
+          ]]>
+        </description>
+<pubDate>Mon, 18 Dec 2017 16PM 4:52:04 +0100</pubDate>
+<sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.8/SpotMenu180.zip" sparkle:version="1.8.0" sparkle:shortVersionString="1.8.0" length="7261924" type="application/octet-stream" sparkle:dsaSignature="MCwCFH51gzQ5wFKXQV+bbWOzBVia0bfpAhQtzCwXifLbsEYa1KarTss8TgAI1w=="/>
+<sparkle:deltas>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.8/SpotMenu1.8.0-1.7.delta" sparkle:version="1.8.0" sparkle:shortVersionString="1.8.0" sparkle:deltaFrom="1.7" length="2342719" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCdxCWaM+Jf8BBK8h+l6TfdW2jBOgIUc3s2QzH5GrjWbPnvqASsmtm/MRc="/>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.8/SpotMenu1.8.0-1.6.0.delta" sparkle:version="1.8.0" sparkle:shortVersionString="1.8.0" sparkle:deltaFrom="1.6.0" length="5063449" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCS5OixckCs0A0I3IgHwq9FVfGidQIUbYPx6M+lojLH1ETBIk5Sxg5ZqgQ="/></sparkle:deltas>
+</item>
+
 
 
 
