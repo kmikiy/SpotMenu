@@ -11,19 +11,19 @@ import Cocoa
 class PreferencesTabViewController: NSTabViewController {
 
     // MARK: - IBOutlets
-    
-    @IBOutlet private weak var generalTabViewItem: NSTabViewItem!
-    @IBOutlet private weak var updatesTabViewItem: NSTabViewItem!
-    @IBOutlet private weak var aboutTabViewItem: NSTabViewItem!
-    
-   // MARK: - Lifecycle methods
-    
+
+    @IBOutlet private var generalTabViewItem: NSTabViewItem!
+    @IBOutlet private var updatesTabViewItem: NSTabViewItem!
+    @IBOutlet private var aboutTabViewItem: NSTabViewItem!
+
+    // MARK: - Lifecycle methods
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initLabels()
     }
-    
-    private func initLabels(){
+
+    private func initLabels() {
         generalTabViewItem.label = NSLocalizedString("General", comment: "")
         updatesTabViewItem.label = NSLocalizedString("Updates", comment: "")
         aboutTabViewItem.label = NSLocalizedString("About", comment: "")

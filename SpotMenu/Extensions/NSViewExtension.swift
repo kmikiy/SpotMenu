@@ -9,18 +9,18 @@
 import AppKit
 
 extension NSView {
-    
+
     func createTrackingArea() -> NSTrackingArea {
-        
+
         let opts: NSTrackingArea.Options = ([
             NSTrackingArea.Options.mouseEnteredAndExited,
-            NSTrackingArea.Options.activeAlways])
-        
+            NSTrackingArea.Options.activeAlways,
+        ])
+
         return NSTrackingArea(
             rect: bounds,
             options: opts,
             owner: self,
             userInfo: nil)
     }
-    
 }

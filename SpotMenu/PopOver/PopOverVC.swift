@@ -1,11 +1,11 @@
 import Cocoa
-import WebKit
 import MusicPlayer
+import WebKit
 
 final class PopOverViewController: NSViewController {
-    
+
     // MARK: - Properties
-    
+
     private var lastArtworkUrl = ""
     fileprivate var rightTimeIsDuration: Bool = true
     private var defaultImage: NSImage!
@@ -16,96 +16,95 @@ final class PopOverViewController: NSViewController {
     private var timer: Timer!
     private let spotMenuIcon = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImage"))
     private let spotMenuIconItunes = NSImage(named: NSImage.Name(rawValue: "StatusBarButtonImageItunes"))
-    
+
     // MARK: - IBOutlets
-    
-    @IBOutlet weak fileprivate var positionSlider: NSSlider!
-    @IBOutlet weak private var artistLabel: NSTextField!
-    @IBOutlet weak private var aLabel: NSTextField!
-    @IBOutlet weak private var titleLabel: NSTextField!
-    @IBOutlet weak private var playerStateButton: NSButton!
-    @IBOutlet weak private var artworkImageView: NSImageView!
-    @IBOutlet weak private var leftTime: NSTextField!
-    @IBOutlet weak private var rightTime: NSTextField!
-    @IBOutlet weak private var musicPlayerButton: NSButton!
-    
+
+    @IBOutlet fileprivate var positionSlider: NSSlider!
+    @IBOutlet private var artistLabel: NSTextField!
+    @IBOutlet private var aLabel: NSTextField!
+    @IBOutlet private var titleLabel: NSTextField!
+    @IBOutlet private var playerStateButton: NSButton!
+    @IBOutlet private var artworkImageView: NSImageView!
+    @IBOutlet private var leftTime: NSTextField!
+    @IBOutlet private var rightTime: NSTextField!
+    @IBOutlet private var musicPlayerButton: NSButton!
+
     // MARK: - Lifecycle methods
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         defaultImage = artworkImageView.image
-        self.preferredContentSize = NSSize(width: 300, height: 300)
+        preferredContentSize = NSSize(width: 300, height: 300)
     }
-    
+
     override func viewWillAppear() {
         super.viewWillAppear()
-        
-        self.setUpMusicPlayerManager()
-        self.musicPlayerManager.delegate = self
-        
+
+        setUpMusicPlayerManager()
+        musicPlayerManager.delegate = self
+
         let lastMusicPlayerName = MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!
         let lastMusicPlayer = musicPlayerManager.existMusicPlayer(with: lastMusicPlayerName)
         musicPlayerManager.currentPlayer = lastMusicPlayer
         let track = lastMusicPlayer?.currentTrack
         updateInfo(track: track)
-      
-        
+
         let state = lastMusicPlayer?.playbackState
         updateButton(state: state)
-        
+
         if let state = state {
-            self.isPlaying = state == .playing
+            isPlaying = state == .playing
         }
         if let track = track {
-            self.duration = track.duration
+            duration = track.duration
         }
         if let position = lastMusicPlayer?.playerPosition {
             self.position = position
         }
-        
+
         updatePlayerPosition()
         updateTime()
         updateMusicPlayerIcon(musicPlayerName: lastMusicPlayerName)
-        
+
         timer = Timer.scheduledTimer(
             timeInterval: 1,
             target: self,
-            selector: #selector(self.updatePlayerPosition),
+            selector: #selector(updatePlayerPosition),
             userInfo: nil,
             repeats: true)
     }
-    
+
     override func viewDidDisappear() {
         timer.invalidate()
-        self.musicPlayerManager.delegate = nil
+        musicPlayerManager.delegate = nil
     }
-    
+
     // MARK: - Public methods
-    
+
     func setUpMusicPlayerManager() {
-        if self.musicPlayerManager == nil {
-            self.musicPlayerManager = MusicPlayerManager()
-            self.musicPlayerManager.add(musicPlayer: MusicPlayerName.spotify)
-            self.musicPlayerManager.add(musicPlayer: MusicPlayerName.iTunes)
+        if musicPlayerManager == nil {
+            musicPlayerManager = MusicPlayerManager()
+            musicPlayerManager.add(musicPlayer: MusicPlayerName.spotify)
+            musicPlayerManager.add(musicPlayer: MusicPlayerName.iTunes)
         }
     }
 
     // MARK: - Private methods
-    
+
     @objc private func updatePlayerPosition() {
         if isPlaying {
-            self.position = self.position + 1
+            position = position + 1
             updateTime()
         }
-        positionSlider.doubleValue = floor(position/duration * 100)
+        positionSlider.doubleValue = floor(position / duration * 100)
     }
-    
+
     private func updateInfo(track: MusicTrack?) {
         if let track = track {
-            if let artworkUrl = track.artworkUrl , artworkUrl != lastArtworkUrl {
+            if let artworkUrl = track.artworkUrl, artworkUrl != lastArtworkUrl {
                 if let url = URL(string: artworkUrl) {
-                    self.artworkImageView.downloadImage(url: url)
+                    artworkImageView.downloadImage(url: url)
                     lastArtworkUrl = artworkUrl
                 }
             }
@@ -115,17 +114,17 @@ final class PopOverViewController: NSViewController {
             if let artwork = track.artwork {
                 artworkImageView.image = artwork
             }
-            
+
             if let artist = track.artist {
                 artistLabel.stringValue = artist
-                
+
             } else {
                 artistLabel.stringValue = NSLocalizedString("Artist", comment: "")
             }
-            
+
             titleLabel.stringValue = track.title
             titleLabel.textColor = nil
-            
+
         } else {
             artistLabel.stringValue = NSLocalizedString("Artist", comment: "")
             titleLabel.stringValue = NSLocalizedString("Title", comment: "")
@@ -133,20 +132,19 @@ final class PopOverViewController: NSViewController {
 
         updateTime()
     }
-    
+
     fileprivate func updateTime() {
-        let leftTimeTuple = secondsToHoursMinutesSeconds(seconds: self.position)
+        let leftTimeTuple = secondsToHoursMinutesSeconds(seconds: position)
         leftTime.stringValue = getTimeString(tuple: leftTimeTuple)
-        
+
         switch rightTimeIsDuration {
         case true:
-            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: self.duration)
+            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: duration)
             rightTime.stringValue = getTimeString(tuple: rightTimeTuple)
         case false:
-            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: self.duration - self.position)
+            let rightTimeTuple = secondsToHoursMinutesSeconds(seconds: duration - position)
             rightTime.stringValue = "-" + getTimeString(tuple: rightTimeTuple)
         }
-        
     }
 
     private func updateButton(state: MusicPlaybackState?) {
@@ -159,125 +157,119 @@ final class PopOverViewController: NSViewController {
             default:
                 playerStateButton.title = "▶︎"
             }
-        }
-        else {
+        } else {
             playerStateButton.title = "▶︎"
         }
     }
-    
-    
-    private func secondsToHoursMinutesSeconds (seconds : Double) -> (Int, Int, Int) {
+
+    private func secondsToHoursMinutesSeconds(seconds: Double) -> (Int, Int, Int) {
         return (Int(seconds / 3600),
                 Int((seconds.truncatingRemainder(dividingBy: 3600)) / 60),
                 Int((seconds.truncatingRemainder(dividingBy: 3600).truncatingRemainder(dividingBy:
-            60))))
+                        60))))
     }
-    
-    private func getTimeString(tuple: (Int,Int,Int))-> String {
+
+    private func getTimeString(tuple: (Int, Int, Int)) -> String {
         return String(format: "%02d:%02d", tuple.1, tuple.2)
     }
-    
+
     private func updateMusicPlayerIcon(musicPlayerName: MusicPlayerName?) {
         if musicPlayerName == MusicPlayerName.iTunes {
             musicPlayerButton.image = spotMenuIconItunes
-        }
-        else {
+        } else {
             musicPlayerButton.image = spotMenuIcon
         }
     }
-    
 }
 
 // MARK: Actions
 
 private extension PopOverViewController {
-    
-    @IBAction func goLeft(_ sender: NSButton) {
-        self.musicPlayerManager.currentPlayer?.playPrevious()
+
+    @IBAction func goLeft(_: NSButton) {
+        musicPlayerManager.currentPlayer?.playPrevious()
     }
-    
-    @IBAction func goRight(_ sender: NSButton) {
-        self.musicPlayerManager.currentPlayer?.playNext()
+
+    @IBAction func goRight(_: NSButton) {
+        musicPlayerManager.currentPlayer?.playNext()
     }
-    
-    @IBAction func openSpotify(_ sender: Any) {
-        self.musicPlayerManager.currentPlayer?.activate()
+
+    @IBAction func openSpotify(_: Any) {
+        musicPlayerManager.currentPlayer?.activate()
     }
-    
-    @IBAction func positionSliderAction(_ sender: AnyObject) {
-        self.position = (positionSlider.doubleValue/100.0)*self.duration
-        self.musicPlayerManager.currentPlayer?.playerPosition = self.position
+
+    @IBAction func positionSliderAction(_: AnyObject) {
+        position = (positionSlider.doubleValue / 100.0) * duration
+        musicPlayerManager.currentPlayer?.playerPosition = position
     }
-    
-    @IBAction func togglePlay(_ sender: AnyObject) {
+
+    @IBAction func togglePlay(_: AnyObject) {
         if let state = self.musicPlayerManager.currentPlayer?.playbackState {
             switch state {
             case .playing, .fastForwarding, .rewinding, .reposition:
-                self.musicPlayerManager.currentPlayer?.pause()
+                musicPlayerManager.currentPlayer?.pause()
             default:
-                self.musicPlayerManager.currentPlayer?.play()
+                musicPlayerManager.currentPlayer?.play()
             }
         } else {
-            self.musicPlayerManager.currentPlayer?.play()
+            musicPlayerManager.currentPlayer?.play()
         }
     }
-    
-    @IBAction func toggleRightTime(_ sender: AnyObject) {
+
+    @IBAction func toggleRightTime(_: AnyObject) {
         rightTimeIsDuration = !rightTimeIsDuration
         updateTime()
     }
 }
 
-extension PopOverViewController:  MusicPlayerManagerDelegate {
-    func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, didChangeTrack track: MusicTrack, atPosition position: TimeInterval) {
-        self.duration = track.duration
+extension PopOverViewController: MusicPlayerManagerDelegate {
+    func manager(_: MusicPlayerManager, trackingPlayer player: MusicPlayer, didChangeTrack track: MusicTrack, atPosition position: TimeInterval) {
+        duration = track.duration
         self.position = position
         updateInfo(track: track)
         updateMusicPlayerIcon(musicPlayerName: player.name)
     }
-    
-    func manager(_ manager: MusicPlayerManager, trackingPlayer player: MusicPlayer, playbackStateChanged playbackState: MusicPlaybackState, atPosition position: TimeInterval) {
+
+    func manager(_: MusicPlayerManager, trackingPlayer player: MusicPlayer, playbackStateChanged playbackState: MusicPlaybackState, atPosition position: TimeInterval) {
         self.position = position
         switch playbackState {
         case .playing, .fastForwarding, .rewinding, .reposition:
-            self.isPlaying = true
+            isPlaying = true
         default:
-            self.isPlaying = false
+            isPlaying = false
         }
         updateInfo(track: player.currentTrack)
         updateButton(state: playbackState)
         updateMusicPlayerIcon(musicPlayerName: player.name)
     }
-    
-    func manager(_ manager: MusicPlayerManager, trackingPlayerDidQuit player: MusicPlayer) {
+
+    func manager(_: MusicPlayerManager, trackingPlayerDidQuit _: MusicPlayer) {
         updateInfo(track: nil)
     }
-    
-    func manager(_ manager: MusicPlayerManager, trackingPlayerDidChange player: MusicPlayer) {
+
+    func manager(_: MusicPlayerManager, trackingPlayerDidChange player: MusicPlayer) {
         updateMusicPlayerIcon(musicPlayerName: player.name)
     }
-    
 }
 
 // MARK: - NSImageView image download
 
 extension NSImageView {
-    
-    private func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+
+    private func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
         URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
+            data, response, error in
             completion(data, response, error)
-            }.resume()
+        }.resume()
     }
-    
+
     func downloadImage(url: URL) {
-        
-        getDataFromUrl(url: url) { (data, response, error)  in
+
+        getDataFromUrl(url: url) { data, _, error in
             DispatchQueue.main.sync() { () -> Void in
                 guard let data = data, error == nil else { return }
                 self.image = NSImage(data: data)
             }
         }
     }
-    
 }

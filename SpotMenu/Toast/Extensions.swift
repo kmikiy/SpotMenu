@@ -8,15 +8,15 @@
 
 import Foundation
 #if os(OSX)
-import AppKit
-typealias View = NSView
-typealias Color = NSColor
-typealias Font = NSFont
+    import AppKit
+    typealias View = NSView
+    typealias Color = NSColor
+    typealias Font = NSFont
 #elseif os(iOS) || os(tvOS)
-import UIKit
-typealias View = UIView
-typealias Color = UIColor
-typealias Font = UIFont
+    import UIKit
+    typealias View = UIView
+    typealias Color = UIColor
+    typealias Font = UIFont
 #endif
 
 extension CGRect {
@@ -24,6 +24,7 @@ extension CGRect {
         let parentSize = layer.frame.size
         return CGPoint(x: parentSize.width / 2, y: parentSize.height / 2)
     }
+
     static func center(of parent: View) -> CGPoint {
         let parentSize = parent.frame.size
         return CGPoint(x: parentSize.width / 2, y: parentSize.height / 2)
@@ -39,6 +40,7 @@ extension NSString {
         #endif
     }
 }
+
 extension View {
     var _layer: CALayer {
         #if os(OSX)
