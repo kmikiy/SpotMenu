@@ -11,7 +11,7 @@
 "Issues" = "Problemas";
 "Preferences..." = "Preferências...";
 "Check for Updates..." = "Procurar atualizações...";
-"Quit" = "Sair";
+"Quit" = "Encerrar o SpotMenu";
 "Now playing" = "Reproduzindo";
 "Hover over an option for more information." = "Passe o mouse sobre uma opção para ver mais informações.";
 "When checked the artist will be shown in the menu bar." = "Quando ativado, o Artista será mostrado na barra de menus.";
@@ -25,7 +25,7 @@
 "Title" = "Título";
 "Show playing icon" = "Mostrar ícone de reprodução";
 "Show title" = "Mostrar título";
-"with ♥ from kmikiy" = "Com ♥ por kmikiy";
+"with ♥ from kmikiy" = "com ♥ por kmikiy";
 "Show artist" = "Mostrar artista";
 "Preferences" = "Preferências";
 "General" = "Geral";
@@ -40,12 +40,12 @@
 "Preferences" = "Preferências";
 "Indicates whether or not to check for updates automatically." = "Indica se deve ou não procurar atualizações automaticamente.";
 "Indicates whether or not updates can be automatically downloaded in the background." = "Indica se as atualizações devem ou não ser transferidas automaticamente em segundo plano.";
-"Enable keyboard shortcut" = "Habilitar atalho do teclado";
-"Display the current song artist and title by pressing ctrl + command + m." = "Exibe o artista e o título da música atual pressionando ctrl + command + m.";
-"Hide text when paused" = "Esconder texto quando pausado";
-"Omits the current song artist and title from the menu bar when the music is paused." = "Omite o artista e o título da música atual na barra de menus quando a música está pausada.";
-"copy" = "Copiar";
-"copied" = "Copiado!";
+"Enable keyboard shortcut" = "Ativar atalhos do teclado";
+"Display the current song artist and title by pressing ctrl + command + m." = "Mostre a música que esta tocando agora apertando ctrl + ⌘ + M.";
+"Hide text when paused" = "Esconder o texto quando pausado";
+"Omits the current song artist and title from the menu bar when the music is paused." = "Esconder o titulo da musica na barra de menus quando a música for pausada.";
+"copy" = "copiar";
+"copied" = "copiado";
 "About" = "Sobre";
-"about-description" = "SpotMenu é gratuito e open source📖. Meu objetivo é mantê-lo dessa maneira. Não quero limitar funções, nem irritar os usuários. Infelizmente, eu gosto de dinheiro💰💵🤑 e gostaria de viver um estilo de vida luxuoso💎.\nEu incluí uma foto minha do futuro (invejosos dirão que é photoshop).🌅. Para aqueles que quiserem contribuir com o meu bem-estar e ajudar a cumprir o meu destino, incluí várias maneiras de doar esse faz-me rir.\nSim baby!, kmikiy agora aceita várias formas de demonstrações de amor em criptomoedas.\nRole para baixo para mais informações ⬇️";
+"about-description" = "SpotMenu é grátis e open source 📖. Minha meta é que tudo se mantenha assim. Eu não quero limitar suas funções, ou incomodar os usuários. Infelizmente, eu gosto de la plata 💰💵🤑  e gostaria de viver na excelência 💎.\nI Anexei uma foto de mim no futuro (Photoshop? nunca nem vi.)🌅. Para aqueles que gostariam de contribuir para meu bem estar e realizar os meus sonhos. Coloquei abaixo algumas formas de você doar seu rico dinheirinho.\Então, galera. kmikiy agora aceita vários tipos de criptomoedas.\ Role abaixo para mais informaçÕes⬇️";
 "Show album title" = "Mostrar nome do álbum";
