@@ -1,9 +1,9 @@
-# SpotMenu ![demo](https://github.com/kmikiy/SpotMenu/blob/master/SpotMenu/Assets.xcassets/AppIcon.appiconset/spotmenu%20(5)-1.png)
+# SpotMenu ![demo](https://github.com/kmikiy/SpotMenu/blob/master/SpotMenu/Assets.xcassets/AppIcon.appiconset/spotmenu%20(5)-1.png?raw=true)
 Spotify and iTunes in your menu bar
 
 ## About
 
-![demo](https://github.com/kmikiy/SpotMenu/blob/master/Demo/demo.gif)
+![demo](https://github.com/kmikiy/SpotMenu/blob/master/Demo/demo.gif?raw=true)
 
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
 and [Statusfy](https://github.com/paulyoung/Statusfy) written ~entirely~ _almost entirely_ in swift. 
@@ -17,11 +17,11 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
 
 ## Donate
 
-- [![Paypal](https://github.com/kmikiy/SpotMenu/blob/master/Donation/pp.png)](http://paypal.me/kmikiy) [paypal.me/kmikiy](https://paypal.me/kmikiy) Help me get that new Tesla Model X 🚗 or a cup of coffee ☕️, anything helps 💸💰💵
+- [![Paypal](https://github.com/kmikiy/SpotMenu/blob/master/Donation/pp.png?raw=true)](http://paypal.me/kmikiy) [paypal.me/kmikiy](https://paypal.me/kmikiy) Help me get that new Tesla Model X 🚗 or a cup of coffee ☕️, anything helps 💸💰💵
 - Or help me become a cryptocurrency  millionaire 🔐   
-    - ![Ƀitcoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/btc.png) 1Cc79kaUUWZ2fD7iFAnr5i89vb2j6JunvA
-    - ![Ethereum](https://github.com/kmikiy/SpotMenu/blob/master/Donation/eth.png) 0xFA06Af34fd45c0213fc909F22cA7241BBD94076f
-    - ![Łitecoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/ltc.png) LS3ibFQWd2xz1ByZajrzS3Y787LgRwHYVE
+    - ![Ƀitcoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/btc.png?raw=true) 1Cc79kaUUWZ2fD7iFAnr5i89vb2j6JunvA
+    - ![Ethereum](https://github.com/kmikiy/SpotMenu/blob/master/Donation/eth.png?raw=true) 0xFA06Af34fd45c0213fc909F22cA7241BBD94076f
+    - ![Łitecoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/ltc.png?raw=true) LS3ibFQWd2xz1ByZajrzS3Y787LgRwHYVE
     
 ## New Features in Version 1.8
 
