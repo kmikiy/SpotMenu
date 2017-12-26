@@ -1,0 +1,31 @@
+.donate {
+	text-align: center;
+	padding-top: 1rem;
+	color: #cecece;
+}
+
+.donate-section {
+	background: #121212;
+}
+
+.donate-blocks {
+	display: block;
+}
+
+.donate-img {
+	padding-right: 5px;
+}
+
+.donate-options {
+	text-align: center;
+	color: #cecece;
+}
+
+.kmikiy-section {
+	padding: 10px 10px 30px 10px;
+	color: #aaaaaa;
+}
+
+.bg-color {
+	background: #020202;
+}
