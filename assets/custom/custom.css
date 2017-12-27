@@ -22,10 +22,14 @@
 }
 
 .kmikiy-section {
-	padding: 10px 10px 30px 10px;
+	padding: 20px 10px 20px 10px;
 	color: #aaaaaa;
 }
 
 .bg-color {
 	background: #020202;
+}
+
+.soc-item {
+	padding: 5px;
 }
