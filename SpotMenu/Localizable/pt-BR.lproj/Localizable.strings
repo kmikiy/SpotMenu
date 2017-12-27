@@ -11,16 +11,16 @@
 "Issues" = "Problemas";
 "Preferences..." = "Preferências...";
 "Check for Updates..." = "Procurar atualizações...";
-"Quit" = "Encerrar o Spot Menu";
+"Quit" = "Encerrar o SpotMenu";
 "Now playing" = "Reproduzindo";
 "Hover over an option for more information." = "Passe o mouse sobre uma opção para ver mais informações.";
 "When checked the artist will be shown in the menu bar." = "Quando ativado, o Artista será mostrado na barra de menus.";
-"When checked the album name will be shown in the menu bar." = "When checked the album name will be shown in the menu bar.";
-"When checked the title will be shown in the menu bar." = "Quando ativado, o Título será mostrado na barra de menus.";
+"When checked the album name will be shown in the menu bar." = "Quando ativado, o nome do álbum será mostrado na barra de menus.";
+"When checked the title will be shown in the menu bar." = "Quando ativado, o título será mostrado na barra de menus.";
 "When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Quando ativado, o ícone de reprodução (♫) será mostrado na barra de menus, se houver uma música em reprodução.";
 "When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Quando ativado, o ícone do SpotMenu será mostrado na barra de menus.\n\nNota:\nSe não houver informações da música para serem exibidas, o ícone do SpotMenu estará visível.";
 "When checked the popover will be fixed to the right corner." = "Quando ativado, o popover será fixado no canto superior direito.";
-"When checked SpotMenu will start automatically at login." = "Quando ativado, o SpotMenu inicia automaticamente no Login.";
+"When checked SpotMenu will start automatically at login." = "Quando ativado, o SpotMenu inicia automaticamente no login.";
 "Artist" = "Artista";
 "Title" = "Título";
 "Show playing icon" = "Mostrar ícone de reprodução";
@@ -30,7 +30,7 @@
 "Preferences" = "Preferências";
 "General" = "Geral";
 "Updates" = "Atualizações";
-"Open at login" = "Abrir no Login";
+"Open at login" = "Abrir no login";
 "Fix popover to the right" = "Fixar popover à direita";
 "Show SpotMenu icon" = "Mostrar ícone do SpotMenu";
 "Automatically check for updates" = "Procurar atualizações automaticamente";
@@ -47,5 +47,5 @@
 "copy" = "copiar";
 "copied" = "copiado";
 "About" = "Sobre";
-"about-description" = "SpotMenu é grátis e open source 📖. Minha meta é que tudo se mantenha assim. Eu não quero limitar suas funções, ou incomodar os usuários. Infelizmente, eu gosto de la plata 💰💵🤑  e gostaria de viver na excelência 💎.\nI  Anexei uma foto de mim no futuro (Photoshop? nunca nem vi.)🌅. Para aqueles que gostariam de contribuir para meu bem estar e realizar os meus sonhos. Coloquei abaixo algumas formas de você doar seu rico dinheirinho.\Então, galera. kmikiy agora aceita vários tipos de criptomoedas.\ Role abaixo para mais informaçÕes⬇️";
-"Show album title" = "Show album title";
+"about-description" = "SpotMenu é grátis e open source 📖. Minha meta é que tudo se mantenha assim. Eu não quero limitar suas funções, ou incomodar os usuários. Infelizmente, eu gosto de la plata 💰💵🤑  e gostaria de viver na excelência 💎.\nI Anexei uma foto de mim no futuro (Photoshop? nunca nem vi.)🌅. Para aqueles que gostariam de contribuir para meu bem estar e realizar os meus sonhos. Coloquei abaixo algumas formas de você doar seu rico dinheirinho.\Então, galera. kmikiy agora aceita vários tipos de criptomoedas.\ Role abaixo para mais informaçÕes⬇️";
+"Show album title" = "Mostrar nome do álbum";
