@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  SpotMenu
+
+  Created by Miklós Kristyán on 30.07.17.
+  Copyright © 2017 KM. All rights reserved.
+ 
+  Translated by @NicolaLeonardi
+*/
+
+"Issues" = "Issues";
+"Preferences..." = "Impostazioni...";
+"Check for Updates..." = "Controlla aggiornamenti...";
+"Quit" = "Chiudi SpotMenu";
+"Now playing" = "In riproduzione";
+"Hover over an option for more information." = "Rimani su un opzione per avere maggiori informazioni.";
+"When checked the artist will be shown in the menu bar." = "Se impostato l' artista verrà mostrato nella barra dei menù.";
+"When checked the album name will be shown in the menu bar." = "Se impostato l' album verrà mostrato nella barra dei menù.";
+"When checked the title will be shown in the menu bar." = "Se impostato il titolo della canzone verrà mostrato nella barra dei menù.";
+"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Se impostato l' icona (♫) verrà mostrata nella barra dei menù quando sarà riprodotta una canzone.";
+"When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Se impostato l' icona di SpotMenu sarà mostrata nella barra dei menù.\n\nNota:\nSe non c' é nessuna informazione da mostrate, l' icona di SpotMenu sarà comunque visibile.";
+"When checked the popover will be fixed to the right corner." = "Se impostato il popover verrà posto nell' angolo destro.";
+"When checked SpotMenu will start automatically at login." = "Se impostato SpotMenu si avvierà automaticamente dopo il login.";
+"Artist" = "Artista";
+"Title" = "Titolo";
+"Show playing icon" = "Mostra icona di riproduzione";
+"Show title" = "Mostra titolo";
+"with ♥ from kmikiy" = "con ♥ da kmikiy";
+"Show artist" = "Mostra artista";
+"Preferences" = "Impostazioni";
+"General" = "Generali";
+"Updates" = "Aggiornamenti";
+"Open at login" = "Apri al login";
+"Fix popover to the right" = "Popover bloccato a destra";
+"Show SpotMenu icon" = "Mostra l' icona di SpotMenu";
+"Automatically check for updates" = "Controlla automatica degli aggiornamenti";
+"Automatically download updates" = "Scarica aggiornamenti in automatico";
+"Check for Updates" = "Controlla aggiornamenti";
+"Last checked:" = "Ultimo controllo:";
+"Preferences" = "Impostazioni";
+"Indicates whether or not to check for updates automatically." = "Indica se gli aggiornamenti verranno controllati in automatico o no.";
+"Indicates whether or not updates can be automatically downloaded in the background." = "Indica se gli aggiornamenti verranno scaricati in automatico in background o no.";
+"Enable keyboard shortcut" = "Abilita le scorciatoie da tastiera";
+"Display the current song artist and title by pressing ctrl + command + m." = "Mostra la canzone corrente premento ctrl + command + m.";
+"Hide text when paused" = "Nascondi il testo se in pausa";
+"Omits the current song artist and title from the menu bar when the music is paused." = "Evita di mostrare titolo e artista della canzone corrente nella barra dei menù quando la canzone é in pausa.";
+"copy" = "copia";
+"copied" = "copiato";
+"About" = "Informazioni";
+"about-description" = "SpotMenu é gratuita e open source📖. Il mio obiettivo é di mantenerla così. Non voglio limitarne le funzionalità, né annoiare l' utente. Sfortunatamente mi piacciono i soldi 💰💵🤑 e mi piacerebbe avere uno stile di vita sfarzoso💎.\nHo incluso una foto di me dal futuro (NON è photoshoppata)🌅. Per quelli che vorrebbero contribuire al mio benestare e adempiere al mio destino, ho incluso diverse modalità di donazione del dolcissimo dio denaro.\nEh già, kmikiy accetta diverse cryptovalute.\nScorri in basso per maggiori informazioni ⬇️";
+"Show album title" = "Mostra il titolo dell' album";
