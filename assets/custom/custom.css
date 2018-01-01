@@ -55,6 +55,6 @@ body {
 	position: fixed;
 	top: 15px;
 	left: 15px;
-	background: url(/assets/images/home.svg);
+	background: url(../../assets/images/home.svg);
 	background-size: 50px 50px;
 }
