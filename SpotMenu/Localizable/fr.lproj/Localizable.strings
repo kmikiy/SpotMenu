@@ -10,7 +10,7 @@
 
 "Issues" = "Issues";
 "Preferences..." = "Préférences...";
-"Check for Updates..." = "Check for Updates...";
+"Check for Updates..." = "Rechercher des mises à jour...";
 "Quit" = "Quitter SpotMenu";
 "Now playing" = "Lecture en cours";
 "Hover over an option for more information." = "Passez la souris sur une option pour plus d'informations.";
@@ -25,7 +25,7 @@
 "Title" = "Titre";
 "Show playing icon" = "Afficher l'icône de lecture";
 "Show title" = "Afficher le titre";
-"with ♥ from kmikiy" = "avec le ♥ par kmikiy";
+"with ♥ from kmikiy" = "avec ♥ par kmikiy";
 "Show artist" = "Afficher l'artiste";
 "Preferences" = "Préférences";
 "General" = "Général";
@@ -36,7 +36,7 @@
 "Automatically check for updates" = "Vérifier automatiquement les mises à jour";
 "Automatically download updates" = "Télécharger automatiquement les mises à jour";
 "Check for Updates" = "Vérifier les mises à jour";
-"Last checked:" = "Dernières vérification:";
+"Last checked:" = "Dernière vérification:";
 "Preferences" = "Préférences";
 "Indicates whether or not to check for updates automatically." = "Indique s'il faut ou non vérifier les mises à jour automatiquement.";
 "Indicates whether or not updates can be automatically downloaded in the background." = "Indique si les mises à jour peuvent être téléchargées automatiquement en arrière-plan.";
@@ -47,5 +47,5 @@
 "copy" = "copie";
 "copied" = "copié";
 "About" = "À propos";
-"about-description" = "SpotMenu est gratuit et open source📖. Mon but est de garder ça comme ça. Je ne veux pas limiter les fonctions, ni gêner les utilisateurs. Malheuresement, j'aime l'argent💰💵🤑 et je voudrais vivre un style de vie somptueuse💎.\nJ'ai inclu une photo de moi dans le futur (ce n'est PAS photoshoppé)🌅. Pour ceux qui voudraient contribuer à mon bien-être et accomplir mon destin, j'ai inclus plusieurs façons de faire don de cette douce et douce monnaie. \nUn garçon, kmikiy accepte maintenant plusieurs crypto-monnaies.\nFaites défiler vers le bas pour plus d'informations ⬇️";
+"about-description" = "SpotMenu est gratuit et open source📖. Mon but est de le laisser tel quel. Je ne veux ni limiter les fonctions, ni gêner les utilisateurs. Malheureusement, j'aime l'argent💰💵🤑 et je voudrais vivre aisément💎.\nJ'ai inclu une photo de moi dans le futur (ce n'est PAS photoshoppé)🌅. Pour ceux qui voudraient contribuer à mon bien-être et m'aider à accomplir mon destin, j'ai inclus plusieurs façons de faire don de cette belle et douce monnaie. \nMoi, kmikiy, accepte maintenant plusieurs crypto-monnaies.\nFaîtes défiler vers le bas pour plus d'informations ⬇️";
 "Show album title" = "Afficher le titre de l'album";
