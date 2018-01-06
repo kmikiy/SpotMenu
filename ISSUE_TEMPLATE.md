@@ -23,7 +23,7 @@ Please check that your issue isn't already filed: https://github.com/kmikiy/Spot
 
 SpotMenu version: [Version of SpotMenu]
 
-You can get this information by highlighting SpotMenu.app (most likely in you Applications folder) in finder and pressing space.
+You can get this information by highlighting SpotMenu.app (most likely in your Applications folder) in finder and pressing space.
 
 MacOS version: [Version of MacOS]
 
