@@ -16,7 +16,7 @@ final class StatusItemBuilder {
     private var artist = ""
     private var albumName = ""
     private var playingIcon = ""
-    private var isPlaying: Bool = false
+    private var isPlaying = false
     private var hideWhenPaused = false
     private var scrollStatus = 0
     private var currentTitle = ""
@@ -50,7 +50,6 @@ final class StatusItemBuilder {
             statusUpdateTimer?.invalidate()
             statusUpdateTimer = nil
         }
-        currentTitle = getString()
         return self
     }
 
@@ -109,10 +108,8 @@ final class StatusItemBuilder {
     }
 
     func setTitle(callback: @escaping (_ newTitle: String) -> ()) {
-        if !isPlaying && UserPreferences.hideTitleArtistWhenPaused {
-            callback("")
-            return
-        }
+
+        currentTitle = getString()
         if maxLength == 0 {
             maxLength = 40
         }
