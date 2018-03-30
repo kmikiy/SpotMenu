@@ -119,7 +119,7 @@ struct UserPreferences {
             return UserPreferences.readSettingInt(key: Keys.scrollStatusBarIfLengthOver)
         }
         set {
-            var useAsValue = 40
+            var useAsValue: Int
             // Guard against people entering low numbers
             if newValue < 5 {
                 useAsValue = 5

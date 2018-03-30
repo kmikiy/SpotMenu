@@ -24,6 +24,7 @@ final class StatusItemBuilder {
     private var shortInterval = TimeInterval(0.5)
     private var longInterval = TimeInterval(2)
     private var maxLength = UserPreferences.scrollStatusBarIfLengthOver
+    private var maxLengthBuffer = 5
 
     // MARK: - Lifecycle method
 
@@ -115,7 +116,7 @@ final class StatusItemBuilder {
         if maxLength == 0 {
             maxLength = 40
         }
-        if currentTitle.count > maxLength {
+        if currentTitle.count > (maxLength + maxLengthBuffer) {
             var startIndex = currentTitle.index(currentTitle.startIndex, offsetBy: scrollStatus)
             if (scrollStatus + maxLength) > currentTitle.count {
                 startIndex = currentTitle.startIndex
