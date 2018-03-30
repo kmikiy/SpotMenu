@@ -108,6 +108,10 @@ final class StatusItemBuilder {
     }
 
     func setTitle(callback: @escaping (_ newTitle: String) -> ()) {
+        if !isPlaying && UserPreferences.hideTitleArtistWhenPaused {
+            callback("")
+            return
+        }
         if maxLength == 0 {
             maxLength = 40
         }
