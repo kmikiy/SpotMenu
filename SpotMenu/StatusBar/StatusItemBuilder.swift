@@ -18,10 +18,22 @@ final class StatusItemBuilder {
     private var playingIcon = ""
     private var isPlaying: Bool = false
     private var hideWhenPaused = false
+    private var scrollStatus = 0
+    private var currentTitle = ""
+    private var statusUpdateTimer: Timer?
+    private var shortInterval = TimeInterval(0.5)
+    private var longInterval = TimeInterval(2)
+    private var maxLength = UserPreferences.scrollStatusBarIfLengthOver
 
     // MARK: - Lifecycle method
 
     init(title: String?, artist: String?, albumName: String?, isPlaying: Bool) {
+        update(title: title, artist: artist, albumName: albumName, isPlaying: isPlaying)
+    }
+
+    // MARK: - Methods
+
+    func update(title: String?, artist: String?, albumName: String?, isPlaying: Bool) -> StatusItemBuilder {
         if let v = title {
             self.title = v
         }
@@ -32,9 +44,14 @@ final class StatusItemBuilder {
             self.albumName = v
         }
         self.isPlaying = isPlaying
+        scrollStatus = 0
+        if statusUpdateTimer != nil {
+            statusUpdateTimer?.invalidate()
+            statusUpdateTimer = nil
+        }
+        currentTitle = getString()
+        return self
     }
-
-    // MARK: - Methods
 
     func hideWhenPaused(v: Bool) -> StatusItemBuilder {
         hideWhenPaused = v
@@ -90,12 +107,51 @@ final class StatusItemBuilder {
         return self
     }
 
+    func setTitle(callback: @escaping (_ newTitle: String) -> ()) {
+        if maxLength == 0 {
+            maxLength = 40
+        }
+        if currentTitle.count > maxLength {
+            var startIndex = currentTitle.index(currentTitle.startIndex, offsetBy: scrollStatus)
+            if (scrollStatus + maxLength) > currentTitle.count {
+                startIndex = currentTitle.startIndex
+                scrollStatus = 0
+            }
+            let endIndex = currentTitle.index(startIndex, offsetBy: maxLength)
+            let viewablePortionOfLabel = String(currentTitle[startIndex..<endIndex])
+
+            callback("\(playingIcon)\(viewablePortionOfLabel)")
+
+            if isPlaying && currentTitle != "" {
+                var interval = shortInterval
+                if scrollStatus == 0 || (scrollStatus + maxLength) == currentTitle.count {
+                    interval = longInterval
+                }
+                if #available(OSX 10.12, *) {
+                    statusUpdateTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) {
+                        (_) in
+                            self.setTitle(callback: callback)
+                    }
+                }
+            }
+            scrollStatus += 1
+
+        } else {
+            if statusUpdateTimer != nil {
+                statusUpdateTimer?.invalidate()
+                statusUpdateTimer = nil
+            }
+            scrollStatus = 0
+            callback("\(playingIcon)\(currentTitle)")
+        }
+    }
+
     func getString() -> String {
         if artist.count != 0 && title.count != 0 && albumName.count != 0 {
-            return "\(playingIcon)\(artist) - \(title) - \(albumName)"
+            return "\(artist) - \(title) - \(albumName)"
         } else if artist.count != 0 && title.count != 0 {
-            return "\(playingIcon)\(artist) - \(title)"
+            return "\(artist) - \(title)"
         }
-        return "\(playingIcon)\(artist)\(title)"
+        return "\(artist)\(title)"
     }
 }

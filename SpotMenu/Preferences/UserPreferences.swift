@@ -25,6 +25,7 @@ struct UserPreferences {
         static let keyboardShortcutEnabled = "keyboardShortcutEnabled"
         static let hideTitleArtistWhenPaused = "hideTitleArtistWhenPaused"
         static let lastMusicPlayer = "lastMusicPlayer"
+        static let scrollStatusBarIfLengthOver = "scrollStatusBarIfLengthOver"
     }
 
     // MARK: - Properties
@@ -113,6 +114,22 @@ struct UserPreferences {
         }
     }
 
+    static var scrollStatusBarIfLengthOver: Int {
+        get {
+            return UserPreferences.readSettingInt(key: Keys.scrollStatusBarIfLengthOver)
+        }
+        set {
+            var useAsValue = 40
+            // Guard against people entering low numbers
+            if newValue < 5 {
+                useAsValue = 5
+            } else {
+                useAsValue = newValue
+            }
+            UserPreferences.setSettingInt(key: Keys.scrollStatusBarIfLengthOver, value: useAsValue)
+        }
+    }
+
     // MARK: - Public methods
 
     static func clearAllSettings() {
@@ -129,6 +146,11 @@ struct UserPreferences {
         UserDefaults.standard.synchronize()
     }
 
+    private static func setSettingInt(key: String, value: Int) {
+        UserDefaults.standard.set(value, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+
     private static func setSettingString(key: String, value: String) {
         let ud = UserDefaults(suiteName: "group.KMikiy.SpotMenu")
         ud?.set(value, forKey: key)
@@ -137,6 +159,10 @@ struct UserPreferences {
 
     private static func readSetting(key: String) -> Bool {
         return UserDefaults.standard.bool(forKey: key)
+    }
+
+    private static func readSettingInt(key: String) -> Int {
+        return UserDefaults.standard.integer(forKey: key)
     }
 
     private static func readSettingString(key: String) -> String? {
@@ -175,6 +201,7 @@ struct UserPreferences {
         UserPreferences.showSpotMenuIcon = true
         UserPreferences.keyboardShortcutEnabled = true
         UserPreferences.hideTitleArtistWhenPaused = true
+        UserPreferences.scrollStatusBarIfLengthOver = 40
     }
 }
 

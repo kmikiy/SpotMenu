@@ -26,6 +26,7 @@ final class GeneralPreferencesVC: NSViewController {
     @IBOutlet fileprivate var openAtLoginButton: HoverButton!
     @IBOutlet fileprivate var enableKeyboardShortcutButton: HoverButton!
     @IBOutlet fileprivate var hideTextWhenPausedButton: HoverButton!
+    @IBOutlet fileprivate var scrollStatusBarIfLengthOver: HoverButton!
     @IBOutlet fileprivate var moreInformation: NSTextField!
     @IBOutlet private var withLoveFromKmikiyText: NSTextField!
 
@@ -55,6 +56,7 @@ final class GeneralPreferencesVC: NSViewController {
         enableKeyboardShortcutButton.title = NSLocalizedString("Enable keyboard shortcut", comment: "")
         hideTextWhenPausedButton.title = NSLocalizedString("Hide text when paused", comment: "")
         withLoveFromKmikiyText.stringValue = NSLocalizedString("with ♥ from kmikiy", comment: "")
+        scrollStatusBarIfLengthOver.title = NSLocalizedString("Scroll title if longer than", comment: "")
     }
 
     private func initButtonStates() {
@@ -67,6 +69,7 @@ final class GeneralPreferencesVC: NSViewController {
         openAtLoginButton.state = NSControl.StateValue(rawValue: applicationIsInStartUpItems().asState)
         enableKeyboardShortcutButton.state = NSControl.StateValue(rawValue: UserPreferences.keyboardShortcutEnabled.asState)
         hideTextWhenPausedButton.state = NSControl.StateValue(rawValue: UserPreferences.hideTitleArtistWhenPaused.asState)
+        scrollStatusBarIfLengthOver.state = NSControl.StateValue(rawValue: UserPreferences.scrollStatusBarIfLengthOver)
     }
 
     private func initButtonHovers() {
@@ -96,6 +99,9 @@ final class GeneralPreferencesVC: NSViewController {
 
         enableKeyboardShortcutButton.mouseEnteredFunc = hoverEnableKeyboardShortcut
         enableKeyboardShortcutButton.mouseExitedFunc = hoverAway
+
+        scrollStatusBarIfLengthOver.mouseEnteredFunc = hoverScrollStatusBarIfLengthOver
+        scrollStatusBarIfLengthOver.mouseExitedFunc = hoverAway
     }
 
     // MARK: - IBActions
@@ -182,6 +188,10 @@ extension GeneralPreferencesVC {
 
     fileprivate func hoverHideTitleWhenPaused() {
         moreInformation.stringValue = NSLocalizedString("Omits the current song artist and title from the menu bar when the music is paused.", comment: "")
+    }
+
+    fileprivate func hoverScrollStatusBarIfLengthOver() {
+        moreInformation.stringValue = NSLocalizedString("When the length of the title is greater than this value, it will scroll in the status bar. Minimum value is 5.", comment: "")
     }
 
     fileprivate func hoverAway() {

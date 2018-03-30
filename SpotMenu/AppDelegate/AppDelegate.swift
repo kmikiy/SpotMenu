@@ -34,6 +34,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var lastStatusTitle: String = ""
     private var removeHudTimer: Timer?
     private var musicPlayerManager: MusicPlayerManager!
+    private var statusItemBuilder = StatusItemBuilder(title: "", artist: "", albumName: "", isPlaying: false)
+
 
     // MARK: - AppDelegate methods
 
@@ -141,8 +143,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func updateTitle() {
-
-        let statusItemTitle = StatusItemBuilder(
+        statusItemBuilder.update(
             title: musicPlayerManager.currentPlayer?.currentTrack?.title,
             artist: musicPlayerManager.currentPlayer?.currentTrack?.artist,
             albumName: musicPlayerManager.currentPlayer?.currentTrack?.album,
@@ -152,10 +153,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .showAlbumName(v: UserPreferences.showAlbumName)
             .showArtist(v: UserPreferences.showArtist)
             .showPlayingIcon(v: UserPreferences.showPlayingIcon)
-            .getString()
-        if lastStatusTitle != statusItemTitle {
-            updateTitle(newTitle: statusItemTitle)
-        }
+            .setTitle(callback: updateStatusTitle)
     }
 
     // MARK: - Popover methods
@@ -210,9 +208,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         SUUpdater.shared().checkForUpdates(nil)
     }
 
-    // MARK: - Private methods
-
-    private func updateTitle(newTitle: String) {
+    public func updateStatusTitle(newTitle: String) {
         statusItem.title = newTitle
         lastStatusTitle = newTitle
         if let button = statusItem.button {
@@ -226,6 +222,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
     }
+
+    // MARK: - Private methods
 
     private func chooseIcon(musicPlayerName: MusicPlayerName?) -> NSImage! {
         if !UserPreferences.showSpotMenuIcon {
