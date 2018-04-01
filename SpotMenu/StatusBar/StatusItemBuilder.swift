@@ -23,7 +23,6 @@ final class StatusItemBuilder {
     private var statusUpdateTimer: Timer?
     private var shortInterval = TimeInterval(0.5)
     private var longInterval = TimeInterval(2)
-    private var maxLength = UserPreferences.scrollStatusBarIfLengthOver
     private var maxLengthBuffer = 5
 
     // MARK: - Lifecycle method
@@ -108,7 +107,7 @@ final class StatusItemBuilder {
     }
 
     func setTitle(callback: @escaping (_ newTitle: String) -> ()) {
-
+        var maxLength = UserPreferences.scrollStatusBarIfLengthOver
         currentTitle = getString()
         if maxLength == 0 {
             maxLength = 40
