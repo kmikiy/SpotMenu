@@ -26,10 +26,11 @@ final class GeneralPreferencesVC: NSViewController {
     @IBOutlet fileprivate var openAtLoginButton: HoverButton!
     @IBOutlet fileprivate var enableKeyboardShortcutButton: HoverButton!
     @IBOutlet fileprivate var hideTextWhenPausedButton: HoverButton!
-    //@IBOutlet fileprivate var scrollStatusBarIfLengthOver: HoverButton!
+    @IBOutlet fileprivate var scrollStatusBarIfLengthOver: HoverButton!
     @IBOutlet fileprivate var moreInformation: NSTextField!
     @IBOutlet private var withLoveFromKmikiyText: NSTextField!
-
+    @IBOutlet fileprivate weak var scrollStatusBarIfLengthOverTextField: NSTextField!
+    
     // MARK: - Lifecycle methods
 
     override func viewDidLoad() {
@@ -56,7 +57,8 @@ final class GeneralPreferencesVC: NSViewController {
         enableKeyboardShortcutButton.title = NSLocalizedString("Enable keyboard shortcut", comment: "")
         hideTextWhenPausedButton.title = NSLocalizedString("Hide text when paused", comment: "")
         withLoveFromKmikiyText.stringValue = NSLocalizedString("with ♥ from kmikiy", comment: "")
-        //scrollStatusBarIfLengthOver.title = NSLocalizedString("Scroll title if longer than", comment: "")
+        scrollStatusBarIfLengthOver.title = NSLocalizedString("Scroll title if longer than", comment: "")
+        scrollStatusBarIfLengthOverTextField.stringValue = "\(UserPreferences.scrollStatusBarIfLengthOver)"
     }
 
     private func initButtonStates() {
@@ -69,7 +71,7 @@ final class GeneralPreferencesVC: NSViewController {
         openAtLoginButton.state = NSControl.StateValue(rawValue: applicationIsInStartUpItems().asState)
         enableKeyboardShortcutButton.state = NSControl.StateValue(rawValue: UserPreferences.keyboardShortcutEnabled.asState)
         hideTextWhenPausedButton.state = NSControl.StateValue(rawValue: UserPreferences.hideTitleArtistWhenPaused.asState)
-        //scrollStatusBarIfLengthOver.state = NSControl.StateValue(rawValue: UserPreferences.scrollStatusBarIfLengthOver)
+        scrollStatusBarIfLengthOver.state = NSControl.StateValue(rawValue: UserPreferences.scrollStatusBarIfLengthOver)
     }
 
     private func initButtonHovers() {
@@ -100,8 +102,8 @@ final class GeneralPreferencesVC: NSViewController {
         enableKeyboardShortcutButton.mouseEnteredFunc = hoverEnableKeyboardShortcut
         enableKeyboardShortcutButton.mouseExitedFunc = hoverAway
 
-        //scrollStatusBarIfLengthOver.mouseEnteredFunc = hoverScrollStatusBarIfLengthOver
-        //scrollStatusBarIfLengthOver.mouseExitedFunc = hoverAway
+        scrollStatusBarIfLengthOver.mouseEnteredFunc = hoverScrollStatusBarIfLengthOver
+        scrollStatusBarIfLengthOver.mouseExitedFunc = hoverAway
     }
 
     // MARK: - IBActions
@@ -139,6 +141,10 @@ final class GeneralPreferencesVC: NSViewController {
         UserPreferences.hideTitleArtistWhenPaused = hideTextWhenPausedButton.state.asBool
     }
 
+    @IBAction func scrollStatusBarIfLengthOverAction(_ sender: Any) {
+        UserPreferences.scrollStatusBarIfLengthOver = Int(scrollStatusBarIfLengthOverTextField.intValue)
+    }
+    
     @IBAction func toggleEnableKeyboardShortcut(_: Any) {
         UserPreferences.keyboardShortcutEnabled = enableKeyboardShortcutButton.state.asBool
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
