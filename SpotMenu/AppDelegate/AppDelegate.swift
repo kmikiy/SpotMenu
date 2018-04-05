@@ -186,8 +186,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func togglePopover(_ sender: AnyObject?) {
         let event = NSApp.currentEvent!
 
-        switch event.type {
-        case NSEvent.EventType.rightMouseUp:
+        switch (event.type, event.modifierFlags.contains(.control)) {
+        case (NSEvent.EventType.rightMouseUp, _),
+             (NSEvent.EventType.leftMouseUp, true)   :
             if popover.isShown && !popover.isDetached {
                 closePopover(sender)
             }
