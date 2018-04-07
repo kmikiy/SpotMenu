@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1601B34920793BBC0046B001 /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A908091EB784E400566ED1 /* HoverButton.swift */; };
+		16A21F9D20798EE80096D7DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2133242D1D79801E0060D48C /* Assets.xcassets */; };
 		2133242C1D79801E0060D48C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2133242B1D79801E0060D48C /* AppDelegate.swift */; };
 		2133242E1D79801E0060D48C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2133242D1D79801E0060D48C /* Assets.xcassets */; };
 		2133243A1D79967B0060D48C /* PopOverVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213324381D79967B0060D48C /* PopOverVC.swift */; };
@@ -758,6 +760,7 @@
 			files = (
 				643746671F76B06900B16214 /* PopOver.xib in Resources */,
 				64185C1A1F1B8DC400CA23A0 /* InfoPlist.strings in Resources */,
+				16A21F9D20798EE80096D7DA /* Assets.xcassets in Resources */,
 				64185C271F1B98C600CA23A0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -864,6 +867,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1601B34920793BBC0046B001 /* HoverButton.swift in Sources */,
 				64BD97A61FDD713800209B2B /* UserPreferences.swift in Sources */,
 				E2D35CD11F60A08800EB5D67 /* PopOverVC.swift in Sources */,
 				E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */,
