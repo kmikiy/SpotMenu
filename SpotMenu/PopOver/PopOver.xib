@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -46,17 +46,6 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <button focusRingType="none" fixedFrame="YES" alphaValue="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="pgo-pN-r7b" userLabel="PlayNextButton" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                            <rect key="frame" x="246" y="141" width="34" height="34"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PlayNextButtonImage" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="FxM-QC-fqk">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="goRight:" target="-2" id="0eQ-wZ-5hJ"/>
-                            </connections>
-                        </button>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UYR-3X-1ze">
                             <rect key="frame" x="49" y="233" width="203" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -122,23 +111,34 @@
                         <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" alphaValue="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="8Ah-DM-iSN" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
                             <rect key="frame" x="122" y="132" width="56" height="51"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PlayButtonImage" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="4BI-ev-3Vo">
-                                <behavior key="behavior" lightByContents="YES"/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PlayButtonImage" imagePosition="overlaps" alignment="center" focusRingType="none" transparent="YES" imageScaling="proportionallyUpOrDown" inset="2" id="4BI-ev-3Vo">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system" size="70"/>
                             </buttonCell>
                             <connections>
-                                <action selector="togglePlay:" target="-2" id="YoR-Rk-V8n"/>
+                                <action selector="togglePlay:" target="-2" id="pw8-o6-dLc"/>
                             </connections>
                         </button>
                         <button focusRingType="none" fixedFrame="YES" alphaValue="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ZD-MG0" userLabel="PlayPreviousButton" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                            <rect key="frame" x="20" y="141" width="34" height="34"/>
+                            <rect key="frame" x="11" y="136" width="50" height="51"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PlayPreviousButtonImage" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="eyZ-Np-WLr">
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PlayPreviousButtonImage" imagePosition="overlaps" alignment="center" focusRingType="none" transparent="YES" imageScaling="proportionallyUpOrDown" inset="2" id="eyZ-Np-WLr">
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" size="20" name="AlNile"/>
                             </buttonCell>
                             <connections>
                                 <action selector="goLeft:" target="-2" id="Nm1-Pi-Fbf"/>
+                            </connections>
+                        </button>
+                        <button focusRingType="none" fixedFrame="YES" alphaValue="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="pgo-pN-r7b" userLabel="PlayNextButton" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                            <rect key="frame" x="242" y="132" width="50" height="51"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="PlayNextButtonImage" imagePosition="overlaps" alignment="center" focusRingType="none" transparent="YES" imageScaling="proportionallyUpOrDown" inset="2" id="FxM-QC-fqk">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="goRight:" target="-2" id="0eQ-wZ-5hJ"/>
                             </connections>
                         </button>
                     </subviews>
