@@ -25,7 +25,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // private let popoverDelegate = PopOverDelegate()
 
     private var eventMonitor: EventMonitor?
-    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    //private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+    private let statusItem = NSStatusBar.system.statusItem(withLength: 150) //TODO: use length from settings
+    private let menuBar : MenuBar = NSView.fromNib(name: "MenuBar")
     private let issuesURL = URL(string: "https://github.com/kmikiy/SpotMenu/issues")
     private let kmikiyURL = URL(string: "https://github.com/kmikiy")
     private let menu = StatusMenu().menu
@@ -41,6 +43,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_: Notification) {
 
+        statusItem.view = menuBar
+
+        
         UserPreferences.initializeUserPreferences()
 
         musicPlayerManager = MusicPlayerManager()
@@ -81,6 +86,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if UserPreferences.keyboardShortcutEnabled {
             registerHotkey()
         }
+        
+        updateTitle()
     }
 
     func applicationWillTerminate(_: Notification) {
@@ -143,7 +150,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func updateTitle() {
-        statusItemBuilder.update(
+         let statusItemTitle = StatusItemBuilder(
             title: musicPlayerManager.currentPlayer?.currentTrack?.title,
             artist: musicPlayerManager.currentPlayer?.currentTrack?.artist,
             albumName: musicPlayerManager.currentPlayer?.currentTrack?.album,
@@ -153,7 +160,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .showAlbumName(v: UserPreferences.showAlbumName)
             .showArtist(v: UserPreferences.showArtist)
             .showPlayingIcon(v: UserPreferences.showPlayingIcon)
-            .setTitle(callback: updateStatusTitle)
+            .getString()
+            if lastStatusTitle != statusItemTitle {
+                updateStatusTitle(newTitle: statusItemTitle)
+            }
     }
 
     // MARK: - Popover methods
@@ -209,6 +219,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     public func updateStatusTitle(newTitle: String) {
+        if newTitle != lastStatusTitle {
+            menuBar.updateTitle(title: newTitle)
+        }
         statusItem.title = newTitle
         lastStatusTitle = newTitle
         if let button = statusItem.button {

@@ -25,6 +25,8 @@
 		643746691F76B0BB00B16214 /* PopOver.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643746621F76AEDD00B16214 /* PopOver.xib */; };
 		6437466A1F76B0BB00B16214 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 643746601F76ADA800B16214 /* MainMenu.xib */; };
 		6437466B1F76B0BB00B16214 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6437465B1F76A92000B16214 /* Preferences.storyboard */; };
+		6454ED3A20863D6A004888BA /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6454ED3920863D6A004888BA /* MenuBar.swift */; };
+		6454ED3C20863D7A004888BA /* MenuBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6454ED3B20863D7A004888BA /* MenuBar.xib */; };
 		645F8E6F1F22AEDE007AEEE7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */; };
 		645F8E701F22AEDE007AEEE7 /* SharedFunctionality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */; };
 		645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645F8E6E1F22AEDE007AEEE7 /* Toast.swift */; };
@@ -147,6 +149,8 @@
 		643746621F76AEDD00B16214 /* PopOver.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopOver.xib; sourceTree = "<group>"; };
 		64375BC31FE7FB53008625C4 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64375BC41FE7FB53008625C4 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6454ED3920863D6A004888BA /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		6454ED3B20863D7A004888BA /* MenuBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuBar.xib; sourceTree = "<group>"; };
 		645F8E6C1F22AEDE007AEEE7 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		645F8E6D1F22AEDE007AEEE7 /* SharedFunctionality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedFunctionality.swift; sourceTree = "<group>"; };
 		645F8E6E1F22AEDE007AEEE7 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
@@ -372,6 +376,8 @@
 			children = (
 				646FB48A1EB733E700435C0B /* StatusItemBuilder.swift */,
 				646FB48E1EB741E700435C0B /* StatusMenu.swift */,
+				6454ED3920863D6A004888BA /* MenuBar.swift */,
+				6454ED3B20863D7A004888BA /* MenuBar.xib */,
 			);
 			path = StatusBar;
 			sourceTree = "<group>";
@@ -748,6 +754,7 @@
 				6437466B1F76B0BB00B16214 /* Preferences.storyboard in Resources */,
 				6486C08D1F5C0B4500CC5245 /* dsa_pub.pem in Resources */,
 				64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */,
+				6454ED3C20863D7A004888BA /* MenuBar.xib in Resources */,
 				2133242E1D79801E0060D48C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -836,6 +843,7 @@
 			files = (
 				649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */,
 				647087D51F2299F40054CC48 /* DDHotKeyAppDelegate.m in Sources */,
+				6454ED3A20863D6A004888BA /* MenuBar.swift in Sources */,
 				645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */,
 				647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */,
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,
