@@ -99,6 +99,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                                     target: self,
                                     action: #selector(AppDelegate.hotkeyAction),
                                     object: nil)
+        
+        hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_LeftArrow),
+                                    modifierFlags: modifiers,
+                                    target: self,
+                                    action: #selector(AppDelegate.hotkeyActionLeft),
+                                    object: nil)
+        
+        hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_RightArrow),
+                                    modifierFlags: modifiers,
+                                    target: self,
+                                    action: #selector(AppDelegate.hotkeyActionRight),
+                                    object: nil)
     }
 
     func unregisterHotKey() {
@@ -106,6 +118,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         hotkeyCenter.unregisterAllHotKeys()
     }
 
+    @objc func hotkeyActionRight() {
+        musicPlayerManager.currentPlayer?.playNext()
+    }
+    
+    @objc func hotkeyActionLeft() {
+        musicPlayerManager.currentPlayer?.playPrevious()
+    }
+    
     @objc func hotkeyAction() {
         let sb = NSStoryboard(name: NSStoryboard.Name(rawValue: "Hud"), bundle: nil)
         hudController = sb.instantiateInitialController() as? HudWindowController
