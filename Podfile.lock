@@ -6,6 +6,10 @@ DEPENDENCIES:
   - LoginServiceKit (from `https://github.com/Clipy/LoginServiceKit.git`)
   - Sparkle
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Sparkle
+
 EXTERNAL SOURCES:
   LoginServiceKit:
     :git: https://github.com/Clipy/LoginServiceKit.git
@@ -21,4 +25,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3f108a8c149cd1423a3fa18a867a2aba0eac7fff
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.0
