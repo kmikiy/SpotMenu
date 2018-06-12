@@ -91,7 +91,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func registerHotkey() {
         guard let hotkeyCenter = DDHotKeyCenter.shared() else { return }
 
-        let modifiers: UInt = NSEvent.ModifierFlags.control.rawValue | NSEvent.ModifierFlags.command.rawValue
+        let modifiers: UInt = NSEvent.ModifierFlags.control.rawValue | NSEvent.ModifierFlags.shift.rawValue
 
         // Register system-wide summon hotkey
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_ANSI_M),
@@ -111,11 +111,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                                     target: self,
                                     action: #selector(AppDelegate.hotkeyActionRight),
                                     object: nil)
+        
+        hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_Space),
+                                    modifierFlags: modifiers,
+                                    target: self,
+                                    action: #selector(AppDelegate.hotkeyActionSpace),
+                                    object: nil)
     }
 
     func unregisterHotKey() {
         guard let hotkeyCenter = DDHotKeyCenter.shared() else { return }
         hotkeyCenter.unregisterAllHotKeys()
+    }
+    
+    @objc func hotkeyActionSpace() {
+        if (musicPlayerManager.currentPlayer?.playbackState == .paused){
+            musicPlayerManager.currentPlayer?.play()
+        } else {
+            musicPlayerManager.currentPlayer?.stop()
+        }
     }
 
     @objc func hotkeyActionRight() {
