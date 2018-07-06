@@ -23,7 +23,9 @@ final class PopOverViewController: NSViewController {
     @IBOutlet private var artistLabel: NSTextField!
     @IBOutlet private var aLabel: NSTextField!
     @IBOutlet private var titleLabel: NSTextField!
-    @IBOutlet private var playerStateButton: NSButton!
+    @IBOutlet private var playerStateButton: HoverButton!
+    @IBOutlet private var playNextButton: HoverButton!
+    @IBOutlet private var playPreviousButton: HoverButton!
     @IBOutlet private var artworkImageView: NSImageView!
     @IBOutlet private var leftTime: NSTextField!
     @IBOutlet private var rightTime: NSTextField!
@@ -63,6 +65,7 @@ final class PopOverViewController: NSViewController {
             self.position = position
         }
 
+        initButtonHovers()
         updatePlayerPosition()
         updateTime()
         updateMusicPlayerIcon(musicPlayerName: lastMusicPlayerName)
@@ -151,14 +154,14 @@ final class PopOverViewController: NSViewController {
         if let state = state {
             switch state {
             case .paused:
-                playerStateButton.title = "▶︎"
+                playerStateButton.image = NSImage(named: NSImage.Name(rawValue: "PlayButtonImage"))
             case .playing, .fastForwarding, .rewinding, .reposition:
-                playerStateButton.title = "❚❚"
+                playerStateButton.image = NSImage(named: NSImage.Name(rawValue: "PauseButtonImage"))
             default:
-                playerStateButton.title = "▶︎"
+                playerStateButton.image = NSImage(named: NSImage.Name(rawValue: "PlayButtonImage"))
             }
         } else {
-            playerStateButton.title = "▶︎"
+            playerStateButton.image = NSImage(named: NSImage.Name(rawValue: "PauseButtonImage"))
         }
     }
 
@@ -180,6 +183,21 @@ final class PopOverViewController: NSViewController {
             musicPlayerButton.image = spotMenuIcon
         }
     }
+
+    private func initButtonHovers() {
+        playNextButton.mouseEnteredFunc = { self.playNextButton.alphaValue = 1 }
+        playNextButton.mouseExitedFunc = { self.playNextButton.alphaValue = 0.7 }
+        playNextButton.sendAction(on: [.leftMouseDown, .leftMouseUp])
+        
+        playPreviousButton.mouseEnteredFunc = { self.playPreviousButton.alphaValue = 1 }
+        playPreviousButton.mouseExitedFunc = { self.playPreviousButton.alphaValue = 0.7 }
+        playPreviousButton.sendAction(on: [.leftMouseDown, .leftMouseUp])
+        
+        playerStateButton.mouseEnteredFunc = { self.playerStateButton.alphaValue = 1 }
+        playerStateButton.mouseExitedFunc = { self.playerStateButton.alphaValue = 0.7 }
+        playerStateButton.sendAction(on: [.leftMouseDown, .leftMouseUp])
+    }
+
 }
 
 // MARK: Actions
@@ -187,10 +205,24 @@ final class PopOverViewController: NSViewController {
 private extension PopOverViewController {
 
     @IBAction func goLeft(_: NSButton) {
+        let event:NSEvent! = NSApp.currentEvent!
+        if (event.type == .leftMouseDown)
+        {
+            self.playPreviousButton.alphaValue = 0.8
+            return
+        }
+        self.playPreviousButton.alphaValue = 1
         musicPlayerManager.currentPlayer?.playPrevious()
     }
 
     @IBAction func goRight(_: NSButton) {
+        let event:NSEvent! = NSApp.currentEvent!
+        if (event.type == .leftMouseDown)
+        {
+            self.playNextButton.alphaValue = 0.8
+            return
+        }
+        self.playNextButton.alphaValue = 1
         musicPlayerManager.currentPlayer?.playNext()
     }
 
@@ -203,7 +235,15 @@ private extension PopOverViewController {
         musicPlayerManager.currentPlayer?.playerPosition = position
     }
 
-    @IBAction func togglePlay(_: AnyObject) {
+    @IBAction func togglePlay(_: NSButton) {
+        let event:NSEvent! = NSApp.currentEvent!
+        if (event.type == .leftMouseDown)
+        {
+            self.playerStateButton.alphaValue = 0.8
+            return
+        }
+        self.playerStateButton.alphaValue = 1
+        
         if let state = self.musicPlayerManager.currentPlayer?.playbackState {
             switch state {
             case .playing, .fastForwarding, .rewinding, .reposition:
