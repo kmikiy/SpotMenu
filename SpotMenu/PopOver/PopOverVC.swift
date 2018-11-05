@@ -36,6 +36,10 @@ final class PopOverViewController: NSViewController {
 
         defaultImage = artworkImageView.image
         preferredContentSize = NSSize(width: 300, height: 300)
+        
+        if #available(OSX 10.13, *) {
+            view.layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        }
     }
 
     override func viewWillAppear() {
