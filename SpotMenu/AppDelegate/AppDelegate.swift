@@ -20,7 +20,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var hudController: HudWindowController?
     private var preferencesController: NSWindowController?
     private var hiddenController: NSWindowController?
-    private let popover = NSPopover()
 
     // private let popoverDelegate = PopOverDelegate()
 
@@ -52,15 +51,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
         popoverVC.setUpMusicPlayerManager()
-        popover.contentViewController = popoverVC
-        // popover.delegate = popoverDelegate
-
+        
         hiddenController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Hidden"), bundle: nil).instantiateInitialController() as! NSWindowController)
+        hiddenController?.contentViewController = popoverVC
         hiddenController?.window?.isOpaque = false
         hiddenController?.window?.backgroundColor = .clear
         hiddenController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
-        hiddenController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
-        hiddenController?.window?.ignoresMouseEvents = true
+        //hiddenController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
+        //hiddenController?.window?.ignoresMouseEvents = true
 
         if let button = statusItem.button {
             button.image = chooseIcon(musicPlayerName: MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!)
@@ -71,9 +69,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         eventMonitor = EventMonitor(mask: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown]) { [unowned self] event in
-            if self.popover.isShown && !self.popover.isDetached {
                 self.closePopover(event)
-            }
         }
 
         if UserPreferences.keyboardShortcutEnabled {
@@ -223,7 +219,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         switch (event.type, event.modifierFlags.contains(.control)) {
         case (NSEvent.EventType.rightMouseUp, _),
              (NSEvent.EventType.leftMouseUp, true)   :
-            if popover.isShown && !popover.isDetached {
+            if hiddenController?.window?.isVisible ?? true {
                 closePopover(sender)
             }
             statusItem.menu = menu
@@ -232,7 +228,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             // This is critical, otherwise clicks won't be processed again
             statusItem.menu = nil
         default:
-            if popover.isShown && !popover.isDetached {
+            if hiddenController?.window?.isVisible ?? true {
                 closePopover(sender)
             } else {
                 // SpotifyAppleScript.startSpotify(hidden: true)
@@ -274,7 +270,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func showPopover(_: AnyObject?) {
-        popover.appearance = appearance()
 
         let rect = statusItem.button?.window?.convertToScreen((statusItem.button?.frame)!)
         let xOffset = UserPreferences.fixPopoverToTheRight ? ((hiddenController?.window?.contentView?.frame.midX)! - (statusItem.button?.frame.maxX)!) : ((hiddenController?.window?.contentView?.frame.midX)! - (statusItem.button?.frame.midX)!)
@@ -282,39 +277,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let y = (rect?.origin.y)! // - (hiddenController?.contentViewController?.view.frame.maxY)!
         hiddenController?.window?.setFrameOrigin(NSPoint(x: x, y: y))
         hiddenController?.showWindow(self)
-        popover.show(relativeTo: (hiddenController?.window?.contentView?.bounds)!, of: (hiddenController?.window?.contentView)!, preferredEdge: NSRectEdge.minY)
         eventMonitor?.start()
     }
 
     private func closePopover(_ sender: AnyObject?) {
         hiddenController?.close()
-        popover.performClose(sender)
         eventMonitor?.stop()
     }
 
-    enum InterfaceStyle: String {
-        case Dark, Light
-
-        init() {
-            let type = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
-            self = InterfaceStyle(rawValue: type)!
-        }
-    }
-
-    func appearance() -> NSAppearance? {
-        switch InterfaceStyle() {
-        case .Dark:
-            return NSAppearance(named: .vibrantDark)
-        case .Light:
-            return NSAppearance(named: .vibrantLight)
-        }
-    }
-
-    class PopOverDelegate: NSObject, NSPopoverDelegate {
-        func popoverShouldDetach(_: NSPopover) -> Bool {
-            return true
-        }
-    }
 }
 
 extension AppDelegate: MusicPlayerManagerDelegate {
