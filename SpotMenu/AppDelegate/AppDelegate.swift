@@ -272,7 +272,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func showPopover(_: AnyObject?) {
 
         let rect = statusItem.button?.window?.convertToScreen((statusItem.button?.frame)!)
-        let xOffset = UserPreferences.fixPopoverToTheRight ? ((hiddenController?.window?.contentView?.frame.midX)! - (statusItem.button?.frame.maxX)!) : ((hiddenController?.window?.contentView?.frame.midX)! - (statusItem.button?.frame.midX)!)
+        let xOffset = UserPreferences.fixPopoverToTheRight ? ((hiddenController?.window?.contentView?.frame.minX)! - (statusItem.button?.frame.minX)!) : ((hiddenController?.window?.contentView?.frame.midX)! - (statusItem.button?.frame.midX)!)
         let x = (rect?.origin.x)! - xOffset
         let y = (rect?.origin.y)! // - (hiddenController?.contentViewController?.view.frame.maxY)!
         hiddenController?.window?.setFrameOrigin(NSPoint(x: x, y: y))
