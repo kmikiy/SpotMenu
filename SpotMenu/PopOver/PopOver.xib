@@ -146,7 +146,7 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="wantsLayer" value="YES"/>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                    <integer key="value" value="5"/>
+                    <integer key="value" value="7"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="32" y="218"/>
