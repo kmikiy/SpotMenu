@@ -272,7 +272,27 @@ extension NSImageView {
         getDataFromUrl(url: url) { data, _, error in
             DispatchQueue.main.sync() { () -> Void in
                 guard let data = data, error == nil else { return }
-                self.image = NSImage(data: data)
+                
+                if #available(OSX 10.12, *) {
+                    CATransaction.begin()
+                    let fadeAnim = CABasicAnimation(keyPath: "opacity")
+                    fadeAnim.fromValue = 1
+                    fadeAnim.toValue = 0.2
+                    fadeAnim.duration = 0.2
+                    CATransaction.setCompletionBlock({
+                        self.image = NSImage(data: data)
+                        let fadeAnim = CABasicAnimation(keyPath: "opacity")
+                        fadeAnim.fromValue = 0.2
+                        fadeAnim.toValue = 1
+                        fadeAnim.duration = 0.4
+                        self.layer?.add(fadeAnim, forKey: "opacity")
+                    })
+                    self.layer?.add(fadeAnim, forKey: "opacity")
+                    CATransaction.commit()
+                } else {
+                    self.image = NSImage(data: data)
+                }
+                
             }
         }
     }
