@@ -8,7 +8,6 @@
 
 import AppKit
 import Foundation
-import Foundation
 
 final class HoverButton: NSButton {
 
