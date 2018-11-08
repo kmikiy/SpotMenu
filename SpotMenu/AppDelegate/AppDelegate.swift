@@ -14,6 +14,13 @@ import Sparkle
 
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
+    private enum Constants {
+        static let itemLength: CGFloat = 200
+        static let widthConstraint: CGFloat = 170
+        static let textViewLength: CGFloat = 150
+        static let baseLength: CGFloat = 30
+        static let padding: CGFloat = 6
+    }
 
     // MARK: - Properties
 
@@ -24,7 +31,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // private let popoverDelegate = PopOverDelegate()
 
     private var eventMonitor: EventMonitor?
-    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     private let issuesURL = URL(string: "https://github.com/kmikiy/SpotMenu/issues")
     private let kmikiyURL = URL(string: "https://github.com/kmikiy")
     private let menu = StatusMenu().menu
@@ -33,6 +39,38 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var lastStatusTitle: String = ""
     private var removeHudTimer: Timer?
     private var musicPlayerManager: MusicPlayerManager!
+
+    private lazy var statusItem: NSStatusItem = {
+        let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        statusItem.length = Constants.baseLength
+        return statusItem
+    }()
+
+    private lazy var contentView: NSView? = {
+        let view = (statusItem.value(forKey: "window") as? NSWindow)?.contentView
+        return view
+    }()
+
+    private lazy var applicationImageView: NSImageView = {
+        let imageView = NSImageView(frame: .zero)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = chooseIcon(musicPlayerName: MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!)
+        imageView.image?.isTemplate = true
+        return imageView
+    }()
+
+    private lazy var scrollingTextView: ScrollingTextView = {
+        let scrollingText = ScrollingTextView()
+        scrollingText.translatesAutoresizingMaskIntoConstraints = false
+        return scrollingText
+    }()
+
+    private lazy var widthConstraint: NSLayoutConstraint = {
+        let constraint = NSLayoutConstraint(item: scrollingTextView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 0, constant: 0)
+        constraint.isActive = true
+        constraint.constant = 0
+        return constraint
+    }()
 
     // MARK: - AppDelegate methods
 
@@ -51,7 +89,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
         popoverVC.setUpMusicPlayerManager()
-        
+
         hiddenController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Hidden"), bundle: nil).instantiateInitialController() as! NSWindowController)
         hiddenController?.contentViewController = popoverVC
         hiddenController?.window?.isOpaque = false
@@ -60,16 +98,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         //hiddenController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
         //hiddenController?.window?.ignoresMouseEvents = true
 
-        if let button = statusItem.button {
-            button.image = chooseIcon(musicPlayerName: MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!)
-
-            button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
-            button.action = #selector(AppDelegate.togglePopover(_:))
-            updateTitle()
-        }
+        loadSubviews()
+        updateTitle()
 
         eventMonitor = EventMonitor(mask: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown]) { [unowned self] event in
-                self.closePopover(event)
+            self.closePopover(event)
         }
 
         if UserPreferences.keyboardShortcutEnabled {
@@ -95,19 +128,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                                     target: self,
                                     action: #selector(AppDelegate.hotkeyAction),
                                     object: nil)
-        
+
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_LeftArrow),
                                     modifierFlags: modifiers,
                                     target: self,
                                     action: #selector(AppDelegate.hotkeyActionLeft),
                                     object: nil)
-        
+
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_RightArrow),
                                     modifierFlags: modifiers,
                                     target: self,
                                     action: #selector(AppDelegate.hotkeyActionRight),
                                     object: nil)
-        
+
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_Space),
                                     modifierFlags: modifiers,
                                     target: self,
@@ -119,7 +152,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         guard let hotkeyCenter = DDHotKeyCenter.shared() else { return }
         hotkeyCenter.unregisterAllHotKeys()
     }
-    
+
     @objc func hotkeyActionSpace() {
         if (musicPlayerManager.currentPlayer?.playbackState == .paused){
             musicPlayerManager.currentPlayer?.play()
@@ -131,11 +164,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func hotkeyActionRight() {
         musicPlayerManager.currentPlayer?.playNext()
     }
-    
+
     @objc func hotkeyActionLeft() {
         musicPlayerManager.currentPlayer?.playPrevious()
     }
-    
+
     @objc func hotkeyAction() {
         let sb = NSStoryboard(name: NSStoryboard.Name(rawValue: "Hud"), bundle: nil)
         hudController = sb.instantiateInitialController() as? HudWindowController
@@ -243,18 +276,40 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Private methods
 
-    private func updateTitle(newTitle: String) {
-        statusItem.title = newTitle
-        lastStatusTitle = newTitle
+    private func loadSubviews() {
+        guard let contentView = contentView else { return }
+
         if let button = statusItem.button {
-            button.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
+            button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
+            button.action = #selector(AppDelegate.togglePopover(_:))
         }
 
-        // Show the icon regardless of setting if char count == 0
-        if statusItem.title?.count == 0 && statusItem.button != nil {
-            if let button = statusItem.button {
-                button.image = spotMenuIcon
-            }
+        contentView.addSubview(scrollingTextView)
+        contentView.addSubview(applicationImageView)
+
+        NSLayoutConstraint.activate([
+            scrollingTextView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            scrollingTextView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            scrollingTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
+
+        NSLayoutConstraint.activate([
+            applicationImageView.rightAnchor.constraint(equalTo: scrollingTextView.leftAnchor),
+            applicationImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            applicationImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height - Constants.padding),
+            applicationImageView.widthAnchor.constraint(equalToConstant: 30)])
+    }
+
+    private func updateTitle(newTitle: String) {
+        statusItem.length = Constants.itemLength
+        widthConstraint.constant = Constants.widthConstraint
+        scrollingTextView.setup(string: newTitle, width: 150, speed: 0.04)
+        lastStatusTitle = newTitle
+        applicationImageView.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
+
+        if newTitle.count == 0 && statusItem.button != nil {
+            statusItem.length = Constants.baseLength
+            widthConstraint.constant = 0
+            applicationImageView.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
         }
     }
 
