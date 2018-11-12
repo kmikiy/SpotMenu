@@ -14,14 +14,6 @@ import Sparkle
 
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
-    private enum Constants {
-        static let itemLength: CGFloat = 200
-        static let iconSize: CGFloat = 30
-        static let widthConstraint: CGFloat = 170
-        static let textViewLength: CGFloat = 150
-        static let padding: CGFloat = 6
-    }
-
     // MARK: - Properties
 
     private var hudController: HudWindowController?
@@ -42,7 +34,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private lazy var statusItem: NSStatusItem = {
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusItem.length = Constants.iconSize
+        statusItem.length = 30
         return statusItem
     }()
 
@@ -51,32 +43,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         return view
     }()
 
-    private lazy var applicationImageView: NSImageView = {
-        let imageView = NSImageView(frame: .zero)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = chooseIcon(musicPlayerName: MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!)
-        imageView.image?.isTemplate = true
-        return imageView
-    }()
-
-    private lazy var scrollingTextView: ScrollingTextView = {
-        let scrollingText = ScrollingTextView()
-        scrollingText.translatesAutoresizingMaskIntoConstraints = false
-        return scrollingText
-    }()
-
-    private lazy var iconWidthConstraint: NSLayoutConstraint = {
-        let constraint = NSLayoutConstraint(item: applicationImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 0, constant: 0)
-        constraint.isActive = true
-        constraint.constant = 0
-        return constraint
-    }()
-
-    private lazy var textWidthConstraint: NSLayoutConstraint = {
-        let constraint = NSLayoutConstraint(item: scrollingTextView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 0, constant: 0)
-        constraint.isActive = true
-        constraint.constant = 0
-        return constraint
+    private lazy var scrollingStatusItemView: ScrollingStatusItemView = {
+        let view = ScrollingStatusItemView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.icon = chooseIcon(musicPlayerName: MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!)
+        return view
     }()
 
     // MARK: - AppDelegate methods
@@ -291,40 +262,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             button.action = #selector(AppDelegate.togglePopover(_:))
         }
 
-        contentView.addSubview(scrollingTextView)
-        contentView.addSubview(applicationImageView)
+        contentView.addSubview(scrollingStatusItemView)
 
         NSLayoutConstraint.activate([
-            scrollingTextView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            scrollingTextView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            scrollingTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
-
-        NSLayoutConstraint.activate([
-            applicationImageView.rightAnchor.constraint(equalTo: scrollingTextView.leftAnchor),
-            applicationImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            applicationImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height - Constants.padding)])
-
-        iconWidthConstraint.constant = applicationImageView.image == nil ? 0 : Constants.iconSize
+            scrollingStatusItemView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            scrollingStatusItemView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            scrollingStatusItemView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            scrollingStatusItemView.rightAnchor.constraint(equalTo: contentView.rightAnchor)])
     }
 
     private func updateTitle(newTitle: String) {
-        scrollingTextView.setup(string: newTitle, width: Constants.textViewLength, speed: 0.04)
-
-        if scrollingTextView.stringWidth > Constants.itemLength {
-            statusItem.length = Constants.widthConstraint + iconWidthConstraint.constant
-            textWidthConstraint.constant = Constants.widthConstraint
-        } else {
-            statusItem.length = scrollingTextView.stringWidth + iconWidthConstraint.constant + Constants.padding
-            textWidthConstraint.constant = scrollingTextView.stringWidth + Constants.padding
-        }
+        scrollingStatusItemView.icon = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
+        scrollingStatusItemView.text = newTitle
+        statusItem.length = 200
 
         lastStatusTitle = newTitle
-        applicationImageView.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
 
         if newTitle.count == 0 && statusItem.button != nil {
-            statusItem.length = iconWidthConstraint.constant
-            textWidthConstraint.constant = 0
-            applicationImageView.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
+            statusItem.length = scrollingStatusItemView.hasImage ? 30 : 0
         }
     }
 

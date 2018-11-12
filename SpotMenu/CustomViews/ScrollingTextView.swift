@@ -7,13 +7,15 @@ class ScrollingTextView: NSView {
     var text: NSString?
     var font: NSFont?
     var stringWidth: CGFloat = 0
+
+    var textColor: NSColor?
+
     private var timer: Timer?
     private var point = NSPoint(x: 0, y: 3)
     private var timeInterval: TimeInterval?
     
     private lazy var textFontAttributes: [NSAttributedString.Key: Any] = {
-        return [NSAttributedString.Key.font: font ?? NSFont.systemFont(ofSize: 14),
-                NSAttributedString.Key.foregroundColor: NSColor.headerTextColor]
+        return [NSAttributedString.Key.font: font ?? NSFont.systemFont(ofSize: 14)]
     }()
     
     func setup(string: String, width: CGFloat,  speed: Double = 0.0) {
@@ -33,7 +35,13 @@ class ScrollingTextView: NSView {
         if point.x + stringWidth < 0 {
             self.point.x += stringWidth + 20
         }
-        
+
+        if let color = textColor {
+            textFontAttributes[NSAttributedString.Key.foregroundColor] = color
+        } else {
+            textFontAttributes[NSAttributedString.Key.foregroundColor] = NSColor.headerTextColor
+        }
+
         text?.draw(at: point, withAttributes: textFontAttributes)
         
         if point.x < 0 {
@@ -41,7 +49,6 @@ class ScrollingTextView: NSView {
             otherPoint.x += stringWidth + 20
             text?.draw(at: otherPoint, withAttributes: textFontAttributes)
         }
-        
     }
 }
 
@@ -73,13 +80,3 @@ private extension ScrollingTextView {
         }
     }
 }
-
-// Usage
-
-private var scrollingTextView: ScrollingTextView = {
-    let textView = ScrollingTextView()
-    textView.translatesAutoresizingMaskIntoConstraints = false
-    textView.font = NSFont.systemFont(ofSize: 13)
-    textView.setup(string: "This is a long string", width: 200, speed: 0.04)
-    return textView
-}()
