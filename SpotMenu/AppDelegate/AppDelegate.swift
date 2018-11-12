@@ -16,9 +16,9 @@ import Sparkle
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private enum Constants {
         static let itemLength: CGFloat = 200
+        static let iconSize: CGFloat = 30
         static let widthConstraint: CGFloat = 170
         static let textViewLength: CGFloat = 150
-        static let baseLength: CGFloat = 30
         static let padding: CGFloat = 6
     }
 
@@ -42,7 +42,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private lazy var statusItem: NSStatusItem = {
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusItem.length = Constants.baseLength
+        statusItem.length = Constants.iconSize
         return statusItem
     }()
 
@@ -65,7 +65,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         return scrollingText
     }()
 
-    private lazy var widthConstraint: NSLayoutConstraint = {
+    private lazy var iconWidthConstraint: NSLayoutConstraint = {
+        let constraint = NSLayoutConstraint(item: applicationImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 0, constant: 0)
+        constraint.isActive = true
+        constraint.constant = 0
+        return constraint
+    }()
+
+    private lazy var textWidthConstraint: NSLayoutConstraint = {
         let constraint = NSLayoutConstraint(item: scrollingTextView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 0, constant: 0)
         constraint.isActive = true
         constraint.constant = 0
@@ -295,20 +302,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSLayoutConstraint.activate([
             applicationImageView.rightAnchor.constraint(equalTo: scrollingTextView.leftAnchor),
             applicationImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            applicationImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height - Constants.padding),
-            applicationImageView.widthAnchor.constraint(equalToConstant: 30)])
+            applicationImageView.heightAnchor.constraint(equalToConstant: contentView.frame.height - Constants.padding)])
+
+        iconWidthConstraint.constant = applicationImageView.image == nil ? 0 : Constants.iconSize
     }
 
     private func updateTitle(newTitle: String) {
-        statusItem.length = Constants.itemLength
-        widthConstraint.constant = Constants.widthConstraint
-        scrollingTextView.setup(string: newTitle, width: 150, speed: 0.04)
+        scrollingTextView.setup(string: newTitle, width: Constants.textViewLength, speed: 0.04)
+
+        if scrollingTextView.stringWidth > Constants.itemLength {
+            statusItem.length = Constants.widthConstraint + iconWidthConstraint.constant
+            textWidthConstraint.constant = Constants.widthConstraint
+        } else {
+            statusItem.length = scrollingTextView.stringWidth + iconWidthConstraint.constant + Constants.padding
+            textWidthConstraint.constant = scrollingTextView.stringWidth + Constants.padding
+        }
+
         lastStatusTitle = newTitle
         applicationImageView.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
 
         if newTitle.count == 0 && statusItem.button != nil {
-            statusItem.length = Constants.baseLength
-            widthConstraint.constant = 0
+            statusItem.length = iconWidthConstraint.constant
+            textWidthConstraint.constant = 0
             applicationImageView.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
         }
     }
@@ -317,6 +332,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if !UserPreferences.showSpotMenuIcon {
             return nil
         }
+        
         if musicPlayerName == MusicPlayerName.iTunes {
             return spotMenuIconItunes
         } else {
