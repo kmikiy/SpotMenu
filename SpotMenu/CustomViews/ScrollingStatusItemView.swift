@@ -62,9 +62,9 @@ class ScrollingStatusItemView: NSView {
     }()
 
     private lazy var scrollingTextView: ScrollingTextView = {
-        let scrollingText = ScrollingTextView()
-        scrollingText.translatesAutoresizingMaskIntoConstraints = false
-        return scrollingText
+        let view = ScrollingTextView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     private lazy var iconWidthConstraint: NSLayoutConstraint = {

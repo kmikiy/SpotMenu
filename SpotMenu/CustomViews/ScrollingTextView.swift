@@ -15,33 +15,37 @@ class ScrollingTextView: NSView {
         }
     }
 
-    var speed: Double = 0.04 {
+    var speed: Double = 4 {
         didSet {
             updatePreferences()
-        }
-    }
-
-    var stringWidth: CGFloat = 0 {
-        didSet {
-            point.x = 0
         }
     }
 
     private var timer: Timer?
     private var point = NSPoint(x: 0, y: 3)
     private var timeInterval: TimeInterval?
-    
+
+    private(set) var stringWidth: CGFloat = 0 {
+        didSet {
+            point.x = 0
+        }
+    }
+
+    private var relativeSpeed: Double? {
+        return speed / 100
+    }
+
     private lazy var textFontAttributes: [NSAttributedString.Key: Any] = {
         return [NSAttributedString.Key.font: font ?? NSFont.systemFont(ofSize: 14)]
     }()
-    
+
     func setup(string: String) {
         text = string as NSString
         stringWidth = text?.size(withAttributes: textFontAttributes).width ?? 0
         setNeedsDisplay(NSRect(x: 0, y: 0, width: frame.width, height: frame.height))
         updatePreferences()
     }
-    
+
     override func draw(_ dirtyRect: NSRect) {
         if point.x + stringWidth < 0 {
             self.point.x += stringWidth + 20
@@ -90,10 +94,10 @@ private extension ScrollingTextView {
         if stringWidth > length {
             if #available(OSX 10.12, *), delayed {
                 timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { timer in
-                    self.setSpeed(newInterval: self.speed)
+                    self.setSpeed(newInterval: self.relativeSpeed ?? 0)
                 })
             } else {
-                setSpeed(newInterval: speed)
+                setSpeed(newInterval: relativeSpeed ?? 0)
             }
         } else {
             setSpeed(newInterval: 0.0)
