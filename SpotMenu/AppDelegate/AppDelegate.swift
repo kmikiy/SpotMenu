@@ -14,9 +14,12 @@ import Sparkle
 
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
+    private enum Constants {
+        static let statusItemIconLength: CGFloat = 30
+        static let statusItemLength: CGFloat = 250
+    }
 
     // MARK: - Properties
-
     private var hudController: HudWindowController?
     private var preferencesController: NSWindowController?
     private var hiddenController: NSWindowController?
@@ -24,7 +27,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // private let popoverDelegate = PopOverDelegate()
 
     private var eventMonitor: EventMonitor?
-    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     private let issuesURL = URL(string: "https://github.com/kmikiy/SpotMenu/issues")
     private let kmikiyURL = URL(string: "https://github.com/kmikiy")
     private let menu = StatusMenu().menu
@@ -33,6 +35,33 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var lastStatusTitle: String = ""
     private var removeHudTimer: Timer?
     private var musicPlayerManager: MusicPlayerManager!
+
+    private lazy var statusItem: NSStatusItem = {
+        let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        statusItem.length = Constants.statusItemIconLength
+        return statusItem
+    }()
+
+    private lazy var contentView: NSView? = {
+        let view = (statusItem.value(forKey: "window") as? NSWindow)?.contentView
+        return view
+    }()
+
+    private lazy var scrollingStatusItemView: ScrollingStatusItemView = {
+        let view = ScrollingStatusItemView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.icon = chooseIcon(musicPlayerName: MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!)
+        view.lengthHandler = handleLength
+        return view
+    }()
+
+    private lazy var handleLength: StatusItemLengthUpdate = { length in
+        if length < Constants.statusItemLength {
+            self.statusItem.length = length
+        } else {
+            self.statusItem.length = Constants.statusItemLength
+        }
+    }
 
     // MARK: - AppDelegate methods
 
@@ -51,7 +80,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
         popoverVC.setUpMusicPlayerManager()
-        
+
         hiddenController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Hidden"), bundle: nil).instantiateInitialController() as! NSWindowController)
         hiddenController?.contentViewController = popoverVC
         hiddenController?.window?.isOpaque = false
@@ -60,16 +89,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         //hiddenController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
         //hiddenController?.window?.ignoresMouseEvents = true
 
-        if let button = statusItem.button {
-            button.image = chooseIcon(musicPlayerName: MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!)
-
-            button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
-            button.action = #selector(AppDelegate.togglePopover(_:))
-            updateTitle()
-        }
+        loadSubviews()
+        updateTitle()
 
         eventMonitor = EventMonitor(mask: [NSEvent.EventTypeMask.leftMouseDown, NSEvent.EventTypeMask.rightMouseDown]) { [unowned self] event in
-                self.closePopover(event)
+            self.closePopover(event)
         }
 
         if UserPreferences.keyboardShortcutEnabled {
@@ -95,19 +119,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                                     target: self,
                                     action: #selector(AppDelegate.hotkeyAction),
                                     object: nil)
-        
+
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_LeftArrow),
                                     modifierFlags: modifiers,
                                     target: self,
                                     action: #selector(AppDelegate.hotkeyActionLeft),
                                     object: nil)
-        
+
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_RightArrow),
                                     modifierFlags: modifiers,
                                     target: self,
                                     action: #selector(AppDelegate.hotkeyActionRight),
                                     object: nil)
-        
+
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_Space),
                                     modifierFlags: modifiers,
                                     target: self,
@@ -119,7 +143,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         guard let hotkeyCenter = DDHotKeyCenter.shared() else { return }
         hotkeyCenter.unregisterAllHotKeys()
     }
-    
+
     @objc func hotkeyActionSpace() {
         if (musicPlayerManager.currentPlayer?.playbackState == .paused){
             musicPlayerManager.currentPlayer?.play()
@@ -131,11 +155,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func hotkeyActionRight() {
         musicPlayerManager.currentPlayer?.playNext()
     }
-    
+
     @objc func hotkeyActionLeft() {
         musicPlayerManager.currentPlayer?.playPrevious()
     }
-    
+
     @objc func hotkeyAction() {
         let sb = NSStoryboard(name: NSStoryboard.Name(rawValue: "Hud"), bundle: nil)
         hudController = sb.instantiateInitialController() as? HudWindowController
@@ -243,18 +267,31 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     // MARK: - Private methods
 
-    private func updateTitle(newTitle: String) {
-        statusItem.title = newTitle
-        lastStatusTitle = newTitle
+    private func loadSubviews() {
+        guard let contentView = contentView else { return }
+
         if let button = statusItem.button {
-            button.image = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
+            button.sendAction(on: [NSEvent.EventTypeMask.leftMouseUp, NSEvent.EventTypeMask.rightMouseUp])
+            button.action = #selector(AppDelegate.togglePopover(_:))
         }
 
-        // Show the icon regardless of setting if char count == 0
-        if statusItem.title?.count == 0 && statusItem.button != nil {
-            if let button = statusItem.button {
-                button.image = spotMenuIcon
-            }
+        contentView.addSubview(scrollingStatusItemView)
+
+        NSLayoutConstraint.activate([
+            scrollingStatusItemView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            scrollingStatusItemView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            scrollingStatusItemView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            scrollingStatusItemView.rightAnchor.constraint(equalTo: contentView.rightAnchor)])
+    }
+
+    private func updateTitle(newTitle: String) {
+        scrollingStatusItemView.icon = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
+        scrollingStatusItemView.text = newTitle
+
+        lastStatusTitle = newTitle
+
+        if newTitle.count == 0 && statusItem.button != nil {
+            statusItem.length = scrollingStatusItemView.hasImage ? Constants.statusItemIconLength : 0
         }
     }
 
@@ -262,6 +299,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if !UserPreferences.showSpotMenuIcon {
             return nil
         }
+        
         if musicPlayerName == MusicPlayerName.iTunes {
             return spotMenuIconItunes
         } else {
