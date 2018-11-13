@@ -80,7 +80,7 @@ Note:
 
 ## Contributors
 
-Many thanks to [@danieltmbr](https://github.com/danieltmbr), [@KamranMackey](https://github.com/KamranMackey), [@maurojuniorr](https://github.com/maurojuniorr), [@Triloworld](https://github.com/Triloworld), [@fabi94music](https://github.com/fabi94music), [@rebdeb](https://github.com/rebdeg), [@bcubic](https://github.com/bcubic), [@clinis](https://github.com/clinis), [@Lynx901](https://github.com/Lynx901) [@BatyaMedic](https://github.com/BatyaMedic) and everyone who posted an [issue](https://github.com/kmikiy/SpotMenu/issues?utf8=✓&q=) / [pull request](https://github.com/kmikiy/SpotMenu/pulls?utf8=✓&q=)
+Many thanks to [@danieltmbr](https://github.com/danieltmbr), [@NicholasBellucci](https://github.com/NicholasBellucci), [@KamranMackey](https://github.com/KamranMackey), [@maurojuniorr](https://github.com/maurojuniorr), [@Triloworld](https://github.com/Triloworld), [@fabi94music](https://github.com/fabi94music), [@rebdeb](https://github.com/rebdeg), [@bcubic](https://github.com/bcubic), [@clinis](https://github.com/clinis), [@Lynx901](https://github.com/Lynx901) [@BatyaMedic](https://github.com/BatyaMedic) and everyone who posted an [issue](https://github.com/kmikiy/SpotMenu/issues?utf8=✓&q=) / [pull request](https://github.com/kmikiy/SpotMenu/pulls?utf8=✓&q=)
 
 ## Help
 
