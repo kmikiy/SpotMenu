@@ -34,9 +34,9 @@ class ScrollingStatusItemView: NSView {
             scrollingTextView.setup(string: text)
 
             if iconImageView.image == nil {
-                lengthHandler?(scrollingTextView.stringWidth + Constants.padding)
+                lengthHandler?(scrollingTextView.stringSize.width + Constants.padding)
             } else {
-                lengthHandler?(scrollingTextView.stringWidth + Constants.iconSize + Constants.padding)
+                lengthHandler?(scrollingTextView.stringSize.width + Constants.iconSize + Constants.padding)
             }
         }
     }
