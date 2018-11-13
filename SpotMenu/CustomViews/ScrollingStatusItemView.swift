@@ -9,30 +9,49 @@
 import Foundation
 import Cocoa
 
+typealias StatusItemLengthUpdate = (CGFloat) -> ()
+
 class ScrollingStatusItemView: NSView {
     private enum Constants {
-        static let itemLength: CGFloat = 200
-        static let iconSize: CGFloat = 30
-        static let widthConstraint: CGFloat = 170
-        static let textViewLength: CGFloat = 150
         static let padding: CGFloat = 6
+        static let iconSize: CGFloat = 30
+        static let defaultWidth: CGFloat = 150
+        static let defaultSpeed: Double = 0.04
     }
+
+    var lengthHandler: StatusItemLengthUpdate?
 
     var icon: NSImage? {
         didSet {
             iconImageView.image = icon
+            iconWidthConstraint.constant = icon != nil ? Constants.iconSize : 0
         }
     }
 
     var text: String? {
         didSet {
             guard let text = text else { return }
-            scrollingTextView.setup(string: text, width: 150, speed: 0.04)
+            scrollingTextView.setup(string: text)
+            lengthHandler?(scrollingTextView.stringWidth + Constants.iconSize + Constants.padding)
+        }
+    }
+
+    var speed: Double? {
+        didSet {
+            guard let speed = speed else { return }
+            scrollingTextView.speed = speed
         }
     }
 
     var hasImage: Bool {
         return iconImageView.image != nil
+    }
+
+    private var length: CGFloat? {
+        didSet {
+            guard let length = length else { return }
+            scrollingTextView.length = length
+        }
     }
 
     private lazy var iconImageView: NSImageView = {
@@ -48,6 +67,13 @@ class ScrollingStatusItemView: NSView {
         return scrollingText
     }()
 
+    private lazy var iconWidthConstraint: NSLayoutConstraint = {
+        let constraint = NSLayoutConstraint(item: iconImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 0, constant: 0)
+        constraint.isActive = true
+        constraint.constant = 0
+        return constraint
+    }()
+
     required init() {
         super.init(frame: .zero)
         loadSubviews()
@@ -58,9 +84,20 @@ class ScrollingStatusItemView: NSView {
     }
 
     override func mouseDown(with event: NSEvent) {
-        scrollingTextView.textColor = .red
+        clicked(true)
         super.mouseDown(with: event)
-        scrollingTextView.textColor = .white
+        clicked(false)
+    }
+
+    override func rightMouseDown(with event: NSEvent) {
+        clicked(true)
+        super.rightMouseDown(with: event)
+        clicked(false)
+    }
+
+    override func layout() {
+        super.layout()
+        length = scrollingTextView.frame.width
     }
 }
 
@@ -73,12 +110,33 @@ private extension ScrollingStatusItemView {
             scrollingTextView.rightAnchor.constraint(equalTo: rightAnchor),
             scrollingTextView.topAnchor.constraint(equalTo: topAnchor),
             scrollingTextView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            scrollingTextView.leftAnchor.constraint(equalTo: leftAnchor, constant: 30)])
+            scrollingTextView.leftAnchor.constraint(equalTo: iconImageView.rightAnchor)])
 
         NSLayoutConstraint.activate([
-            iconImageView.rightAnchor.constraint(equalTo: scrollingTextView.leftAnchor),
+            iconImageView.leftAnchor.constraint(equalTo: leftAnchor),
             iconImageView.topAnchor.constraint(equalTo: topAnchor),
-            iconImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 30)])
+            iconImageView.bottomAnchor.constraint(equalTo: bottomAnchor)])
+    }
+
+    func clicked(_ bool: Bool) {
+        if bool {
+            iconImageView.image?.tint(color: .white)
+            scrollingTextView.textColor = .white
+        } else {
+            iconImageView.image?.isTemplate = true
+            scrollingTextView.textColor = .headerTextColor
+        }
+    }
+}
+
+extension NSImage {
+    func tint(color: NSColor) {
+        let imageRect = NSRect(origin: NSZeroPoint, size: size)
+
+        isTemplate = false
+        lockFocus()
+        color.set()
+        imageRect.fill(using: .sourceAtop)
+        unlockFocus()
     }
 }

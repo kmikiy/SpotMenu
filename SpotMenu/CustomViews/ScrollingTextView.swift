@@ -6,9 +6,26 @@ import Cocoa
 class ScrollingTextView: NSView {
     var text: NSString?
     var font: NSFont?
-    var stringWidth: CGFloat = 0
-
     var textColor: NSColor?
+    var delayed: Bool = true
+
+    var length: CGFloat = 0 {
+        didSet {
+            updatePreferences()
+        }
+    }
+
+    var speed: Double = 0.04 {
+        didSet {
+            updatePreferences()
+        }
+    }
+
+    var stringWidth: CGFloat = 0 {
+        didSet {
+            point.x = 0
+        }
+    }
 
     private var timer: Timer?
     private var point = NSPoint(x: 0, y: 3)
@@ -18,17 +35,11 @@ class ScrollingTextView: NSView {
         return [NSAttributedString.Key.font: font ?? NSFont.systemFont(ofSize: 14)]
     }()
     
-    func setup(string: String, width: CGFloat,  speed: Double = 0.0) {
+    func setup(string: String) {
         text = string as NSString
         stringWidth = text?.size(withAttributes: textFontAttributes).width ?? 0
-        
-        if stringWidth > width {
-            setSpeed(newInterval: speed)
-        } else {
-            setSpeed(newInterval: 0.0)
-        }
-        
         setNeedsDisplay(NSRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        updatePreferences()
     }
     
     override func draw(_ dirtyRect: NSRect) {
@@ -43,7 +54,7 @@ class ScrollingTextView: NSView {
         }
 
         text?.draw(at: point, withAttributes: textFontAttributes)
-        
+
         if point.x < 0 {
             var otherPoint = point
             otherPoint.x += stringWidth + 20
@@ -54,29 +65,44 @@ class ScrollingTextView: NSView {
 
 private extension ScrollingTextView {
     func setSpeed(newInterval: TimeInterval) {
-        if newInterval != timeInterval {
-            timeInterval = newInterval
-            timer?.invalidate()
-            timer = nil
-            
-            guard let timeInterval = timeInterval else { return }
-            if timer == nil, timeInterval > 0.0, text != nil {
-                if #available(OSX 10.12, *) {
-                    timer = Timer.scheduledTimer(withTimeInterval: newInterval, repeats: true, block: { [weak self] _ in
-                        guard let sself = self else { return }
-                        sself.point.x = sself.point.x - 1
-                        sself.setNeedsDisplay(NSRect(x: 0, y: 0, width: sself.frame.width, height: sself.frame.height))
-                    })
-                } else {
-                    // Fallback on earlier versions
-                }
-                
+        timeInterval = newInterval
+        timer?.invalidate()
+        timer = nil
+
+        guard let timeInterval = timeInterval else { return }
+        if timer == nil, timeInterval > 0.0, text != nil {
+            if #available(OSX 10.12, *) {
+                timer = Timer.scheduledTimer(timeInterval: newInterval, target: self, selector: #selector(update(_:)), userInfo: nil, repeats: true)
+
                 guard let timer = timer else { return }
                 RunLoop.main.add(timer, forMode: .commonModes)
             } else {
-                timer?.invalidate()
-                point.x = 0
+                // Fallback on earlier versions
             }
+        } else {
+            timer?.invalidate()
+            point.x = 0
         }
+    }
+
+    func updatePreferences() {
+        timer?.invalidate()
+        if stringWidth > length {
+            if #available(OSX 10.12, *), delayed {
+                timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { timer in
+                    self.setSpeed(newInterval: self.speed)
+                })
+            } else {
+                setSpeed(newInterval: speed)
+            }
+        } else {
+            setSpeed(newInterval: 0.0)
+        }
+    }
+
+    @objc
+    func update(_ sender: Timer) {
+        point.x = point.x - 1
+        setNeedsDisplay(NSRect(x: 0, y: 0, width: frame.width, height: frame.height))
     }
 }

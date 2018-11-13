@@ -14,8 +14,12 @@ import Sparkle
 
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
-    // MARK: - Properties
+    private enum Constants {
+        static let statusItemIconLength: CGFloat = 30
+        static let statusItemLength: CGFloat = 250
+    }
 
+    // MARK: - Properties
     private var hudController: HudWindowController?
     private var preferencesController: NSWindowController?
     private var hiddenController: NSWindowController?
@@ -34,7 +38,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private lazy var statusItem: NSStatusItem = {
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusItem.length = 30
+        statusItem.length = Constants.statusItemIconLength
         return statusItem
     }()
 
@@ -47,8 +51,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let view = ScrollingStatusItemView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.icon = chooseIcon(musicPlayerName: MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!)
+        view.lengthHandler = handleLength
         return view
     }()
+
+    private lazy var handleLength: StatusItemLengthUpdate = { length in
+        if length < Constants.statusItemLength {
+            self.statusItem.length = length
+        } else {
+            self.statusItem.length = Constants.statusItemLength
+        }
+    }
 
     // MARK: - AppDelegate methods
 
@@ -274,12 +287,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func updateTitle(newTitle: String) {
         scrollingStatusItemView.icon = chooseIcon(musicPlayerName: musicPlayerManager.currentPlayer?.name)
         scrollingStatusItemView.text = newTitle
-        statusItem.length = 200
 
         lastStatusTitle = newTitle
 
         if newTitle.count == 0 && statusItem.button != nil {
-            statusItem.length = scrollingStatusItemView.hasImage ? 30 : 0
+            statusItem.length = scrollingStatusItemView.hasImage ? Constants.statusItemIconLength : 0
         }
     }
 
