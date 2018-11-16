@@ -21,7 +21,11 @@ open class ScrollingTextView: NSView {
     open var spacing: CGFloat = 20
 
     /// Length of the scrolling text view
-    open var length: CGFloat = 0
+    open var length: CGFloat = 0 {
+        didSet {
+            updateTraits()
+        }
+    }
 
     /// Amount of time the text is delayed before scrolling
     open var delay: TimeInterval = 2 {
