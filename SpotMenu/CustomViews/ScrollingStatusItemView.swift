@@ -102,7 +102,10 @@ class ScrollingStatusItemView: NSView {
 
     override func layout() {
         super.layout()
-        length = scrollingTextView.frame.width
+
+        if length != scrollingTextView.frame.width {
+            length = scrollingTextView.frame.width
+        }
     }
 }
 
