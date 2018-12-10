@@ -73,14 +73,14 @@ pod install
 
 Finally, open up the SpotMenu.xcworkspace. Set the "Scheme" to build the "SpotMenu" target for "My Mac". Then Product > Run (or the shortcut ⌘R).
 
-Note: 
+Notes:
 - Version 1.7 has been updated to swift 4.0 therefore Xcode 9 is required.
 - In some cases it might be required to select the "MusicPlayer" scheme and build it before selecting "SpotMenu".
-- To fix "cannot find a team matching ..." error follow these [steps](https://github.com/kmikiy/SpotMenu/issues/54)
+- To fix "cannot find a team matching ..." error follow these [steps](https://github.com/kmikiy/SpotMenu/issues/54).
 
 ## Contributors
 
-Many thanks to [@danieltmbr](https://github.com/danieltmbr), [@NicholasBellucci](https://github.com/NicholasBellucci), [@KamranMackey](https://github.com/KamranMackey), [@maurojuniorr](https://github.com/maurojuniorr), [@Triloworld](https://github.com/Triloworld), [@fabi94music](https://github.com/fabi94music), [@rebdeb](https://github.com/rebdeg), [@bcubic](https://github.com/bcubic), [@clinis](https://github.com/clinis), [@Lynx901](https://github.com/Lynx901) [@BatyaMedic](https://github.com/BatyaMedic) and everyone who posted an [issue](https://github.com/kmikiy/SpotMenu/issues?utf8=✓&q=) / [pull request](https://github.com/kmikiy/SpotMenu/pulls?utf8=✓&q=)
+Many thanks to [@danieltmbr](https://github.com/danieltmbr), [@NicholasBellucci](https://github.com/NicholasBellucci), [@KamranMackey](https://github.com/KamranMackey), [@maurojuniorr](https://github.com/maurojuniorr), [@Triloworld](https://github.com/Triloworld), [@fabi94music](https://github.com/fabi94music), [@rebdeb](https://github.com/rebdeg), [@bcubic](https://github.com/bcubic), [@clinis](https://github.com/clinis), [@Lynx901](https://github.com/Lynx901) [@BatyaMedic](https://github.com/BatyaMedic) and everyone who posted an [issue](https://github.com/kmikiy/SpotMenu/issues?utf8=✓&q=) / [pull request](https://github.com/kmikiy/SpotMenu/pulls?utf8=✓&q=).
 
 ## Help
 
