@@ -14,7 +14,7 @@ typealias StatusItemLengthUpdate = (CGFloat) -> ()
 class ScrollingStatusItemView: NSView {
     private enum Constants {
         static let padding: CGFloat = 6
-        static let iconSize: CGFloat = 30
+        static let iconSize: CGFloat = 23
         static let defaultWidth: CGFloat = 150
         static let defaultSpeed: Double = 0.04
     }

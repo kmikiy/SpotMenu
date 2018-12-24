@@ -146,6 +146,6 @@ extension ScrollingTextView {
 
     override open func layout() {
         super.layout()
-        point.y = (frame.height - stringSize.height) / 2
+        point.y = (frame.height - stringSize.height) / 2 + 1
     }
 }
