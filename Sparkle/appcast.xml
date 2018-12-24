@@ -60,6 +60,27 @@
 <enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.8/SpotMenu1.8.0-1.7.delta" sparkle:version="1.8.0" sparkle:shortVersionString="1.8.0" sparkle:deltaFrom="1.7" length="2342719" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCdxCWaM+Jf8BBK8h+l6TfdW2jBOgIUc3s2QzH5GrjWbPnvqASsmtm/MRc="/>
 <enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.8/SpotMenu1.8.0-1.6.0.delta" sparkle:version="1.8.0" sparkle:shortVersionString="1.8.0" sparkle:deltaFrom="1.6.0" length="5063449" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCS5OixckCs0A0I3IgHwq9FVfGidQIUbYPx6M+lojLH1ETBIk5Sxg5ZqgQ="/></sparkle:deltas>
 </item>
+<item>
+<title>1.9.0</title>
+    <description><![CDATA[
+            <ul>
+              <li>Layout updated</li>
+              <li>Fixed light album cover issue on MacOS Mojave</li>
+              <li>Cross fade animation on track change</li>
+              <li>Scrolling text (credits: [@NicholasBellucci](https://github.com/NicholasBellucci))</li>
+              <li>Added Fabric</li>
+            </ul>
+          ]]>
+        </description>
+<pubDate>Mon, 24 Dec 2018 19:29:42 +0100</pubDate>
+<sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.9/SpotMenu190.zip" sparkle:version="1.9.0" sparkle:shortVersionString="1.9.0" length="7969360" type="application/octet-stream" sparkle:dsaSignature="MCwCFEE7vhabauymiESoQylAnWaNMOL2AhRld2cRNcVE9kIEHXOtLqxhZAaIqw=="/>
+<sparkle:deltas>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.9/SpotMenu1.9.0-1.8.0.delta" sparkle:version="1.9.0" sparkle:shortVersionString="1.9.0" sparkle:deltaFrom="1.8.0" length="5052745" type="application/octet-stream" sparkle:dsaSignature="MCwCFFtzDDmEGf0m7WJ/AtapcZSv5J2yAhQ/ga2xeJq3R/9bQhHyLmDdtCrPxA=="/>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.9/SpotMenu1.9.0-1.8.0.delta" sparkle:version="1.9.0" sparkle:shortVersionString="1.9.0" sparkle:deltaFrom="1.8.0" length="5052745" type="application/octet-stream" sparkle:dsaSignature="MC0CFASyFLQeXRp4o51HV87X9HTJMCzIAhUAkdstgyz+Dv1RChF/H9uc7XzkmEw="/>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.9/SpotMenu1.9.0-1.7.0.delta" sparkle:version="1.9.0" sparkle:shortVersionString="1.9.0" sparkle:deltaFrom="1.7.0" length="6340919" type="application/octet-stream" sparkle:dsaSignature="MCwCFCiayIQjOHpwOgR27+tVt275hDswAhQlF5Sb+DePj0eoFk0esuErjphZ9w=="/>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.9/SpotMenu1.9.0-1.6.0.delta" sparkle:version="1.9.0" sparkle:shortVersionString="1.9.0" sparkle:deltaFrom="1.6.0" length="6389504" type="application/octet-stream" sparkle:dsaSignature="MC0CFHnTY6ovxKKB3rzCs1fo7d8VX4alAhUAgWQD0Qm81vXS2BkCTmW+Wh1udlI="/></sparkle:deltas>
+</item>
 
 
 
