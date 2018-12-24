@@ -22,7 +22,6 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
 
 ## Donate
 
-- [Buy something on Amazon](https://amzn.to/2JMZf9v) 
 - [![Paypal](https://github.com/kmikiy/SpotMenu/blob/master/Donation/pp.png?raw=true)](http://paypal.me/kmikiy) [paypal.me/kmikiy](https://paypal.me/kmikiy) Help me get that new Tesla Model X 🚗 or a cup of coffee ☕️, anything helps 💸💰💵
 - Or help me become a cryptocurrency  millionaire 🔐   
     - ![Ƀitcoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/btc.png?raw=true) 1Cc79kaUUWZ2fD7iFAnr5i89vb2j6JunvA
@@ -42,7 +41,7 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
 
 ## Easy Install
 
-Download the zip file [version 1.8](https://github.com/kmikiy/SpotMenu/releases/download/v1.8/SpotMenu180.zip). Unarchive it. Run SpotMenu.app.
+Download the zip file [version 1.9](https://github.com/kmikiy/SpotMenu/releases/download/v1.9/SpotMenu190.zip). Unarchive it. Run SpotMenu.app.
 I do not have an  developer account to sign the app with therefore you will most likely receive a warning that the app is from an unidentified developer. To open the app follow these [steps](https://support.apple.com/kb/PH25088?locale=en_US)!
 
 You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
