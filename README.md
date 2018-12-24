@@ -29,16 +29,13 @@ Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
     - ![Ethereum](https://github.com/kmikiy/SpotMenu/blob/master/Donation/eth.png?raw=true) 0xFA06Af34fd45c0213fc909F22cA7241BBD94076f
     - ![Łitecoin](https://github.com/kmikiy/SpotMenu/blob/master/Donation/ltc.png?raw=true) LS3ibFQWd2xz1ByZajrzS3Y787LgRwHYVE
     
-## New Features in Version 1.8
+## New Features in Version 1.9
 
-+ SpotMenu now supports iTunes 🎉
-+ About page added to preferences. Please donate 🙏
-+ Option added to hide title and artist when music player is paused
-+ "Quit" renamed to "Quit SpotMenu" to stay consistent with MacOS
-+ Today Extension (a.k.a. Notification Center Widget) now has rounded edges
-+ Minimum required version of MacOS is now 10.11 👎
-+ Russian translation added (credits: [@BatyaMedic](https://github.com/BatyaMedic))
-+ Spanish tranlsation added (credits: [@Lynx901](https://github.com/Lynx901))
++ Layout updated
++ Fixed light album cover issue on MacOS Mojave
++ Cross fade animation on track change
++ Scrolling text (credits: [@NicholasBellucci](https://github.com/NicholasBellucci))
++ Added Fabric
 
 [List of all features](https://github.com/kmikiy/SpotMenu/blob/master/FEATURES.md)
 
