@@ -1,5 +1,13 @@
 ## All Features
 
+## Added in Version 1.9
+
++ Layout updated
++ Fixed light album cover issue on MacOS Mojave
++ Cross fade animation on track change
++ Scrolling text (credits: [@NicholasBellucci](https://github.com/NicholasBellucci))
++ Added Fabric
+
 ## Added in Version 1.8
 
 + SpotMenu now supports iTunes 🎉
