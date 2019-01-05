@@ -5,21 +5,21 @@
   Created by Miklós Kristyán on 30.07.17.
   Copyright © 2017 KM. All rights reserved.
  
-  Translated by @kmikiy
+  Translated by @hououinkami
 */
 
-"Issues" = "Issues";
-"Preferences..." = "Preferences...";
-"Check for Updates..." = "Check for Updates...";
-"Quit" = "Quit SpotMenu";
-"Now playing" = "Now playing";
-"Hover over an option for more information." = "Hover over an option for more information.";
-"When checked the artist will be shown in the menu bar." = "When checked the artist will be shown in the menu bar.";
-"When checked the album name will be shown in the menu bar." = "When checked the album name will be shown in the menu bar.";
-"When checked the title will be shown in the menu bar." = "When checked the title will be shown in the menu bar.";
-"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "When checked the playing icon (♫) will be shown in the menu bar if music is played.";
-"When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "When checked the SpotMenu icon will be shown in the menu bar.\n\nNote:\nIf there is no music information to be shown the SpotMenu icon will be visible.";
-"When checked the popover will be fixed to the right corner." = "When checked the popover will be fixed to the right corner.";
+"Issues" = "問題";
+"Preferences..." = "環境設定…";
+"Check for Updates..." = "更新を確認…";
+"Quit" = "SpotMenuを終了";
+"Now playing" = "再生中";
+"Hover over an option for more information." = "詳細については、オプションにカーソルを合わせてください。";
+"When checked the artist will be shown in the menu bar." = "チェックするとアーティストがメニューバーに表示されます。";
+"When checked the album name will be shown in the menu bar." = "チェックするとアルバムがメニューバーに表示されます。";
+"When checked the title will be shown in the menu bar." = "チェックするとタイトルがメニューバーに表示されます。";
+"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "チェックすると再生アイコン（♫）がメニューバーに表示されます。";
+"When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "チェックするとSpotMenuアイコンがメニューバーに表示されます。\n\n注意：\n音楽情報がない場合は、SpotMenuアイコンも表示されます。";
+"When checked the popover will be fixed to the right corner." = "チェックするとポップオーバーは右隅に固定されます。";
 "When checked SpotMenu will start automatically at login." = "When checked SpotMenu will start automatically at login.";
 "Artist" = "Artist";
 "Title" = "Title";
