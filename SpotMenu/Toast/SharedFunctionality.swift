@@ -8,9 +8,9 @@
 
 import Foundation
 #if os(OSX)
-import AppKit
+    import AppKit
 #elseif os(iOS) || os(tvOS)
-import UIKit
+    import UIKit
 #endif
 
 fileprivate class HideAnimationDelegate: NSObject, CAAnimationDelegate {
@@ -18,13 +18,16 @@ fileprivate class HideAnimationDelegate: NSObject, CAAnimationDelegate {
     fileprivate init(view: View) {
         self.view = view
     }
+
     fileprivate static func delegate(forView view: View) -> CAAnimationDelegate {
         return HideAnimationDelegate(view: view)
     }
-    fileprivate func animationDidStart(_ anim: CAAnimation) {
+
+    fileprivate func animationDidStart(_: CAAnimation) {
         view?._layer.opacity = 0.0
     }
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+
+    func animationDidStop(_: CAAnimation, finished _: Bool) {
         view?.removeFromSuperview()
         view = nil
     }
@@ -35,13 +38,16 @@ fileprivate class ShowAnimationDelegate: NSObject, CAAnimationDelegate {
     fileprivate init(view: View) {
         self.view = view
     }
+
     fileprivate static func delegate(forView view: View) -> CAAnimationDelegate {
         return ShowAnimationDelegate(view: view)
     }
-    fileprivate func animationDidStart(_ anim: CAAnimation) {
+
+    fileprivate func animationDidStart(_: CAAnimation) {
         view?._layer.opacity = 1.0
     }
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+
+    func animationDidStop(_: CAAnimation, finished _: Bool) {
     }
 }
 
@@ -54,11 +60,11 @@ func hideAnimation(view: View, style: Style) {
 }
 
 private func addAnimation(to view: View, style: Style, show: Bool) {
-    
+
     let from = show ? 0 : 1
     let to = 1 - from
     let key = show ? "show animation" : "hide animation"
-    
+
     let anim = CABasicAnimation(keyPath: "opacity")
     let timing = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
     anim.timingFunction = timing
@@ -69,6 +75,6 @@ private func addAnimation(to view: View, style: Style, show: Bool) {
     anim.toValue = to
     anim.isRemovedOnCompletion = false
     anim.delegate = HideAnimationDelegate.delegate(forView: view)
-    
+
     view._layer.add(anim, forKey: key)
 }

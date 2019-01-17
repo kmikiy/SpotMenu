@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="LBt-HB-O2a">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Updates PreferencesVC-->
+        <scene sceneID="At6-Ft-W7W">
+            <objects>
+                <viewController storyboardIdentifier="UpdatesID" id="LBt-HB-O2a" customClass="UpdatesPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" identifier="Updates" id="1ap-fy-BOA">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="tV3-fc-Tw1" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="234" width="219" height="18"/>
+                                <buttonCell key="cell" type="check" title="Automatically check for updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="RD2-C5-COt">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleAutomaticallyCheckForUpdates:" target="LBt-HB-O2a" id="VEs-BP-4Tq"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="5Er-UN-mo6" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="214" width="219" height="18"/>
+                                <buttonCell key="cell" type="check" title="Automatically download updates" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bvf-Mq-GXP">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleAutomaticallyDownloadUpdates:" target="LBt-HB-O2a" id="JPj-bk-HD2"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3lC-wO-n8A">
+                                <rect key="frame" x="6" y="7" width="119" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="with ♥ from kmikiy" id="Z2I-st-E1l">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="wpN-8R-WEL">
+                                <rect key="frame" x="248" y="20" width="5" height="230"/>
+                            </box>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4lO-md-TWp">
+                                <rect key="frame" x="264" y="216" width="218" height="34"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Hover over an option for more information" id="Jjz-Rz-Dr9">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xXx-fi-3YP">
+                                <rect key="frame" x="18" y="38" width="175" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Last checked:" id="UmQ-hB-2BU">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y1b-6L-nsa">
+                                <rect key="frame" x="199" y="38" width="33" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Date" id="djN-bT-kpf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zr2-pg-mJS">
+                                <rect key="frame" x="14" y="54" width="222" height="32"/>
+                                <buttonCell key="cell" type="push" title="Check for Updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CFb-0U-Q8u">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="CheckForUpdates:" target="LBt-HB-O2a" id="W6H-ru-YMt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="5Er-UN-mo6" firstAttribute="leading" secondItem="1ap-fy-BOA" secondAttribute="leading" constant="20" id="399-iW-z3V"/>
+                            <constraint firstAttribute="bottom" secondItem="3lC-wO-n8A" secondAttribute="bottom" constant="7" id="6Px-5l-Nxz"/>
+                            <constraint firstItem="3lC-wO-n8A" firstAttribute="top" secondItem="xXx-fi-3YP" secondAttribute="bottom" constant="14" id="8yE-KT-sCr"/>
+                            <constraint firstItem="Y1b-6L-nsa" firstAttribute="top" secondItem="Zr2-pg-mJS" secondAttribute="bottom" constant="6" id="CT7-96-WZJ"/>
+                            <constraint firstItem="wpN-8R-WEL" firstAttribute="leading" secondItem="tV3-fc-Tw1" secondAttribute="trailing" constant="15" id="EfD-xc-Age"/>
+                            <constraint firstItem="Zr2-pg-mJS" firstAttribute="leading" secondItem="1ap-fy-BOA" secondAttribute="leading" constant="20" id="Msf-iJ-795"/>
+                            <constraint firstItem="3lC-wO-n8A" firstAttribute="leading" secondItem="1ap-fy-BOA" secondAttribute="leading" constant="8" id="N28-p0-A94"/>
+                            <constraint firstItem="4lO-md-TWp" firstAttribute="leading" secondItem="wpN-8R-WEL" secondAttribute="trailing" constant="15" id="OUx-7l-FSW"/>
+                            <constraint firstItem="wpN-8R-WEL" firstAttribute="top" secondItem="1ap-fy-BOA" secondAttribute="top" constant="20" id="Rft-wg-5q8"/>
+                            <constraint firstItem="xXx-fi-3YP" firstAttribute="leading" secondItem="1ap-fy-BOA" secondAttribute="leading" constant="20" id="T6e-px-DZj"/>
+                            <constraint firstItem="tV3-fc-Tw1" firstAttribute="leading" secondItem="1ap-fy-BOA" secondAttribute="leading" constant="20" id="TYh-e2-Tmd"/>
+                            <constraint firstAttribute="trailing" secondItem="4lO-md-TWp" secondAttribute="trailing" constant="20" id="Tiw-Qw-aUa"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4lO-md-TWp" secondAttribute="bottom" priority="750" constant="20" id="UQO-68-lwx"/>
+                            <constraint firstItem="Zr2-pg-mJS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="5Er-UN-mo6" secondAttribute="bottom" priority="750" constant="134" id="W7N-mD-Sd2"/>
+                            <constraint firstItem="wpN-8R-WEL" firstAttribute="leading" secondItem="Y1b-6L-nsa" secondAttribute="trailing" constant="20" id="aCC-l1-vWA"/>
+                            <constraint firstItem="wpN-8R-WEL" firstAttribute="centerX" secondItem="1ap-fy-BOA" secondAttribute="centerX" id="e8a-I5-kZO"/>
+                            <constraint firstItem="4lO-md-TWp" firstAttribute="top" secondItem="1ap-fy-BOA" secondAttribute="top" constant="20" id="j6Y-E5-mNE"/>
+                            <constraint firstItem="Y1b-6L-nsa" firstAttribute="leading" secondItem="xXx-fi-3YP" secondAttribute="trailing" constant="10" id="m5K-Qc-A9P"/>
+                            <constraint firstItem="5Er-UN-mo6" firstAttribute="top" secondItem="tV3-fc-Tw1" secondAttribute="bottom" constant="6" id="naZ-h1-Cbz"/>
+                            <constraint firstAttribute="bottom" secondItem="wpN-8R-WEL" secondAttribute="bottom" constant="20" id="qqC-bX-Lad"/>
+                            <constraint firstItem="tV3-fc-Tw1" firstAttribute="top" secondItem="1ap-fy-BOA" secondAttribute="top" constant="20" id="rLq-mQ-yai"/>
+                            <constraint firstItem="wpN-8R-WEL" firstAttribute="leading" secondItem="5Er-UN-mo6" secondAttribute="trailing" constant="15" id="te7-QM-9zG"/>
+                            <constraint firstItem="xXx-fi-3YP" firstAttribute="top" secondItem="Zr2-pg-mJS" secondAttribute="bottom" constant="6" id="tnD-sH-s0R"/>
+                            <constraint firstItem="wpN-8R-WEL" firstAttribute="leading" secondItem="Zr2-pg-mJS" secondAttribute="trailing" constant="20" id="vhl-Mm-ntT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="automaticallyCheckForUpdatesButton" destination="tV3-fc-Tw1" id="5P1-7o-yNV"/>
+                        <outlet property="automaticallyDownloadUpdatesButton" destination="5Er-UN-mo6" id="TQh-4W-lbV"/>
+                        <outlet property="checkForUpdatesButton" destination="Zr2-pg-mJS" id="VFo-4M-YVk"/>
+                        <outlet property="lastCheckedLabel" destination="xXx-fi-3YP" id="V3o-dj-0Xk"/>
+                        <outlet property="lastUpdateCheckLabel" destination="Y1b-6L-nsa" id="4Lz-ed-DK6"/>
+                        <outlet property="moreInformation" destination="4lO-md-TWp" id="SBw-4W-55b"/>
+                        <outlet property="withLoveFromKmikiy" destination="3lC-wO-n8A" id="fJ7-Pg-azp"/>
+                    </connections>
+                </viewController>
+                <customObject id="gzJ-Xo-jGR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-82" y="990"/>
+        </scene>
+    </scenes>
+</document>

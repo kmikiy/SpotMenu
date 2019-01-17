@@ -1,0 +1,60 @@
+html {
+	background: #010101 !important;
+	height: 100%;
+}
+
+body {
+	background: #010101 !important;
+	height: 100%;
+}
+
+.donate {
+	text-align: center;
+	padding-top: 1rem;
+	color: #cecece;
+}
+
+.donate-section {
+	background: #121212;
+}
+
+.donate-blocks {
+	display: block;
+}
+
+.donate-img {
+	padding-right: 5px;
+}
+
+.donate-options {
+	text-align: center;
+	color: #cecece;
+}
+
+.kmikiy-section {
+	padding: 20px 10px 20px 10px;
+	color: #aaaaaa;
+}
+
+.bg-color {
+	background: #020202;
+}
+
+.soc-item {
+	padding: 5px;
+}
+
+.gif {
+	box-shadow: 0px 0px 40px 5px rgba(0, 0, 0, 0.27);
+	border-radius: 5px;
+}
+
+.home {
+	width: 50px;
+	height: 50px;;
+	position: fixed;
+	top: 15px;
+	left: 15px;
+	background: url(../../assets/images/home.svg);
+	background-size: 50px 50px;
+}
