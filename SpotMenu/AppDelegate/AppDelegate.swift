@@ -68,7 +68,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - AppDelegate methods
 
     func applicationDidFinishLaunching(_: Notification) {
-        Fabric.with([Crashlytics.self])
+        //Fabric.with([Crashlytics.self])
         
         UserPreferences.initializeUserPreferences()
 
