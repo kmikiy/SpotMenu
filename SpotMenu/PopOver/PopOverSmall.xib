@@ -16,6 +16,7 @@
                 <outlet property="playerStateButton" destination="trs-LN-KCw" id="RUf-mq-lIL"/>
                 <outlet property="positionSlider" destination="s6M-UK-y9a" id="X4y-fT-max"/>
                 <outlet property="rightTime" destination="Jv6-Nj-5U4" id="2WQ-ns-iwH"/>
+                <outlet property="titleLabel" destination="LY2-A2-GUY" id="dGq-xn-Ff0"/>
                 <outlet property="view" destination="58f-Gh-7aW" id="eKM-RV-cgb"/>
             </connections>
         </customObject>
@@ -40,11 +41,15 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="NSUserGuest" id="SrC-rs-UAo"/>
                 </imageView>
-                <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe" customClass="CustomVisualEffect" customModule="SpotMenu" customModuleProvider="target">
+                <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c22-O7-iKe">
                     <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="trs-LN-KCw">
+                        <visualEffectView appearanceType="vibrantDark" fixedFrame="YES" blendingMode="withinWindow" material="dark" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="2Tb-h1-Zzy" customClass="StaticFadeIn" customModule="SpotMenu" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </visualEffectView>
+                        <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="trs-LN-KCw" propertyAccessControl="all">
                             <rect key="frame" x="60" y="28" width="189" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" title="▶︎" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" focusRingType="none" inset="2" id="p6z-zj-Z0S">
@@ -55,16 +60,16 @@
                                 <action selector="togglePlay:" target="-2" id="2th-qs-jvR"/>
                             </connections>
                         </button>
-                        <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sdw-GP-P7z">
+                        <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sdw-GP-P7z" propertyAccessControl="all">
                             <rect key="frame" x="20" y="80" width="133" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Artist" id="eNR-wa-HhS">
+                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Artist" id="eNR-wa-HhS">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tv6-uV-DBi">
+                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tv6-uV-DBi" propertyAccessControl="all">
                             <rect key="frame" x="10" y="28" width="40" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" title="&lt;" bezelStyle="shadowlessSquare" alignment="center" focusRingType="none" inset="2" id="HYk-1p-Weq">
@@ -75,7 +80,7 @@
                                 <action selector="goLeft:" target="-2" id="cgB-oZ-ahq"/>
                             </connections>
                         </button>
-                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Qg-9d-r9V">
+                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Qg-9d-r9V" propertyAccessControl="all">
                             <rect key="frame" x="251" y="28" width="40" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" title="&gt;" bezelStyle="shadowlessSquare" alignment="center" focusRingType="none" inset="2" id="COd-zn-UDM">
@@ -86,8 +91,8 @@
                                 <action selector="goRight:" target="-2" id="r7m-fX-7Ga"/>
                             </connections>
                         </button>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WKr-e7-YEE">
-                            <rect key="frame" x="20" y="80" width="134" height="17"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WKr-e7-YEE" propertyAccessControl="all">
+                            <rect key="frame" x="20" y="80" width="133" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" id="zel-6c-vHi">
                                 <font key="font" metaFont="system"/>
@@ -95,7 +100,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YWr-8Q-5Sh">
+                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YWr-8Q-5Sh" propertyAccessControl="all">
                             <rect key="frame" x="0.0" y="80" width="22" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="StatusBarButtonImage" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="Yaq-qX-Z0j">
@@ -106,8 +111,8 @@
                                 <action selector="openSpotify:" target="-2" id="TKp-zl-vTn"/>
                             </connections>
                         </button>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LY2-A2-GUY">
-                            <rect key="frame" x="149" y="80" width="134" height="17"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LY2-A2-GUY" propertyAccessControl="all">
+                            <rect key="frame" x="155" y="80" width="126" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="center" title="Title" id="2SU-S2-MER">
                                 <font key="font" metaFont="system"/>
@@ -115,7 +120,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <slider focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s6M-UK-y9a">
+                        <slider focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s6M-UK-y9a" propertyAccessControl="all">
                             <rect key="frame" x="48" y="9" width="203" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <sliderCell key="cell" state="on" focusRingType="none" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="0db-C9-Vah"/>
@@ -123,7 +128,7 @@
                                 <action selector="positionSliderAction:" target="-2" id="jH1-SR-ilA"/>
                             </connections>
                         </slider>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jv6-Nj-5U4">
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jv6-Nj-5U4" propertyAccessControl="all">
                             <rect key="frame" x="249" y="8" width="44" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <gestureRecognizers>
@@ -139,7 +144,7 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXS-CL-PGN">
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tXS-CL-PGN" propertyAccessControl="all">
                             <rect key="frame" x="8" y="8" width="44" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="00:00" id="mBP-Ae-LiG">

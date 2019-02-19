@@ -81,7 +81,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let lastMusicPlayer = musicPlayerManager.existMusicPlayer(with: lastMusicPlayerName)
         musicPlayerManager.currentPlayer = lastMusicPlayer
 
-        let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
+        let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOverSmall"), bundle: nil)
         popoverVC.setUpMusicPlayerManager()
 
         hiddenController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Hidden"), bundle: nil).instantiateInitialController() as! NSWindowController)
