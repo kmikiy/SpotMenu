@@ -132,6 +132,8 @@
 		5325CBE9807E5B7BDCB8234D /* Pods_SpotMenuToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenuToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DA11418221EB1C500818276 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5DA11419221EB1C500818276 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5DA1141A221EB78000818276 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5DA1141B221EB78000818276 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		5DF4E837CD8EF8A8987E860D /* Pods-SpotMenu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.release.xcconfig"; sourceTree = "<group>"; };
 		64055EDA1F766E3C00B07FB2 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		641226DF1FD414E500BB119F /* AboutPreferencesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPreferencesVC.swift; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 				es,
 				ru,
 				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 2133241F1D79801E0060D48C;
 			productRefGroup = 213324291D79801E0060D48C /* Products */;
@@ -922,6 +925,7 @@
 				64B3DBC01FADC1DF00E50910 /* es */,
 				64375BC41FE7FB53008625C4 /* ru */,
 				5DA11419221EB1C500818276 /* zh-Hans */,
+				5DA1141B221EB78000818276 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -938,6 +942,7 @@
 				64B3DBBF1FADC1DF00E50910 /* es */,
 				64375BC31FE7FB53008625C4 /* ru */,
 				5DA11418221EB1C500818276 /* zh-Hans */,
+				5DA1141A221EB78000818276 /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
