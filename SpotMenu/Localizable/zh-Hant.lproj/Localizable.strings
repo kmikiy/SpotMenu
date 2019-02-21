@@ -41,9 +41,9 @@
 "Indicates whether or not to check for updates automatically." = "標明是否自動檢查更新。";
 "Indicates whether or not updates can be automatically downloaded in the background." = "標明是否可以在後台自動下載更新。";
 "Enable keyboard shortcut" = "啟用鍵盤快捷鍵";
-"Display the current song artist and title by pressing ctrl + command + m." = "同時按下 ctrl + command + m 顯示當前歌曲藝術家和標題。";
+"Display the current song artist and title by pressing ctrl + command + m." = "同時按下 ctrl + command + m 顯示當前歌曲歌手和名字。";
 "Hide text when paused" = "暫停時隱藏文字";
-"Omits the current song artist and title from the menu bar when the music is paused." = "當音樂暫停時，忽略菜單欄中的當前歌曲藝術家和標題。";
+"Omits the current song artist and title from the menu bar when the music is paused." = "當音樂暫停時，忽略菜單欄中的當前歌曲歌手和名字。";
 "copy" = "復制";
 "copied" = "已復制";
 "About" = "關於";
