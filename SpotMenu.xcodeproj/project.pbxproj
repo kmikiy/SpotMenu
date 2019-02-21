@@ -80,7 +80,6 @@
 		64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64F29A0B1F2E5F1100E48BBD /* Localizable.strings */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 		A02DF2CF221BB1C700222929 /* PopOverSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = A02DF2CE221BB1C700222929 /* PopOverSmall.xib */; };
-		A02DF2D0221BC03500222929 /* PopOverSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = A02DF2CE221BB1C700222929 /* PopOverSmall.xib */; };
 		A02DF2D2221BCDB700222929 /* StaticFadeIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02DF2D1221BCDB700222929 /* StaticFadeIn.swift */; };
 		A02DF2D3221BCFCD00222929 /* StaticFadeIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02DF2D1221BCDB700222929 /* StaticFadeIn.swift */; };
 		DB2C500E2199F94000932042 /* ScrollingStatusItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2C500D2199F94000932042 /* ScrollingStatusItemView.swift */; };
@@ -772,7 +771,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				643746671F76B06900B16214 /* PopOver.xib in Resources */,
-				A02DF2D0221BC03500222929 /* PopOverSmall.xib in Resources */,
 				64185C1A1F1B8DC400CA23A0 /* InfoPlist.strings in Resources */,
 				64185C271F1B98C600CA23A0 /* Assets.xcassets in Resources */,
 			);
