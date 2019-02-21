@@ -23,6 +23,7 @@ final class GeneralPreferencesVC: NSViewController {
     @IBOutlet fileprivate var showPlayingIconButton: HoverButton!
     @IBOutlet fileprivate var showSpotMenuIconButton: HoverButton!
     @IBOutlet fileprivate var fixPopoverToTheRightButton: HoverButton!
+    @IBOutlet fileprivate var useSmallPopoverButton: HoverButton!
     @IBOutlet fileprivate var openAtLoginButton: HoverButton!
     @IBOutlet fileprivate var enableKeyboardShortcutButton: HoverButton!
     @IBOutlet fileprivate var hideTextWhenPausedButton: HoverButton!
@@ -51,6 +52,7 @@ final class GeneralPreferencesVC: NSViewController {
         showPlayingIconButton.title = NSLocalizedString("Show playing icon", comment: "")
         showSpotMenuIconButton.title = NSLocalizedString("Show SpotMenu icon", comment: "")
         fixPopoverToTheRightButton.title = NSLocalizedString("Fix popover to the right", comment: "")
+        useSmallPopoverButton.title = NSLocalizedString("Use small popover", comment: "")
         openAtLoginButton.title = NSLocalizedString("Open at login", comment: "")
         enableKeyboardShortcutButton.title = NSLocalizedString("Enable keyboard shortcut", comment: "")
         hideTextWhenPausedButton.title = NSLocalizedString("Hide text when paused", comment: "")
@@ -64,6 +66,7 @@ final class GeneralPreferencesVC: NSViewController {
         showPlayingIconButton.state = NSControl.StateValue(rawValue: UserPreferences.showPlayingIcon.asState)
         showSpotMenuIconButton.state = NSControl.StateValue(rawValue: UserPreferences.showSpotMenuIcon.asState)
         fixPopoverToTheRightButton.state = NSControl.StateValue(rawValue: UserPreferences.fixPopoverToTheRight.asState)
+        useSmallPopoverButton.state = NSControl.StateValue(rawValue: UserPreferences.useSmallPopover.asState)
         openAtLoginButton.state = NSControl.StateValue(rawValue: applicationIsInStartUpItems().asState)
         enableKeyboardShortcutButton.state = NSControl.StateValue(rawValue: UserPreferences.keyboardShortcutEnabled.asState)
         hideTextWhenPausedButton.state = NSControl.StateValue(rawValue: UserPreferences.hideTitleArtistWhenPaused.asState)
@@ -87,6 +90,9 @@ final class GeneralPreferencesVC: NSViewController {
 
         fixPopoverToTheRightButton.mouseEnteredFunc = hoverFixPopoverToTheRight
         fixPopoverToTheRightButton.mouseExitedFunc = hoverAway
+        
+        useSmallPopoverButton.mouseEnteredFunc = hoverUseSmallPopover
+        useSmallPopoverButton.mouseExitedFunc = hoverAway
 
         openAtLoginButton.mouseEnteredFunc = hoverOpenAtLogin
         openAtLoginButton.mouseExitedFunc = hoverAway
@@ -122,6 +128,10 @@ final class GeneralPreferencesVC: NSViewController {
 
     @IBAction private func toggleFixPopoverToTheRight(_: Any) {
         UserPreferences.fixPopoverToTheRight = fixPopoverToTheRightButton.state.asBool
+    }
+    
+    @IBAction private func toggleUseSmallPopover(_: Any) {
+        UserPreferences.useSmallPopover = useSmallPopoverButton.state.asBool
     }
 
     @IBAction private func toggleOpenAtLogin(_: Any) {
@@ -170,6 +180,10 @@ extension GeneralPreferencesVC {
 
     fileprivate func hoverFixPopoverToTheRight() {
         moreInformation.stringValue = NSLocalizedString("When checked the popover will be fixed to the right corner.", comment: "")
+    }
+    
+    fileprivate func hoverUseSmallPopover() {
+        moreInformation.stringValue = NSLocalizedString("When checked a small popover will be used instead.", comment: "")
     }
 
     fileprivate func hoverOpenAtLogin() {
