@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  SpotMenu
+
+  Created by Miklós Kristyán on 30.07.17.
+  Copyright © 2017 KM. All rights reserved.
+ 
+  Translated by @rockia
+*/
+
+"Issues" = "问题";
+"Preferences..." = "偏好设定...";
+"Check for Updates..." = "检查更新...";
+"Quit" = "退出";
+"Now playing" = "正在播放";
+"Hover over an option for more information." = "将鼠标悬停在选项上查看更多资料。";
+"When checked the artist will be shown in the menu bar." = "选中后，歌手将显示在菜单栏中。";
+"When checked the album name will be shown in the menu bar." = "选中后，专辑名称将显示在菜单栏中。";
+"When checked the title will be shown in the menu bar." = "选中后，歌名将显示在菜单栏中。";
+"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "选中后，如果播放音乐，播放图标（♫）将显示在菜单栏中。";
+"When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "选中后，SpotMenu图标将显示在菜单栏中。\n\n注意：\n如果没有音乐信息，将显示SpotMenu图标。";
+"When checked the popover will be fixed to the right corner." = "选中后，弹出窗口将固定在右上角。";
+"When checked SpotMenu will start automatically at login." = "选中后，SpotMenu将在登录时自动启动。";
+"Artist" = "歌手";
+"Title" = "歌名";
+"Show playing icon" = "显示正在播放图标";
+"Show title" = "显示歌名";
+"with ♥ from kmikiy" = "来自kmikiy的 ♥";
+"Show artist" = "显示歌手";
+"Preferences" = "偏好设定";
+"General" = "通用";
+"Updates" = "更新";
+"Open at login" = "登录时自动启动";
+"Fix popover to the right" = "固定弹出窗口在右侧";
+"Show SpotMenu icon" = "显示SpotMenu图标";
+"Automatically check for updates" = "自动检查更新";
+"Automatically download updates" = "自动下载更新";
+"Check for Updates" = "检查更新";
+"Last checked:" = "最后检查于:";
+"Preferences" = "偏好设定";
+"Indicates whether or not to check for updates automatically." = "标明是否自动检查更新。";
+"Indicates whether or not updates can be automatically downloaded in the background." = "标明是否可以在后台自动下载更新。";
+"Enable keyboard shortcut" = "启用键盘快捷键";
+"Display the current song artist and title by pressing ctrl + command + m." = "同时按下 ctrl + command + m 显示当前歌曲艺术家和标题";
+"Hide text when paused" = "暂停时隐藏文字";
+"Omits the current song artist and title from the menu bar when the music is paused." = "当音乐暂停时，忽略菜单栏中的当前歌曲艺术家和标题。";
+"copy" = "复制";
+"copied" = "已复制";
+"About" = "关于";
+"about-description" = "SpotMenu is free and open source📖. My goal is to keep it this way. I do not want to limit functions, nor annoy users. Unfortunately, I like money💰💵🤑 and would like to live a lavish lifestyle💎.\nI have included a picture of me from the future (it is NOT photoshopped)🌅. For those who would like to contribute to my wellbeing and fulfilling my destiny I have included several ways to donate that sweet sweet money.\nYa boy, kmikiy now accepts several cryptocurrencies.\nScroll down for more info ⬇️";
+"Show album title" = "显示专辑名字";

@@ -1,0 +1,4 @@
+/* Display name and description for this extension. */
+"CFBundleDisplayName" = "正在播放";
+"com.apple.notificationcenter.widget.description" = "显示当前在Spotify上播放的歌曲";
+
