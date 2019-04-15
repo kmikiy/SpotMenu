@@ -313,10 +313,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func showPopover(_: AnyObject?) {
 
         let rect = statusItem.button?.window?.convertToScreen((statusItem.button?.frame)!)
+        let menubarHeight = rect?.height ?? 22
+        let height = hiddenController?.window?.frame.height ?? 300
         let xOffset = UserPreferences.fixPopoverToTheRight ? ((hiddenController?.window?.contentView?.frame.minX)! - (statusItem.button?.frame.minX)!) : ((hiddenController?.window?.contentView?.frame.midX)! - (statusItem.button?.frame.midX)!)
         let x = (rect?.origin.x)! - xOffset
         let y = (rect?.origin.y)! // - (hiddenController?.contentViewController?.view.frame.maxY)!
-        hiddenController?.window?.setFrameOrigin(NSPoint(x: x, y: y))
+        hiddenController?.window?.setFrameOrigin(NSPoint(x: x, y: y-height+menubarHeight))
         hiddenController?.showWindow(self)
         eventMonitor?.start()
     }
