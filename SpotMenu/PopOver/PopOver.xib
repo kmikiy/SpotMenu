@@ -46,7 +46,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ah-DM-iSN">
-                            <rect key="frame" x="106" y="115" width="91" height="79"/>
+                            <rect key="frame" x="105" y="115" width="91" height="79"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" title="▶︎" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="4BI-ev-3Vo">
                                 <behavior key="behavior" lightByContents="YES"/>
@@ -66,7 +66,7 @@
                             </textFieldCell>
                         </textField>
                         <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ZD-MG0">
-                            <rect key="frame" x="8" y="101" width="114" height="101"/>
+                            <rect key="frame" x="7" y="101" width="114" height="101"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarRewindTemplate" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="eyZ-Np-WLr">
                                 <behavior key="behavior" lightByContents="YES"/>
