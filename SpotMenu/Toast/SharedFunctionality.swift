@@ -13,13 +13,13 @@ import Foundation
     import UIKit
 #endif
 
-fileprivate class HideAnimationDelegate: NSObject, CAAnimationDelegate {
+class HideAnimationDelegate: NSObject, CAAnimationDelegate {
     private weak var view: View?
     fileprivate init(view: View) {
         self.view = view
     }
 
-    fileprivate static func delegate(forView view: View) -> CAAnimationDelegate {
+    static func delegate(forView view: View) -> CAAnimationDelegate {
         return HideAnimationDelegate(view: view)
     }
 
@@ -27,10 +27,19 @@ fileprivate class HideAnimationDelegate: NSObject, CAAnimationDelegate {
         view?._layer.opacity = 0.0
     }
 
-    func animationDidStop(_: CAAnimation, finished _: Bool) {
-        view?.removeFromSuperview()
-        view = nil
+    func animationDidStop(_: CAAnimation, finished finishedBool: Bool) {
+        if (finishedBool) {
+            if (view is ToastView) {
+                // get a reference to the app delegate
+                let appDelegate: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
+                appDelegate?.removeHud()
+            }
+            view?.removeFromSuperview()
+        }
+
+        //view = nil
     }
+
 }
 
 fileprivate class ShowAnimationDelegate: NSObject, CAAnimationDelegate {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="LBt-HB-O2a">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="LBt-HB-O2a">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,7 +11,7 @@
             <objects>
                 <viewController storyboardIdentifier="UpdatesID" id="LBt-HB-O2a" customClass="UpdatesPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" identifier="Updates" id="1ap-fy-BOA">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="501" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="tV3-fc-Tw1" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3lC-wO-n8A">
-                                <rect key="frame" x="6" y="7" width="119" height="17"/>
+                                <rect key="frame" x="6" y="7" width="117" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="with ♥ from kmikiy" id="Z2I-st-E1l">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -46,10 +46,10 @@
                                 <rect key="frame" x="248" y="20" width="5" height="230"/>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4lO-md-TWp">
-                                <rect key="frame" x="264" y="216" width="218" height="34"/>
+                                <rect key="frame" x="264" y="216" width="219" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Hover over an option for more information" id="Jjz-Rz-Dr9">
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>

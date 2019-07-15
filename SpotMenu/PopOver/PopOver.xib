@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,6 +11,7 @@
                 <outlet property="aLabel" destination="UYR-3X-1ze" id="C2H-KU-k2M"/>
                 <outlet property="artistLabel" destination="91T-mi-mb9" id="Mhz-MF-AQx"/>
                 <outlet property="artworkImageView" destination="wMa-mO-ZXq" id="J3B-JE-v1D"/>
+                <outlet property="customVisualEffect" destination="Z1i-Qx-pwO" id="yc6-Vj-V15"/>
                 <outlet property="leftTime" destination="a3a-vx-FzU" id="mAS-xW-gGh"/>
                 <outlet property="musicPlayerButton" destination="Sfg-o1-GVi" id="P2f-5V-oen"/>
                 <outlet property="playerStateButton" destination="8Ah-DM-iSN" id="ofG-4I-1Kw"/>
@@ -163,7 +164,7 @@
         </customView>
     </objects>
     <resources>
-        <image name="NSUserGuest" width="128" height="128"/>
-        <image name="StatusBarButtonImage" width="32" height="32"/>
+        <image name="NSUserGuest" width="32" height="32"/>
+        <image name="StatusBarButtonImage" width="16" height="16"/>
     </resources>
 </document>

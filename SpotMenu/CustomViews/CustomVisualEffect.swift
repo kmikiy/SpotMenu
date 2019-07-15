@@ -11,7 +11,7 @@ import Foundation
 
 class CustomVisualEffect: NSVisualEffectView {
 
-    private enum FadeType {
+    public enum FadeType {
         case fadeIn, fadeOut
     }
 
@@ -42,6 +42,8 @@ class CustomVisualEffect: NSVisualEffectView {
 
     // MARK: - Mouse events
 
+    private var fadedIn = false
+
     override func mouseEntered(with _: NSEvent) {
         fade(type: .fadeIn)
     }
@@ -52,7 +54,23 @@ class CustomVisualEffect: NSVisualEffectView {
 
     // MARK: - Private helper methods
 
-    private func fade(type: FadeType = .fadeOut) {
+    public func toggleFade() {
+        if (fadedIn) {
+            fade()
+        } else {
+            fade(type: .fadeIn)
+        }
+    }
+
+    public func fade(type: FadeType = .fadeOut) {
+        if (type == FadeType.fadeIn) {
+            if (fadedIn) {
+                return;
+            }
+            fadedIn = true;
+        } else {
+            fadedIn = false
+        }
 
         let from = type == .fadeOut ? 1 : 0
         let to = 1 - from

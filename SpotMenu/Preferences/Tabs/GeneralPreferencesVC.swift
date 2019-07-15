@@ -177,7 +177,12 @@ extension GeneralPreferencesVC {
     }
 
     fileprivate func hoverEnableKeyboardShortcut() {
-        moreInformation.stringValue = NSLocalizedString("Display the current song artist and title by pressing ctrl + command + m.", comment: "")
+        moreInformation.stringValue = NSLocalizedString("""
+                                                        Shortcuts:
+                                                         * CTRL + CMD + M - Display the current song artist and title
+                                                         * CTRL + CMD + P - Show/Hide PopOver
+                                                         * CTRL + CMD + I - Show/Hide PopOver Image
+                                                        """, comment: "")
     }
 
     fileprivate func hoverHideTitleWhenPaused() {

@@ -28,8 +28,21 @@ final class PopOverViewController: NSViewController {
     @IBOutlet private var leftTime: NSTextField!
     @IBOutlet private var rightTime: NSTextField!
     @IBOutlet private var musicPlayerButton: NSButton!
-
+    @IBOutlet var customVisualEffect: CustomVisualEffect!
+    
     // MARK: - Lifecycle methods
+
+    func showControls() {
+        customVisualEffect.fade(type: .fadeIn)
+    }
+
+    func hideControls() {
+        customVisualEffect.fade()
+    }
+
+    func toggleControls() {
+        customVisualEffect.toggleFade()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +51,14 @@ final class PopOverViewController: NSViewController {
         preferredContentSize = NSSize(width: 300, height: 300)
         
         if #available(OSX 10.13, *) {
-            view.layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        }
-    }
+            view.layer?.maskedCorners = [.layerMinXMinYCorner,
 
-    override func viewWillAppear() {
-        super.viewWillAppear()
+            .layerMaxXMinYCorner,
+
+            .layerMinXMaxYCorner,
+
+            .layerMaxXMaxYCorner]//[.layerMinXMinYCorner, .layerMaxXMinYCorner, ]
+        }
 
         setUpMusicPlayerManager()
         musicPlayerManager.delegate = self
@@ -70,6 +85,10 @@ final class PopOverViewController: NSViewController {
         updatePlayerPosition()
         updateTime()
         updateMusicPlayerIcon(musicPlayerName: lastMusicPlayerName)
+    }
+
+    override func viewWillAppear() {
+        super.viewWillAppear()
 
         timer = Timer.scheduledTimer(
             timeInterval: 1,
@@ -81,7 +100,7 @@ final class PopOverViewController: NSViewController {
 
     override func viewDidDisappear() {
         timer.invalidate()
-        musicPlayerManager.delegate = nil
+        //musicPlayerManager.delegate = nil
     }
 
     // MARK: - Public methods
@@ -277,14 +296,14 @@ extension NSImageView {
                     CATransaction.begin()
                     let fadeAnim = CABasicAnimation(keyPath: "opacity")
                     fadeAnim.fromValue = 1
-                    fadeAnim.toValue = 0.2
-                    fadeAnim.duration = 0.2
+                    fadeAnim.toValue = 0.8
+                    fadeAnim.duration = 0.4
                     CATransaction.setCompletionBlock({
                         self.image = NSImage(data: data)
                         let fadeAnim = CABasicAnimation(keyPath: "opacity")
-                        fadeAnim.fromValue = 0.2
+                        fadeAnim.fromValue = 0.8
                         fadeAnim.toValue = 1
-                        fadeAnim.duration = 0.4
+                        fadeAnim.duration = 0.2
                         self.layer?.add(fadeAnim, forKey: "opacity")
                     })
                     self.layer?.add(fadeAnim, forKey: "opacity")

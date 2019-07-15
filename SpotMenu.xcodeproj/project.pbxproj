@@ -173,7 +173,7 @@
 		6486C08C1F5C0B4500CC5245 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		648984831E5C21C200EA2234 /* CustomVisualEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVisualEffect.swift; sourceTree = "<group>"; };
 		649D6C861F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesPreferencesVC.swift; sourceTree = "<group>"; };
-		64A4DE101F9BD35A004DC378 /* ca */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		64A4DE101F9BD35A004DC378 /* ca */ = {isa = PBXFileReference; fileEncoding = 2483028224; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
 		64A4DE111F9BD35A004DC378 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64A8E1A31F83F45F00FFF6B1 /* Hidden.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Hidden.storyboard; sourceTree = "<group>"; };
 		64A908071EB7754100566ED1 /* UserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
@@ -803,7 +803,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM",
@@ -816,7 +816,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1057,7 +1057,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3K79XCJYWL;
+				DEVELOPMENT_TEAM = YWV3Y3K2PT;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu;
@@ -1081,7 +1081,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3K79XCJYWL;
+				DEVELOPMENT_TEAM = YWV3Y3K2PT;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.KMikiy.SpotMenu;
@@ -1102,7 +1102,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3K79XCJYWL;
+				DEVELOPMENT_TEAM = YWV3Y3K2PT;
 				DevelopmentTeam = 3K79XCJYWL;
 				INFOPLIST_FILE = SpotMenuToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
@@ -1126,7 +1126,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 3K79XCJYWL;
+				DEVELOPMENT_TEAM = YWV3Y3K2PT;
 				DevelopmentTeam = 3K79XCJYWL;
 				INFOPLIST_FILE = SpotMenuToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
@@ -1153,7 +1153,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3K79XCJYWL;
+				DEVELOPMENT_TEAM = YWV3Y3K2PT;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -1187,7 +1187,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 3K79XCJYWL;
+				DEVELOPMENT_TEAM = YWV3Y3K2PT;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
