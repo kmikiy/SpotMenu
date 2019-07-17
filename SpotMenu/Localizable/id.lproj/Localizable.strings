@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  SpotMenu
+
+  Created by Miklós Kristyán on 30.07.17.
+  Copyright © 2017 KM. All rights reserved.
+ 
+  Translated to Bahasa Indonesia (id) by @ikhwanuddin
+*/
+
+"Issues" = "Permasalahan";
+"Preferences..." = "Pengaturan...";
+"Check for Updates..." = "Periksa Pembaruan...";
+"Quit" = "Keluar SpotMenu";
+"Now playing" = "Sekarang memainkan";
+"Hover over an option for more information." = "Arahkan mouse di atas opsi untuk membaca penjelasannya.";
+"When checked the artist will be shown in the menu bar." = "Centang sehingga nama artis tertera di bilah menu.";
+"When checked the album name will be shown in the menu bar." = "Centang sehingga informasi album tertera di bilah menu.";
+"When checked the title will be shown in the menu bar." = "Centang sehingga judul lagu tertera di bilah menu.";
+"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Centang sehingga simbol memainkan (♫) tertera di bilah menu selama musik dimainkan.";
+"When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Centang sehingga ikon SpotMenu tertera di menu bar.\n\nCatatan:\nApabila tidak ada informasi musik yang ditampilkan maka ikon SpotMenu akan otomatis muncul.";
+"When checked the popover will be fixed to the right corner." = "Centang sehingga kotak musik keluar dari pojok kanan.";
+"When checked SpotMenu will start automatically at login." = "Centang sehingga SpotMenu otomatis berjalan pada awal login.";
+"Artist" = "Artis";
+"Title" = "Judul";
+"Show playing icon" = "Tampilkan ikon memainkan";
+"Show title" = "Tampilkan judul";
+"with ♥ from kmikiy" = "dengan ♥ dari kmikiy";
+"Show artist" = "Tampilkan artis";
+"Preferences" = "Pengaturan";
+"General" = "Umum";
+"Updates" = "Pembaruan";
+"Open at login" = "Terbuka saat login";
+"Fix popover to the right" = "Geser kotak musik di sebelah kanan";
+"Show SpotMenu icon" = "Munculkan ikon SpotMenu";
+"Automatically check for updates" = "Otomatis periksa pembaruan";
+"Automatically download updates" = "Otomatis mengunduh pembaruan";
+"Check for Updates" = "Periksa Pembaruan";
+"Last checked:" = "Terakhir diperiksa:";
+"Preferences" = "Pengaturan";
+"Indicates whether or not to check for updates automatically." = "Centang jika ingin memperbarui aplikasi secara otomatis.";
+"Indicates whether or not updates can be automatically downloaded in the background." = "Centang jika ingin otomatis mengunduh pembaruan secara otomatis.";
+"Enable keyboard shortcut" = "Aktifkan jalan pintas papan ketuk";
+"Display the current song artist and title by pressing ctrl + command + m." = "Tampilkan informasi lagu dengan menekan kombinasi pintas Ctrl + Command + m.";
+"Hide text when paused" = "Sembunyikan teks saat musik berhenti";
+"Omits the current song artist and title from the bilah menu when the music is paused." = "Hilangkan informasi lagu dari bilah menu bila musik berhenti.";
+"copy" = "salin";
+"copied" = "tersalin";
+"About" = "Tentang";
+"about-description" = "SpotMenu ini gratis dan open source 📖. Saya ingin tetap menjaga ia tetap demikian. Saya tidak ingin membatasi fungsi, juga tidak ingin mengganggu pengguna dengan iklan. Sayangnya, saya masih butuh uang 💰💵🤑 dan saya suka gaya hidup yang mewah 💎.\n\nSaya juga menyertakan foto diri dari masa depan (ini TIDAK diedit photoshop) 🌅. Kepada siapa pun yang ingin berkontribusi pada kesejahteraan saya dan agar tujuan hidup saya tercapai, saya menyerakan beberapa cara berdonasi uang.\n\nSekarang, kmikiy menerima beberapa mata uang kripto.\n\nGeser ke bawah untuk info lebih lanjut ⬇️";
+"Show album title" = "Tunjukkan judul album";
