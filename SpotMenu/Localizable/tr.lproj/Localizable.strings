@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  SpotMenu
+
+  Created by Miklós Kristyán on 30.07.17.
+  Copyright © 2017 KM. All rights reserved.
+ 
+  Translated by @kmikiy
+*/
+
+"Issues" = "Issue'lar (GitHub)";
+"Preferences..." = "Tercihler...";
+"Check for Updates..." = "Güncellemeleri Kontrol Et...";
+"Quit" = "SpotMenu'den Çık";
+"Now playing" = "Şimdi çalınıyor";
+"Hover over an option for more information." = "Daha fazla bilgi için imleci bir seçeneğin üzerine götürün.";
+"When checked the artist will be shown in the menu bar." = "İşaretlendiğinde sanatçının adı menü barında görünür.";
+"When checked the album name will be shown in the menu bar." = "İşaretlendiğinde albümün adı menü barında görünür.";
+"When checked the title will be shown in the menu bar." = "İşaretlendiğinde şarkının adı menü barında görünür.";
+"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "İşaretlendiğinde şarkı çaldığı zaman çalıyor simgesi (♫) menü barında görünür.";
+"When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "İşaretlendiğinde SpotMenu simgesi (♫) menü barında görünür. Not: Eğer gösterilecek bir müzik bilgisi yoksa, SpotMenu simgesi görünür olacaktır.";
+"When checked the popover will be fixed to the right corner." = "İşaretlendiğinde popover penceresi sağ köşeye sabitlenir.";
+"When checked SpotMenu will start automatically at login." = "İşaretlendiğinde SpotMenu giriş yaptığınızda otomatik olarak açılır.";
+"Artist" = "Sanatçı";
+"Title" = "Şarkı Adı";
+"Show playing icon" = "Çalıyor simgesini göster";
+"Show title" = "Şarkı adını göster";
+"with ♥ from kmikiy" = "kmikiy'den sevgilerle ♥";
+"Show artist" = "Sanatçıyı göster";
+"Preferences" = "Tercihler";
+"General" = "Genel";
+"Updates" = "Güncellemeler";
+"Open at login" = "Giriş yaptığımda aç";
+"Fix popover to the right" = "Popover penceresini sağa sabitle";
+"Show SpotMenu icon" = "SpotMenu simgesini göster";
+"Automatically check for updates" = "Güncellemeleri otomatik olarak denetle";
+"Automatically download updates" = "Güncellemeleri otomatik olarak yükle";
+"Check for Updates" = "Güncellemeleri denetle";
+"Last checked:" = "Son denetleme:";
+"Preferences" = "Tercihler";
+"Indicates whether or not to check for updates automatically." = "Güncellemelerin otomatik olarak denetlenip denetlenmediğini belirtir.";
+"Indicates whether or not updates can be automatically downloaded in the background." = "Güncellemelerin arkaplanda otomatik olarak indirilip indirilemeyeceğini belirtir.";
+"Enable keyboard shortcut" = "Klavye kısayolunu etkinleştir";
+"Display the current song artist and title by pressing ctrl + command + m." = "ctrl + command + m tuşlarına basarak çalan şarkıyı ve sanatçıyı görüntüle.";
+"Hide text when paused" = "Durdurulduğunda yazıları sakla";
+"Omits the current song artist and title from the menu bar when the music is paused." = "Müzik durdurulduğunda çalan şarkı ve sanatçıyı menü barında göstermeyi bırakır.";
+"copy" = "kopyala";
+"copied" = "kopyalandı";
+"About" = "Hakkında";
+"about-description" = "SpotMenu ücretsiz ve açık kaynaklıdır📖. Amacım SpotMenu'yü hep böyle tutmak. Fonksiyonları limitlemeyi ya da kullanıcıları rahatsız etmeyi hiç istemem. Ama maalesef, parayı💰💵🤑 ve lüks bir hayat yaşamayı seviyorum💎.\nGelecekten bir fotoğrafımı aşağıda bulabilirsiniz (kesinlikle photoshoplanmış DEĞİLDİR)🌅. Bana hayallerimi gerçekleştirmek için katkıda bulunmak isteyenlerin bağış yapabilmesi için çeşitli bilgiler ekledim.\nDaha fazla bilgi için aşağı kaydırın. ⬇️";
+"Show album title" = "Albüm adını göster";
