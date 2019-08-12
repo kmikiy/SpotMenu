@@ -42,7 +42,7 @@
 "Indicates whether or not updates can be automatically downloaded in the background." = "Indica se as atualizações devem ou não ser transferidas automaticamente em segundo plano.";
 "Enable keyboard shortcut" = "Ativar atalhos do teclado";
 "Display the current song artist and title by pressing ctrl + shift
- + m." = "Mostre a música que esta tocando agora apertando ctrl + shift + m.";
+ + m." = "Mostre a música que esta tocando agora apertando ctrl + ⌘ + M.";
 "Hide text when paused" = "Esconder o texto quando pausado";
 "Omits the current song artist and title from the menu bar when the music is paused." = "Esconder o título da música na barra de menus enquanto estiver pausada.";
 "copy" = "Copiar";
