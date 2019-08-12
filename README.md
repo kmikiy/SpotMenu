@@ -13,7 +13,7 @@ You can read more about how to fix it [here](https://github.com/kmikiy/SpotMenu/
 SpotMenu is a combination of [TrayPlay](https://github.com/mborgerson/TrayPlay) 
 and [Statusfy](https://github.com/paulyoung/Statusfy) written ~entirely~ _almost entirely_ in swift. 
 
-Toast: <kbd>control</kbd> + <kbd>command</kbd> + <kbd>m</kbd>
+Toast: <kbd>control</kbd> + <kbd>shift</kbd> + <kbd>m</kbd>
 
 ## Notes
 

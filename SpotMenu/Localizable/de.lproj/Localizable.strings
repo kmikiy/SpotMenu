@@ -41,7 +41,7 @@
 "Indicates whether or not to check for updates automatically." = "Zeigt an, ob automatisch nach Updates gesucht werden soll oder nicht.";
 "Indicates whether or not updates can be automatically downloaded in the background." = "Zeigt an, ob Updates automatisch im Hintergrund geladen werden können.";
 "Enable keyboard shortcut" = "Tastatur Kurzbefehl aktivieren";
-"Display the current song artist and title by pressing ctrl + command + m." = "Drücke die Tastenkombination ctrl + command + m, um den aktuellen Titel und Künstler anzuzeigen.";
+"Display the current song artist and title by pressing ctrl + shift + m." = "Drücke die Tastenkombination ctrl + shift + m, um den aktuellen Titel und Künstler anzuzeigen.";
 "Hide text when paused" = "Text ausblenden, wenn Musik pausiert wird";
 "Omits the current song artist and title from the menu bar when the music is paused." = "Aktueller Künstler und Titel werden in der Menüleiste ausgeblendet, wenn die Musik pausiert wird.";
 "copy" = "kopieren";

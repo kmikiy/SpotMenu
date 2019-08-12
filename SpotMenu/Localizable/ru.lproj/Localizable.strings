@@ -41,7 +41,7 @@
 "Indicates whether or not to check for updates automatically." = "Указывает, можно ли автоматически проверять наличие обновлений.";
 "Indicates whether or not updates can be automatically downloaded in the background." = "Указывает, можно ли автоматически загружать обновления в фоновом режиме.";
 "Enable keyboard shortcut" = "Включить быстрые клавиши";
-"Display the current song artist and title by pressing ctrl + command + m." = "Отображает текущего исполнителя и название песни при нажатии Ctrl + Command + M.";
+"Display the current song artist and title by pressing ctrl + shift + m." = "Отображает текущего исполнителя и название песни при нажатии ctrl + shift + m.";
 "Hide text when paused" = "Спрятать текст во время паузы";
 "Omits the current song artist and title from the menu bar when the music is paused." = "Прятать весь текст из статус-бара во время паузы.";
 "copy" = "скопировать";
