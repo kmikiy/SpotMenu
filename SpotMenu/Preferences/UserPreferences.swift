@@ -25,6 +25,7 @@ struct UserPreferences {
         static let keyboardShortcutEnabled = "keyboardShortcutEnabled"
         static let hideTitleArtistWhenPaused = "hideTitleArtistWhenPaused"
         static let lastMusicPlayer = "lastMusicPlayer"
+        static let scrollText = "scrollText"
     }
 
     // MARK: - Properties
@@ -113,6 +114,15 @@ struct UserPreferences {
         }
     }
 
+    static var scrollText: Bool {
+        get {
+            return UserPreferences.readSetting(key: Keys.scrollText)
+        }
+        set {
+            UserPreferences.setSetting(key: Keys.scrollText, value: newValue)
+        }
+    }
+
     // MARK: - Public methods
 
     static func clearAllSettings() {
@@ -161,7 +171,8 @@ struct UserPreferences {
             UserPreferences.showSpotMenuIcon ||
             UserPreferences.fixPopoverToTheRight ||
             UserPreferences.keyboardShortcutEnabled ||
-            UserPreferences.hideTitleArtistWhenPaused {
+            UserPreferences.hideTitleArtistWhenPaused ||
+            UserPreferences.scrollText {
             return
         }
 
@@ -175,6 +186,7 @@ struct UserPreferences {
         UserPreferences.showSpotMenuIcon = true
         UserPreferences.keyboardShortcutEnabled = true
         UserPreferences.hideTitleArtistWhenPaused = true
+        UserPreferences.scrollText = true
     }
 }
 

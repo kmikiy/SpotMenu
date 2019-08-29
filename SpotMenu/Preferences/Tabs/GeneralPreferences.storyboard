@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="oE3-rO-9wI">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="oE3-rO-9wI">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,11 +11,11 @@
             <objects>
                 <viewController storyboardIdentifier="GeneralID" id="oE3-rO-9wI" customClass="GeneralPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" identifier="General" id="hd7-oN-oUJ">
-                        <rect key="frame" x="0.0" y="0.0" width="473" height="328"/>
+                        <rect key="frame" x="0.0" y="0.0" width="473" height="348"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Wcp-B2-r4h" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="300" width="205" height="18"/>
+                                <rect key="frame" x="18" y="320" width="205" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show artist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GCF-Yi-4mg">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -25,7 +25,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="jNP-RL-5Pk" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="280" width="205" height="18"/>
+                                <rect key="frame" x="18" y="300" width="205" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show title" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Oaz-ZO-Byg">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="6XJ-fx-OKW" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="220" width="205" height="18"/>
+                                <rect key="frame" x="18" y="240" width="205" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show SpotMenu icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qTn-74-VHm">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -55,7 +55,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="peo-tz-ZOw">
-                                <rect key="frame" x="6" y="7" width="119" height="17"/>
+                                <rect key="frame" x="6" y="7" width="117" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="with ♥ from kmikiy" id="UvV-6S-FUa">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -63,7 +63,7 @@
                                 </textFieldCell>
                             </textField>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="5fe-rf-Xgk">
-                                <rect key="frame" x="234" y="20" width="5" height="288"/>
+                                <rect key="frame" x="234" y="20" width="5" height="308"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="uyC-Ea-vx3">
                                 <rect key="frame" x="20" y="169" width="201" height="5"/>
@@ -89,7 +89,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="oxy-oE-dHM" userLabel="Hide Text When Paused Button" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="200" width="205" height="18"/>
+                                <rect key="frame" x="18" y="220" width="205" height="18"/>
                                 <buttonCell key="cell" type="check" title="Hide text when paused" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="VqI-2W-Oiy">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -98,8 +98,18 @@
                                     <action selector="toggleHideTextWhenPaused:" target="oE3-rO-9wI" id="zdL-Ko-Bq9"/>
                                 </connections>
                             </button>
+                            <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJO-Yb-I3g" userLabel="Scroll Text Button" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
+                                <rect key="frame" x="18" y="200" width="205" height="18"/>
+                                <buttonCell key="cell" type="check" title="Scroll text" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="b3N-Rx-EVm">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleScrollText:" target="oE3-rO-9wI" id="Nm0-V8-EGT"/>
+                                </connections>
+                            </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="yj4-VE-ueY" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="240" width="205" height="18"/>
+                                <rect key="frame" x="18" y="260" width="205" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show playing icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="tGG-tK-EIa">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -109,7 +119,7 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Trq-wg-nYW" customClass="HoverButton" customModule="SpotMenu" customModuleProvider="target">
-                                <rect key="frame" x="18" y="260" width="205" height="18"/>
+                                <rect key="frame" x="18" y="280" width="205" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show album name" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="f4T-W3-x7g">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -119,7 +129,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p7v-xI-0VE">
-                                <rect key="frame" x="250" y="282" width="205" height="34"/>
+                                <rect key="frame" x="250" y="302" width="205" height="34"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Hover over an option for more information" id="oHX-AN-IDS">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -135,7 +145,7 @@
                             <constraint firstItem="5fe-rf-Xgk" firstAttribute="leading" secondItem="pMj-ay-oKs" secondAttribute="trailing" constant="15" id="6S9-c1-e8t"/>
                             <constraint firstItem="ajp-ZJ-7EX" firstAttribute="leading" secondItem="hd7-oN-oUJ" secondAttribute="leading" constant="20" id="9mC-8O-mDe"/>
                             <constraint firstItem="yj4-VE-ueY" firstAttribute="top" secondItem="Trq-wg-nYW" secondAttribute="bottom" constant="6" symbolic="YES" id="An3-eL-7gY"/>
-                            <constraint firstItem="pMj-ay-oKs" firstAttribute="top" secondItem="oxy-oE-dHM" secondAttribute="bottom" constant="6" id="BQG-0d-91l"/>
+                            <constraint firstItem="pMj-ay-oKs" firstAttribute="top" secondItem="aJO-Yb-I3g" secondAttribute="bottom" constant="6" id="BQG-0d-91l"/>
                             <constraint firstItem="5fe-rf-Xgk" firstAttribute="leading" secondItem="6XJ-fx-OKW" secondAttribute="trailing" constant="15" id="DXx-DS-2yC"/>
                             <constraint firstItem="5fe-rf-Xgk" firstAttribute="centerX" secondItem="hd7-oN-oUJ" secondAttribute="centerX" id="IDD-Fk-oH7"/>
                             <constraint firstItem="p7v-xI-0VE" firstAttribute="top" secondItem="hd7-oN-oUJ" secondAttribute="top" constant="12" id="JKL-vT-QfS"/>
@@ -153,8 +163,10 @@
                             <constraint firstItem="5fe-rf-Xgk" firstAttribute="leading" secondItem="Wcp-B2-r4h" secondAttribute="trailing" constant="15" id="Za4-H6-N45"/>
                             <constraint firstItem="oxy-oE-dHM" firstAttribute="top" secondItem="6XJ-fx-OKW" secondAttribute="bottom" constant="6" id="bTA-xb-rfk"/>
                             <constraint firstAttribute="bottom" secondItem="5fe-rf-Xgk" secondAttribute="bottom" constant="20" id="cXX-yh-rDa"/>
+                            <constraint firstItem="aJO-Yb-I3g" firstAttribute="top" secondItem="oxy-oE-dHM" secondAttribute="bottom" constant="6" id="d6C-Or-4Wg"/>
                             <constraint firstItem="5fe-rf-Xgk" firstAttribute="leading" secondItem="Trq-wg-nYW" secondAttribute="trailing" constant="15" id="dy9-IY-cl9"/>
                             <constraint firstItem="5fe-rf-Xgk" firstAttribute="leading" secondItem="jNP-RL-5Pk" secondAttribute="trailing" constant="15" id="fJs-Hr-f4k"/>
+                            <constraint firstItem="aJO-Yb-I3g" firstAttribute="leading" secondItem="hd7-oN-oUJ" secondAttribute="leading" constant="20" id="fhW-Nx-WgF"/>
                             <constraint firstItem="5fe-rf-Xgk" firstAttribute="leading" secondItem="t8Z-Rd-MFu" secondAttribute="trailing" constant="15" id="gbg-F7-pNQ"/>
                             <constraint firstItem="peo-tz-ZOw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="t8Z-Rd-MFu" secondAttribute="bottom" priority="750" constant="105" id="gpY-45-GIg"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="p7v-xI-0VE" secondAttribute="bottom" priority="750" constant="20" id="jLU-Xm-cgU"/>
@@ -179,6 +191,7 @@
                         <outlet property="hideTextWhenPausedButton" destination="oxy-oE-dHM" id="pta-gy-9gJ"/>
                         <outlet property="moreInformation" destination="p7v-xI-0VE" id="8BD-Bc-UJK"/>
                         <outlet property="openAtLoginButton" destination="t8Z-Rd-MFu" id="Q1t-am-Krw"/>
+                        <outlet property="scrollTextButton" destination="aJO-Yb-I3g" id="VH4-OR-CV1"/>
                         <outlet property="showAlbumNameButton" destination="Trq-wg-nYW" id="RUe-EG-Xel"/>
                         <outlet property="showArtistButton" destination="Wcp-B2-r4h" id="GJG-S8-CL4"/>
                         <outlet property="showPlayingIconButton" destination="yj4-VE-ueY" id="9PG-sC-oRG"/>
@@ -189,7 +202,7 @@
                 </viewController>
                 <customObject id="CLF-8K-5qC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-713.5" y="973.5"/>
+            <point key="canvasLocation" x="-713.5" y="973"/>
         </scene>
     </scenes>
 </document>
