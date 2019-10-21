@@ -45,7 +45,11 @@ public enum MusicPlayerName: String {
     var bundleID: String {
         switch self {
         case .iTunes:
-            return "com.apple.iTunes"
+            if #available(macOS 10.15, *) {
+                return "com.apple.Music"
+            } else {
+                return "com.apple.iTunes"
+            }
         case .vox:
             return "com.coppertino.Vox"
         case .spotify:
