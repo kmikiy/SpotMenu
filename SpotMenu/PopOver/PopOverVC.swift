@@ -29,13 +29,21 @@ final class PopOverViewController: NSViewController {
     @IBOutlet private var rightTime: NSTextField!
     @IBOutlet private var musicPlayerButton: NSButton!
 
+    public enum Constants {
+         static let width: CGFloat = 300
+         static let height: CGFloat = 300
+     }
+    
     // MARK: - Lifecycle methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         defaultImage = artworkImageView.image
-        preferredContentSize = NSSize(width: 300, height: 300)
+        preferredContentSize = NSSize(
+            width: Constants.width,
+            height: Constants.height
+        )
         
         if #available(OSX 10.13, *) {
             view.layer?.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
