@@ -1,4 +1,5 @@
-# SpotMenu ![demo](https://github.com/kmikiy/SpotMenu/blob/master/SpotMenu/Assets.xcassets/AppIcon.appiconset/spotmenu%20(5)-1.png?raw=true)
+# SpotMenu ![demo](https://github.com/kmikiy/SpotMenu/blob/master/SpotMenu/Assets.xcassets/AppIcon.appiconset/spotmenu%20(5)-1.png?raw=true) [![GitHub release](https://img.shields.io/github/release/kmikiy/SpotMenu.svg)](../../releases/latest)
+
 Spotify and iTunes in your menu bar
 
 # macOS MOJAVE BETA disclaimer
