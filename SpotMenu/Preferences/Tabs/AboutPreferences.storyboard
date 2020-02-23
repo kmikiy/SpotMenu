@@ -11,17 +11,17 @@
             <objects>
                 <viewController id="BoH-Mq-lW7" customClass="AboutPreferencesVC" customModule="SpotMenu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="bjK-tP-qfh">
-                        <rect key="frame" x="0.0" y="0.0" width="678" height="805"/>
+                        <rect key="frame" x="0.0" y="0.0" width="693" height="630"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBX-7r-MxQ">
-                                <rect key="frame" x="0.0" y="0.0" width="678" height="805"/>
+                                <rect key="frame" x="0.0" y="0.0" width="693" height="630"/>
                                 <clipView key="contentView" id="7Rg-di-7UF">
-                                    <rect key="frame" x="0.0" y="0.0" width="678" height="805"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="678" height="630"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="RMx-Nm-JYz">
-                                            <rect key="frame" x="0.0" y="28" width="678" height="777"/>
+                                            <rect key="frame" x="0.0" y="-147" width="678" height="777"/>
                                             <subviews>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vx1-7N-a3H">
                                                     <rect key="frame" x="20" y="192" width="638" height="426"/>
@@ -156,11 +156,11 @@ Scroll down for more info ⬇️</string>
                                                                     </subviews>
                                                                     <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </clipView>
-                                                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="VUr-jJ-Xjo">
+                                                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="VUr-jJ-Xjo">
                                                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
-                                                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="zZ7-eV-9dR">
+                                                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="zZ7-eV-9dR">
                                                                     <rect key="frame" x="-100" y="-100" width="16" height="27"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
@@ -195,12 +195,12 @@ Scroll down for more info ⬇️</string>
                                     </constraints>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="d3u-qg-Dr8">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="d3u-qg-Dr8">
                                     <rect key="frame" x="-100" y="-100" width="508" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="tqy-he-hXx">
-                                    <rect key="frame" x="662" y="0.0" width="16" height="805"/>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="tqy-he-hXx">
+                                    <rect key="frame" x="678" y="0.0" width="15" height="630"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -226,7 +226,7 @@ Scroll down for more info ⬇️</string>
                 </viewController>
                 <customObject id="oof-Ey-X38" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="579" y="1364.5"/>
+            <point key="canvasLocation" x="579" y="1277"/>
         </scene>
     </scenes>
     <resources>

@@ -66,7 +66,7 @@ extension Style {
         public var foregroundColor: UIColor { return .white }
         public var activitySize: CGSize { return CGSize(width: 180, height: 180) }
     #elseif os(OSX)
-        public var fontSize: CGFloat { return 16 }
+        public var fontSize: CGFloat { return 36 }
         public var font: NSFont {
             return NSFont.systemFont(ofSize: fontSize)
         }
@@ -78,7 +78,7 @@ extension Style {
         public var activitySize: CGSize { return CGSize(width: 100, height: 100) }
     #endif
     public var fadeInOutDuration: CGFloat { return 1.0 }
-    public var fadeInOutDelay: CGFloat { return 1.0 }
+    public var fadeInOutDelay: CGFloat { return 3.0 }
 }
 
 public struct DefaultStyle: Style {
@@ -95,7 +95,7 @@ public struct IndicatorStyle: Style {
         public var backgroundColor: NSColor
     #endif
     init() {
-        backgroundColor = Color.black.withAlphaComponent(0.8)
+        backgroundColor = Color.black.withAlphaComponent(0.5)
     }
 
     #if os(tvOS)
@@ -109,9 +109,14 @@ private struct ToastKeys {
 }
 
 class ToastView: View {
-    private let message: String
-    private let labelSize: CGSize
-    private let style: Style
+    private var message: String
+    private var labelSize: CGSize
+    private var style: Style
+    private var container: CALayer? = nil
+    private var text: CATextLayer? = nil
+    private var anim: CABasicAnimation? = nil
+    public var fadeDelay = 3.0
+
     init(message: String) {
         self.message = message
         style = DefaultStyle()
@@ -125,6 +130,50 @@ class ToastView: View {
         #if os(OSX)
             wantsLayer = true
         #endif
+    }
+
+    public func changeText(_ message: String) {
+        self.message = message
+        style = DefaultStyle()
+        labelSize = message.size(with: style.fontSize)
+        let size = CGSize(
+                width: labelSize.width + style.horizontalMargin * 2,
+                height: labelSize.height + style.verticalMargin * 2
+        )
+        //let rect = CGRect(origin: .zero, size: size)
+        setFrameSize(size)
+        setFrameOrigin(.zero)
+        #if os(OSX)
+        wantsLayer = true
+        #endif
+
+        if superview != nil {
+            frame = superview!.bounds
+            let rect = CGRect(origin: style.labelOriginWithMargin, size: labelSize)
+            let sizeWithMargin = CGSize(
+                    width: rect.width + style.horizontalMargin * 2,
+                    height: rect.height + style.verticalMargin * 2
+            )
+            let rectWithMargin = CGRect(
+                    origin: .zero, // position is manipulated later anyways
+                    size: sizeWithMargin
+            )
+            // outside Container
+            container!.frame = rectWithMargin
+            container!.position = CGRect.center(of: superview!)
+            // inside TextLayer
+            text!.frame = rect
+            text!.position = CGRect.center(of: container!)
+            text!.string = message
+        }
+        for key in _layer.animationKeys() ?? [] {
+            print("key: \(key)")
+        }
+        fadeDelay = 3.0
+        let currentLayerTime = _layer.convertTime(CACurrentMediaTime(), from: nil)
+        anim!.beginTime = currentLayerTime + CFTimeInterval(fadeDelay)
+        _layer.removeAnimation(forKey: "hide animation")
+        _layer.add(anim!, forKey: "hide animation")
     }
 
     required init?(coder _: NSCoder) { fatalError() }
@@ -157,25 +206,45 @@ class ToastView: View {
             size: sizeWithMargin
         )
         // outside Container
-        let container = CALayer()
-        container.frame = rectWithMargin
-        container.position = CGRect.center(of: superview!)
-        container.backgroundColor = style.backgroundColor.cgColor
-        container.cornerRadius = style.cornerRadius
-        _layer.addSublayer(container)
+        container = CALayer()
+        container!.frame = rectWithMargin
+        container!.position = CGRect.center(of: superview!)
+        container!.backgroundColor = NSColor.black.withAlphaComponent(0.75).cgColor//style.backgroundColor.cgColor
+        container!.cornerRadius = style.cornerRadius
+        _layer.addSublayer(container!)
         // inside TextLayer
-        let text = CATextLayer()
-        text.frame = rect
-        text.position = CGRect.center(of: container)
-        text.string = message
-        text.font = Font.systemFont(ofSize: style.fontSize)
-        text.fontSize = style.fontSize
-        text.alignmentMode = "center"
-        text.foregroundColor = style.foregroundColor.cgColor
-        text.backgroundColor = style.backgroundColor.cgColor
-        text.contentsScale = _layer.contentsScale // For Retina Display
-        container.addSublayer(text)
+        text = CATextLayer()
+        text!.frame = rect
+        text!.position = CGRect.center(of: container!)
+        text!.string = message
+        text!.font = Font.systemFont(ofSize: style.fontSize)
+        text!.fontSize = style.fontSize
+        text!.alignmentMode = "center"
+        text!.foregroundColor = style.foregroundColor.cgColor
+        text!.contentsScale = _layer.contentsScale // For Retina Display
+        container!.addSublayer(text!)
     }
+
+    public func addAnimation(show: Bool) {
+
+        let from = show ? 0 : 1
+        let to = 1 - from
+        let key = show ? "show animation" : "hide animation"
+
+        anim = CABasicAnimation(keyPath: "opacity")
+        let timing = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        anim!.timingFunction = timing
+        let currentLayerTime = _layer.convertTime(CACurrentMediaTime(), from: nil)
+        anim!.beginTime = currentLayerTime + CFTimeInterval(fadeDelay)
+        anim!.duration = CFTimeInterval(style.fadeInOutDuration)
+        anim!.fromValue = from
+        anim!.toValue = to
+        anim!.isRemovedOnCompletion = false
+        anim!.delegate = HideAnimationDelegate.delegate(forView: self)
+
+        _layer.add(anim!, forKey: key)
+    }
+
 }
 
 class ActivityView: View {
@@ -256,10 +325,30 @@ extension View {
 
     // MARK: Toast Message
 
-    public func makeToast(_ message: String) {
+    private static var _myComputedProperty = [String:ToastView]()
+
+    var myComputedProperty:ToastView? {
+        get {
+            let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return View._myComputedProperty[tmpAddress] ?? nil
+        }
+        set(newValue) {
+            let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            View._myComputedProperty[tmpAddress] = newValue
+        }
+    }
+
+    public func changeToastText(_ message: String) {
+        if let toast = myComputedProperty {
+            toast.changeText(message)
+        }
+    }
+    public func makeToast(_ message: String, _ fadeDelay: Double) {
         let toast = ToastView(message: message)
+        myComputedProperty = toast
+        toast.fadeDelay = fadeDelay
         addSubview(toast)
-        hideAnimation(view: toast, style: DefaultStyle.shared)
+        toast.addAnimation(show: false)
     }
 
     // MARK: Indicator

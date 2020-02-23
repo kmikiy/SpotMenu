@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="PopOverViewController">
             <connections>
-                <outlet property="aLabel" destination="UYR-3X-1ze" id="C2H-KU-k2M"/>
                 <outlet property="artistLabel" destination="91T-mi-mb9" id="Mhz-MF-AQx"/>
                 <outlet property="artworkImageView" destination="wMa-mO-ZXq" id="J3B-JE-v1D"/>
+                <outlet property="customVisualEffect" destination="Z1i-Qx-pwO" id="yc6-Vj-V15"/>
                 <outlet property="leftTime" destination="a3a-vx-FzU" id="mAS-xW-gGh"/>
                 <outlet property="musicPlayerButton" destination="Sfg-o1-GVi" id="P2f-5V-oen"/>
                 <outlet property="playerStateButton" destination="8Ah-DM-iSN" id="ofG-4I-1Kw"/>
@@ -46,18 +46,18 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <button focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ah-DM-iSN">
-                            <rect key="frame" x="105" y="115" width="91" height="79"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" title="▶︎" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="4BI-ev-3Vo">
+                            <rect key="frame" x="50" y="60" width="200" height="200"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <buttonCell key="cell" type="square" title="▶︎" bezelStyle="shadowlessSquare" imagePosition="overlaps" alignment="center" focusRingType="none" inset="2" id="4BI-ev-3Vo">
                                 <behavior key="behavior" lightByContents="YES"/>
-                                <font key="font" metaFont="system" size="89"/>
+                                <font key="font" metaFont="system" size="100"/>
                             </buttonCell>
                             <connections>
                                 <action selector="togglePlay:" target="-2" id="KUj-tT-Jqv"/>
                             </connections>
                         </button>
                         <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="91T-mi-mb9">
-                            <rect key="frame" x="46" y="233" width="206" height="17"/>
+                            <rect key="frame" x="47" y="243" width="206" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Artist" id="XBm-VG-2KI">
                                 <font key="font" metaFont="system"/>
@@ -65,28 +65,19 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ZD-MG0">
-                            <rect key="frame" x="7" y="101" width="114" height="101"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarRewindTemplate" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="eyZ-Np-WLr">
+                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pgo-pN-r7b">
+                            <rect key="frame" x="210" y="58" width="70" height="200"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarFastForwardTemplate" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="FxM-QC-fqk">
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" size="20" name="AlNile"/>
                             </buttonCell>
                             <connections>
-                                <action selector="goLeft:" target="-2" id="Nm1-Pi-Fbf"/>
+                                <action selector="goRight:" target="-2" id="7Pz-U6-kvG"/>
                             </connections>
                         </button>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UYR-3X-1ze">
-                            <rect key="frame" x="49" y="233" width="203" height="17"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="6Tm-hS-fkc">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
                         <slider focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tik-b2-9He">
-                            <rect key="frame" x="49" y="18" width="203" height="19"/>
+                            <rect key="frame" x="45" y="19" width="210" height="19"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <sliderCell key="cell" state="on" focusRingType="none" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="HCf-Xj-pwi"/>
                             <connections>
@@ -94,7 +85,7 @@
                             </connections>
                         </slider>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0C8-6B-MD2">
-                            <rect key="frame" x="253" y="18" width="44" height="17"/>
+                            <rect key="frame" x="254" y="19" width="44" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <gestureRecognizers>
                                 <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="uPO-kR-gfI">
@@ -110,7 +101,7 @@
                             </textFieldCell>
                         </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="712-s0-u2W">
-                            <rect key="frame" x="44" y="67" width="212" height="17"/>
+                            <rect key="frame" x="44" y="60" width="212" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Title" id="uZD-Z5-fdA">
                                 <font key="font" metaFont="system"/>
@@ -119,7 +110,7 @@
                             </textFieldCell>
                         </textField>
                         <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sfg-o1-GVi">
-                            <rect key="frame" x="3" y="271" width="26" height="26"/>
+                            <rect key="frame" x="4" y="270" width="26" height="26"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="StatusBarButtonImage" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="OgE-Cq-jHl">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -130,7 +121,7 @@
                             </connections>
                         </button>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a3a-vx-FzU">
-                            <rect key="frame" x="4" y="18" width="44" height="17"/>
+                            <rect key="frame" x="2" y="19" width="44" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="00:00" id="waw-na-Cdz">
                                 <font key="font" metaFont="smallSystem"/>
@@ -138,15 +129,15 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pgo-pN-r7b">
-                            <rect key="frame" x="179" y="101" width="114" height="101"/>
+                        <button focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYl-ZD-MG0">
+                            <rect key="frame" x="20" y="58" width="70" height="200"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarFastForwardTemplate" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="FxM-QC-fqk">
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSTouchBarRewindTemplate" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyUpOrDown" inset="2" id="eyZ-Np-WLr">
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" size="20" name="AlNile"/>
                             </buttonCell>
                             <connections>
-                                <action selector="goRight:" target="-2" id="7Pz-U6-kvG"/>
+                                <action selector="goLeft:" target="-2" id="Nm1-Pi-Fbf"/>
                             </connections>
                         </button>
                     </subviews>

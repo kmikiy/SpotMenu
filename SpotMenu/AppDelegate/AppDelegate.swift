@@ -114,7 +114,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func registerHotkey() {
         guard let hotkeyCenter = DDHotKeyCenter.shared() else { return }
 
-        let modifiers: UInt = NSEvent.ModifierFlags.control.rawValue | NSEvent.ModifierFlags.shift.rawValue
+        let modifiers: UInt = NSEvent.ModifierFlags.control.rawValue | NSEvent.ModifierFlags.command.rawValue
 
         // Register system-wide summon hotkey
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_ANSI_M),
@@ -122,6 +122,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                                     target: self,
                                     action: #selector(AppDelegate.hotkeyAction),
                                     object: nil)
+
+        hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_ANSI_P),
+                modifierFlags: modifiers,
+                target: self,
+                action: #selector(AppDelegate.hotkeyPopupAction),
+                object: nil)
+
+        hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_ANSI_I),
+                modifierFlags: modifiers,
+                target: self,
+                action: #selector(AppDelegate.hotkeyPopupImageAction),
+                object: nil)
 
         hotkeyCenter.registerHotKey(withKeyCode: UInt16(kVK_LeftArrow),
                                     modifierFlags: modifiers,
@@ -163,37 +175,57 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         musicPlayerManager.currentPlayer?.playPrevious()
     }
 
+    @objc func hotkeyPopupAction() {
+        if hiddenController?.window?.isVisible ?? true {
+            closePopover(nil)
+        } else {
+            // SpotifyAppleScript.startSpotify(hidden: true)
+            showPopover(nil, showControls: true)
+        }
+    }
+
+    @objc func hotkeyPopupImageAction() {
+        if hiddenController?.window?.isVisible ?? true {
+            let realVC = hiddenController?.contentViewController as? PopOverViewController
+            realVC?.toggleControls()
+        } else {
+            // SpotifyAppleScript.startSpotify(hidden: true)
+            showPopover(nil)
+            let realVC = hiddenController?.contentViewController as? PopOverViewController
+            realVC?.hideControls()
+        }
+    }
+
     @objc func hotkeyAction() {
+        createHud()
+        //hudController?.window?.makeKeyAndOrderFront(self)
+    }
+
+    func createHud(closeAfterSeconds: Double = 3.0) {
         let sb = NSStoryboard(name: NSStoryboard.Name(rawValue: "Hud"), bundle: nil)
         hudController = sb.instantiateInitialController() as? HudWindowController
 
+        hudController!.setCloseDelay(closeAfter: closeAfterSeconds)
         hudController!.setText(text: StatusItemBuilder(
-            title: musicPlayerManager.currentPlayer?.currentTrack?.title,
-            artist: musicPlayerManager.currentPlayer?.currentTrack?.artist,
-            albumName: musicPlayerManager.currentPlayer?.currentTrack?.album,
-            isPlaying: musicPlayerManager.currentPlayer?.playbackState == MusicPlaybackState.playing)
-            .hideWhenPaused(v: false)
-            .showTitle(v: true)
-            .showAlbumName(v: true)
-            .showArtist(v: true)
-            .showPlayingIcon(v: true)
-            .getString())
+                title: musicPlayerManager.currentPlayer?.currentTrack?.title,
+                artist: musicPlayerManager.currentPlayer?.currentTrack?.artist,
+                albumName: musicPlayerManager.currentPlayer?.currentTrack?.album,
+                isPlaying: musicPlayerManager.currentPlayer?.playbackState == MusicPlaybackState.playing)
+                .hideWhenPaused(v: false)
+                .showTitle(v: true)
+                .showAlbumName(v: false)
+                .showArtist(v: true)
+                .showPlayingIcon(v: true)
+                .getString())
+
+        hudController?.window?.level = NSWindow.Level.floating
 
         hudController?.showWindow(nil)
-        hudController?.window?.makeKeyAndOrderFront(self)
-        NSApp.activate(ignoringOtherApps: true)
-        if let t = removeHudTimer {
-            t.invalidate()
-        }
-        removeHudTimer = Timer.scheduledTimer(
-            timeInterval: 4,
-            target: self,
-            selector: #selector(AppDelegate.removeHud),
-            userInfo: nil,
-            repeats: false)
+        hudController?.window?.orderBack(nil)
+        hudController?.window?.resignKey()
     }
 
-    @objc func removeHud() {
+    func removeHud() {
         hudController = nil
     }
 
@@ -212,6 +244,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .getString()
         if lastStatusTitle != statusItemTitle {
             updateTitle(newTitle: statusItemTitle)
+            if let hudCtrl = hudController {
+                hudCtrl.changeText(text: StatusItemBuilder(
+                        title: musicPlayerManager.currentPlayer?.currentTrack?.title,
+                        artist: musicPlayerManager.currentPlayer?.currentTrack?.artist,
+                        albumName: musicPlayerManager.currentPlayer?.currentTrack?.album,
+                        isPlaying: musicPlayerManager.currentPlayer?.playbackState == MusicPlaybackState.playing)
+                        .hideWhenPaused(v: false)
+                        .showTitle(v: true)
+                        .showAlbumName(v: false)
+                        .showArtist(v: true)
+                        .showPlayingIcon(v: true)
+                        .getString())
+            } else {
+                //createHud(closeAfterSeconds: 1.0)
+            }
         }
     }
 
@@ -310,8 +357,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    private func showPopover(_: AnyObject?) {
+    private func showPopover(_: AnyObject?, showControls: Bool = false) {
 
+        if (showControls) {
+            let realVC = hiddenController?.contentViewController as? PopOverViewController
+            realVC?.showControls()
+        }
         let rect = statusItem.button?.window?.convertToScreen((statusItem.button?.frame)!)
         let menubarHeight = rect?.height ?? 22
         let height = hiddenController?.window?.frame.height ?? 300
@@ -319,6 +370,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let x = (rect?.origin.x)! - xOffset
         let y = (rect?.origin.y)! // - (hiddenController?.contentViewController?.view.frame.maxY)!
         hiddenController?.window?.setFrameOrigin(NSPoint(x: x, y: y-height+menubarHeight))
+        hiddenController?.window?.animationBehavior = .alertPanel
         hiddenController?.showWindow(self)
         eventMonitor?.start()
     }
