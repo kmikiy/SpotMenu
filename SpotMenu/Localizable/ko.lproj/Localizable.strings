@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  SpotMenu
+
+  Created by Miklós Kristyán on 30.07.17.
+  Copyright © 2017 KM. All rights reserved.
+ 
+  Translated by @dexterastin on 27.02.2020.
+*/
+
+"Issues" = "이슈";
+"Preferences..." = "환경설정...";
+"Check for Updates..." = "업데이트 확인...;
+"Quit" = "종료";
+"Now playing" = "현재 재생곡";
+"Hover over an option for more information." = "옵션 위에 마우스를 올리면 더 많은 정보가 표시됩니다.";
+"When checked the artist will be shown in the menu bar." = "메뉴바에 아티스트가 표시됩니다.";
+"When checked the album name will be shown in the menu bar." = "메뉴바에 앨범명이 표시됩니다.";
+"When checked the title will be shown in the menu bar." = "메뉴바에 타이틀이 표시됩니다.";
+"When checked the playing icon (♫) will be shown in the menu bar if music is played." = "노래가 재생될 때 메뉴바에 playing 아이콘 (♫)이 표시됩니다.";
+"When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "SpotMenu 아이콘이 메뉴바에 표시됩니다.\n\n참고:\n 표시할 음악이 없는 경우 SpotMenu 아이콘이 표시됩니다.";
+"When checked the popover will be fixed to the right corner." = "Popover가 항상 오른쪽 코너에 고정됩니다.";
+"When checked SpotMenu will start automatically at login." = "로그인 시 자동으로 SpotMenu를 실행합니다.";
+"Artist" = "아티스트";
+"Title" = "타이틀";
+"Show playing icon" = "Playing 아이콘 보기";
+"Show title" = "타이틀 보기";
+"with ♥ from kmikiy" = "with ♥ from kmikiy";
+"Show artist" = "아티스트 보기";
+"Preferences" = "환경설정";
+"General" = "일반";
+"Updates" = "업데이트";
+"Open at login" = "로그인 시 실행";
+"Fix popover to the right" = "Popover를 오른쪽에 고정";
+"Show SpotMenu icon" = "SpotMenu 아이콘 보기";
+"Automatically check for updates" = "자동 업데이트 확인";
+"Automatically download updates" = "자동 업데이트 다운로드";
+"Check for Updates" = "업데이트 확인";
+"Last checked:" = "최근 Last checked:";
+"Preferences" = "환경설정";
+"Indicates whether or not to check for updates automatically." = "앱의 업데이트를 자동으로 검사합니다.";
+"Indicates whether or not updates can be automatically downloaded in the background." = "앱의 업데이트를 자동으로 다운로드합니다.";
+"Enable keyboard shortcut" = "키보드 단축키 활성화";
+"Display the current song artist and title by pressing ctrl + shift + m." = "ctrl + shift + m을 누르면 현재 재생 중인 곡의 아티스트와 타이틀이 표시됩니다.";
+"Hide text when paused" = "일시 정지하면 텍스트 숨기기";
+"Omits the current song artist and title from the menu bar when the music is paused." = "음악이 일시 중지되면 메뉴바에서 재생 중인 곳의 아티스트와 타이틀을 숨깁니다.";
+"copy" = "복사";
+"copied" = "복사 완료";
+"About" = "정보";
+"about-description" = "SpotMenu는 무료이며 오픈소스 프로젝트입니다📖. 나의 목표는 지금처럼 유지하는 것입니다. 나는 기능을 제한하거나 사용자를 짜증 나게 하고 싶지 않습니다. 불행히도, 나는 돈(💰💵🤑)을 좋아하고 사치스러운 삶을 즐기고 싶습니다💎.\n내가 꿈꾸는 미래를 담은 사진을 첨부했습니다 (참고로 포토샵으로 한 게 아니에요)🌅. 나의 행복과 운명을 성취하는데 기여하고 싶은 사람들을 위해 나에게 기부하는 몇 가지 방법을 포함 시켰습니다.\nYa boy, kmikiy는 지금 암호화폐를 준비해 놨어.\n스크롤을 내려서 확인해보세요 ⬇️";
+"Show album title" = "앨범 타이틀 보기";
