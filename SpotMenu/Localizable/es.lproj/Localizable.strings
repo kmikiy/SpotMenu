@@ -5,22 +5,22 @@
   Created by Miklós Kristyán on 30.07.17.
   Copyright © 2017 KM. All rights reserved.
  
-  Translated by @Lynx901
+  Translated by @Lynx901 and @balboag
 */
 
 "Issues" = "Problemas";
-"Preferences..." = "Preferencias...";
-"Check for Updates..." = "Buscar Actualizaciones...";
+"Preferences..." = "Preferencias…";
+"Check for Updates..." = "Buscar actualizaciones…";
 "Quit" = "Salir";
 "Now playing" = "Reproduciendo";
 "Hover over an option for more information." = "Pasa el ratón sobre una opción para ver más información.";
-"When checked the artist will be shown in the menu bar." = "Cuando está activado, el Artista se mostrará en la barra de menús.";
-"When checked the album name will be shown in the menu bar." = "When checked the album name will be shown in the menu bar.";
-"When checked the title will be shown in the menu bar." = "Cuando está activado, el Título se mostrará en la barra de menús.";
+"When checked the artist will be shown in the menu bar." = "Cuando está activado, el artista se mostrará en la barra de menús.";
+"When checked the album name will be shown in the menu bar." = "Cuando está activado, el nombre del álbum se mostrará en la barra de menús.";
+"When checked the title will be shown in the menu bar." = "Cuando está activado, el título se mostrará en la barra de menús.";
 "When checked the playing icon (♫) will be shown in the menu bar if music is played." = "Cuando está activado, el icono de reproducción (♫) se mostrará en la barra de menús si hay música reproduciéndose.";
 "When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "Cuando está activado, el icono de SpotMenu se mostrará en la barra de menús.\n\nNota:\nSi no hay información de la música para mostrar, se mostrará el icono de SpotMenu.";
 "When checked the popover will be fixed to the right corner." = "Cuando está activado, el popover se fijará a la esquina derecha.";
-"When checked SpotMenu will start automatically at login." = "Cuando está activado, SpotmMenu se iniciará al arrancar el sistema.";
+"When checked SpotMenu will start automatically at login." = "Cuando está activado, SpotmMenu se iniciará al iniciar sesión.";
 "Artist" = "Artista";
 "Title" = "Título";
 "Show playing icon" = "Mostrar icono de reproducción";
@@ -30,7 +30,7 @@
 "Preferences" = "Preferencias";
 "General" = "General";
 "Updates" = "Actualizaciones";
-"Open at login" = "Abrir al arrancar el sistema";
+"Open at login" = "Abrir al iniciar sesión";
 "Fix popover to the right" = "Fijar el popover a la derecha";
 "Show SpotMenu icon" = "Mostrar el icono de SpotMenu";
 "Automatically check for updates" = "Buscar actualizaciones automáticamente";
@@ -40,12 +40,12 @@
 "Preferences" = "Preferencias";
 "Indicates whether or not to check for updates automatically." = "Indica si buscar actualizaciones automáticamente o no.";
 "Indicates whether or not updates can be automatically downloaded in the background." = "Indica si las actualizaciones se descargarán automáticamente en segundo plano o no.";
-"Enable keyboard shortcut" = "Enable keyboard shortcut";
-"Display the current song artist and title by pressing ctrl + shift + m." = "Display the current song artist and title by pressing ctrl + shift + m.";
-"Hide text when paused" = "Hide text when paused";
-"Omits the current song artist and title from the menu bar when the music is paused." = "Omits the current song artist and title from the menu bar when the music is paused.";
-"copy" = "copy";
-"copied" = "copied";
-"About" = "About";
-"about-description" = "SpotMenu is free and open source📖. My goal is to keep it this way. I do not want to limit functions, nor annoy users. Unfortunately, I like money💰💵🤑 and would like to live a lavish lifestyle💎.\nI have included a picture of me from the future (it is NOT photoshopped)🌅. For those who would like to contribute to my wellbeing and fulfilling my destiny I have included several ways to donate that sweet sweet money.\nYa boy, kmikiy now accepts several cryptocurrencies.\nScroll down for more info ⬇️";
-"Show album title" = "Show album title";
+"Enable keyboard shortcut" = "Activar atajo de teclado";
+"Display the current song artist and title by pressing ctrl + shift + m." = "Muestra el artista y título de la canción actual al presionar Ctrl Shift M.";
+"Hide text when paused" = "Ocultar texto al pausar";
+"Omits the current song artist and title from the menu bar when the music is paused." = "Omite el artista y título de la canción actual en la barra de menús cuando la música está pausada.";
+"copy" = "copiar";
+"copied" = "copiado";
+"About" = "Acerca de";
+"about-description" = "SpotMenu es gratis y open source 📖. Mi objetivo es que siga siendo así. No quiero limitar las funciones ni molestar a los usuarios. Sin embargo me gusta el dinero 💰💵🤑 y me gustaría tener un estilo de vida de lujo 💎.\nHe incluido una foto mía del futuro (NO está photoshopeada) 🌅. Para aquellos que quieran contribuir a mi bienestar y cumplir mi destino he incluido varias formas de donar ese rico dinero. Sí, Kmikiy ahora acepta varias criptodivisas. Mira abajo para más información ⬇️";
+"Show album title" = "Mostrar título del álbum";
