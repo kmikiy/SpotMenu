@@ -6,6 +6,15 @@ Spotify and iTunes in your menu bar
 SpotMenu is currently **NOT** (entirely) compatible with Spotify on macOS MOJAVE BETA. SpotMenu will cause Spotify to crash. 
 You can read more about how to fix it [here](https://github.com/kmikiy/SpotMenu/issues/126).
 
+
+## Sponsors
+
+SpotMenu is being sponsored by the following tool; please help to support us by taking a look and signing up to a free trial.
+
+<a href="https://tracking.gitads.io/?repo=SpotMenu">
+  <img alt="Sponsor banner" src="https://images.gitads.io/SpotMenu" />
+</a>
+
 ## About
 
 ![demo](https://github.com/kmikiy/SpotMenu/blob/master/Demo/demo.gif?raw=true)
