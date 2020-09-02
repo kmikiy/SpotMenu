@@ -20,6 +20,7 @@
 "When checked the playing icon (♫) will be shown in the menu bar if music is played." = "When checked the playing icon (♫) will be shown in the menu bar if music is played.";
 "When checked the SpotMenu icon will be shown in the menu bar. Note: If there is no music information to be shown the SpotMenu icon will be visible." = "When checked the SpotMenu icon will be shown in the menu bar.\n\nNote:\nIf there is no music information to be shown the SpotMenu icon will be visible.";
 "When checked the popover will be fixed to the right corner." = "When checked the popover will be fixed to the right corner.";
+"When checked a small popover will be used instead." = "When checked a small popover will be used instead.";
 "When checked SpotMenu will start automatically at login." = "When checked SpotMenu will start automatically at login.";
 "Artist" = "Artist";
 "Title" = "Title";
@@ -32,6 +33,7 @@
 "Updates" = "Updates";
 "Open at login" = "Open at login";
 "Fix popover to the right" = "Fix popover to the right";
+"Use small popover" = "Use small popover";
 "Show SpotMenu icon" = "Show SpotMenu icon";
 "Automatically check for updates" = "Automatically check for updates";
 "Automatically download updates" = "Automatically download updates";

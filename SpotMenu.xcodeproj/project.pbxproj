@@ -79,6 +79,9 @@
 		64F112A821933CA400753E83 /* ScrollingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F112A621933ACB00753E83 /* ScrollingTextView.swift */; };
 		64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64F29A0B1F2E5F1100E48BBD /* Localizable.strings */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
+		A02DF2CF221BB1C700222929 /* PopOverSmall.xib in Resources */ = {isa = PBXBuildFile; fileRef = A02DF2CE221BB1C700222929 /* PopOverSmall.xib */; };
+		A02DF2D2221BCDB700222929 /* StaticFadeIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02DF2D1221BCDB700222929 /* StaticFadeIn.swift */; };
+		A02DF2D3221BCFCD00222929 /* StaticFadeIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02DF2D1221BCDB700222929 /* StaticFadeIn.swift */; };
 		DB2C500E2199F94000932042 /* ScrollingStatusItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2C500D2199F94000932042 /* ScrollingStatusItemView.swift */; };
 		E2D35CCB1F60827B00EB5D67 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
 		E2D35CCE1F60879700EB5D67 /* NSViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */; };
@@ -217,6 +220,8 @@
 		64F112A621933ACB00753E83 /* ScrollingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTextView.swift; sourceTree = "<group>"; };
 		64F29A0F1F2E5FDD00E48BBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
+		A02DF2CE221BB1C700222929 /* PopOverSmall.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopOverSmall.xib; sourceTree = "<group>"; };
+		A02DF2D1221BCDB700222929 /* StaticFadeIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticFadeIn.swift; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB2C500D2199F94000932042 /* ScrollingStatusItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingStatusItemView.swift; sourceTree = "<group>"; };
 		E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewExtension.swift; sourceTree = "<group>"; };
@@ -323,6 +328,7 @@
 				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
 				64F112A621933ACB00753E83 /* ScrollingTextView.swift */,
 				DB2C500D2199F94000932042 /* ScrollingStatusItemView.swift */,
+				A02DF2D1221BCDB700222929 /* StaticFadeIn.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 				643746621F76AEDD00B16214 /* PopOver.xib */,
 				213324381D79967B0060D48C /* PopOverVC.swift */,
 				64A8E1A31F83F45F00FFF6B1 /* Hidden.storyboard */,
+				A02DF2CE221BB1C700222929 /* PopOverSmall.xib */,
 			);
 			path = PopOver;
 			sourceTree = "<group>";
@@ -750,6 +757,7 @@
 				641226E61FD417A400BB119F /* GeneralPreferences.storyboard in Resources */,
 				64A8E1A41F83F45F00FFF6B1 /* Hidden.storyboard in Resources */,
 				6437466A1F76B0BB00B16214 /* MainMenu.xib in Resources */,
+				A02DF2CF221BB1C700222929 /* PopOverSmall.xib in Resources */,
 				641226E41FD416A200BB119F /* AboutPreferences.storyboard in Resources */,
 				641226E81FD417D700BB119F /* UpdatePreferences.storyboard in Resources */,
 				6437466B1F76B0BB00B16214 /* Preferences.storyboard in Resources */,
@@ -803,7 +811,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LoginServiceKit/LoginServiceKit.framework",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM",
@@ -816,7 +824,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpotMenu/Pods-SpotMenu-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -840,6 +848,7 @@
 				645F8E711F22AEDE007AEEE7 /* Toast.swift in Sources */,
 				645F8E701F22AEDE007AEEE7 /* SharedFunctionality.swift in Sources */,
 				6415E1391ED1BF8500051EB5 /* LaunchStarter.swift in Sources */,
+				A02DF2D2221BCDB700222929 /* StaticFadeIn.swift in Sources */,
 				64ED8B381F6C351500CAA1AA /* PreferencesWC.swift in Sources */,
 				647087D61F2299F40054CC48 /* DDHotKeyCenter.m in Sources */,
 				64A908081EB7754100566ED1 /* UserPreferences.swift in Sources */,
@@ -859,6 +868,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64BD97A61FDD713800209B2B /* UserPreferences.swift in Sources */,
+				A02DF2D3221BCFCD00222929 /* StaticFadeIn.swift in Sources */,
 				64F112A821933CA400753E83 /* ScrollingTextView.swift in Sources */,
 				E2D35CD11F60A08800EB5D67 /* PopOverVC.swift in Sources */,
 				E2D35CCF1F60882600EB5D67 /* NSViewExtension.swift in Sources */,
