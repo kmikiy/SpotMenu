@@ -54,6 +54,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.icon = chooseIcon(musicPlayerName: MusicPlayerName(rawValue: UserPreferences.lastMusicPlayer)!)
         view.lengthHandler = handleLength
+        view.speed = UserPreferences.scrollText ? 4 : 0
         return view
     }()
 
