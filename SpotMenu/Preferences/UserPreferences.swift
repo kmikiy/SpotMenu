@@ -25,6 +25,7 @@ struct UserPreferences {
         static let keyboardShortcutEnabled = "keyboardShortcutEnabled"
         static let hideTitleArtistWhenPaused = "hideTitleArtistWhenPaused"
         static let lastMusicPlayer = "lastMusicPlayer"
+        static let customWidth = "customWidth"
     }
 
     // MARK: - Properties
@@ -112,6 +113,18 @@ struct UserPreferences {
             UserPreferences.setSettingString(key: Keys.lastMusicPlayer, value: newValue)
         }
     }
+    
+    static var customWidth: Int {
+        get {
+            if let val = UserPreferences.readSettingInt(key: Keys.customWidth) {
+                return val
+            }
+            return 150
+        }
+        set {
+            UserPreferences.setSettingInt(key: Keys.customWidth, value: newValue)
+        }
+    }
 
     // MARK: - Public methods
 
@@ -134,6 +147,12 @@ struct UserPreferences {
         ud?.set(value, forKey: key)
         ud?.synchronize()
     }
+    
+    private static func setSettingInt(key: String, value: Int) {
+        let ud = UserDefaults(suiteName: "group.KMikiy.SpotMenu")
+        ud?.set(value, forKey: key)
+        ud?.synchronize()
+    }
 
     private static func readSetting(key: String) -> Bool {
         return UserDefaults.standard.bool(forKey: key)
@@ -142,6 +161,11 @@ struct UserPreferences {
     private static func readSettingString(key: String) -> String? {
         let ud = UserDefaults(suiteName: "group.KMikiy.SpotMenu")
         return ud?.string(forKey: key)
+    }
+    
+    private static func readSettingInt(key: String) -> Int? {
+        let ud = UserDefaults(suiteName: "group.KMikiy.SpotMenu")
+        return ud?.integer(forKey: key)
     }
 
     // MARK: - Init / migrate
@@ -175,6 +199,7 @@ struct UserPreferences {
         UserPreferences.showSpotMenuIcon = true
         UserPreferences.keyboardShortcutEnabled = true
         UserPreferences.hideTitleArtistWhenPaused = true
+        UserPreferences.customWidth = 250
     }
 }
 

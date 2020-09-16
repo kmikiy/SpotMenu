@@ -18,7 +18,6 @@ import Crashlytics
 final class AppDelegate: NSObject, NSApplicationDelegate {
     private enum Constants {
         static let statusItemIconLength: CGFloat = 30
-        static let statusItemLength: CGFloat = 250
     }
 
     // MARK: - Properties
@@ -37,6 +36,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var lastStatusTitle: String = ""
     private var removeHudTimer: Timer?
     private var musicPlayerManager: MusicPlayerManager!
+    private var statusItemLength: CGFloat = 250
 
     private lazy var statusItem: NSStatusItem = {
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -58,10 +58,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }()
 
     private lazy var handleLength: StatusItemLengthUpdate = { length in
-        if length < Constants.statusItemLength {
+        if length < self.statusItemLength {
             self.statusItem.length = length
         } else {
-            self.statusItem.length = Constants.statusItemLength
+            self.statusItem.length = self.statusItemLength
         }
     }
 
@@ -214,6 +214,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             updateTitle(newTitle: statusItemTitle)
         }
     }
+    
+    @objc func changeMaxWidth(newLength: Int) {
+        self.statusItemLength = CGFloat(newLength)
+        self.statusItem.length = self.statusItemLength
+       }
 
     // MARK: - Popover methods
 
