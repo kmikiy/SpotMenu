@@ -52,7 +52,7 @@ You can find all releases [here](https://github.com/kmikiy/SpotMenu/releases).
 via [Homebrew Cask](https://caskroom.github.io)
 
 ```sh
-brew cask install spotmenu
+brew install --cask spotmenu
 ```
 
 ## How to Build
