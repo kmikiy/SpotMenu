@@ -7,7 +7,7 @@ SpotMenu is currently **NOT** (entirely) compatible with Spotify on macOS MOJAVE
 You can read more about how to fix it [here](https://github.com/kmikiy/SpotMenu/issues/126).
 
 
-## About
+## <About>
 
 ![demo](https://github.com/kmikiy/SpotMenu/blob/master/Demo/demo.gif?raw=true)
 
