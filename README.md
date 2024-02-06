@@ -84,8 +84,6 @@ Many thanks to [@danieltmbr](https://github.com/danieltmbr), [@NicholasBellucci]
 
 If you would like SpotMenu in your native language please translate this [file](https://github.com/kmikiy/SpotMenu/blob/master/SpotMenu/Localizable/en.lproj/Localizable.strings) and either create a Pull Request, send it to me via email or post it to this [issue](https://github.com/kmikiy/SpotMenu/issues/44). I will add it to the next release of SpotMenu. Bear in mind that community will have to keep these language files up-to-date ☝🏻.
 
-[![HitCount](http://hits.dwyl.io/kmikiy/SpotMenu.svg)](http://hits.dwyl.io/kmikiy/SpotMenu)
-
 ## Contributors
 
 ### Code Contributors
