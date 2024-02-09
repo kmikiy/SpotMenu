@@ -37,6 +37,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var lastStatusTitle: String = ""
     private var removeHudTimer: Timer?
     private var musicPlayerManager: MusicPlayerManager!
+    private var lastPopOverViewName: String = ""
+    private var popoverVC: PopOverViewController!
 
     private lazy var statusItem: NSStatusItem = {
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -64,6 +66,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             self.statusItem.length = Constants.statusItemLength
         }
     }
+    
+    private var popOverViewName: String {
+        get {
+            return UserPreferences.useSmallPopover ? "PopOverSmall" : "PopOver"
+        }
+    }
 
     // MARK: - AppDelegate methods
 
@@ -81,11 +89,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let lastMusicPlayer = musicPlayerManager.existMusicPlayer(with: lastMusicPlayerName)
         musicPlayerManager.currentPlayer = lastMusicPlayer
 
-        let popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: "PopOver"), bundle: nil)
-        popoverVC.setUpMusicPlayerManager()
-
         hiddenController = (NSStoryboard(name: NSStoryboard.Name(rawValue: "Hidden"), bundle: nil).instantiateInitialController() as! NSWindowController)
-        hiddenController?.contentViewController = popoverVC
+        
+        setupPopOverWithController(viewName: popOverViewName, controller: hiddenController)
+        
         hiddenController?.window?.isOpaque = false
         hiddenController?.window?.backgroundColor = .clear
         hiddenController?.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
@@ -309,9 +316,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return spotMenuIcon
         }
     }
+    
+    private func setupPopOverWithController(viewName: String, controller: NSWindowController?) {
+        if lastPopOverViewName == viewName { return }
+        lastPopOverViewName = lastPopOverViewName == "" ? viewName : lastPopOverViewName
+
+        popoverVC = PopOverViewController(nibName: NSNib.Name(rawValue: viewName), bundle: nil)
+        popoverVC.setUpMusicPlayerManager()
+        controller?.contentViewController = popoverVC
+        
+        lastPopOverViewName = viewName
+    }
 
     private func showPopover(_: AnyObject?) {
 
+        setupPopOverWithController(viewName: popOverViewName, controller: hiddenController)
+        
         let rect = statusItem.button?.window?.convertToScreen((statusItem.button?.frame)!)
         let menubarHeight = rect?.height ?? 22
         let height = hiddenController?.window?.frame.height ?? 300

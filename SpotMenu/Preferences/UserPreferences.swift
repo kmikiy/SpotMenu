@@ -21,6 +21,7 @@ struct UserPreferences {
         static let showPlayingIcon = "showPlayingIcon"
         static let showSpotMenuIcon = "showSpotMenuIcon"
         static let fixPopoverToTheRight = "dropDownToTheRight"
+        static let useSmallPopover = "useSmallPopover"
         static let hasBeenInitialized = "hasBeenInitialized"
         static let keyboardShortcutEnabled = "keyboardShortcutEnabled"
         static let hideTitleArtistWhenPaused = "hideTitleArtistWhenPaused"
@@ -80,6 +81,15 @@ struct UserPreferences {
         }
         set {
             UserPreferences.setSetting(key: Keys.fixPopoverToTheRight, value: newValue)
+        }
+    }
+    
+    static var useSmallPopover: Bool {
+        get {
+            return UserPreferences.readSetting(key: Keys.useSmallPopover)
+        }
+        set {
+            UserPreferences.setSetting(key: Keys.useSmallPopover, value: newValue)
         }
     }
 
@@ -160,6 +170,7 @@ struct UserPreferences {
             UserPreferences.showPlayingIcon ||
             UserPreferences.showSpotMenuIcon ||
             UserPreferences.fixPopoverToTheRight ||
+            UserPreferences.useSmallPopover ||
             UserPreferences.keyboardShortcutEnabled ||
             UserPreferences.hideTitleArtistWhenPaused {
             return
