@@ -28,7 +28,9 @@ final class GeneralPreferencesVC: NSViewController {
     @IBOutlet fileprivate var hideTextWhenPausedButton: HoverButton!
     @IBOutlet fileprivate var moreInformation: NSTextField!
     @IBOutlet private var withLoveFromKmikiyText: NSTextField!
-
+    @IBOutlet weak var customWidthTextField: HoverTextField!
+    @IBOutlet weak var customWidthLabel: HoverTextField!
+    
     // MARK: - Lifecycle methods
 
     override func viewDidLoad() {
@@ -67,6 +69,7 @@ final class GeneralPreferencesVC: NSViewController {
         openAtLoginButton.state = NSControl.StateValue(rawValue: applicationIsInStartUpItems().asState)
         enableKeyboardShortcutButton.state = NSControl.StateValue(rawValue: UserPreferences.keyboardShortcutEnabled.asState)
         hideTextWhenPausedButton.state = NSControl.StateValue(rawValue: UserPreferences.hideTitleArtistWhenPaused.asState)
+        customWidthTextField.integerValue = UserPreferences.customWidth
     }
 
     private func initButtonHovers() {
@@ -96,6 +99,12 @@ final class GeneralPreferencesVC: NSViewController {
 
         enableKeyboardShortcutButton.mouseEnteredFunc = hoverEnableKeyboardShortcut
         enableKeyboardShortcutButton.mouseExitedFunc = hoverAway
+        
+        customWidthTextField.mouseEnteredFunc = hoverCustomWidth
+        customWidthTextField.mouseExitedFunc = hoverAway
+        
+        customWidthLabel.mouseEnteredFunc = hoverCustomWidth
+        customWidthLabel.mouseExitedFunc = hoverAway
     }
 
     // MARK: - IBActions
@@ -142,6 +151,19 @@ final class GeneralPreferencesVC: NSViewController {
             appDelegate.unregisterHotKey()
         }
     }
+    
+    @IBAction func changeCustomWidth(_ sender: HoverTextField) {
+        sender.window?.makeFirstResponder(self)
+        if ((1..<999).contains(sender.integerValue)) {
+            UserPreferences.customWidth = sender.integerValue
+            let appDelegate = NSApplication.shared.delegate as! AppDelegate
+            appDelegate.changeMaxWidth(newLength: sender.integerValue)
+        } else {
+            sender.integerValue = UserPreferences.customWidth
+        }
+    }
+    
+    
 }
 
 // MARK: - Hover button methods
@@ -182,6 +204,10 @@ extension GeneralPreferencesVC {
 
     fileprivate func hoverHideTitleWhenPaused() {
         moreInformation.stringValue = NSLocalizedString("Omits the current song artist and title from the menu bar when the music is paused.", comment: "")
+    }
+    
+    fileprivate func hoverCustomWidth() {
+        moreInformation.stringValue = NSLocalizedString("Set maximum width in pixels by entering a number between 1 and 999, the default value is 250. ", comment: "")
     }
 
     fileprivate func hoverAway() {

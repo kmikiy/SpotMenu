@@ -78,6 +78,7 @@
 		64F112A721933ACB00753E83 /* ScrollingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F112A621933ACB00753E83 /* ScrollingTextView.swift */; };
 		64F112A821933CA400753E83 /* ScrollingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F112A621933ACB00753E83 /* ScrollingTextView.swift */; };
 		64F29A091F2E5F1100E48BBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 64F29A0B1F2E5F1100E48BBD /* Localizable.strings */; };
+		8DA8663423436CFF002915CE /* HoverTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA8663323436CFF002915CE /* HoverTextField.swift */; };
 		98C18916984B50AAD9E17661 /* Pods_SpotMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */; };
 		DB2C500E2199F94000932042 /* ScrollingStatusItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2C500D2199F94000932042 /* ScrollingStatusItemView.swift */; };
 		E2D35CCB1F60827B00EB5D67 /* CustomVisualEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648984831E5C21C200EA2234 /* CustomVisualEffect.swift */; };
@@ -217,6 +218,7 @@
 		64F112A621933ACB00753E83 /* ScrollingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingTextView.swift; sourceTree = "<group>"; };
 		64F29A0F1F2E5FDD00E48BBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6A999C2F782EFDE0675BE9DB /* Pods-SpotMenu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotMenu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpotMenu/Pods-SpotMenu.debug.xcconfig"; sourceTree = "<group>"; };
+		8DA8663323436CFF002915CE /* HoverTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverTextField.swift; sourceTree = "<group>"; };
 		ADFCF0607F980ADD8D5D03FA /* Pods_SpotMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpotMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB2C500D2199F94000932042 /* ScrollingStatusItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingStatusItemView.swift; sourceTree = "<group>"; };
 		E2D35CCD1F60879700EB5D67 /* NSViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSViewExtension.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				64A908091EB784E400566ED1 /* HoverButton.swift */,
+				8DA8663323436CFF002915CE /* HoverTextField.swift */,
 				648984831E5C21C200EA2234 /* CustomVisualEffect.swift */,
 				64F112A621933ACB00753E83 /* ScrollingTextView.swift */,
 				DB2C500D2199F94000932042 /* ScrollingStatusItemView.swift */,
@@ -830,6 +833,7 @@
 				649D6C871F5C8A6F000A6DDF /* UpdatesPreferencesVC.swift in Sources */,
 				647087D51F2299F40054CC48 /* DDHotKeyAppDelegate.m in Sources */,
 				645F8E751F22B136007AEEE7 /* HudViewController.swift in Sources */,
+				8DA8663423436CFF002915CE /* HoverTextField.swift in Sources */,
 				647087D81F2299F40054CC48 /* DDHotKeyUtilities.m in Sources */,
 				2133243F1D7999180060D48C /* EventMonitor.swift in Sources */,
 				647087D71F2299F40054CC48 /* DDHotKeyTextField.m in Sources */,
