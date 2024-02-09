@@ -26,6 +26,7 @@ final class GeneralPreferencesVC: NSViewController {
     @IBOutlet fileprivate var openAtLoginButton: HoverButton!
     @IBOutlet fileprivate var enableKeyboardShortcutButton: HoverButton!
     @IBOutlet fileprivate var hideTextWhenPausedButton: HoverButton!
+    @IBOutlet fileprivate var scrollTextButton: HoverButton!
     @IBOutlet fileprivate var moreInformation: NSTextField!
     @IBOutlet private var withLoveFromKmikiyText: NSTextField!
 
@@ -54,6 +55,7 @@ final class GeneralPreferencesVC: NSViewController {
         openAtLoginButton.title = NSLocalizedString("Open at login", comment: "")
         enableKeyboardShortcutButton.title = NSLocalizedString("Enable keyboard shortcut", comment: "")
         hideTextWhenPausedButton.title = NSLocalizedString("Hide text when paused", comment: "")
+        scrollTextButton.title = NSLocalizedString("Scroll text", comment: "")
         withLoveFromKmikiyText.stringValue = NSLocalizedString("with ♥ from kmikiy", comment: "")
     }
 
@@ -67,6 +69,7 @@ final class GeneralPreferencesVC: NSViewController {
         openAtLoginButton.state = NSControl.StateValue(rawValue: applicationIsInStartUpItems().asState)
         enableKeyboardShortcutButton.state = NSControl.StateValue(rawValue: UserPreferences.keyboardShortcutEnabled.asState)
         hideTextWhenPausedButton.state = NSControl.StateValue(rawValue: UserPreferences.hideTitleArtistWhenPaused.asState)
+        scrollTextButton.state = NSControl.StateValue(rawValue: UserPreferences.scrollText.asState)
     }
 
     private func initButtonHovers() {
@@ -93,6 +96,9 @@ final class GeneralPreferencesVC: NSViewController {
 
         hideTextWhenPausedButton.mouseEnteredFunc = hoverHideTitleWhenPaused
         hideTextWhenPausedButton.mouseExitedFunc = hoverAway
+
+        scrollTextButton.mouseEnteredFunc = hoverScrollText
+        scrollTextButton.mouseExitedFunc = hoverAway
 
         enableKeyboardShortcutButton.mouseEnteredFunc = hoverEnableKeyboardShortcut
         enableKeyboardShortcutButton.mouseExitedFunc = hoverAway
@@ -131,6 +137,10 @@ final class GeneralPreferencesVC: NSViewController {
 
     @IBAction func toggleHideTextWhenPaused(_: Any) {
         UserPreferences.hideTitleArtistWhenPaused = hideTextWhenPausedButton.state.asBool
+    }
+
+    @IBAction func toggleScrollText(_: Any) {
+        UserPreferences.scrollText = scrollTextButton.state.asBool
     }
 
     @IBAction func toggleEnableKeyboardShortcut(_: Any) {
@@ -182,6 +192,10 @@ extension GeneralPreferencesVC {
 
     fileprivate func hoverHideTitleWhenPaused() {
         moreInformation.stringValue = NSLocalizedString("Omits the current song artist and title from the menu bar when the music is paused.", comment: "")
+    }
+
+    fileprivate func hoverScrollText() {
+        moreInformation.stringValue = NSLocalizedString("Scroll the current song artist and title in the menu bar.", comment: "")
     }
 
     fileprivate func hoverAway() {
