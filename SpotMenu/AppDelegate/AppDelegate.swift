@@ -19,6 +19,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private enum Constants {
         static let statusItemIconLength: CGFloat = 30
         static let statusItemLength: CGFloat = 250
+        static let menubarHeight: CGFloat = 22
     }
 
     // MARK: - Properties
@@ -311,13 +312,27 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func showPopover(_: AnyObject?) {
+        
+        let popoverWidth = PopOverViewController.Constants.width
+        let popoverHeight = PopOverViewController.Constants.height
 
         let rect = statusItem.button?.window?.convertToScreen((statusItem.button?.frame)!)
-        let menubarHeight = rect?.height ?? 22
-        let height = hiddenController?.window?.frame.height ?? 300
-        let xOffset = UserPreferences.fixPopoverToTheRight ? ((hiddenController?.window?.contentView?.frame.minX)! - (statusItem.button?.frame.minX)!) : ((hiddenController?.window?.contentView?.frame.midX)! - (statusItem.button?.frame.midX)!)
-        let x = (rect?.origin.x)! - xOffset
+        let menubarHeight = rect?.height ?? Constants.menubarHeight
+        let height = hiddenController?.window?.frame.height ?? popoverHeight
+        let xOffset = UserPreferences.fixPopoverToTheRight
+            ? ((hiddenController?.window?.contentView?.frame.minX)! - (statusItem.button?.frame.minX)!)
+            : ((hiddenController?.window?.contentView?.frame.midX)! - (statusItem.button?.frame.midX)!)
+        var x = (rect?.origin.x)! - xOffset
         let y = (rect?.origin.y)! // - (hiddenController?.contentViewController?.view.frame.maxY)!
+        
+        if let screen = NSScreen.main {
+            let width = x + popoverWidth
+            let maxWidth = screen.frame.size.width
+            if width > maxWidth {
+                x = maxWidth - popoverWidth
+            }
+        }
+
         hiddenController?.window?.setFrameOrigin(NSPoint(x: x, y: y-height+menubarHeight))
         hiddenController?.showWindow(self)
         eventMonitor?.start()
