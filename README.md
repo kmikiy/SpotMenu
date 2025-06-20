@@ -30,7 +30,7 @@ SpotMenu is a macOS menu bar utility that shows your currently playing Spotify t
 
 Download the latest [release](https://github.com/kmikiy/SpotMenu/releases) and open `SpotMenu.app`.
 
-> ⚠️ You might need to allow the app in **System Preferences → Security & Privacy** as it's not signed by an Apple developer.
+> ⚠️ You might need to allow the app in **System Preferences → Security & Privacy** as it's not signed by an Apple developer. Click here fore detailed [instructions](https://support.apple.com/kb/PH25088?locale=en_US)!
 
 ---
 
