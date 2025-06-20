@@ -4,13 +4,9 @@ Minimalist Now Playing for macOS menu bar — works with **Spotify** 🎵
 
 ![demo](https://github.com/user-attachments/assets/4b6b8e15-7180-44f1-abf7-796566a02fbb)
 
----
-
 ## ✨ Overview
 
 SpotMenu is a macOS menu bar utility that shows your currently playing Spotify track with support for compact views, keyboard shortcuts, and rich visual controls. Built primarily in Swift and SwiftUI, it provides seamless integration with Spotify using AppleScript.
-
----
 
 ## 🔧 Features
 
@@ -22,8 +18,6 @@ SpotMenu is a macOS menu bar utility that shows your currently playing Spotify t
 - 🪄 **Live Updates** — Automatically syncs with Spotify playback changes.
 - 🍎 macOS native look and feel with SwiftUI.
 
----
-
 ## 📦 Installation
 
 ### Easy Install
@@ -31,8 +25,6 @@ SpotMenu is a macOS menu bar utility that shows your currently playing Spotify t
 Download the latest [release](https://github.com/kmikiy/SpotMenu/releases) and open `SpotMenu.app`.
 
 > ⚠️ You might need to allow the app in **System Preferences → Security & Privacy** as it's not signed by an Apple developer. Click here fore detailed [instructions](https://support.apple.com/kb/PH25088?locale=en_US)!
-
----
 
 ### Advanced: Build from Source
 
@@ -48,8 +40,6 @@ git clone https://github.com/kmikiy/SpotMenu.git
 cd SpotMenu
 open SpotMenu.xcodeproj
 ```
-
----
 
 ## 🎨 Preferences
 
@@ -73,8 +63,6 @@ Assign keys for:
 - Play / Pause
 - Next Track
 - Previous Track
-
----
 
 ## 🧠 Usage Tips
 
