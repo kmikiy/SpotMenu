@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64134C302E05AF0E00EB3AE3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 64134C2F2E05AF0E00EB3AE3 /* README.md */; };
+		64134C322E05AF1800EB3AE3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 64134C312E05AF1800EB3AE3 /* LICENSE */; };
+		64134C342E05AF1E00EB3AE3 /* ISSUE_TEMPLATE.md in Resources */ = {isa = PBXBuildFile; fileRef = 64134C332E05AF1E00EB3AE3 /* ISSUE_TEMPLATE.md */; };
 		648D41AD2E02904C001D8CE5 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 648D41AC2E02904C001D8CE5 /* KeyboardShortcuts */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64134C2F2E05AF0E00EB3AE3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		64134C312E05AF1800EB3AE3 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		64134C332E05AF1E00EB3AE3 /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
 		648170E82DFF5D2B002F5F05 /* SpotMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		648170F62DFF5D2D002F5F05 /* SpotMenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotMenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		648171002DFF5D2D002F5F05 /* SpotMenuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotMenuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +99,9 @@
 		648170DF2DFF5D2B002F5F05 = {
 			isa = PBXGroup;
 			children = (
+				64134C332E05AF1E00EB3AE3 /* ISSUE_TEMPLATE.md */,
+				64134C2F2E05AF0E00EB3AE3 /* README.md */,
+				64134C312E05AF1800EB3AE3 /* LICENSE */,
 				648170EA2DFF5D2B002F5F05 /* SpotMenu */,
 				648170F92DFF5D2D002F5F05 /* SpotMenuTests */,
 				648171032DFF5D2D002F5F05 /* SpotMenuUITests */,
@@ -234,6 +243,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64134C342E05AF1E00EB3AE3 /* ISSUE_TEMPLATE.md in Resources */,
+				64134C322E05AF1800EB3AE3 /* LICENSE in Resources */,
+				64134C302E05AF0E00EB3AE3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
