@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpotMenu</title>
+    <link rel="icon" href="assets/media/app-icon.png" type="image/png">
+    <style>
+        :root {
+            --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --gradient-rev: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+            --accent: #6a11cb;
+            --bg-light: #ffffff;
+            --bg-dark: #121212;
+            --text-light: #1a1a1a;
+            --text-dark: #eaeaea;
+        }
+
+        html[data-theme='light'],
+        body {
+            background: var(--bg-light);
+            color: var(--text-light);
+        }
+
+        html[data-theme='dark'] {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 5rem 1.5rem 3rem;
+        }
+
+        header img.logo {
+            width: 256px;
+            height: 256px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 1rem 0 0.25rem;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        .buttons {
+            margin-top: 2rem;
+        }
+
+        .buttons a {
+            display: inline-block;
+            background: white;
+            color: var(--accent);
+            font-weight: 600;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            margin: 0.4rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .buttons a:hover {
+            background: #f0f0f0;
+        }
+
+        .section {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        ul.feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul.feature-list li {
+            margin-bottom: 1rem;
+            padding-left: 1.4rem;
+            position: relative;
+        }
+
+        ul.feature-list li::before {
+            content: "✔️";
+            position: absolute;
+            left: 0;
+            top: 0.05rem;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        html[data-theme='dark'] .video-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .video-card video {
+            width: 100%;
+            max-height: 350px;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .video-caption {
+            font-size: 0.95rem;
+            margin-top: 0.75rem;
+            opacity: 0.8;
+            text-align: center;
+        }
+
+
+        .donate {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .donate div {
+            text-align: center;
+        }
+
+        .donate img {
+            width: 40px;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            padding: 2.5rem 1rem;
+            opacity: 0.6;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            html[data-theme='auto'] {
+                background-color: var(--bg-dark);
+                color: var(--text-dark);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img class="logo" src="assets/media/app-icon.png" alt="SpotMenu Logo">
+        <h1>SpotMenu</h1>
+        <div class="tagline">Spotify playback in your macOS menu bar</div>
+        <div class="buttons">
+            <a href="https://github.com/kmikiy/SpotMenu/releases/download/v2.0.0-beta/SpotMenu.app.zip">Download
+                v2.0.0-beta</a>
+            <a href="https://github.com/kmikiy/SpotMenu?tab=readme-ov-file#-installation"
+                target="_blank">Instructions</a>
+            <a href="https://github.com/kmikiy/SpotMenu" target="_blank">GitHub</a>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>✨ What's New in 2.0</h2>
+        <ul class="feature-list">
+            <li>Rebuilt UI with SwiftUI for a modern native experience</li>
+            <li>Hoverable playback panel with album art and media controls</li>
+            <li>Compact 2-line view option in the menu bar</li>
+            <li>Keyboard shortcuts for Play/Pause, Next, and Previous track</li>
+            <li>Text is truncated with ellipsis if too long</li>
+            <li>Preference setting to control max text length</li>
+            <li>No scrolling text — cleaner and distraction-free</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>🎥 Preview</h2>
+        <div class="video-card">
+            <video src="assets/media/demo.mov" autoplay loop muted playsinline controls></video>
+            <p class="video-caption">Live album art, hoverable controls, and beautiful blur UI.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>⚙️ Preferences</h2>
+        <div class="video-card">
+            <video src="assets/media/preferences.mov" autoplay loop muted playsinline controls></video>
+            <p class="video-caption">Customize your experience with visual and shortcut settings.</p>
+        </div>
+    </section>
+
+
+    <section class="section">
+        <h2>💸 Support Development</h2>
+        <div class="donate">
+            <div>
+                <img src="assets/media/paypal.svg" alt="PayPal">
+                <a href="https://paypal.me/kmikiy" target="_blank">paypal.me/kmikiy</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        SpotMenu v2.0.0-beta • Built with 💙 by <a href="https://github.com/kmikiy" target="_blank">@kmikiy</a>
+    </footer>
+
+</body>
+
+</html>
