@@ -40,6 +40,24 @@ struct VisualPreferences: View {
                         .frame(width: 50)
                 }
 
+                if shouldShowAlwaysFallbackWarning {
+                    Text(
+                        "Note: All display options are turned off. The app icon will be shown as a fallback to prevent an empty status item."
+                    )
+                    .font(.caption2)
+                    .foregroundColor(.orange)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, 2)
+                } else if shouldShowConditionalFallbackWarning {
+                    Text(
+                        "Note: If only 'Show Playing Icon' is enabled but nothing is playing, the app icon will be shown as a fallback."
+                    )
+                    .font(.caption2)
+                    .foregroundColor(.orange)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, 2)
+                }
+
                 Spacer()
                 VStack(alignment: .leading, spacing: 6) {
                     Text("Status Item Preview")
@@ -66,10 +84,7 @@ struct VisualPreferences: View {
                         .overlay(
                             RoundedRectangle(cornerRadius: 6)
                                 .stroke(
-                                    style: StrokeStyle(
-                                        lineWidth: 1,
-                                        dash: [4]
-                                    )
+                                    style: StrokeStyle(lineWidth: 1, dash: [4])
                                 )
                                 .foregroundColor(.gray.opacity(0.4))
                         )
@@ -91,7 +106,7 @@ struct VisualPreferences: View {
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: 350)
+        .frame(width: 400, height: 420)
     }
 
     @ViewBuilder
@@ -106,6 +121,26 @@ struct VisualPreferences: View {
                 .controlSize(.small)
         }
     }
+
+    private var shouldShowAlwaysFallbackWarning: Bool {
+        let noArtist = !model.showArtist
+        let noTitle = !model.showSongTitle
+        let noIsPlaying = !model.showIsPlayingIcon
+        let noDisplayAppIcon = !model.showAppIcon
+
+        return noArtist && noTitle && noIsPlaying && noDisplayAppIcon
+
+    }
+
+    private var shouldShowConditionalFallbackWarning: Bool {
+        let noArtist = !model.showArtist
+        let noTitle = !model.showSongTitle
+        let noIsPlaying = !model.showIsPlayingIcon
+        let noDisplayAppIcon = !model.showAppIcon
+
+        return noArtist && noTitle && !noIsPlaying && noDisplayAppIcon
+    }
+
 }
 
 struct StatusItemNonCompactPreview: View {
