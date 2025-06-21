@@ -5,7 +5,7 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var statusItemModel = StatusItemModel()
-    var playbackModel = PlaybackModel()
+    var playbackModel = PlaybackModel(controller: AppleMusicController())
     var visualPreferencesModel = VisualPreferencesModel()
     var popoverManager: PopoverManager!
     var preferencesWindow: NSWindow?
@@ -174,7 +174,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func refreshAction() {
-        playbackModel.fetchSpotifyInfo()
+        playbackModel.fetchInfo()
     }
 
     @objc func preferencesAction() {

@@ -33,7 +33,7 @@ struct PlaybackView: View {
             if isHovering {
                 VStack(spacing: 0) {
                     HStack {
-                        Button(action: model.openSpotify) {
+                        Button(action: model.openMusicApp) {
                             Image("SpotifyIcon")
                                 .renderingMode(.template)
                                 .resizable()
@@ -153,7 +153,8 @@ struct PlaybackView: View {
 }
 
 #Preview {
-    let model = PlaybackModel()
+    let mockController = SpotifyController()
+    let model = PlaybackModel(controller: mockController)
     model.imageURL = URL(
         string:
             "https://i.scdn.co/image/ab67616d0000b27377054612c5275c1515b18a50"

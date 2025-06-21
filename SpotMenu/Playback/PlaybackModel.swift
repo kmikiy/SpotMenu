@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 
 extension Notification.Name {
@@ -7,69 +6,96 @@ extension Notification.Name {
     )
 }
 
+struct PlaybackInfo {
+    let artist: String
+    let title: String
+    let isPlaying: Bool
+    let imageURL: URL?
+    let totalTime: Double
+    let currentTime: Double
+}
+
+protocol MusicPlayerController {
+    func fetchNowPlayingInfo() -> PlaybackInfo?
+    func togglePlayPause()
+    func skipForward()
+    func skipBack()
+    func updatePlaybackPosition(to seconds: Double)
+    func openApp()
+}
+
 class PlaybackModel: ObservableObject {
     @Published var imageURL: URL?
     @Published var isPlaying: Bool = false
     @Published var songTitle: String = ""
     @Published var songArtist: String = ""
-    @Published var totalTime: Double = 1  // Default to avoid 0...0 range
+    @Published var totalTime: Double = 1
     @Published var currentTime: Double = 0
 
+    private let controller: MusicPlayerController
     private var timer: Timer?
 
-    init() {
-        fetchSpotifyInfo()
+    init(controller: MusicPlayerController) {
+        self.controller = controller
+        fetchInfo()
         timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-            self.fetchSpotifyInfo()
+            self.fetchInfo()
         }
     }
 
-    func fetchSpotifyInfo() {
-        let script = """
-            tell application "Spotify"
-                if it is running then
-                    set trackName to name of current track
-                    set artistName to artist of current track
-                    set artworkUrl to artwork url of current track
-                    set durationSec to duration of current track
-                    set currentSec to player position
-                    set isPlayingState to (player state is playing)
-                    return trackName & "|||SEP|||" & artistName & "|||SEP|||" & artworkUrl & "|||SEP|||" & durationSec & "|||SEP|||" & currentSec & "|||SEP|||" & isPlayingState
-                else
-                    return "NOT_RUNNING"
-                end if
-            end tell
-            """
+    func fetchInfo() {
+        guard let info = controller.fetchNowPlayingInfo() else {
+            reset()
+            return
+        }
 
-        if let output = runAppleScript(script), output != "NOT_RUNNING" {
-            let parts = output.components(separatedBy: "|||SEP|||")
-            if parts.count == 6 {
-                DispatchQueue.main.async {
-                    self.songTitle = parts[0]
-                    self.songArtist = parts[1]
-                    self.imageURL = URL(string: parts[2])
-                    let durationMs = Double(parts[3]) ?? 1000
-                    self.totalTime = durationMs / 1000.0
-                    let currentTimeStr = parts[4].replacingOccurrences(
-                        of: ",",
-                        with: "."
-                    )
-                    self.currentTime = min(
-                        Double(currentTimeStr) ?? 0,
-                        self.totalTime
-                    )
-                    self.isPlaying =
-                        (parts[5].trimmingCharacters(
-                            in: .whitespacesAndNewlines
-                        ) == "true")
+        DispatchQueue.main.async {
+            self.songTitle = info.title
+            self.songArtist = info.artist
+            self.isPlaying = info.isPlaying
+            self.imageURL = info.imageURL
+            self.totalTime = info.totalTime
+            self.currentTime = info.currentTime
 
-                    NotificationCenter.default.post(
-                        name: .contentModelDidUpdate,
-                        object: nil
-                    )
-                }
-            }
-        } else {
+            NotificationCenter.default.post(
+                name: .contentModelDidUpdate,
+                object: nil
+            )
+        }
+    }
+
+    func togglePlayPause() {
+        controller.togglePlayPause()
+        delayedFetch()
+    }
+
+    func skipForward() {
+        controller.skipForward()
+        delayedFetch()
+    }
+
+    func skipBack() {
+        controller.skipBack()
+        delayedFetch()
+    }
+
+    func updatePlaybackPosition(to seconds: Double) {
+        controller.updatePlaybackPosition(to: seconds)
+        self.currentTime = seconds
+    }
+
+    func openMusicApp() {
+        controller.openApp()
+    }
+
+    private func delayedFetch() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.fetchInfo()
+        }
+    }
+
+    private func reset() {
+        DispatchQueue.main.async {
             self.songTitle = ""
             self.songArtist = ""
             self.isPlaying = false
@@ -78,67 +104,33 @@ class PlaybackModel: ObservableObject {
             self.totalTime = 1
         }
     }
+}
 
-    func skipForward() {
-        _ = runAppleScript("tell application \"Spotify\" to next track")
-        delayedFetch()
+func runAppleScript(_ script: String) -> String? {
+    var error: NSDictionary?
+    if let scriptObject = NSAppleScript(source: script) {
+        let output = scriptObject.executeAndReturnError(&error)
+        return output.stringValue
     }
+    return nil
+}
 
-    func skipBack() {
-        _ = runAppleScript("tell application \"Spotify\" to previous track")
-        delayedFetch()
-    }
-
-    func togglePlayPause() {
-        if self.isPlaying {
-            _ = runAppleScript("tell application \"Spotify\" to pause")
-        } else {
-            _ = runAppleScript("tell application \"Spotify\" to play")
-        }
-        self.isPlaying = !self.isPlaying
-
-        delayedFetch()
-    }
-
-    private func delayedFetch() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.fetchSpotifyInfo()
-        }
-    }
-
-    func updatePlaybackPosition(to seconds: Double) {
-        _ = runAppleScript(
-            "tell application \"Spotify\" to set player position to \(Int(seconds))"
+func openApp(bundleIdentifier: String) {
+    guard
+        let url = NSWorkspace.shared.urlForApplication(
+            withBundleIdentifier: bundleIdentifier
         )
-        self.currentTime = seconds
+    else {
+        print("App with bundle ID \(bundleIdentifier) not found.")
+        return
     }
 
-    func openSpotify() {
-        guard
-            let url = NSWorkspace.shared.urlForApplication(
-                withBundleIdentifier: "com.spotify.client"
-            )
-        else {
-            print("Spotify is not installed.")
-            return
+    let config = NSWorkspace.OpenConfiguration()
+    NSWorkspace.shared.openApplication(at: url, configuration: config) {
+        app,
+        error in
+        if let error = error {
+            print("Failed to open app: \(error.localizedDescription)")
         }
-
-        let config = NSWorkspace.OpenConfiguration()
-        NSWorkspace.shared.openApplication(at: url, configuration: config) {
-            app,
-            error in
-            if let error = error {
-                print("Failed to open Spotify: \(error.localizedDescription)")
-            }
-        }
-    }
-
-    private func runAppleScript(_ script: String) -> String? {
-        var error: NSDictionary?
-        if let scriptObject = NSAppleScript(source: script) {
-            let output = scriptObject.executeAndReturnError(&error)
-            return output.stringValue
-        }
-        return nil
     }
 }
