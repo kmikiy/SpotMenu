@@ -43,16 +43,16 @@ class MarqueeView: NSView {
 
     func setup(font: NSFont) {
         self.font = font
-        [textLayer1, textLayer2].forEach {
-            $0.contentsScale = NSScreen.main?.backingScaleFactor ?? 2
-            $0.alignmentMode = .left
-            $0.truncationMode = .none
-            $0.anchorPoint = .zero
-            $0.isWrapped = false
-            $0.font = font
-            $0.fontSize = font.pointSize
-            $0.foregroundColor = NSColor.labelColor.cgColor
-            layer?.addSublayer($0)
+        for textLayer in [textLayer1, textLayer2] {
+            textLayer.contentsScale = NSScreen.main?.backingScaleFactor ?? 2
+            textLayer.alignmentMode = .left
+            textLayer.truncationMode = .none
+            textLayer.anchorPoint = .zero
+            textLayer.isWrapped = false
+            textLayer.font = font
+            textLayer.fontSize = font.pointSize
+            textLayer.foregroundColor = resolvedLabelColor(for: self.effectiveAppearance).cgColor
+            layer?.addSublayer(textLayer)
         }
     }
 
@@ -68,6 +68,10 @@ class MarqueeView: NSView {
         textLayer2.font = font
         textLayer1.fontSize = font.pointSize
         textLayer2.fontSize = font.pointSize
+
+        let resolvedColor = resolvedLabelColor(for: effectiveAppearance).cgColor
+        textLayer1.foregroundColor = resolvedColor
+        textLayer2.foregroundColor = resolvedColor
 
         DispatchQueue.main.async { [weak self] in
             self?.layoutText()
@@ -124,22 +128,30 @@ class MarqueeView: NSView {
     }
 }
 
+// MARK: - Appearance-safe label color fallback
+
+func resolvedLabelColor(for appearance: NSAppearance) -> NSColor {
+    if let best = appearance.bestMatch(from: [.darkAqua, .aqua]) {
+        return best == .darkAqua ? .white : .black
+    }
+    return .black
+}
+
+// MARK: - Preview
 
 #Preview(body: {
     VStack {
         AutoMarqueeTextView(
-            text:
-                "🎵 This is a looping marquee text that wraps and scrolls infinitely.",
+            text: "🎵 This is a looping marquee text that wraps and scrolls infinitely.",
             font: NSFont.systemFont(ofSize: 13, weight: .medium),
-            speed: 40,
-
+            speed: 40
         )
         .frame(width: 150, height: 20)
+
         AutoMarqueeTextView(
             text: "short",
             font: .systemFont(ofSize: 13),
-            speed: 40,
-
+            speed: 40
         )
         .frame(width: 150, height: 20)
     }
