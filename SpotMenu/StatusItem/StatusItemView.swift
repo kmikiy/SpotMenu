@@ -20,26 +20,38 @@ struct StatusItemView: View {
                         .frame(width: 16, height: 16)
                         .clipShape(Circle())
 
-                    if preferencesModel.showIsPlayingIcon
-                        && model.isPlaying
-                    {
+                    if preferencesModel.showIsPlayingIcon && model.isPlaying {
                         Text("♫").font(.system(size: 13))
                     }
 
                     if !model.isTextEmpty && preferencesModel.isTextVisible {
+                        let sharedWidth = calculateMaxTextWidth(
+                            topText: preferencesModel.showArtist ? model.topText : nil,
+                            topFont: .systemFont(ofSize: 10, weight: .medium),
+                            bottomText: preferencesModel.showSongTitle ? model.bottomText : nil,
+                            bottomFont: .systemFont(ofSize: 9)
+                        )
+
                         VStack(spacing: -2) {
                             if preferencesModel.showArtist {
-                                Text(model.topText)
-                                    .font(.system(size: 10, weight: .medium))
+                                AutoMarqueeTextView(
+                                    text: model.topText,
+                                    font: .systemFont(ofSize: 10, weight: .medium),
+                                    speed: 20
+                                )
+                                .frame(width: sharedWidth, height: 12)
                             }
-                            if preferencesModel.showSongTitle {
-                                Text(model.bottomText)
-                                    .font(.system(size: 9))
 
+                            if preferencesModel.showSongTitle {
+                                AutoMarqueeTextView(
+                                    text: model.bottomText,
+                                    font: .systemFont(ofSize: 9),
+                                    speed: 20
+                                )
+                                .frame(width: sharedWidth, height: 11)
                             }
                         }
                     }
-
                 }
             }
         }
@@ -50,7 +62,31 @@ struct StatusItemView: View {
         .lineLimit(1)
         .truncationMode(.tail)
     }
+
+    private func calculateMaxTextWidth(
+        topText: String?,
+        topFont: NSFont,
+        bottomText: String?,
+        bottomFont: NSFont
+    ) -> CGFloat {
+        let iconWidth: CGFloat = 16
+        let spacing: CGFloat = 4
+        let musicIconWidth: CGFloat = (preferencesModel.showIsPlayingIcon && model.isPlaying) ? 16 : 0
+        let totalMaxWidth = preferencesModel.maxStatusItemWidth
+        let availableWidth = totalMaxWidth - iconWidth - spacing - musicIconWidth
+
+        let topWidth = topText.map {
+            NSString(string: $0).size(withAttributes: [.font: topFont]).width
+        } ?? 0
+
+        let bottomWidth = bottomText.map {
+            NSString(string: $0).size(withAttributes: [.font: bottomFont]).width
+        } ?? 0
+
+        return min(max(topWidth, bottomWidth), availableWidth)
+    }
 }
+
 
 #Preview {
     let model = StatusItemModel()
