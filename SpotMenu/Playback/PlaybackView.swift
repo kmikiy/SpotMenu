@@ -121,7 +121,7 @@ struct PlaybackView: View {
                         )
                         .accentColor(.accentColor)
                         .frame(width: 200)
-                        .preferredColorScheme(.light)  
+                        .preferredColorScheme(.light)
 
                         Text(formatTime(model.totalTime))
                             .font(.body.monospacedDigit())

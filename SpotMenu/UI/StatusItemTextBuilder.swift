@@ -17,9 +17,12 @@ struct StatusItemTextBuilder {
 
         let label = [artistText, titleText]
             .compactMap { $0 }
-            .joined(separator: (artistText != nil && titleText != nil) ? " - " : "")
+            .joined(
+                separator: (artistText != nil && titleText != nil) ? " - " : ""
+            )
 
-        let spaced = label.isEmpty
+        let spaced =
+            label.isEmpty
             ? nil
             : (showIsPlayingIcon ? label : " \(label)")
 
@@ -33,20 +36,26 @@ struct StatusItemTextBuilder {
         return (text as NSString).size(withAttributes: attributes).width
     }
 
-    static func truncateText(_ text: String, font: NSFont, maxWidth: CGFloat) -> String {
+    static func truncateText(_ text: String, font: NSFont, maxWidth: CGFloat)
+        -> String
+    {
         let ellipsis = "…"
         if measureTextWidth(text, font: font) <= maxWidth {
             return text
         }
 
         var truncated = text
-        while !truncated.isEmpty && measureTextWidth(truncated + ellipsis, font: font) > maxWidth {
+        while !truncated.isEmpty
+            && measureTextWidth(truncated + ellipsis, font: font) > maxWidth
+        {
             truncated = String(truncated.dropLast())
         }
 
         truncated = truncated.trimmingCharacters(in: .whitespacesAndNewlines)
         if truncated.hasSuffix("-") {
-            truncated = String(truncated.dropLast()).trimmingCharacters(in: .whitespacesAndNewlines)
+            truncated = String(truncated.dropLast()).trimmingCharacters(
+                in: .whitespacesAndNewlines
+            )
         }
 
         return truncated + ellipsis

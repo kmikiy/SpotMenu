@@ -45,7 +45,7 @@ struct VisualPreferences: View {
                     Text("Status Item Preview")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    
+
                     HStack {
                         Group {
                             if model.compactView {
@@ -113,6 +113,7 @@ struct StatusItemNonCompactPreview: View {
     @ObservedObject var preferencesModel: VisualPreferencesModel
 
     var body: some View {
+        let font = NSFont.systemFont(ofSize: 13)
         let text = StatusItemTextBuilder.buildText(
             artist: model.topText,
             title: model.bottomText,
@@ -120,22 +121,28 @@ struct StatusItemNonCompactPreview: View {
             showArtist: preferencesModel.showArtist,
             showTitle: preferencesModel.showSongTitle,
             showIsPlayingIcon: preferencesModel.showIsPlayingIcon,
-            font: NSFont.systemFont(ofSize: 13),
+            font: font,
             maxWidth: preferencesModel.maxStatusItemWidth
         )
 
+        let showIcon = StatusItemDisplayHelper.shouldShowAppIcon(
+            preferences: preferencesModel,
+            model: model
+        )
+
         HStack(spacing: 4) {
-            Image("SpotifyIcon")
-                .resizable()
-                .frame(width: 16, height: 16)
-                .clipShape(Circle())
+            if showIcon {
+                Image("SpotifyIcon")
+                    .resizable()
+                    .frame(width: 16, height: 16)
+                    .clipShape(Circle())
+            }
 
             Text(text)
                 .font(.system(size: 13))
                 .lineLimit(1)
                 .truncationMode(.tail)
         }
-
     }
 }
 

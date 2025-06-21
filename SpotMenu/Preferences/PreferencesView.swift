@@ -21,7 +21,7 @@ struct PreferencesView: View {
             .frame(height: tabHeight)
             .onPreferenceChange(TabHeightKey.self) { tabHeight = $0 }
 
-            HStack() {
+            HStack {
                 Spacer()
                 Button(action: {
                     NSApp.terminate(nil)

@@ -99,6 +99,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
 
             let font = NSFont.systemFont(ofSize: 13)
+
+            // Create a temporary StatusItemModel to evaluate display logic
+            let tempModel = StatusItemModel()
+            tempModel.topText = playbackModel.songArtist
+            tempModel.bottomText = playbackModel.songTitle
+            tempModel.isPlaying = playbackModel.isPlaying
+
+            // Determine if the app icon should be shown
+            let showIcon = StatusItemDisplayHelper.shouldShowAppIcon(
+                preferences: visualPreferencesModel,
+                model: tempModel
+            )
+
+            // Build status bar text
             let text = StatusItemTextBuilder.buildText(
                 artist: playbackModel.songArtist,
                 title: playbackModel.songTitle,
@@ -110,12 +124,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 maxWidth: visualPreferencesModel.maxStatusItemWidth
             )
 
+            // Apply to status item
             button.title = text
             button.font = font
-            button.image = spotifyIcon
+
+            button.image = showIcon ? spotifyIcon : nil
             button.imagePosition = .imageLeft
             statusItem.length = NSStatusItem.variableLength
-            
         } else {
             if !isUsingCustomStatusView {
                 button.title = ""
@@ -140,7 +155,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             )
         }
     }
-
 
     @objc func togglePopover() {
         popoverManager.toggle(relativeTo: statusItem.button)
