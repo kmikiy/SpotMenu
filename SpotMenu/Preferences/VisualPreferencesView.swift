@@ -25,6 +25,7 @@ struct VisualPreferences: View {
                     "Show Playing Icon",
                     binding: $model.showIsPlayingIcon
                 )
+                settingsRow("Display App Icon", binding: $model.showAppIcon)
                 settingsRow("Compact View", binding: $model.compactView)
                 HStack {
                     Text("Max Width")

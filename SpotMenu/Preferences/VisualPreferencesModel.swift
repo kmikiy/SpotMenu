@@ -18,6 +18,9 @@ class VisualPreferencesModel: ObservableObject {
             )
         }
     }
+    @Published var showAppIcon: Bool {
+        didSet { UserDefaults.standard.set(showAppIcon, forKey: "showAppIcon") }
+    }
     @Published var compactView: Bool {
         didSet { UserDefaults.standard.set(compactView, forKey: "compactView") }
     }
@@ -28,10 +31,6 @@ class VisualPreferencesModel: ObservableObject {
                 forKey: "maxStatusItemWidth"
             )
         }
-    }
-
-    var showAppIconOnly: Bool {
-        return !showArtist && !showSongTitle && !showIsPlayingIcon
     }
 
     var isTextVisible: Bool {
@@ -46,6 +45,7 @@ class VisualPreferencesModel: ObservableObject {
             defaults.object(forKey: "showSongTitle") as? Bool ?? true
         showIsPlayingIcon =
             defaults.object(forKey: "showIsPlayingIcon") as? Bool ?? true
+        showAppIcon = defaults.object(forKey: "showAppIcon") as? Bool ?? true
         compactView = defaults.object(forKey: "compactView") as? Bool ?? true
         maxStatusItemWidth =
             defaults.object(forKey: "maxStatusItemWidth") as? CGFloat ?? 150

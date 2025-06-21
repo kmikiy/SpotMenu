@@ -5,8 +5,13 @@ struct StatusItemView: View {
     @ObservedObject var preferencesModel: VisualPreferencesModel
 
     var body: some View {
+        let showIcon = StatusItemDisplayHelper.shouldShowAppIcon(
+            preferences: preferencesModel,
+            model: model
+        )
+
         Group {
-            if model.showAppIconOnly || preferencesModel.showAppIconOnly {
+            if showIcon && !preferencesModel.isTextVisible && !model.isPlaying {
                 Image("SpotifyIcon")
                     .renderingMode(.template)
                     .resizable()
@@ -14,15 +19,15 @@ struct StatusItemView: View {
                     .clipShape(Circle())
             } else {
                 HStack(spacing: 4) {
-                    Image("SpotifyIcon")
-                        .renderingMode(.template)
-                        .resizable()
-                        .frame(width: 16, height: 16)
-                        .clipShape(Circle())
+                    if showIcon {
+                        Image("SpotifyIcon")
+                            .renderingMode(.template)
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                            .clipShape(Circle())
+                    }
 
-                    if preferencesModel.showIsPlayingIcon
-                        && model.isPlaying
-                    {
+                    if preferencesModel.showIsPlayingIcon && model.isPlaying {
                         Text("♫").font(.system(size: 13))
                     }
 
@@ -35,11 +40,9 @@ struct StatusItemView: View {
                             if preferencesModel.showSongTitle {
                                 Text(model.bottomText)
                                     .font(.system(size: 9))
-
                             }
                         }
                     }
-
                 }
             }
         }
@@ -49,6 +52,24 @@ struct StatusItemView: View {
         .frame(maxWidth: preferencesModel.maxStatusItemWidth)
         .lineLimit(1)
         .truncationMode(.tail)
+    }
+}
+
+struct StatusItemDisplayHelper {
+    static func shouldShowAppIcon(
+        preferences: VisualPreferencesModel,
+        model: StatusItemModel
+    ) -> Bool {
+        if preferences.showAppIcon {
+            return true
+        }
+
+        let noArtist = !preferences.showArtist || model.topText.isEmpty
+        let noTitle = !preferences.showSongTitle || model.bottomText.isEmpty
+        let noPlaying = !preferences.showIsPlayingIcon || !model.isPlaying
+
+        let nothingToShow = noArtist && noTitle && noPlaying
+        return nothingToShow
     }
 }
 
