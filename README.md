@@ -45,7 +45,7 @@ open SpotMenu.xcodeproj
 
 Accessible via right-clicking the menu bar icon → Preferences…
 
-![preferences](https://github.com/user-attachments/assets/bfa41f55-5eb2-4a89-998b-f4726927dd2c)
+![preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/preferences.mov)
 
 ### Visuals Tab
 
@@ -54,7 +54,12 @@ Toggle:
 - Display Artist
 - Display Song Title
 - Show Playing Icon
+- Display App Icon
 - Compact View Mode
+
+Adjust:
+
+- Max Width of the Status Item (80–300 pt)
 
 ### Shortcuts Tab
 
