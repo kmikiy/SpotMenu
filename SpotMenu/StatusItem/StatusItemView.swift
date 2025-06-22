@@ -13,7 +13,7 @@ struct StatusItemView: View {
 
         Group {
             if showIcon && !preferencesModel.isTextVisible && !model.isPlaying {
-                Image(playbackModel.playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon")
+                Image(playbackModel.playerIconName)
                     .renderingMode(.template)
                     .resizable()
                     .frame(width: 16, height: 16)
@@ -21,7 +21,7 @@ struct StatusItemView: View {
             } else {
                 HStack(spacing: 4) {
                     if showIcon {
-                        Image(playbackModel.playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon")
+                        Image(playbackModel.playerIconName)
                             .renderingMode(.template)
                             .resizable()
                             .frame(width: 16, height: 16)

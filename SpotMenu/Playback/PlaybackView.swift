@@ -48,7 +48,7 @@ struct PlaybackView: View {
                 VStack(spacing: 0) {
                     HStack {
                         Button(action: model.openMusicApp) {
-                            Image(model.playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon")
+                            Image(model.playerIconName)
                                 .renderingMode(.template)
                                 .resizable()
                                 .scaledToFit()

@@ -39,6 +39,9 @@ class PlaybackModel: ObservableObject {
     @Published var totalTime: Double = 1
     @Published var currentTime: Double = 0
     @Published var playerType: PlayerType
+    var playerIconName: String {
+        return playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon"
+    }
 
     private let controller: MusicPlayerController
     private var timer: Timer?
