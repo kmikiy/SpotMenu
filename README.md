@@ -54,7 +54,12 @@ Toggle:
 - Display Artist
 - Display Song Title
 - Show Playing Icon
+- Display App Icon
 - Compact View Mode
+
+Adjust:
+
+- Max Width of the Status Item (80–300 pt)
 
 ### Shortcuts Tab
 
