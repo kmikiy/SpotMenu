@@ -5,7 +5,7 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var statusItemModel = StatusItemModel()
-    var playbackModel = PlaybackModel(controller: AppleMusicController())
+    var playbackModel = PlaybackModel()
     var visualPreferencesModel = VisualPreferencesModel()
     var popoverManager: PopoverManager!
     var preferencesWindow: NSWindow?
@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             appleMusicIcon?.isTemplate = true
             appleMusicIcon?.size = NSSize(width: 16, height: 16)
         }
-        
+
         spotifyIcon = NSImage(named: "SpotifyIcon")
         spotifyIcon?.isTemplate = true
         spotifyIcon?.size = NSSize(width: 16, height: 16)
@@ -143,7 +143,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.title = text
             button.font = font
 
-            button.image = showIcon ? spotifyIcon : nil
+            if showIcon {
+                button.image =
+                    playbackModel.playerType == .appleMusic
+                    ? appleMusicIcon : spotifyIcon
+            } else {
+                button.image = nil
+            }
             button.imagePosition = .imageLeft
             statusItem.length = NSStatusItem.variableLength
         } else {
@@ -154,6 +160,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     statusItem: statusItem,
                     statusItemModel: statusItemModel,
                     visualPreferencesModel: visualPreferencesModel,
+                    playBackModel: playbackModel,
                     toggleAction: #selector(togglePopover),
                     target: self
                 )
@@ -196,7 +203,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if preferencesWindow == nil {
             let hosting = NSHostingView(
                 rootView: PreferencesView(
-                    visualPreferencesModel: visualPreferencesModel
+                    visualPreferencesModel: visualPreferencesModel,
+                    playbackModel: playbackModel
                 )
             )
             let window = NSWindow(

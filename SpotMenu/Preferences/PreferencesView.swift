@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PreferencesView: View {
     @ObservedObject var visualPreferencesModel: VisualPreferencesModel
+    @ObservedObject var playbackModel: PlaybackModel
 
     @State private var tabHeight: CGFloat = 0
 
@@ -9,7 +10,10 @@ struct PreferencesView: View {
         VStack(spacing: 16) {
             TabView {
                 tabContainer {
-                    VisualPreferences(model: visualPreferencesModel)
+                    VisualPreferences(
+                        model: visualPreferencesModel,
+                        playbackModel: playbackModel
+                    )
                 }
                 .tabItem { Text("Visuals") }
 
@@ -64,5 +68,8 @@ private struct TabHeightKey: PreferenceKey {
 }
 
 #Preview {
-    PreferencesView(visualPreferencesModel: VisualPreferencesModel())
+    PreferencesView(
+        visualPreferencesModel: VisualPreferencesModel(),
+        playbackModel: PlaybackModel()
+    )
 }

@@ -6,6 +6,11 @@ extension Notification.Name {
     )
 }
 
+enum PlayerType {
+    case spotify
+    case appleMusic
+}
+
 struct PlaybackInfo {
     let artist: String
     let title: String
@@ -33,16 +38,50 @@ class PlaybackModel: ObservableObject {
     @Published var songArtist: String = ""
     @Published var totalTime: Double = 1
     @Published var currentTime: Double = 0
+    @Published var playerType: PlayerType
 
     private let controller: MusicPlayerController
     private var timer: Timer?
 
-    init(controller: MusicPlayerController) {
-        self.controller = controller
+    init() {
+        let spotifyInstalled = Self.isAppInstalled("com.spotify.client")
+        let appleMusicInstalled = Self.isAppInstalled("com.apple.Music")
+        let spotifyRunning = Self.isAppRunning("com.spotify.client")
+        let appleMusicRunning = Self.isAppRunning("com.apple.Music")
+
+        if spotifyRunning {
+            self.controller = SpotifyController()
+            self.playerType = .spotify
+        } else if appleMusicRunning {
+            self.controller = AppleMusicController()
+            self.playerType = .appleMusic
+        } else if spotifyInstalled {
+            self.controller = SpotifyController()
+            self.playerType = .spotify
+        } else if appleMusicInstalled {
+            self.controller = AppleMusicController()
+            self.playerType = .appleMusic
+        } else {
+            // Default fallback
+            self.controller = SpotifyController()
+            self.playerType = .spotify
+        }
         fetchInfo()
         timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
             self.fetchInfo()
         }
+    }
+
+    private static func isAppInstalled(_ bundleIdentifier: String) -> Bool {
+        return NSWorkspace.shared.urlForApplication(
+            withBundleIdentifier: bundleIdentifier
+        ) != nil
+    }
+
+    private static func isAppRunning(_ bundleIdentifier: String) -> Bool {
+        return NSRunningApplication.runningApplications(
+            withBundleIdentifier: bundleIdentifier
+        ).count > 0
     }
 
     func fetchInfo() {

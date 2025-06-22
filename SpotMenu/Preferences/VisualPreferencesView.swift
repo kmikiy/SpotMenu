@@ -2,6 +2,7 @@ import SwiftUI
 
 struct VisualPreferences: View {
     @ObservedObject var model: VisualPreferencesModel
+    @ObservedObject var playbackModel: PlaybackModel
     @StateObject private var previewModel: StatusItemModel = {
         let model = StatusItemModel()
         model.topText = "Lorem Ipsum"
@@ -69,12 +70,14 @@ struct VisualPreferences: View {
                             if model.compactView {
                                 StatusItemView(
                                     model: previewModel,
-                                    preferencesModel: model
+                                    preferencesModel: model,
+                                    playbackModel: playbackModel
                                 )
                             } else {
                                 StatusItemNonCompactPreview(
                                     model: previewModel,
-                                    preferencesModel: model
+                                    preferencesModel: model,
+                                    playbackModel: playbackModel
                                 )
                             }
                         }
@@ -146,6 +149,7 @@ struct VisualPreferences: View {
 struct StatusItemNonCompactPreview: View {
     let model: StatusItemModel
     @ObservedObject var preferencesModel: VisualPreferencesModel
+    @ObservedObject var playbackModel: PlaybackModel
 
     var body: some View {
         let font = NSFont.systemFont(ofSize: 13)
@@ -167,10 +171,13 @@ struct StatusItemNonCompactPreview: View {
 
         HStack(spacing: 4) {
             if showIcon {
-                Image("AppleMusicIcon")
-                    .resizable()
-                    .frame(width: 16, height: 16)
-                    .clipShape(Circle())
+                Image(
+                    playbackModel.playerType == .appleMusic
+                        ? "AppleMusicIcon" : "SpotifyIcon"
+                )
+                .resizable()
+                .frame(width: 16, height: 16)
+                .clipShape(Circle())
             }
 
             Text(text)
@@ -182,5 +189,8 @@ struct StatusItemNonCompactPreview: View {
 }
 
 #Preview {
-    VisualPreferences(model: VisualPreferencesModel())
+    VisualPreferences(
+        model: VisualPreferencesModel(),
+        playbackModel: PlaybackModel()
+    )
 }

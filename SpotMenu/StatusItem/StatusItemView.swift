@@ -3,6 +3,7 @@ import SwiftUI
 struct StatusItemView: View {
     @ObservedObject var model: StatusItemModel
     @ObservedObject var preferencesModel: VisualPreferencesModel
+    @ObservedObject var playbackModel: PlaybackModel
 
     var body: some View {
         let showIcon = StatusItemDisplayHelper.shouldShowAppIcon(
@@ -12,7 +13,7 @@ struct StatusItemView: View {
 
         Group {
             if showIcon && !preferencesModel.isTextVisible && !model.isPlaying {
-                Image("AppleMusicIcon")
+                Image(playbackModel.playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon")
                     .renderingMode(.template)
                     .resizable()
                     .frame(width: 16, height: 16)
@@ -20,7 +21,7 @@ struct StatusItemView: View {
             } else {
                 HStack(spacing: 4) {
                     if showIcon {
-                        Image("AppleMusicIcon")
+                        Image(playbackModel.playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon")
                             .renderingMode(.template)
                             .resizable()
                             .frame(width: 16, height: 16)
@@ -84,8 +85,11 @@ struct StatusItemDisplayHelper {
     preferences.showArtist = true
     preferences.showSongTitle = true
     preferences.showIsPlayingIcon = true
+    
+    let playbackModel = PlaybackModel()
     return StatusItemView(
         model: model,
-        preferencesModel: preferences
+        preferencesModel: preferences,
+        playbackModel: playbackModel
     )
 }

@@ -48,7 +48,7 @@ struct PlaybackView: View {
                 VStack(spacing: 0) {
                     HStack {
                         Button(action: model.openMusicApp) {
-                            Image("AppleMusicIcon")
+                            Image(model.playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon")
                                 .renderingMode(.template)
                                 .resizable()
                                 .scaledToFit()
@@ -167,8 +167,7 @@ struct PlaybackView: View {
 }
 
 #Preview {
-    let mockController = SpotifyController()
-    let model = PlaybackModel(controller: mockController)
+    let model = PlaybackModel()
     model.imageURL = URL(
         string:
             "https://i.scdn.co/image/ab67616d0000b27377054612c5275c1515b18a50"
