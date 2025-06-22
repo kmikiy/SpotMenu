@@ -1,12 +1,12 @@
 # SpotMenu ![Icon](https://github.com/user-attachments/assets/704ed30e-3995-4bf0-b33d-07e0291bc027)
 
-Minimalist Now Playing for macOS menu bar — works with **Spotify** 🎵
+Minimalist Now Playing for macOS menu bar — works with **Spotify** 🎵 and **Apple Music** 🍎
 
 ![demo](https://github.com/user-attachments/assets/4b6b8e15-7180-44f1-abf7-796566a02fbb)
 
 ## ✨ Overview
 
-SpotMenu is a macOS menu bar utility that shows your currently playing Spotify track with support for compact views, keyboard shortcuts, and rich visual controls. Built primarily in Swift and SwiftUI, it provides seamless integration with Spotify using AppleScript.
+SpotMenu is a macOS menu bar utility that shows your currently playing track with support for compact views, keyboard shortcuts, and rich visual controls. Built in Swift and SwiftUI, it supports **Spotify** and **Apple Music** through AppleScript integration.
 
 ## 🔧 Features
 
@@ -14,8 +14,9 @@ SpotMenu is a macOS menu bar utility that shows your currently playing Spotify t
 - 🎛️ **Compact/Custom Views** — Toggle between full and compact visual modes.
 - 🖼️ **Playback Controls** — Overlay with play/pause/skip buttons and album art.
 - ⌨️ **Keyboard Shortcuts** — Global hotkeys to control playback.
-- ⚙️ **User Preferences** — Easily configure visuals and shortcuts via Preferences window.
-- 🪄 **Live Updates** — Automatically syncs with Spotify playback changes.
+- ⚙️ **User Preferences** — Configure visuals, shortcuts, and music player via Preferences window.
+- 🪄 **Live Updates** — Automatically syncs with playback changes.
+- 🔁 **Multi-Player Support** — Automatically detect or manually select between Spotify and Apple Music.
 - 🍎 macOS native look and feel with SwiftUI.
 
 ## 📦 Installation
@@ -24,7 +25,7 @@ SpotMenu is a macOS menu bar utility that shows your currently playing Spotify t
 
 Download the latest [release](https://github.com/kmikiy/SpotMenu/releases) and open `SpotMenu.app.zip`.
 
-> ⚠️ You might need to allow the app in **System Preferences → Security & Privacy** as it's not signed by an Apple developer. Click here fore detailed [instructions](https://support.apple.com/kb/PH25088?locale=en_US)!
+> ⚠️ You might need to allow the app in **System Preferences → Security & Privacy** as it's not signed by an Apple developer. Click here for detailed [instructions](https://support.apple.com/kb/PH25088?locale=en_US)!
 
 ### Advanced: Build from Source
 
@@ -68,6 +69,14 @@ Assign keys for:
 - Play / Pause
 - Next Track
 - Previous Track
+
+### Player Tab
+
+Choose which music player SpotMenu should control:
+
+- Automatic — Detects and uses whichever player is active.
+- Spotify
+- Apple Music
 
 ## 🧠 Usage Tips
 
