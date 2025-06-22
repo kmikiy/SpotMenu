@@ -28,20 +28,34 @@ struct PlaybackView: View {
                 .clipShape(
                     RoundedRectangle(cornerRadius: 16, style: .continuous)
                 )
+            } else if let fallbackImage = model.image {
+                fallbackImage
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 300, height: 300)
+                    .clipped()
+                    .blur(radius: isHovering ? 8 : 0)
+                    .overlay(
+                        isHovering
+                            ? Color.accentColor.opacity(0.3) : nil
+                    )
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    )
             }
 
             if isHovering {
                 VStack(spacing: 0) {
                     HStack {
                         Button(action: model.openMusicApp) {
-                            Image("SpotifyIcon")
+                            Image("AppleMusicIcon")
                                 .renderingMode(.template)
                                 .resizable()
+                                .scaledToFit()
                                 .foregroundColor(.white)
                                 .frame(width: 20, height: 20)
                                 .padding(0)
-                                .background(.ultraThinMaterial)
-                                .clipShape(Circle())
+                                .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
 

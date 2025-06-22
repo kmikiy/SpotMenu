@@ -13,6 +13,7 @@ struct PlaybackInfo {
     let imageURL: URL?
     let totalTime: Double
     let currentTime: Double
+    let image: Image?
 }
 
 protocol MusicPlayerController {
@@ -26,6 +27,7 @@ protocol MusicPlayerController {
 
 class PlaybackModel: ObservableObject {
     @Published var imageURL: URL?
+    @Published var image: Image? = nil
     @Published var isPlaying: Bool = false
     @Published var songTitle: String = ""
     @Published var songArtist: String = ""
@@ -56,6 +58,7 @@ class PlaybackModel: ObservableObject {
             self.imageURL = info.imageURL
             self.totalTime = info.totalTime
             self.currentTime = info.currentTime
+            self.image = info.image
 
             NotificationCenter.default.post(
                 name: .contentModelDidUpdate,
@@ -102,6 +105,7 @@ class PlaybackModel: ObservableObject {
             self.imageURL = nil
             self.currentTime = 0
             self.totalTime = 1
+            self.image = nil
         }
     }
 }

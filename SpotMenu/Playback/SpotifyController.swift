@@ -41,7 +41,8 @@ class SpotifyController: MusicPlayerController {
                 isPlaying: isPlaying,
                 imageURL: imageURL,
                 totalTime: totalTime,
-                currentTime: min(currentTime, totalTime)
+                currentTime: min(currentTime, totalTime),
+                image: nil
             )
         }
 

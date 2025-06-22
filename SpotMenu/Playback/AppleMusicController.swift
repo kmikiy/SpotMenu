@@ -1,3 +1,7 @@
+import AppKit
+import Foundation
+import SwiftUI
+
 class AppleMusicController: MusicPlayerController {
     func fetchNowPlayingInfo() -> PlaybackInfo? {
         let script = """
@@ -32,14 +36,41 @@ class AppleMusicController: MusicPlayerController {
                 parts[4].trimmingCharacters(in: .whitespacesAndNewlines)
                 == "true"
 
+            let image = getCurrentTrackArtwork()
             return PlaybackInfo(
                 artist: artist,
                 title: title,
                 isPlaying: isPlaying,
                 imageURL: nil,
                 totalTime: totalTime,
-                currentTime: currentTime
+                currentTime: currentTime,
+                image: image != nil ? Image(nsImage: image!) : nil
             )
+        }
+
+        return nil
+    }
+
+    func getCurrentTrackArtwork() -> NSImage? {
+        let script = """
+            tell application \"Music\"
+                    if it is running then
+                        get data of artwork 1 of current track
+                    end if
+            end tell
+            """
+
+        var error: NSDictionary?
+        if let scriptObject = NSAppleScript(source: script) {
+            let output = scriptObject.executeAndReturnError(&error)
+
+            // Get the raw data
+            let data = output.data
+            return NSImage(data: data)
+        }
+
+        if let error = error {
+            print("AppleScript Error: \(error)")
         }
 
         return nil

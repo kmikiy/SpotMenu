@@ -167,7 +167,7 @@ struct StatusItemNonCompactPreview: View {
 
         HStack(spacing: 4) {
             if showIcon {
-                Image("SpotifyIcon")
+                Image("AppleMusicIcon")
                     .resizable()
                     .frame(width: 16, height: 16)
                     .clipShape(Circle())

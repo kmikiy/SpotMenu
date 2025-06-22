@@ -13,10 +13,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var visualPreferencesModelCancellable: AnyCancellable?
     var isUsingCustomStatusView = false
     var spotifyIcon: NSImage?
+    var appleMusicIcon: NSImage?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
 
+        let circularAppleMusicIcon = Image("AppleMusicIcon")
+            .resizable()
+            .frame(width: 16, height: 16)
+            .clipShape(Circle())
+
+        if let rendered = nsImage(
+            from: circularAppleMusicIcon,
+            size: CGSize(width: 16, height: 16)
+        ) {
+            appleMusicIcon = rendered
+            appleMusicIcon?.isTemplate = true
+            appleMusicIcon?.size = NSSize(width: 16, height: 16)
+        }
+        
         spotifyIcon = NSImage(named: "SpotifyIcon")
         spotifyIcon?.isTemplate = true
         spotifyIcon?.size = NSSize(width: 16, height: 16)
@@ -207,4 +222,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.terminate(nil)
     }
 
+}
+
+func nsImage<Content: View>(
+    from view: Content,
+    size: CGSize,
+    scale: CGFloat = 1.0
+) -> NSImage? {
+    let hostingView = NSHostingView(rootView: view)
+    hostingView.frame = CGRect(origin: .zero, size: size)
+
+    let rep = hostingView.bitmapImageRepForCachingDisplay(
+        in: hostingView.bounds
+    )
+    guard let imageRep = rep else { return nil }
+
+    hostingView.cacheDisplay(in: hostingView.bounds, to: imageRep)
+
+    let nsImage = NSImage(size: size)
+    nsImage.addRepresentation(imageRep)
+
+    return nsImage
 }
