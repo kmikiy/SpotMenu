@@ -167,7 +167,7 @@ struct PlaybackView: View {
 }
 
 #Preview {
-    let model = PlaybackModel()
+    let model = PlaybackModel(preferences: PlayerPreferencesModel())
     model.imageURL = URL(
         string:
             "https://i.scdn.co/image/ab67616d0000b27377054612c5275c1515b18a50"

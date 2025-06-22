@@ -11,6 +11,22 @@ enum PlayerType {
     case appleMusic
 }
 
+enum PreferredPlayer: String, CaseIterable, Identifiable {
+    case automatic
+    case spotify
+    case appleMusic
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .automatic: return "Automatic"
+        case .spotify: return "Spotify"
+        case .appleMusic: return "Apple Music"
+        }
+    }
+}
+
 struct PlaybackInfo {
     let artist: String
     let title: String
@@ -39,6 +55,8 @@ class PlaybackModel: ObservableObject {
     @Published var totalTime: Double = 1
     @Published var currentTime: Double = 0
     @Published var playerType: PlayerType
+    @Published var preferredPlayer: PreferredPlayer
+
     var playerIconName: String {
         return playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon"
     }
@@ -46,28 +64,38 @@ class PlaybackModel: ObservableObject {
     private let controller: MusicPlayerController
     private var timer: Timer?
 
-    init() {
+    init(preferences: PlayerPreferencesModel) {
         let spotifyInstalled = Self.isAppInstalled("com.spotify.client")
         let appleMusicInstalled = Self.isAppInstalled("com.apple.Music")
         let spotifyRunning = Self.isAppRunning("com.spotify.client")
         let appleMusicRunning = Self.isAppRunning("com.apple.Music")
-
-        if spotifyRunning {
-            self.controller = SpotifyController()
-            self.playerType = .spotify
-        } else if appleMusicRunning {
-            self.controller = AppleMusicController()
-            self.playerType = .appleMusic
-        } else if spotifyInstalled {
-            self.controller = SpotifyController()
-            self.playerType = .spotify
-        } else if appleMusicInstalled {
-            self.controller = AppleMusicController()
-            self.playerType = .appleMusic
-        } else {
-            // Default fallback
-            self.controller = SpotifyController()
-            self.playerType = .spotify
+        
+        self.preferredPlayer = preferences.preferredPlayer
+        switch preferences.preferredPlayer {
+        case .appleMusic:
+            controller = AppleMusicController()
+            playerType = .appleMusic
+        case .spotify:
+            controller = SpotifyController()
+            playerType = .spotify
+        case .automatic:
+            if spotifyRunning {
+                self.controller = SpotifyController()
+                self.playerType = .spotify
+            } else if appleMusicRunning {
+                self.controller = AppleMusicController()
+                self.playerType = .appleMusic
+            } else if spotifyInstalled {
+                self.controller = SpotifyController()
+                self.playerType = .spotify
+            } else if appleMusicInstalled {
+                self.controller = AppleMusicController()
+                self.playerType = .appleMusic
+            } else {
+                // Default fallback
+                self.controller = SpotifyController()
+                self.playerType = .spotify
+            }
         }
         fetchInfo()
         timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in

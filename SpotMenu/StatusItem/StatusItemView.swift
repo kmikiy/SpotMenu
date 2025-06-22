@@ -86,7 +86,9 @@ struct StatusItemDisplayHelper {
     preferences.showSongTitle = true
     preferences.showIsPlayingIcon = true
     
-    let playbackModel = PlaybackModel()
+    let playbackModel = PlaybackModel(
+        preferences: PlayerPreferencesModel()
+    )
     return StatusItemView(
         model: model,
         preferencesModel: preferences,

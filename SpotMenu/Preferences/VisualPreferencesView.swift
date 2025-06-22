@@ -188,6 +188,8 @@ struct StatusItemNonCompactPreview: View {
 #Preview {
     VisualPreferences(
         model: VisualPreferencesModel(),
-        playbackModel: PlaybackModel()
+        playbackModel: PlaybackModel(
+            preferences: PlayerPreferencesModel()
+        )
     )
 }
