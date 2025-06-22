@@ -42,6 +42,24 @@ struct PlaybackView: View {
                     .clipShape(
                         RoundedRectangle(cornerRadius: 16, style: .continuous)
                     )
+            } else {
+                ZStack {
+                    Color.clear
+
+                    Image(systemName: "music.note")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(.white.opacity(0.2))
+                        .frame(width: 100, height: 100)
+                }
+                .frame(width: 300, height: 300)
+                .blur(radius: isHovering ? 8 : 0)
+                .overlay(
+                    isHovering ? Color.accentColor.opacity(0.3) : nil
+                )
+                .clipShape(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                )
             }
 
             if isHovering {
