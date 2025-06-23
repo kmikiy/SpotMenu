@@ -19,6 +19,7 @@ final class StatusItemConfigurator {
         hostingView.layout()
 
         if let button = statusItem.button {
+            button.image = NSImage()
             button.addSubview(hostingView)
             NSLayoutConstraint.activate([
                 hostingView.centerXAnchor.constraint(
