@@ -32,18 +32,32 @@ struct StatusItemView: View {
                         Text("♫").font(.system(size: 13))
                     }
 
-                    if !model.isTextEmpty && preferencesModel.isTextVisible {
-                        VStack(spacing: -2) {
-                            if preferencesModel.showArtist {
-                                Text(model.topText)
-                                    .font(.system(size: 10, weight: .medium))
-                            }
-                            if preferencesModel.showSongTitle {
-                                Text(model.bottomText)
-                                    .font(.system(size: 9))
+                    if preferencesModel.compactView {
+                        if !model.isTextEmpty && preferencesModel.isTextVisible
+                        {
+                            VStack(spacing: -2) {
+                                if preferencesModel.showArtist {
+                                    Text(model.artist)
+                                        .font(
+                                            .system(size: 10, weight: .medium)
+                                        )
+                                }
+                                if preferencesModel.showTitle {
+                                    Text(model.title)
+                                        .font(.system(size: 9))
+                                }
                             }
                         }
+                    } else {
+                        Text(
+                            model.buildText(
+                                visualPreferencesModel: preferencesModel,
+                                font: NSFont.systemFont(ofSize: 13)
+                            )
+                        )
+                        .font(.system(size: 13))
                     }
+
                 }
             }
         }
@@ -65,8 +79,8 @@ struct StatusItemDisplayHelper {
             return true
         }
 
-        let noArtist = !preferences.showArtist || model.topText.isEmpty
-        let noTitle = !preferences.showSongTitle || model.bottomText.isEmpty
+        let noArtist = !preferences.showArtist || model.artist.isEmpty
+        let noTitle = !preferences.showTitle || model.title.isEmpty
         let noPlaying = !preferences.showIsPlayingIcon || !model.isPlaying
 
         let nothingToShow = noArtist && noTitle && noPlaying
@@ -76,16 +90,17 @@ struct StatusItemDisplayHelper {
 
 #Preview {
     let model = StatusItemModel()
-    model.topText = "test"  // artist
-    model.bottomText =
-        "very long text that should be truncated very very long text"  // title
-    model.isPlaying = true  // is playing
+    model.artist = "test"
+    model.title =
+        "very long text that should be truncated very very long text"
+    model.isPlaying = true
 
     let preferences = VisualPreferencesModel()
     preferences.showArtist = true
-    preferences.showSongTitle = true
+    preferences.showTitle = true
     preferences.showIsPlayingIcon = true
-    
+    preferences.compactView = false
+
     let playbackModel = PlaybackModel(
         preferences: PlayerPreferencesModel()
     )

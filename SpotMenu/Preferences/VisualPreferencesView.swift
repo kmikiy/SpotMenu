@@ -5,8 +5,8 @@ struct VisualPreferences: View {
     @ObservedObject var playbackModel: PlaybackModel
     @StateObject private var previewModel: StatusItemModel = {
         let model = StatusItemModel()
-        model.topText = "Lorem Ipsum"
-        model.bottomText =
+        model.artist = "Lorem Ipsum"
+        model.title =
             "Ut Sit Amet Justo Efficitur, Imperdiet Elit Sit Amet"
         model.isPlaying = true
         return model
@@ -21,7 +21,7 @@ struct VisualPreferences: View {
 
             VStack(spacing: 10) {
                 settingsRow("Display Artist", binding: $model.showArtist)
-                settingsRow("Display Song Title", binding: $model.showSongTitle)
+                settingsRow("Display Song Title", binding: $model.showTitle)
                 settingsRow(
                     "Show Playing Icon",
                     binding: $model.showIsPlayingIcon
@@ -66,21 +66,11 @@ struct VisualPreferences: View {
                         .foregroundColor(.secondary)
 
                     HStack {
-                        Group {
-                            if model.compactView {
-                                StatusItemView(
-                                    model: previewModel,
-                                    preferencesModel: model,
-                                    playbackModel: playbackModel
-                                )
-                            } else {
-                                StatusItemNonCompactPreview(
-                                    model: previewModel,
-                                    preferencesModel: model,
-                                    playbackModel: playbackModel
-                                )
-                            }
-                        }
+                        StatusItemView(
+                            model: previewModel,
+                            preferencesModel: model,
+                            playbackModel: playbackModel
+                        )
                         .frame(width: model.maxStatusItemWidth, height: 22)
                         .background(Color.gray.opacity(0.1))
                         .cornerRadius(6)
@@ -127,7 +117,7 @@ struct VisualPreferences: View {
 
     private var shouldShowAlwaysFallbackWarning: Bool {
         let noArtist = !model.showArtist
-        let noTitle = !model.showSongTitle
+        let noTitle = !model.showTitle
         let noIsPlaying = !model.showIsPlayingIcon
         let noDisplayAppIcon = !model.showAppIcon
 
@@ -137,52 +127,13 @@ struct VisualPreferences: View {
 
     private var shouldShowConditionalFallbackWarning: Bool {
         let noArtist = !model.showArtist
-        let noTitle = !model.showSongTitle
+        let noTitle = !model.showTitle
         let noIsPlaying = !model.showIsPlayingIcon
         let noDisplayAppIcon = !model.showAppIcon
 
         return noArtist && noTitle && !noIsPlaying && noDisplayAppIcon
     }
 
-}
-
-struct StatusItemNonCompactPreview: View {
-    let model: StatusItemModel
-    @ObservedObject var preferencesModel: VisualPreferencesModel
-    @ObservedObject var playbackModel: PlaybackModel
-
-    var body: some View {
-        let font = NSFont.systemFont(ofSize: 13)
-        let text = StatusItemTextBuilder.buildText(
-            artist: model.topText,
-            title: model.bottomText,
-            isPlaying: model.isPlaying,
-            showArtist: preferencesModel.showArtist,
-            showTitle: preferencesModel.showSongTitle,
-            showIsPlayingIcon: preferencesModel.showIsPlayingIcon,
-            font: font,
-            maxWidth: preferencesModel.maxStatusItemWidth
-        )
-
-        let showIcon = StatusItemDisplayHelper.shouldShowAppIcon(
-            preferences: preferencesModel,
-            model: model
-        )
-
-        HStack(spacing: 4) {
-            if showIcon {
-                Image(playbackModel.playerIconName)
-                .resizable()
-                .frame(width: 16, height: 16)
-                .clipShape(Circle())
-            }
-
-            Text(text)
-                .font(.system(size: 13))
-                .lineLimit(1)
-                .truncationMode(.tail)
-        }
-    }
 }
 
 #Preview {

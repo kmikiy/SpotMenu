@@ -100,7 +100,7 @@ struct PlaybackView: View {
                     .padding([.bottom], 24)
 
                     VStack(spacing: 12) {
-                        Text(model.songArtist)
+                        Text(model.artist)
                             .font(.title3)
                             .foregroundColor(.white)
                             .lineLimit(2)
@@ -130,7 +130,7 @@ struct PlaybackView: View {
                         }
                         .foregroundColor(.white)
 
-                        Text(model.songTitle)
+                        Text(model.title)
                             .font(.title3)
                             .foregroundColor(.white)
                             .lineLimit(2)
@@ -190,7 +190,7 @@ struct PlaybackView: View {
         string:
             "https://i.scdn.co/image/ab67616d0000b27377054612c5275c1515b18a50"
     )
-    model.songArtist = "ssThe Weeknd"
+    model.artist = "The Weeknd"
     return PlaybackView(model: model)
 }
 

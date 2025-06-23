@@ -16,15 +16,15 @@ struct PlayerPreferencesView: View {
 
             HStack {
                 Text("Preferred Player")
-                
+
                 Spacer()
-                
+
                 Picker(selection: $selectedPlayer) {
                     ForEach(PreferredPlayer.allCases) { player in
                         Text(player.displayName).tag(player)
                     }
                 } label: {
-                    
+
                 }
                 .pickerStyle(.menu)
                 .frame(maxWidth: 120)
@@ -33,7 +33,7 @@ struct PlayerPreferencesView: View {
                 }
 
             }
-        
+
             Text(
                 "“Automatic” selects the first available app at launch. If both Spotify and Apple Music are installed or running, Spotify is preferred."
             )

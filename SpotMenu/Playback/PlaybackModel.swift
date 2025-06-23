@@ -51,8 +51,8 @@ class PlaybackModel: ObservableObject {
     @Published var imageURL: URL?
     @Published var image: Image? = nil
     @Published var isPlaying: Bool = false
-    @Published var songTitle: String = ""
-    @Published var songArtist: String = ""
+    @Published var title: String = ""
+    @Published var artist: String = ""
     @Published var totalTime: Double = 1
     @Published var currentTime: Double = 0
     @Published var playerType: PlayerType
@@ -143,8 +143,8 @@ class PlaybackModel: ObservableObject {
         }
 
         DispatchQueue.main.async {
-            self.songTitle = info.title
-            self.songArtist = info.artist
+            self.title = info.title
+            self.artist = info.artist
             self.isPlaying = info.isPlaying
             self.imageURL = info.imageURL
             self.totalTime = info.totalTime
@@ -190,8 +190,8 @@ class PlaybackModel: ObservableObject {
 
     private func reset() {
         DispatchQueue.main.async {
-            self.songTitle = ""
-            self.songArtist = ""
+            self.title = ""
+            self.artist = ""
             self.isPlaying = false
             self.imageURL = nil
             self.currentTime = 0

@@ -5,9 +5,9 @@ class VisualPreferencesModel: ObservableObject {
     @Published var showArtist: Bool {
         didSet { UserDefaults.standard.set(showArtist, forKey: "showArtist") }
     }
-    @Published var showSongTitle: Bool {
+    @Published var showTitle: Bool {
         didSet {
-            UserDefaults.standard.set(showSongTitle, forKey: "showSongTitle")
+            UserDefaults.standard.set(showTitle, forKey: "showTitle")
         }
     }
     @Published var showIsPlayingIcon: Bool {
@@ -34,15 +34,15 @@ class VisualPreferencesModel: ObservableObject {
     }
 
     var isTextVisible: Bool {
-        return showArtist || showSongTitle
+        return showArtist || showTitle
     }
 
     init() {
         let defaults = UserDefaults.standard
 
         showArtist = defaults.object(forKey: "showArtist") as? Bool ?? true
-        showSongTitle =
-            defaults.object(forKey: "showSongTitle") as? Bool ?? true
+        showTitle =
+            defaults.object(forKey: "showTitle") as? Bool ?? true
         showIsPlayingIcon =
             defaults.object(forKey: "showIsPlayingIcon") as? Bool ?? true
         showAppIcon = defaults.object(forKey: "showAppIcon") as? Bool ?? true

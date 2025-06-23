@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.accessory)
 
         playbackModel = PlaybackModel(preferences: playerPreferencesModel)
-        
+
         let circularAppleMusicIcon = Image("AppleMusicIcon")
             .resizable()
             .frame(width: 16, height: 16)
@@ -77,6 +77,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self?.updateStatusItem()
         }
 
+        StatusItemConfigurator.configure(
+            statusItem: statusItem,
+            statusItemModel: statusItemModel,
+            visualPreferencesModel: visualPreferencesModel,
+            playBackModel: playbackModel,
+            toggleAction: #selector(togglePopover),
+            target: self
+        )
+
         setupKeyboardShortcuts()
         updateStatusItem()
 
@@ -105,80 +114,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func updateStatusItem() {
-        let button = statusItem.button
+        statusItemModel.artist = playbackModel.artist
+        statusItemModel.title = playbackModel.title
+        statusItemModel.isPlaying = playbackModel.isPlaying
 
-        guard let button else { return }
-
-        if !visualPreferencesModel.compactView {
-
-            if isUsingCustomStatusView {
-                button.subviews.forEach { $0.removeFromSuperview() }
-                isUsingCustomStatusView = false
-            }
-
-            let font = NSFont.systemFont(ofSize: 13)
-
-            // Create a temporary StatusItemModel to evaluate display logic
-            let tempModel = StatusItemModel()
-            tempModel.topText = playbackModel.songArtist
-            tempModel.bottomText = playbackModel.songTitle
-            tempModel.isPlaying = playbackModel.isPlaying
-
-            // Determine if the app icon should be shown
-            let showIcon = StatusItemDisplayHelper.shouldShowAppIcon(
-                preferences: visualPreferencesModel,
-                model: tempModel
-            )
-
-            // Build status bar text
-            let text = StatusItemTextBuilder.buildText(
-                artist: playbackModel.songArtist,
-                title: playbackModel.songTitle,
-                isPlaying: playbackModel.isPlaying,
-                showArtist: visualPreferencesModel.showArtist,
-                showTitle: visualPreferencesModel.showSongTitle,
-                showIsPlayingIcon: visualPreferencesModel.showIsPlayingIcon,
-                font: font,
-                maxWidth: visualPreferencesModel.maxStatusItemWidth
-            )
-
-            // Apply to status item
-            button.title = text
-            button.font = font
-
-            if showIcon {
-                button.image =
-                    playbackModel.playerType == .appleMusic
-                    ? appleMusicIcon : spotifyIcon
-            } else {
-                button.image = nil
-            }
-            button.imagePosition = .imageLeft
-            statusItem.length = NSStatusItem.variableLength
-        } else {
-            if !isUsingCustomStatusView {
-                button.title = ""
-                button.image = nil
-                StatusItemConfigurator.configure(
-                    statusItem: statusItem,
-                    statusItemModel: statusItemModel,
-                    visualPreferencesModel: visualPreferencesModel,
-                    playBackModel: playbackModel,
-                    toggleAction: #selector(togglePopover),
-                    target: self
-                )
-                isUsingCustomStatusView = true
-            }
-
-            statusItemModel.topText = playbackModel.songArtist
-            statusItemModel.bottomText = playbackModel.songTitle
-            statusItemModel.isPlaying = playbackModel.isPlaying
-
-            StatusItemConfigurator.updateWidth(
-                statusItem: statusItem,
-                maxWidth: visualPreferencesModel.maxStatusItemWidth
-            )
-        }
+        StatusItemConfigurator.updateWidth(
+            statusItem: statusItem,
+            maxWidth: visualPreferencesModel.maxStatusItemWidth
+        )
     }
 
     @objc func togglePopover() {
