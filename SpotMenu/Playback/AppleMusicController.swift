@@ -3,6 +3,10 @@ import Foundation
 import SwiftUI
 
 class AppleMusicController: MusicPlayerController {
+    private var lastArtist: String?
+    private var lastTitle: String?
+    private var lastImage: NSImage?
+
     func fetchNowPlayingInfo() -> PlaybackInfo? {
         let script = """
                 tell application \"Music\"
@@ -36,7 +40,12 @@ class AppleMusicController: MusicPlayerController {
                 parts[4].trimmingCharacters(in: .whitespacesAndNewlines)
                 == "true"
 
-            let image = getCurrentTrackArtwork()
+            if artist != lastArtist || title != lastTitle {
+                lastImage = getCurrentTrackArtwork()
+                lastArtist = artist
+                lastTitle = title
+            }
+
             return PlaybackInfo(
                 artist: artist,
                 title: title,
@@ -44,7 +53,7 @@ class AppleMusicController: MusicPlayerController {
                 imageURL: nil,
                 totalTime: totalTime,
                 currentTime: currentTime,
-                image: image != nil ? Image(nsImage: image!) : nil
+                image: lastImage != nil ? Image(nsImage: lastImage!) : nil
             )
         }
 
@@ -63,8 +72,6 @@ class AppleMusicController: MusicPlayerController {
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: script) {
             let output = scriptObject.executeAndReturnError(&error)
-
-            // Get the raw data
             let data = output.data
             return NSImage(data: data)
         }
