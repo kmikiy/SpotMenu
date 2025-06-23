@@ -5,18 +5,21 @@ final class StatusItemConfigurator {
         statusItem: NSStatusItem,
         statusItemModel: StatusItemModel,
         visualPreferencesModel: VisualPreferencesModel,
+        playBackModel: PlaybackModel,
         toggleAction: Selector,
         target: AnyObject
     ) {
         let view = StatusItemView(
             model: statusItemModel,
-            preferencesModel: visualPreferencesModel
+            preferencesModel: visualPreferencesModel,
+            playbackModel: playBackModel
         )
         let hostingView = NSHostingView(rootView: view)
         hostingView.translatesAutoresizingMaskIntoConstraints = false
         hostingView.layout()
 
         if let button = statusItem.button {
+            button.image = NSImage()
             button.addSubview(hostingView)
             NSLayoutConstraint.activate([
                 hostingView.centerXAnchor.constraint(

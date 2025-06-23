@@ -3,54 +3,59 @@ import SwiftUI
 struct StatusItemView: View {
     @ObservedObject var model: StatusItemModel
     @ObservedObject var preferencesModel: VisualPreferencesModel
+    @ObservedObject var playbackModel: PlaybackModel
 
     var body: some View {
+        let showIcon = StatusItemDisplayHelper.shouldShowAppIcon(
+            preferences: preferencesModel,
+            model: model
+        )
+
         Group {
-            if model.showAppIconOnly || preferencesModel.showAppIconOnly {
-                Image("SpotifyIcon")
+            if showIcon && !preferencesModel.isTextVisible && !model.isPlaying {
+                Image(playbackModel.playerIconName)
                     .renderingMode(.template)
                     .resizable()
                     .frame(width: 16, height: 16)
                     .clipShape(Circle())
             } else {
                 HStack(spacing: 4) {
-                    Image("SpotifyIcon")
-                        .renderingMode(.template)
-                        .resizable()
-                        .frame(width: 16, height: 16)
-                        .clipShape(Circle())
+                    if showIcon {
+                        Image(playbackModel.playerIconName)
+                            .renderingMode(.template)
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                            .clipShape(Circle())
+                    }
 
                     if preferencesModel.showIsPlayingIcon && model.isPlaying {
                         Text("♫").font(.system(size: 13))
                     }
 
-                    if !model.isTextEmpty && preferencesModel.isTextVisible {
-                        let sharedWidth = calculateMaxTextWidth(
-                            topText: preferencesModel.showArtist ? model.topText : nil,
-                            topFont: .systemFont(ofSize: 10, weight: .medium),
-                            bottomText: preferencesModel.showSongTitle ? model.bottomText : nil,
-                            bottomFont: .systemFont(ofSize: 9)
-                        )
-
-                        VStack(spacing: -2) {
-                            if preferencesModel.showArtist {
-                                AutoMarqueeTextView(
-                                    text: model.topText,
-                                    font: .systemFont(ofSize: 10, weight: .medium),
-                                    speed: 20
-                                )
-                                .frame(width: sharedWidth, height: 12)
-                            }
-
-                            if preferencesModel.showSongTitle {
-                                AutoMarqueeTextView(
-                                    text: model.bottomText,
-                                    font: .systemFont(ofSize: 9),
-                                    speed: 20
-                                )
-                                .frame(width: sharedWidth, height: 11)
+                    if preferencesModel.compactView {
+                        if !model.isTextEmpty && preferencesModel.isTextVisible
+                        {
+                            VStack(spacing: -2) {
+                                if preferencesModel.showArtist {
+                                    Text(model.artist)
+                                        .font(
+                                            .system(size: 10, weight: .medium)
+                                        )
+                                }
+                                if preferencesModel.showTitle {
+                                    Text(model.title)
+                                        .font(.system(size: 9))
+                                }
                             }
                         }
+                    } else {
+                        Text(
+                            model.buildText(
+                                visualPreferencesModel: preferencesModel,
+                                font: NSFont.systemFont(ofSize: 13)
+                            )
+                        )
+                        .font(.system(size: 13))
                     }
                 }
             }
@@ -87,20 +92,43 @@ struct StatusItemView: View {
     }
 }
 
+struct StatusItemDisplayHelper {
+    static func shouldShowAppIcon(
+        preferences: VisualPreferencesModel,
+        model: StatusItemModel
+    ) -> Bool {
+        if preferences.showAppIcon {
+            return true
+        }
+
+        let noArtist = !preferences.showArtist || model.artist.isEmpty
+        let noTitle = !preferences.showTitle || model.title.isEmpty
+        let noPlaying = !preferences.showIsPlayingIcon || !model.isPlaying
+
+        let nothingToShow = noArtist && noTitle && noPlaying
+        return nothingToShow
+    }
+}
 
 #Preview {
     let model = StatusItemModel()
-    model.topText = "test"  // artist
-    model.bottomText =
-        "very long text that should be truncated very very long text"  // title
-    model.isPlaying = true  // is playing
+    model.artist = "test"
+    model.title =
+        "very long text that should be truncated very very long text"
+    model.isPlaying = true
 
     let preferences = VisualPreferencesModel()
     preferences.showArtist = true
-    preferences.showSongTitle = true
+    preferences.showTitle = true
     preferences.showIsPlayingIcon = true
+    preferences.compactView = false
+
+    let playbackModel = PlaybackModel(
+        preferences: PlayerPreferencesModel()
+    )
     return StatusItemView(
         model: model,
-        preferencesModel: preferences
+        preferencesModel: preferences,
+        playbackModel: playbackModel
     )
 }

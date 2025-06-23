@@ -141,6 +141,10 @@
             text-align: center;
         }
 
+        .tall-video {
+            height: 500px;
+            max-height: none !important;
+        }
 
         .donate {
             display: flex;
@@ -180,10 +184,10 @@
     <header>
         <img class="logo" src="assets/media/app-icon.png" alt="SpotMenu Logo">
         <h1>SpotMenu</h1>
-        <div class="tagline">Spotify playback in your macOS menu bar</div>
+        <div class="tagline">Spotify &amp; Apple Music in your macOS menu bar</div>
         <div class="buttons">
-            <a href="https://github.com/kmikiy/SpotMenu/releases/download/v2.0.0-beta/SpotMenu.app.zip">Download
-                v2.0.0-beta</a>
+            <a href="https://github.com/kmikiy/SpotMenu/releases/download/v2.0.2-beta/SpotMenu.app.zip">Download
+                v2.0.2-beta</a>
             <a href="https://github.com/kmikiy/SpotMenu?tab=readme-ov-file#-installation"
                 target="_blank">Instructions</a>
             <a href="https://github.com/kmikiy/SpotMenu" target="_blank">GitHub</a>
@@ -200,6 +204,7 @@
             <li>Text is truncated with ellipsis if too long</li>
             <li>Preference setting to control max text length</li>
             <li>No scrolling text — cleaner and distraction-free</li>
+            <li>New Player tab in Preferences: choose between Spotify, Apple Music, or Auto</li>
         </ul>
     </section>
 
@@ -214,8 +219,10 @@
     <section class="section">
         <h2>⚙️ Preferences</h2>
         <div class="video-card">
-            <video src="assets/media/preferences.mov" autoplay loop muted playsinline controls></video>
-            <p class="video-caption">Customize your experience with visual and shortcut settings.</p>
+            <video class="tall-video" src="assets/media/preferences.mov" autoplay loop muted playsinline
+                controls></video>
+            <p class="video-caption">Customize visuals, shortcuts, and choose your music player (Spotify, Apple Music,
+                Auto).</p>
         </div>
     </section>
 
@@ -231,7 +238,7 @@
     </section>
 
     <footer>
-        SpotMenu v2.0.0-beta • Built with 💙 by <a href="https://github.com/kmikiy" target="_blank">@kmikiy</a>
+        SpotMenu v2.0.1-beta • Built with 💙 by <a href="https://github.com/kmikiy" target="_blank">@kmikiy</a>
     </footer>
 
 </body>

@@ -28,20 +28,52 @@ struct PlaybackView: View {
                 .clipShape(
                     RoundedRectangle(cornerRadius: 16, style: .continuous)
                 )
+            } else if let fallbackImage = model.image {
+                fallbackImage
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 300, height: 300)
+                    .clipped()
+                    .blur(radius: isHovering ? 8 : 0)
+                    .overlay(
+                        isHovering
+                            ? Color.accentColor.opacity(0.3) : nil
+                    )
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                    )
+            } else {
+                ZStack {
+                    Color.clear
+
+                    Image(systemName: "music.note")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(.white.opacity(0.2))
+                        .frame(width: 100, height: 100)
+                }
+                .frame(width: 300, height: 300)
+                .blur(radius: isHovering ? 8 : 0)
+                .overlay(
+                    isHovering ? Color.accentColor.opacity(0.3) : nil
+                )
+                .clipShape(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                )
             }
 
             if isHovering {
                 VStack(spacing: 0) {
                     HStack {
-                        Button(action: model.openSpotify) {
-                            Image("SpotifyIcon")
+                        Button(action: model.openMusicApp) {
+                            Image(model.playerIconName)
                                 .renderingMode(.template)
                                 .resizable()
+                                .scaledToFit()
                                 .foregroundColor(.white)
                                 .frame(width: 20, height: 20)
                                 .padding(0)
-                                .background(.ultraThinMaterial)
-                                .clipShape(Circle())
+                                .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
 
@@ -68,7 +100,7 @@ struct PlaybackView: View {
                     .padding([.bottom], 24)
 
                     VStack(spacing: 12) {
-                        Text(model.songArtist)
+                        Text(model.artist)
                             .font(.title3)
                             .foregroundColor(.white)
                             .lineLimit(2)
@@ -98,7 +130,7 @@ struct PlaybackView: View {
                         }
                         .foregroundColor(.white)
 
-                        Text(model.songTitle)
+                        Text(model.title)
                             .font(.title3)
                             .foregroundColor(.white)
                             .lineLimit(2)
@@ -121,7 +153,7 @@ struct PlaybackView: View {
                         )
                         .accentColor(.accentColor)
                         .frame(width: 200)
-                        .preferredColorScheme(.light)  
+                        .preferredColorScheme(.light)
 
                         Text(formatTime(model.totalTime))
                             .font(.body.monospacedDigit())
@@ -153,12 +185,12 @@ struct PlaybackView: View {
 }
 
 #Preview {
-    let model = PlaybackModel()
+    let model = PlaybackModel(preferences: PlayerPreferencesModel())
     model.imageURL = URL(
         string:
             "https://i.scdn.co/image/ab67616d0000b27377054612c5275c1515b18a50"
     )
-    model.songArtist = "ssThe Weeknd"
+    model.artist = "The Weeknd"
     return PlaybackView(model: model)
 }
 

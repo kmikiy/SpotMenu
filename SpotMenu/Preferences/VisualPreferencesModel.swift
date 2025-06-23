@@ -5,9 +5,9 @@ class VisualPreferencesModel: ObservableObject {
     @Published var showArtist: Bool {
         didSet { UserDefaults.standard.set(showArtist, forKey: "showArtist") }
     }
-    @Published var showSongTitle: Bool {
+    @Published var showTitle: Bool {
         didSet {
-            UserDefaults.standard.set(showSongTitle, forKey: "showSongTitle")
+            UserDefaults.standard.set(showTitle, forKey: "showTitle")
         }
     }
     @Published var showIsPlayingIcon: Bool {
@@ -17,6 +17,9 @@ class VisualPreferencesModel: ObservableObject {
                 forKey: "showIsPlayingIcon"
             )
         }
+    }
+    @Published var showAppIcon: Bool {
+        didSet { UserDefaults.standard.set(showAppIcon, forKey: "showAppIcon") }
     }
     @Published var compactView: Bool {
         didSet { UserDefaults.standard.set(compactView, forKey: "compactView") }
@@ -30,22 +33,19 @@ class VisualPreferencesModel: ObservableObject {
         }
     }
 
-    var showAppIconOnly: Bool {
-        return !showArtist && !showSongTitle && !showIsPlayingIcon
-    }
-
     var isTextVisible: Bool {
-        return showArtist || showSongTitle
+        return showArtist || showTitle
     }
 
     init() {
         let defaults = UserDefaults.standard
 
         showArtist = defaults.object(forKey: "showArtist") as? Bool ?? true
-        showSongTitle =
-            defaults.object(forKey: "showSongTitle") as? Bool ?? true
+        showTitle =
+            defaults.object(forKey: "showTitle") as? Bool ?? true
         showIsPlayingIcon =
             defaults.object(forKey: "showIsPlayingIcon") as? Bool ?? true
+        showAppIcon = defaults.object(forKey: "showAppIcon") as? Bool ?? true
         compactView = defaults.object(forKey: "compactView") as? Bool ?? true
         maxStatusItemWidth =
             defaults.object(forKey: "maxStatusItemWidth") as? CGFloat ?? 150

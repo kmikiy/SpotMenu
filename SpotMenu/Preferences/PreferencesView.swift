@@ -2,6 +2,8 @@ import SwiftUI
 
 struct PreferencesView: View {
     @ObservedObject var visualPreferencesModel: VisualPreferencesModel
+    @ObservedObject var playbackModel: PlaybackModel
+    @ObservedObject var playerPreferencesModel: PlayerPreferencesModel
 
     @State private var tabHeight: CGFloat = 0
 
@@ -9,7 +11,10 @@ struct PreferencesView: View {
         VStack(spacing: 16) {
             TabView {
                 tabContainer {
-                    VisualPreferences(model: visualPreferencesModel)
+                    VisualPreferences(
+                        model: visualPreferencesModel,
+                        playbackModel: playbackModel
+                    )
                 }
                 .tabItem { Text("Visuals") }
 
@@ -17,11 +22,16 @@ struct PreferencesView: View {
                     ShortcutPreferences()
                 }
                 .tabItem { Text("Shortcuts") }
+
+                tabContainer {
+                    PlayerPreferencesView(model: playerPreferencesModel)
+                }
+                .tabItem { Text("Player") }
             }
             .frame(height: tabHeight)
             .onPreferenceChange(TabHeightKey.self) { tabHeight = $0 }
 
-            HStack() {
+            HStack {
                 Spacer()
                 Button(action: {
                     NSApp.terminate(nil)
@@ -64,5 +74,9 @@ private struct TabHeightKey: PreferenceKey {
 }
 
 #Preview {
-    PreferencesView(visualPreferencesModel: VisualPreferencesModel())
+    PreferencesView(
+        visualPreferencesModel: VisualPreferencesModel(),
+        playbackModel: PlaybackModel(preferences: PlayerPreferencesModel()),
+        playerPreferencesModel: PlayerPreferencesModel()
+    )
 }

@@ -2,10 +2,11 @@ import SwiftUI
 
 struct VisualPreferences: View {
     @ObservedObject var model: VisualPreferencesModel
+    @ObservedObject var playbackModel: PlaybackModel
     @StateObject private var previewModel: StatusItemModel = {
         let model = StatusItemModel()
-        model.topText = "Lorem Ipsum"
-        model.bottomText =
+        model.artist = "Lorem Ipsum"
+        model.title =
             "Ut Sit Amet Justo Efficitur, Imperdiet Elit Sit Amet"
         model.isPlaying = true
         return model
@@ -20,11 +21,12 @@ struct VisualPreferences: View {
 
             VStack(spacing: 10) {
                 settingsRow("Display Artist", binding: $model.showArtist)
-                settingsRow("Display Song Title", binding: $model.showSongTitle)
+                settingsRow("Display Song Title", binding: $model.showTitle)
                 settingsRow(
                     "Show Playing Icon",
                     binding: $model.showIsPlayingIcon
                 )
+                settingsRow("Display App Icon", binding: $model.showAppIcon)
                 settingsRow("Compact View", binding: $model.compactView)
                 HStack {
                     Text("Max Width")
@@ -39,36 +41,43 @@ struct VisualPreferences: View {
                         .frame(width: 50)
                 }
 
+                if shouldShowAlwaysFallbackWarning {
+                    Text(
+                        "Note: All display options are turned off. The app icon will be shown as a fallback to prevent an empty status item."
+                    )
+                    .font(.caption2)
+                    .foregroundColor(.orange)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, 2)
+                } else if shouldShowConditionalFallbackWarning {
+                    Text(
+                        "Note: If only 'Show Playing Icon' is enabled but nothing is playing, the app icon will be shown as a fallback."
+                    )
+                    .font(.caption2)
+                    .foregroundColor(.orange)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, 2)
+                }
+
                 Spacer()
                 VStack(alignment: .leading, spacing: 6) {
                     Text("Status Item Preview")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    
+
                     HStack {
-                        Group {
-                            if model.compactView {
-                                StatusItemView(
-                                    model: previewModel,
-                                    preferencesModel: model
-                                )
-                            } else {
-                                StatusItemNonCompactPreview(
-                                    model: previewModel,
-                                    preferencesModel: model
-                                )
-                            }
-                        }
+                        StatusItemView(
+                            model: previewModel,
+                            preferencesModel: model,
+                            playbackModel: playbackModel
+                        )
                         .frame(width: model.maxStatusItemWidth, height: 22)
                         .background(Color.gray.opacity(0.1))
                         .cornerRadius(6)
                         .overlay(
                             RoundedRectangle(cornerRadius: 6)
                                 .stroke(
-                                    style: StrokeStyle(
-                                        lineWidth: 1,
-                                        dash: [4]
-                                    )
+                                    style: StrokeStyle(lineWidth: 1, dash: [4])
                                 )
                                 .foregroundColor(.gray.opacity(0.4))
                         )
@@ -90,7 +99,7 @@ struct VisualPreferences: View {
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: 350)
+        .frame(width: 400, height: 420)
     }
 
     @ViewBuilder
@@ -105,39 +114,33 @@ struct VisualPreferences: View {
                 .controlSize(.small)
         }
     }
-}
 
-struct StatusItemNonCompactPreview: View {
-    let model: StatusItemModel
-    @ObservedObject var preferencesModel: VisualPreferencesModel
+    private var shouldShowAlwaysFallbackWarning: Bool {
+        let noArtist = !model.showArtist
+        let noTitle = !model.showTitle
+        let noIsPlaying = !model.showIsPlayingIcon
+        let noDisplayAppIcon = !model.showAppIcon
 
-    var body: some View {
-        let text = StatusItemTextBuilder.buildText(
-            artist: model.topText,
-            title: model.bottomText,
-            isPlaying: model.isPlaying,
-            showArtist: preferencesModel.showArtist,
-            showTitle: preferencesModel.showSongTitle,
-            showIsPlayingIcon: preferencesModel.showIsPlayingIcon,
-            font: NSFont.systemFont(ofSize: 13),
-            maxWidth: preferencesModel.maxStatusItemWidth
-        )
-
-        HStack(spacing: 4) {
-            Image("SpotifyIcon")
-                .resizable()
-                .frame(width: 16, height: 16)
-                .clipShape(Circle())
-
-            Text(text)
-                .font(.system(size: 13))
-                .lineLimit(1)
-                .truncationMode(.tail)
-        }
+        return noArtist && noTitle && noIsPlaying && noDisplayAppIcon
 
     }
+
+    private var shouldShowConditionalFallbackWarning: Bool {
+        let noArtist = !model.showArtist
+        let noTitle = !model.showTitle
+        let noIsPlaying = !model.showIsPlayingIcon
+        let noDisplayAppIcon = !model.showAppIcon
+
+        return noArtist && noTitle && !noIsPlaying && noDisplayAppIcon
+    }
+
 }
 
 #Preview {
-    VisualPreferences(model: VisualPreferencesModel())
+    VisualPreferences(
+        model: VisualPreferencesModel(),
+        playbackModel: PlaybackModel(
+            preferences: PlayerPreferencesModel()
+        )
+    )
 }

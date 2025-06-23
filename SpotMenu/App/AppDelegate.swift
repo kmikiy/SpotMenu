@@ -5,7 +5,8 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var statusItemModel = StatusItemModel()
-    var playbackModel = PlaybackModel()
+    var playerPreferencesModel = PlayerPreferencesModel()
+    var playbackModel: PlaybackModel!
     var visualPreferencesModel = VisualPreferencesModel()
     var popoverManager: PopoverManager!
     var preferencesWindow: NSWindow?
@@ -13,9 +14,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var visualPreferencesModelCancellable: AnyCancellable?
     var isUsingCustomStatusView = false
     var spotifyIcon: NSImage?
+    var appleMusicIcon: NSImage?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
+
+        playbackModel = PlaybackModel(preferences: playerPreferencesModel)
+
+        let circularAppleMusicIcon = Image("AppleMusicIcon")
+            .resizable()
+            .frame(width: 16, height: 16)
+            .clipShape(Circle())
+
+        if let rendered = nsImage(
+            from: circularAppleMusicIcon,
+            size: CGSize(width: 16, height: 16)
+        ) {
+            appleMusicIcon = rendered
+            appleMusicIcon?.isTemplate = true
+            appleMusicIcon?.size = NSSize(width: 16, height: 16)
+        }
 
         spotifyIcon = NSImage(named: "SpotifyIcon")
         spotifyIcon?.isTemplate = true
@@ -59,6 +77,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self?.updateStatusItem()
         }
 
+        StatusItemConfigurator.configure(
+            statusItem: statusItem,
+            statusItemModel: statusItemModel,
+            visualPreferencesModel: visualPreferencesModel,
+            playBackModel: playbackModel,
+            toggleAction: #selector(togglePopover),
+            target: self
+        )
+
         setupKeyboardShortcuts()
         updateStatusItem()
 
@@ -87,60 +114,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func updateStatusItem() {
-        let button = statusItem.button
+        statusItemModel.artist = playbackModel.artist
+        statusItemModel.title = playbackModel.title
+        statusItemModel.isPlaying = playbackModel.isPlaying
 
-        guard let button else { return }
-
-        if !visualPreferencesModel.compactView {
-
-            if isUsingCustomStatusView {
-                button.subviews.forEach { $0.removeFromSuperview() }
-                isUsingCustomStatusView = false
-            }
-
-            let font = NSFont.systemFont(ofSize: 13)
-            let text = StatusItemTextBuilder.buildText(
-                artist: playbackModel.songArtist,
-                title: playbackModel.songTitle,
-                isPlaying: playbackModel.isPlaying,
-                showArtist: visualPreferencesModel.showArtist,
-                showTitle: visualPreferencesModel.showSongTitle,
-                showIsPlayingIcon: visualPreferencesModel.showIsPlayingIcon,
-                font: font,
-                maxWidth: visualPreferencesModel.maxStatusItemWidth
-            )
-
-            button.title = text
-            button.font = font
-            button.image = spotifyIcon
-            button.imagePosition = .imageLeft
-            statusItem.length = NSStatusItem.variableLength
-            
-        } else {
-            if !isUsingCustomStatusView {
-                button.title = ""
-                button.image = nil
-                StatusItemConfigurator.configure(
-                    statusItem: statusItem,
-                    statusItemModel: statusItemModel,
-                    visualPreferencesModel: visualPreferencesModel,
-                    toggleAction: #selector(togglePopover),
-                    target: self
-                )
-                isUsingCustomStatusView = true
-            }
-
-            statusItemModel.topText = playbackModel.songArtist
-            statusItemModel.bottomText = playbackModel.songTitle
-            statusItemModel.isPlaying = playbackModel.isPlaying
-
-            StatusItemConfigurator.updateWidth(
-                statusItem: statusItem,
-                maxWidth: visualPreferencesModel.maxStatusItemWidth
-            )
-        }
+        StatusItemConfigurator.updateWidth(
+            statusItem: statusItem,
+            maxWidth: visualPreferencesModel.maxStatusItemWidth
+        )
     }
-
 
     @objc func togglePopover() {
         popoverManager.toggle(relativeTo: statusItem.button)
@@ -160,14 +142,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc func refreshAction() {
-        playbackModel.fetchSpotifyInfo()
+        playbackModel.fetchInfo()
     }
 
     @objc func preferencesAction() {
         if preferencesWindow == nil {
             let hosting = NSHostingView(
                 rootView: PreferencesView(
-                    visualPreferencesModel: visualPreferencesModel
+                    visualPreferencesModel: visualPreferencesModel,
+                    playbackModel: playbackModel,
+                    playerPreferencesModel: playerPreferencesModel
                 )
             )
             let window = NSWindow(
@@ -193,4 +177,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.terminate(nil)
     }
 
+}
+
+func nsImage<Content: View>(
+    from view: Content,
+    size: CGSize,
+    scale: CGFloat = 1.0
+) -> NSImage? {
+    let hostingView = NSHostingView(rootView: view)
+    hostingView.frame = CGRect(origin: .zero, size: size)
+
+    let rep = hostingView.bitmapImageRepForCachingDisplay(
+        in: hostingView.bounds
+    )
+    guard let imageRep = rep else { return nil }
+
+    hostingView.cacheDisplay(in: hostingView.bounds, to: imageRep)
+
+    let nsImage = NSImage(size: size)
+    nsImage.addRepresentation(imageRep)
+
+    return nsImage
 }
