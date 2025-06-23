@@ -32,6 +32,14 @@ class VisualPreferencesModel: ObservableObject {
             )
         }
     }
+    @Published var enableScrollingText: Bool {
+        didSet {
+            UserDefaults.standard.set(
+                enableScrollingText,
+                forKey: "enableScrollingText"
+            )
+        }
+    }
 
     var isTextVisible: Bool {
         return showArtist || showTitle
@@ -49,5 +57,7 @@ class VisualPreferencesModel: ObservableObject {
         compactView = defaults.object(forKey: "compactView") as? Bool ?? true
         maxStatusItemWidth =
             defaults.object(forKey: "maxStatusItemWidth") as? CGFloat ?? 150
+        enableScrollingText =
+            defaults.object(forKey: "enableScrollingText") as? Bool ?? false
     }
 }

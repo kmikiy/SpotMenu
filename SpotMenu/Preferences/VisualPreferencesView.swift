@@ -6,8 +6,7 @@ struct VisualPreferences: View {
     @StateObject private var previewModel: StatusItemModel = {
         let model = StatusItemModel()
         model.artist = "Lorem Ipsum"
-        model.title =
-            "Ut Sit Amet Justo Efficitur, Imperdiet Elit Sit Amet"
+        model.title = "Ut Sit Amet Justo Efficitur, Imperdiet Elit Sit Amet"
         model.isPlaying = true
         return model
     }()
@@ -28,6 +27,11 @@ struct VisualPreferences: View {
                 )
                 settingsRow("Display App Icon", binding: $model.showAppIcon)
                 settingsRow("Compact View", binding: $model.compactView)
+                settingsRow(
+                    "Enable Scrolling Text",
+                    binding: $model.enableScrollingText
+                )
+
                 HStack {
                     Text("Max Width")
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -60,6 +64,7 @@ struct VisualPreferences: View {
                 }
 
                 Spacer()
+
                 VStack(alignment: .leading, spacing: 6) {
                     Text("Status Item Preview")
                         .font(.caption)
@@ -93,13 +98,12 @@ struct VisualPreferences: View {
                     .fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(width: 300)
-
             }
 
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: 420)
+        .frame(width: 400, height: 440)
     }
 
     @ViewBuilder
@@ -122,7 +126,6 @@ struct VisualPreferences: View {
         let noDisplayAppIcon = !model.showAppIcon
 
         return noArtist && noTitle && noIsPlaying && noDisplayAppIcon
-
     }
 
     private var shouldShowConditionalFallbackWarning: Bool {
@@ -133,7 +136,6 @@ struct VisualPreferences: View {
 
         return noArtist && noTitle && !noIsPlaying && noDisplayAppIcon
     }
-
 }
 
 #Preview {
