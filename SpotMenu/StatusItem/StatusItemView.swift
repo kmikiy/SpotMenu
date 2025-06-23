@@ -53,7 +53,7 @@ struct StatusItemView: View {
                                     } else {
                                         Text(model.artist)
                                             .font(.system(size: 10, weight: .medium))
-                                            .frame(width: compactWidth, height: 12)
+                                            .frame(width: compactWidth+1, height: 12)
                                             .lineLimit(1)
                                             .truncationMode(.tail)
                                     }
@@ -66,7 +66,7 @@ struct StatusItemView: View {
                                             font: .systemFont(ofSize: 9),
                                             speed: 20
                                         )
-                                        .frame(width: compactWidth, height: 11)
+                                        .frame(width: compactWidth+2, height: 11)
                                     } else {
                                         Text(model.title)
                                             .font(.system(size: 9))
@@ -95,7 +95,7 @@ struct StatusItemView: View {
                                 font: .systemFont(ofSize: 13),
                                 speed: 20
                             )
-                            .frame(width: normalWidth, height: 18)
+                            .frame(width: normalWidth, height: 16)
                         } else {
                             Text(text)
                                 .font(.system(size: 13))
@@ -110,7 +110,7 @@ struct StatusItemView: View {
         .padding(.horizontal, 0)
         .padding(.vertical, 2)
         .background(Color.clear)
-        .frame(maxWidth: preferencesModel.maxStatusItemWidth)
+        .frame(maxWidth: preferencesModel.maxStatusItemWidth+2)
         .lineLimit(1)
         .truncationMode(.tail)
     }
@@ -137,8 +137,12 @@ struct StatusItemView: View {
             NSString(string: $0).size(withAttributes: [.font: bottomFont]).width
         } ?? 0
 
-        return min(max(topWidth, bottomWidth), availableWidth)
+        let rawWidth = min(max(topWidth, bottomWidth), availableWidth)
+
+        // Round to the nearest whole number
+        return ceil(rawWidth)
     }
+
 }
 
 

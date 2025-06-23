@@ -65,6 +65,9 @@ class MarqueeView: NSView {
     }
 
     func update(text: String, font: NSFont, speed: CGFloat, wrapAround: Bool) {
+        let textChanged = (self.text != text)
+        let fontChanged = (self.font != font)
+
         self.text = text
         self.font = font
         self.speed = speed
@@ -84,7 +87,9 @@ class MarqueeView: NSView {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             let currentSize = self.bounds.size
-            if self.previousBoundsSize != currentSize {
+            if self.previousBoundsSize != currentSize || textChanged
+                || fontChanged
+            {
                 self.previousBoundsSize = currentSize
                 self.layoutText()
             }
