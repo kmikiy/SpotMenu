@@ -17,7 +17,7 @@ class StatusItemModel: ObservableObject {
     func buildText(
         visualPreferencesModel: VisualPreferencesModel,
         font: NSFont,
-    ) -> String {
+    ) -> (String, String) {
         let artistText =
             (visualPreferencesModel.showArtist && !(artist).isEmpty)
             ? artist : nil
@@ -38,11 +38,11 @@ class StatusItemModel: ObservableObject {
 
         let full = [spaced].compactMap { $0 }.joined(separator: " ")
 
-        return truncateText(
+        return (full, truncateText(
             full,
             font: font,
             maxWidth: visualPreferencesModel.maxStatusItemWidth
-        )
+        ))
     }
 
     private func measureTextWidth(_ text: String, font: NSFont) -> CGFloat {

@@ -35,27 +35,58 @@ struct StatusItemView: View {
                     if preferencesModel.compactView {
                         if !model.isTextEmpty && preferencesModel.isTextVisible
                         {
+                            let compactWidth = calculateMaxTextWidth(
+                                topText: preferencesModel.showArtist
+                                    ? model.artist : nil,
+                                topFont: .systemFont(
+                                    ofSize: 10,
+                                    weight: .medium
+                                ),
+                                bottomText: preferencesModel.showTitle
+                                    ? model.title : nil,
+                                bottomFont: .systemFont(ofSize: 9)
+                            )
+
                             VStack(spacing: -2) {
                                 if preferencesModel.showArtist {
-                                    Text(model.artist)
-                                        .font(
-                                            .system(size: 10, weight: .medium)
-                                        )
+                                    AutoMarqueeTextView(
+                                        text: model.artist,
+                                        font: .systemFont(
+                                            ofSize: 10,
+                                            weight: .medium
+                                        ),
+                                        speed: 20
+                                    )
+                                    .frame(width: compactWidth, height: 12)
                                 }
                                 if preferencesModel.showTitle {
-                                    Text(model.title)
-                                        .font(.system(size: 9))
+                                    AutoMarqueeTextView(
+                                        text: model.title,
+                                        font: .systemFont(ofSize: 9),
+                                        speed: 20
+                                    )
+                                    .frame(width: compactWidth, height: 11)
                                 }
                             }
                         }
                     } else {
-                        Text(
-                            model.buildText(
-                                visualPreferencesModel: preferencesModel,
-                                font: NSFont.systemFont(ofSize: 13)
-                            )
+                        let (text, _) = model.buildText(
+                            visualPreferencesModel: preferencesModel,
+                            font: NSFont.systemFont(ofSize: 13)
                         )
-                        .font(.system(size: 13))
+                        let normalWidth = calculateMaxTextWidth(
+                            topText: text,
+                            topFont: .systemFont(ofSize: 13, weight: .medium),
+                            bottomText: nil,
+                            bottomFont: .systemFont(ofSize: 9)
+                        )
+
+                        AutoMarqueeTextView(
+                            text: text,
+                            font: .systemFont(ofSize: 13),
+                            speed: 20
+                        )
+                        .frame(width: normalWidth, height: 18)
                     }
                 }
             }
@@ -76,17 +107,23 @@ struct StatusItemView: View {
     ) -> CGFloat {
         let iconWidth: CGFloat = 16
         let spacing: CGFloat = 4
-        let musicIconWidth: CGFloat = (preferencesModel.showIsPlayingIcon && model.isPlaying) ? 16 : 0
+        let musicIconWidth: CGFloat =
+            (preferencesModel.showIsPlayingIcon && model.isPlaying) ? 16 : 0
         let totalMaxWidth = preferencesModel.maxStatusItemWidth
-        let availableWidth = totalMaxWidth - iconWidth - spacing - musicIconWidth
+        let availableWidth =
+            totalMaxWidth - iconWidth - spacing - musicIconWidth
 
-        let topWidth = topText.map {
-            NSString(string: $0).size(withAttributes: [.font: topFont]).width
-        } ?? 0
+        let topWidth =
+            topText.map {
+                NSString(string: $0).size(withAttributes: [.font: topFont])
+                    .width
+            } ?? 0
 
-        let bottomWidth = bottomText.map {
-            NSString(string: $0).size(withAttributes: [.font: bottomFont]).width
-        } ?? 0
+        let bottomWidth =
+            bottomText.map {
+                NSString(string: $0).size(withAttributes: [.font: bottomFont])
+                    .width
+            } ?? 0
 
         return min(max(topWidth, bottomWidth), availableWidth)
     }

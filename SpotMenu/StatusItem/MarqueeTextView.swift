@@ -1,5 +1,5 @@
-import SwiftUI
 import AppKit
+import SwiftUI
 
 struct AutoMarqueeTextView: NSViewRepresentable {
     var text: String
@@ -14,7 +14,12 @@ struct AutoMarqueeTextView: NSViewRepresentable {
     }
 
     func updateNSView(_ nsView: MarqueeView, context: Context) {
-        nsView.update(text: text, font: font, speed: speed, wrapAround: wrapAround)
+        nsView.update(
+            text: text,
+            font: font,
+            speed: speed,
+            wrapAround: wrapAround
+        )
     }
 }
 
@@ -29,6 +34,8 @@ class MarqueeView: NSView {
     private var wrapAround: Bool = true
 
     private var isScrolling = false
+    private var animationDelayWorkItem: DispatchWorkItem?
+    private var previousBoundsSize: CGSize?
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -51,7 +58,8 @@ class MarqueeView: NSView {
             textLayer.isWrapped = false
             textLayer.font = font
             textLayer.fontSize = font.pointSize
-            textLayer.foregroundColor = resolvedLabelColor(for: self.effectiveAppearance).cgColor
+            textLayer.foregroundColor =
+                resolvedLabelColor(for: self.effectiveAppearance).cgColor
             layer?.addSublayer(textLayer)
         }
     }
@@ -74,19 +82,29 @@ class MarqueeView: NSView {
         textLayer2.foregroundColor = resolvedColor
 
         DispatchQueue.main.async { [weak self] in
-            self?.layoutText()
+            guard let self = self else { return }
+            let currentSize = self.bounds.size
+            if self.previousBoundsSize != currentSize {
+                self.previousBoundsSize = currentSize
+                self.layoutText()
+            }
         }
     }
 
     override func layout() {
         super.layout()
-        layoutText()
+        let currentSize = bounds.size
+        if previousBoundsSize != currentSize {
+            previousBoundsSize = currentSize
+            layoutText()
+        }
     }
 
     private func layoutText() {
         guard bounds.width > 0 else { return }
 
-        let textWidth = (text as NSString).size(withAttributes: [.font: font]).width
+        let textWidth = (text as NSString).size(withAttributes: [.font: font])
+            .width
         let height = bounds.height
 
         stopAnimation()
@@ -102,8 +120,18 @@ class MarqueeView: NSView {
             textLayer2.isHidden = true
         } else {
             // Scroll if it overflows
-            textLayer1.frame = CGRect(x: 0, y: 0, width: textWidth, height: height)
-            textLayer2.frame = CGRect(x: textWidth + 40, y: 0, width: textWidth, height: height)
+            textLayer1.frame = CGRect(
+                x: 0,
+                y: 0,
+                width: textWidth,
+                height: height
+            )
+            textLayer2.frame = CGRect(
+                x: textWidth + 40,
+                y: 0,
+                width: textWidth,
+                height: height
+            )
             textLayer2.isHidden = !wrapAround
             if wrapAround {
                 startAnimation(totalWidth: textWidth + 40)
@@ -112,17 +140,36 @@ class MarqueeView: NSView {
     }
 
     private func startAnimation(totalWidth: CGFloat) {
-        let animation = CABasicAnimation(keyPath: "sublayerTransform.translation.x")
-        animation.fromValue = 0
-        animation.toValue = -totalWidth
-        animation.duration = CFTimeInterval(totalWidth / speed)
-        animation.repeatCount = .infinity
-        animation.timingFunction = CAMediaTimingFunction(name: .linear)
-        layer?.add(animation, forKey: "scroll")
-        isScrolling = true
+        // Cancel any pending delayed animation
+        animationDelayWorkItem?.cancel()
+
+        let delay: TimeInterval = 2.0
+        let workItem = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+
+            let animation = CABasicAnimation(
+                keyPath: "sublayerTransform.translation.x"
+            )
+            animation.fromValue = 0
+            animation.toValue = -totalWidth
+            animation.duration = CFTimeInterval(totalWidth / self.speed)
+            animation.repeatCount = .infinity
+            animation.timingFunction = CAMediaTimingFunction(name: .linear)
+
+            self.layer?.add(animation, forKey: "scroll")
+            self.isScrolling = true
+        }
+
+        animationDelayWorkItem = workItem
+        DispatchQueue.main.asyncAfter(
+            deadline: .now() + delay,
+            execute: workItem
+        )
     }
 
     private func stopAnimation() {
+        animationDelayWorkItem?.cancel()
+        animationDelayWorkItem = nil
         layer?.removeAnimation(forKey: "scroll")
         isScrolling = false
     }
@@ -142,7 +189,8 @@ func resolvedLabelColor(for appearance: NSAppearance) -> NSColor {
 #Preview(body: {
     VStack {
         AutoMarqueeTextView(
-            text: "🎵 This is a looping marquee text that wraps and scrolls infinitely.",
+            text:
+                "🎵 This is a looping marquee text that wraps and scrolls infinitely.",
             font: NSFont.systemFont(ofSize: 13, weight: .medium),
             speed: 40
         )
