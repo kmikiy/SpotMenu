@@ -98,6 +98,9 @@ class MarqueeView: NSView {
             previousBoundsSize = currentSize
             layoutText()
         }
+        let resolvedColor = resolvedLabelColor(for: effectiveAppearance).cgColor
+        textLayer1.foregroundColor = resolvedColor
+        textLayer2.foregroundColor = resolvedColor
     }
 
     private func layoutText() {
