@@ -104,6 +104,7 @@ struct PlaybackView: View {
                             .font(.title3)
                             .foregroundColor(.white)
                             .lineLimit(2)
+                            .padding([.leading, .trailing])
 
                         HStack(spacing: 10) {
                             tappableIconButton(
@@ -134,6 +135,7 @@ struct PlaybackView: View {
                             .font(.title3)
                             .foregroundColor(.white)
                             .lineLimit(2)
+                            .padding([.leading, .trailing])
                     }
 
                     Spacer(minLength: 0)
