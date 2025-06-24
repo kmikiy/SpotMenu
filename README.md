@@ -27,7 +27,15 @@ Download the latest [release](https://github.com/kmikiy/SpotMenu/releases) and o
 
 > ⚠️ You might need to allow the app in **System Preferences → Security & Privacy** as it's not signed by an Apple developer. Click here for detailed [instructions](https://support.apple.com/kb/PH25088?locale=en_US)!
 
-### Advanced: Build from Source
+## Advanced Install
+
+via [Homebrew Cask](https://formulae.brew.sh/cask/)
+
+```sh
+brew install --cask spotmenu
+```
+
+### Build from Source
 
 #### Requirements
 
