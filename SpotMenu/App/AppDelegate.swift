@@ -115,6 +115,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self?.playbackModel.skipBack()
         }
         KeyboardShortcuts.onKeyUp(for: .showNowPlayingHUD) { [weak self] in
+            if self?.hudWindow != nil {
+                self?.dismissHUD()
+                return
+            }
             self?.showNowPlayingHUD()
         }
     }
@@ -231,6 +235,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self?.dismissHUD()
             }
         }
+        captureView.onRightArrowPressed = { [weak self] in
+            withAnimation {
+                self?.playbackModel.skipForward()
+            }
+        }
+        captureView.onLeftArrowPressed = { [weak self] in
+            withAnimation {
+                self?.playbackModel.skipBack()
+            }
+        }
+        captureView.onSpacebarPressed = { [weak self] in
+            withAnimation {
+                self?.playbackModel.togglePlayPause()
+            }
+        }
 
         controller.view.frame = screenFrame
         captureView.addSubview(controller.view)
@@ -273,14 +292,24 @@ class HUDWindow: NSWindow {
 // MARK: - HUDKeyCaptureView
 class HUDKeyCaptureView: NSView {
     var onEscapePressed: (() -> Void)?
+    var onLeftArrowPressed: (() -> Void)?
+    var onRightArrowPressed: (() -> Void)?
+    var onSpacebarPressed: (() -> Void)?
 
     override var acceptsFirstResponder: Bool { true }
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
 
     override func keyDown(with event: NSEvent) {
-        if event.keyCode == 53 {  // Escape key
+        switch event.keyCode {
+        case 53:  // Escape
             onEscapePressed?()
-        } else {
+        case 123:  // Left Arrow
+            onLeftArrowPressed?()
+        case 124:  // Right Arrow
+            onRightArrowPressed?()
+        case 49:  // Spacebar
+            onSpacebarPressed?()
+        default:
             super.keyDown(with: event)
         }
     }

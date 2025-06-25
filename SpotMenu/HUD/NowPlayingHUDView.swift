@@ -4,30 +4,21 @@ struct NowPlayingHUDView: View {
     @ObservedObject var model: PlaybackModel
     @Binding var isVisible: Bool
 
+    @State private var animateText: Bool = false
+    @State private var showImage: Bool = false
+
     var body: some View {
         ZStack {
-            // Background blur + fade
             Color.clear
                 .background(.ultraThinMaterial)
                 .ignoresSafeArea()
-                .transition(.opacity)
 
-            // Main content
             HStack(spacing: 40) {
                 ZStack {
-                    // Placeholder to maintain layout
                     RoundedRectangle(cornerRadius: 24)
-                        .fill(Color.gray.opacity(0.2))
+                        .fill(Color.gray.opacity(0.00))
                         .frame(width: 600, height: 600)
-                        .overlay(
-                            Image(systemName: "music.note")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .foregroundColor(.gray.opacity(0.6))
-                        )
 
-                    // Loaded image (Apple Music)
                     if let image = model.image {
                         image
                             .resizable()
@@ -35,18 +26,43 @@ struct NowPlayingHUDView: View {
                             .aspectRatio(contentMode: .fill)
                             .clipShape(RoundedRectangle(cornerRadius: 24))
                             .shadow(radius: 20)
-                    }
-
-                    // Loaded image (Spotify or Async)
-                    else if let url = model.imageURL {
+                            .opacity(showImage ? 1 : 0)
+                            .animation(
+                                .easeInOut(duration: 0.3),
+                                value: showImage
+                            )
+                            .onAppear {
+                                showImage = false
+                                DispatchQueue.main.asyncAfter(
+                                    deadline: .now() + 0.05
+                                ) {
+                                    showImage = true
+                                }
+                            }
+                    } else if let url = model.imageURL {
                         AsyncImage(url: url) { phase in
                             if case .success(let image) = phase {
                                 image
                                     .resizable()
                                     .frame(width: 600, height: 600)
                                     .aspectRatio(contentMode: .fill)
-                                    .clipShape(RoundedRectangle(cornerRadius: 24))
+                                    .clipShape(
+                                        RoundedRectangle(cornerRadius: 24)
+                                    )
                                     .shadow(radius: 20)
+                                    .opacity(showImage ? 1 : 0)
+                                    .animation(
+                                        .easeInOut(duration: 0.3),
+                                        value: showImage
+                                    )
+                                    .onAppear {
+                                        showImage = false
+                                        DispatchQueue.main.asyncAfter(
+                                            deadline: .now() + 0.05
+                                        ) {
+                                            showImage = true
+                                        }
+                                    }
                             }
                         }
                     }
@@ -66,14 +82,36 @@ struct NowPlayingHUDView: View {
                         .minimumScaleFactor(0.7)
                 }
                 .frame(maxWidth: 600, alignment: .leading)
+                .opacity(animateText ? 1 : 0)
+                .animation(.easeInOut(duration: 0.3), value: animateText)
             }
             .padding(60)
-            .transition(.scale.combined(with: .opacity))
         }
-        .contentShape(Rectangle())  // For tap detection
+        .contentShape(Rectangle())
         .onTapGesture {
-            withAnimation(.easeInOut(duration: 0.3)) {
+            withAnimation {
                 isVisible = false
+            }
+        }
+        .onChange(of: isVisible) { _, visible in
+            if visible {
+                animateText = false
+                showImage = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    animateText = true
+                }
+            } else {
+                animateText = false
+                showImage = false
+            }
+        }
+        .onAppear {
+            if isVisible {
+                animateText = false
+                showImage = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    animateText = true
+                }
             }
         }
     }
