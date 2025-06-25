@@ -5,6 +5,7 @@ enum MediaAction: String, CaseIterable, Identifiable {
     case playPause = "Play / Pause"
     case nextTrack = "Next Track"
     case previousTrack = "Previous Track"
+    case showNowPlayingHUD = "Show Now Playing HUD"
 
     var id: String { self.rawValue }
     var shortcutName: KeyboardShortcuts.Name {
@@ -12,6 +13,7 @@ enum MediaAction: String, CaseIterable, Identifiable {
         case .playPause: return .playPause
         case .nextTrack: return .nextTrack
         case .previousTrack: return .previousTrack
+        case .showNowPlayingHUD: return .showNowPlayingHUD
         }
     }
 }
@@ -35,7 +37,7 @@ struct ShortcutPreferences: View {
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: 200)
+        .frame(width: 400, height: 230)
     }
 }
 

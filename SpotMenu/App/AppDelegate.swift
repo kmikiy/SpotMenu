@@ -1,3 +1,4 @@
+import Cocoa
 import Combine
 import KeyboardShortcuts
 import SwiftUI
@@ -15,6 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isUsingCustomStatusView = false
     var spotifyIcon: NSImage?
     var appleMusicIcon: NSImage?
+    var hudWindow: NSWindow?
+    var hudHostingController: NSHostingController<NowPlayingHUDView>?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
@@ -111,6 +114,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         KeyboardShortcuts.onKeyUp(for: .previousTrack) { [weak self] in
             self?.playbackModel.skipBack()
         }
+        KeyboardShortcuts.onKeyUp(for: .showNowPlayingHUD) { [weak self] in
+            self?.showNowPlayingHUD()
+        }
     }
 
     func updateStatusItem() {
@@ -177,8 +183,114 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.terminate(nil)
     }
 
+    func showNowPlayingHUD() {
+        guard hudWindow == nil else { return }
+
+        NSApp.setActivationPolicy(.regular)
+        NSApp.activate(ignoringOtherApps: true)
+
+        let isVisible = Binding<Bool>(
+            get: { self.hudWindow != nil },
+            set: { visible in
+                if !visible {
+                    self.dismissHUD()
+                }
+            }
+        )
+
+        let hudRootView = NowPlayingHUDView(
+            model: playbackModel,
+            isVisible: isVisible
+        )
+        let controller = NSHostingController(rootView: hudRootView)
+
+        controller.view.wantsLayer = true
+        controller.view.layer?.cornerRadius = 0
+        controller.view.layer?.masksToBounds = true
+
+        let screenFrame =
+            NSScreen.main?.frame ?? NSRect(x: 0, y: 0, width: 800, height: 600)
+
+        let window = HUDWindow(
+            contentRect: screenFrame,
+            styleMask: [.borderless],
+            backing: .buffered,
+            defer: false
+        )
+
+        window.isOpaque = false
+        window.backgroundColor = .clear
+        window.level = .mainMenu + 1
+        window.hasShadow = false
+        window.ignoresMouseEvents = false
+        window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
+
+        let captureView = HUDKeyCaptureView(frame: screenFrame)
+        captureView.onEscapePressed = { [weak self] in
+            withAnimation {
+                self?.dismissHUD()
+            }
+        }
+
+        controller.view.frame = screenFrame
+        captureView.addSubview(controller.view)
+
+        window.contentView = captureView
+        window.makeKeyAndOrderFront(nil)
+        window.makeFirstResponder(captureView)
+        NSApp.activate(ignoringOtherApps: true)
+
+        self.hudWindow = window
+        self.hudHostingController = controller
+    }
+
+    func dismissHUD() {
+        guard let window = hudWindow else { return }
+
+        NSAnimationContext.runAnimationGroup(
+            { context in
+                context.duration = 0.3
+                context.timingFunction = CAMediaTimingFunction(
+                    name: .easeInEaseOut
+                )
+                window.animator().alphaValue = 0
+            },
+            completionHandler: {
+                window.orderOut(nil)
+                self.hudWindow = nil
+                self.hudHostingController = nil
+            }
+        )
+    }
 }
 
+// MARK: - Custom NSWindow subclass
+class HUDWindow: NSWindow {
+    override var canBecomeKey: Bool { true }
+    override var canBecomeMain: Bool { true }
+}
+
+// MARK: - HUDKeyCaptureView
+class HUDKeyCaptureView: NSView {
+    var onEscapePressed: (() -> Void)?
+
+    override var acceptsFirstResponder: Bool { true }
+    override func acceptsFirstMouse(for event: NSEvent?) -> Bool { true }
+
+    override func keyDown(with event: NSEvent) {
+        if event.keyCode == 53 {  // Escape key
+            onEscapePressed?()
+        } else {
+            super.keyDown(with: event)
+        }
+    }
+
+    override func viewDidMoveToWindow() {
+        window?.makeFirstResponder(self)
+    }
+}
+
+// MARK: - Image renderer helper
 func nsImage<Content: View>(
     from view: Content,
     size: CGSize,
@@ -187,15 +299,18 @@ func nsImage<Content: View>(
     let hostingView = NSHostingView(rootView: view)
     hostingView.frame = CGRect(origin: .zero, size: size)
 
-    let rep = hostingView.bitmapImageRepForCachingDisplay(
-        in: hostingView.bounds
-    )
-    guard let imageRep = rep else { return nil }
+    guard
+        let rep = hostingView.bitmapImageRepForCachingDisplay(
+            in: hostingView.bounds
+        )
+    else {
+        return nil
+    }
 
-    hostingView.cacheDisplay(in: hostingView.bounds, to: imageRep)
+    hostingView.cacheDisplay(in: hostingView.bounds, to: rep)
 
-    let nsImage = NSImage(size: size)
-    nsImage.addRepresentation(imageRep)
+    let image = NSImage(size: size)
+    image.addRepresentation(rep)
 
-    return nsImage
+    return image
 }
