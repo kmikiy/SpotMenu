@@ -3,6 +3,7 @@ import SwiftUI
 struct VisualPreferences: View {
     @ObservedObject var model: VisualPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
+
     @StateObject private var previewModel: StatusItemModel = {
         let model = StatusItemModel()
         model.artist = "Lorem Ipsum"
@@ -43,6 +44,23 @@ struct VisualPreferences: View {
                     .frame(width: 200)
                     Text("\(Int(model.maxStatusItemWidth)) pt")
                         .frame(width: 50)
+                }
+
+                HStack {
+                    Text("Font Size")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                    Picker(selection: $model.fontSizeOption) {
+                        ForEach(FontSizeOption.allCases) { option in
+                            Text(option.displayName)
+                                .font(option.font)
+                                .tag(option)
+                        }
+                    } label: {
+
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .frame(width: 220)
                 }
 
                 if shouldShowAlwaysFallbackWarning {
@@ -103,7 +121,7 @@ struct VisualPreferences: View {
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: 440)
+        .frame(width: 400, height: 480)
     }
 
     @ViewBuilder
@@ -120,21 +138,45 @@ struct VisualPreferences: View {
     }
 
     private var shouldShowAlwaysFallbackWarning: Bool {
-        let noArtist = !model.showArtist
-        let noTitle = !model.showTitle
-        let noIsPlaying = !model.showIsPlayingIcon
-        let noDisplayAppIcon = !model.showAppIcon
-
-        return noArtist && noTitle && noIsPlaying && noDisplayAppIcon
+        !model.showArtist && !model.showTitle && !model.showIsPlayingIcon
+            && !model.showAppIcon
     }
 
     private var shouldShowConditionalFallbackWarning: Bool {
-        let noArtist = !model.showArtist
-        let noTitle = !model.showTitle
-        let noIsPlaying = !model.showIsPlayingIcon
-        let noDisplayAppIcon = !model.showAppIcon
+        !model.showArtist && !model.showTitle && model.showIsPlayingIcon
+            && !model.showAppIcon
+    }
+}
 
-        return noArtist && noTitle && !noIsPlaying && noDisplayAppIcon
+enum FontSizeOption: String, CaseIterable, Identifiable {
+    case small, medium, large
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .small: return "Small"
+        case .medium: return "Medium"
+        case .large: return "Large"
+        }
+    }
+
+    var font: Font {
+        switch self {
+        case .small: return .system(size: 11)
+        case .medium: return .system(size: 13)
+        case .large: return .system(size: 15)
+        }
+    }
+}
+
+extension FontSizeOption {
+    var sizeOffset: CGFloat {
+        switch self {
+        case .small: return 0
+        case .medium: return 1
+        case .large: return 1.5
+        }
     }
 }
 

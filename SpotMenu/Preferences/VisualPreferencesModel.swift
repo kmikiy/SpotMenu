@@ -40,6 +40,12 @@ class VisualPreferencesModel: ObservableObject {
             )
         }
     }
+    @Published var fontSizeOption: FontSizeOption {
+        didSet {
+            UserDefaults.standard.set(fontSizeOption.rawValue, forKey: "fontSizeOption")
+        }
+    }
+
 
     var isTextVisible: Bool {
         return showArtist || showTitle
@@ -59,5 +65,7 @@ class VisualPreferencesModel: ObservableObject {
             defaults.object(forKey: "maxStatusItemWidth") as? CGFloat ?? 150
         enableScrollingText =
             defaults.object(forKey: "enableScrollingText") as? Bool ?? false
+        let rawValue = defaults.string(forKey: "fontSizeOption") ?? "small"
+        fontSizeOption = FontSizeOption(rawValue: rawValue) ?? .small
     }
 }
