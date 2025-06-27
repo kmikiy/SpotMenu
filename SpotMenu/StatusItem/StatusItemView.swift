@@ -33,11 +33,17 @@ struct StatusItemView: View {
                     }
 
                     if preferencesModel.compactView {
-                        if !model.isTextEmpty && preferencesModel.isTextVisible {
+                        if !model.isTextEmpty && preferencesModel.isTextVisible
+                        {
                             let compactWidth = calculateMaxTextWidth(
-                                topText: preferencesModel.showArtist ? model.artist : nil,
-                                topFont: .systemFont(ofSize: 10, weight: .medium),
-                                bottomText: preferencesModel.showTitle ? model.title : nil,
+                                topText: preferencesModel.showArtist
+                                    ? model.artist : nil,
+                                topFont: .systemFont(
+                                    ofSize: 10,
+                                    weight: .medium
+                                ),
+                                bottomText: preferencesModel.showTitle
+                                    ? model.title : nil,
                                 bottomFont: .systemFont(ofSize: 9)
                             )
 
@@ -46,14 +52,25 @@ struct StatusItemView: View {
                                     if preferencesModel.enableScrollingText {
                                         AutoMarqueeTextView(
                                             text: model.artist,
-                                            font: .systemFont(ofSize: 10, weight: .medium),
+                                            font: .systemFont(
+                                                ofSize: 10,
+                                                weight: .medium
+                                            ),
                                             speed: 20
                                         )
                                         .frame(width: compactWidth, height: 12)
                                     } else {
                                         Text(model.artist)
-                                            .font(.system(size: 10, weight: .medium))
-                                            .frame(width: compactWidth+1, height: 12)
+                                            .font(
+                                                .system(
+                                                    size: 10,
+                                                    weight: .medium
+                                                )
+                                            )
+                                            .frame(
+                                                width: compactWidth,
+                                                height: 12
+                                            )
                                             .lineLimit(1)
                                             .truncationMode(.tail)
                                     }
@@ -66,11 +83,14 @@ struct StatusItemView: View {
                                             font: .systemFont(ofSize: 9),
                                             speed: 20
                                         )
-                                        .frame(width: compactWidth+2, height: 11)
+                                        .frame(width: compactWidth, height: 11)
                                     } else {
                                         Text(model.title)
                                             .font(.system(size: 9))
-                                            .frame(width: compactWidth, height: 11)
+                                            .frame(
+                                                width: compactWidth,
+                                                height: 11
+                                            )
                                             .lineLimit(1)
                                             .truncationMode(.tail)
                                     }
@@ -110,7 +130,7 @@ struct StatusItemView: View {
         .padding(.horizontal, 0)
         .padding(.vertical, 2)
         .background(Color.clear)
-        .frame(maxWidth: preferencesModel.maxStatusItemWidth+2)
+        .frame(maxWidth: preferencesModel.maxStatusItemWidth + 2)
         .lineLimit(1)
         .truncationMode(.tail)
     }
@@ -129,13 +149,17 @@ struct StatusItemView: View {
         let availableWidth =
             totalMaxWidth - iconWidth - spacing - musicIconWidth
 
-        let topWidth = topText.map {
-            NSString(string: $0).size(withAttributes: [.font: topFont]).width
-        } ?? 0
+        let topWidth =
+            topText.map {
+                NSString(string: $0).size(withAttributes: [.font: topFont])
+                    .width
+            } ?? 0
 
-        let bottomWidth = bottomText.map {
-            NSString(string: $0).size(withAttributes: [.font: bottomFont]).width
-        } ?? 0
+        let bottomWidth =
+            bottomText.map {
+                NSString(string: $0).size(withAttributes: [.font: bottomFont])
+                    .width
+            } ?? 0
 
         let rawWidth = min(max(topWidth, bottomWidth), availableWidth)
 
@@ -144,7 +168,6 @@ struct StatusItemView: View {
     }
 
 }
-
 
 struct StatusItemDisplayHelper {
     static func shouldShowAppIcon(

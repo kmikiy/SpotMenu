@@ -76,7 +76,7 @@ struct VisualPreferences: View {
                             preferencesModel: model,
                             playbackModel: playbackModel
                         )
-                        .frame(width: model.maxStatusItemWidth+2, height: 23)
+                        .frame(width: model.maxStatusItemWidth, height: 23)
                         .background(Color.gray.opacity(0.1))
                         .cornerRadius(6)
                         .overlay(

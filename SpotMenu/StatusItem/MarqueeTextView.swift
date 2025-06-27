@@ -1,7 +1,56 @@
 import AppKit
 import SwiftUI
 
-struct AutoMarqueeTextView: NSViewRepresentable {
+struct AutoMarqueeTextView: View {
+    var text: String
+    var font: NSFont = .systemFont(ofSize: 13)
+    var speed: CGFloat = 40
+    var wrapAround: Bool = true
+
+    @State private var shouldScroll = false
+    @State private var availableWidth: CGFloat = 0
+    @State private var textWidth: CGFloat = 0
+
+    var body: some View {
+        ZStack {
+            if shouldScroll {
+                MarqueeTextView(
+                    text: text,
+                    font: font,
+                    speed: speed,
+                    wrapAround: wrapAround
+                )
+            } else {
+                Text(text)
+                    .font(Font(font))
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
+        }
+        .background(
+            GeometryReader { proxy in
+                Color.clear
+                    .onAppear {
+                        availableWidth = proxy.size.width
+                        measureTextWidth()
+                    }
+                    .onChange(of: proxy.size.width) {
+                        availableWidth = proxy.size.width
+                        measureTextWidth()
+                    }
+            }
+        )
+    }
+
+    private func measureTextWidth() {
+        let attributes: [NSAttributedString.Key: Any] = [.font: font]
+        let size = (text as NSString).size(withAttributes: attributes)
+        textWidth = size.width
+        shouldScroll = textWidth > availableWidth
+    }
+}
+
+struct MarqueeTextView: NSViewRepresentable {
     var text: String
     var font: NSFont = .systemFont(ofSize: 13)
     var speed: CGFloat = 40
