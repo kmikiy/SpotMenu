@@ -15,6 +15,7 @@ struct StatusItemView: View {
         let compactViewArtistFontSize = 10.0 + offset
         let compactViewTitleFontSize = 9.0 + offset
         let normalViewFontSize = 13 + offset
+        let scrollSpeed = preferencesModel.scrollSpeed.speedValue
 
         Group {
             if showIcon && !preferencesModel.isTextVisible && !model.isPlaying {
@@ -64,7 +65,7 @@ struct StatusItemView: View {
                                                     compactViewArtistFontSize,
                                                 weight: .medium
                                             ),
-                                            speed: 20
+                                            speed: scrollSpeed
                                         )
                                         .frame(width: compactWidth, height: 12)
                                     } else {
@@ -92,7 +93,7 @@ struct StatusItemView: View {
                                             font: .systemFont(
                                                 ofSize: compactViewTitleFontSize
                                             ),
-                                            speed: 20
+                                            speed: scrollSpeed
                                         )
                                         .frame(width: compactWidth, height: 11)
                                     } else {
@@ -132,7 +133,7 @@ struct StatusItemView: View {
                             AutoMarqueeTextView(
                                 text: text,
                                 font: .systemFont(ofSize: normalViewFontSize),
-                                speed: 20
+                                speed: scrollSpeed
                             )
                             .frame(width: normalWidth, height: 18)
                         } else {

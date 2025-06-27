@@ -45,6 +45,12 @@ class VisualPreferencesModel: ObservableObject {
             UserDefaults.standard.set(fontSizeOption.rawValue, forKey: "fontSizeOption")
         }
     }
+    @Published var scrollSpeed: ScrollSpeed {
+        didSet {
+            UserDefaults.standard.set(scrollSpeed.rawValue, forKey: "scrollSpeed")
+        }
+    }
+
 
 
     var isTextVisible: Bool {
@@ -67,5 +73,6 @@ class VisualPreferencesModel: ObservableObject {
             defaults.object(forKey: "enableScrollingText") as? Bool ?? false
         let rawValue = defaults.string(forKey: "fontSizeOption") ?? "small"
         fontSizeOption = FontSizeOption(rawValue: rawValue) ?? .small
+        scrollSpeed = ScrollSpeed(rawValue: defaults.string(forKey: "scrollSpeed") ?? "") ?? .normal
     }
 }

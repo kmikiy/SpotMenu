@@ -83,6 +83,7 @@ class MarqueeView: NSView {
     private var isScrolling = false
     private var animationDelayWorkItem: DispatchWorkItem?
     private var previousBoundsSize: CGSize?
+    private var previousSpeed: CGFloat?
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -114,6 +115,7 @@ class MarqueeView: NSView {
     func update(text: String, font: NSFont, speed: CGFloat, wrapAround: Bool) {
         let textChanged = (self.text != text)
         let fontChanged = (self.font != font)
+        let speedChanged = (self.speed != speed)
 
         self.text = text
         self.font = font
@@ -135,7 +137,7 @@ class MarqueeView: NSView {
             guard let self = self else { return }
             let currentSize = self.bounds.size
             if self.previousBoundsSize != currentSize || textChanged
-                || fontChanged
+                || fontChanged || speedChanged
             {
                 self.previousBoundsSize = currentSize
                 self.layoutText()
@@ -162,7 +164,7 @@ class MarqueeView: NSView {
         let height = bounds.height
 
         let yOffset = (height - font.ascender - abs(font.descender)) / 2
-        
+
         stopAnimation()
 
         if textSize.width <= bounds.width {

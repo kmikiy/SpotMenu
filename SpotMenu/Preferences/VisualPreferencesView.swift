@@ -32,18 +32,20 @@ struct VisualPreferences: View {
                     "Enable Scrolling Text",
                     binding: $model.enableScrollingText
                 )
+                if model.enableScrollingText {
+                    HStack {
+                        Text("Scroll Speed")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Picker(selection: $model.scrollSpeed) {
+                            ForEach(ScrollSpeed.allCases) { speed in
+                                Text(speed.displayName.capitalized).tag(speed)
+                            }
+                        } label: {
 
-                HStack {
-                    Text("Max Width")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Slider(
-                        value: $model.maxStatusItemWidth,
-                        in: 80...300,
-                        step: 1
-                    )
-                    .frame(width: 200)
-                    Text("\(Int(model.maxStatusItemWidth)) pt")
-                        .frame(width: 50)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .frame(width: 220)
+                    }
                 }
 
                 HStack {
@@ -61,6 +63,19 @@ struct VisualPreferences: View {
                     }
                     .pickerStyle(SegmentedPickerStyle())
                     .frame(width: 220)
+                }
+
+                HStack {
+                    Text("Max Width")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Slider(
+                        value: $model.maxStatusItemWidth,
+                        in: 80...300,
+                        step: 1
+                    )
+                    .frame(width: 200)
+                    Text("\(Int(model.maxStatusItemWidth)) pt")
+                        .frame(width: 50)
                 }
 
                 if shouldShowAlwaysFallbackWarning {
@@ -121,7 +136,7 @@ struct VisualPreferences: View {
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: 480)
+        .frame(width: 400, height: 500)
     }
 
     @ViewBuilder
@@ -176,6 +191,28 @@ extension FontSizeOption {
         case .small: return 0
         case .medium: return 1
         case .large: return 1.5
+        }
+    }
+}
+
+enum ScrollSpeed: String, CaseIterable, Identifiable {
+    case slow, normal, fast
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .slow: return "Slow"
+        case .normal: return "Normal"
+        case .fast: return "Fast"
+        }
+    }
+
+    var speedValue: CGFloat {
+        switch self {
+        case .slow: return 20
+        case .normal: return 30
+        case .fast: return 40
         }
     }
 }
