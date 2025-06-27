@@ -10,6 +10,9 @@ struct StatusItemView: View {
             preferences: preferencesModel,
             model: model
         )
+        let compactViewArtistFontSize = 10.0
+        let compactViewTitleFontSize = 9.0
+        let normalViewFontSize = 13.0
 
         Group {
             if showIcon && !preferencesModel.isTextVisible && !model.isPlaying {
@@ -29,7 +32,7 @@ struct StatusItemView: View {
                     }
 
                     if preferencesModel.showIsPlayingIcon && model.isPlaying {
-                        Text("♫").font(.system(size: 13))
+                        Text("♫").font(.system(size: normalViewFontSize))
                     }
 
                     if preferencesModel.compactView {
@@ -39,12 +42,12 @@ struct StatusItemView: View {
                                 topText: preferencesModel.showArtist
                                     ? model.artist : nil,
                                 topFont: .systemFont(
-                                    ofSize: 10,
+                                    ofSize: compactViewArtistFontSize,
                                     weight: .medium
                                 ),
                                 bottomText: preferencesModel.showTitle
                                     ? model.title : nil,
-                                bottomFont: .systemFont(ofSize: 9)
+                                bottomFont: .systemFont(ofSize: compactViewTitleFontSize)
                             )
 
                             VStack(spacing: -2) {
@@ -53,7 +56,7 @@ struct StatusItemView: View {
                                         AutoMarqueeTextView(
                                             text: model.artist,
                                             font: .systemFont(
-                                                ofSize: 10,
+                                                ofSize: compactViewArtistFontSize,
                                                 weight: .medium
                                             ),
                                             speed: 20
@@ -63,7 +66,7 @@ struct StatusItemView: View {
                                         Text(model.artist)
                                             .font(
                                                 .system(
-                                                    size: 10,
+                                                    size: compactViewArtistFontSize,
                                                     weight: .medium
                                                 )
                                             )
@@ -80,13 +83,13 @@ struct StatusItemView: View {
                                     if preferencesModel.enableScrollingText {
                                         AutoMarqueeTextView(
                                             text: model.title,
-                                            font: .systemFont(ofSize: 9),
+                                            font: .systemFont(ofSize: compactViewTitleFontSize),
                                             speed: 20
                                         )
                                         .frame(width: compactWidth, height: 11)
                                     } else {
                                         Text(model.title)
-                                            .font(.system(size: 9))
+                                            .font(.system(size: compactViewTitleFontSize))
                                             .frame(
                                                 width: compactWidth,
                                                 height: 11
@@ -100,25 +103,25 @@ struct StatusItemView: View {
                     } else {
                         let (text, _) = model.buildText(
                             visualPreferencesModel: preferencesModel,
-                            font: NSFont.systemFont(ofSize: 13)
+                            font: NSFont.systemFont(ofSize: normalViewFontSize)
                         )
                         let normalWidth = calculateMaxTextWidth(
                             topText: text,
-                            topFont: .systemFont(ofSize: 13, weight: .medium),
+                            topFont: .systemFont(ofSize: normalViewFontSize, weight: .medium),
                             bottomText: nil,
-                            bottomFont: .systemFont(ofSize: 9)
+                            bottomFont: .systemFont(ofSize: 9) // this is ignored
                         )
 
                         if preferencesModel.enableScrollingText {
                             AutoMarqueeTextView(
                                 text: text,
-                                font: .systemFont(ofSize: 13),
+                                font: .systemFont(ofSize: normalViewFontSize),
                                 speed: 20
                             )
-                            .frame(width: normalWidth, height: 16)
+                            .frame(width: normalWidth, height: 18)
                         } else {
                             Text(text)
-                                .font(.system(size: 13))
+                                .font(.system(size: normalViewFontSize))
                                 .frame(width: normalWidth, height: 18)
                                 .lineLimit(1)
                                 .truncationMode(.tail)

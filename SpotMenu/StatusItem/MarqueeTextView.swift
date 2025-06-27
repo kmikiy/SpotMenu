@@ -23,8 +23,6 @@ struct AutoMarqueeTextView: View {
             } else {
                 Text(text)
                     .font(Font(font))
-                    .lineLimit(1)
-                    .truncationMode(.tail)
             }
         }
         .background(
@@ -160,38 +158,37 @@ class MarqueeView: NSView {
     private func layoutText() {
         guard bounds.width > 0 else { return }
 
-        let textWidth = (text as NSString).size(withAttributes: [.font: font])
-            .width
+        let textSize = (text as NSString).size(withAttributes: [.font: font])
         let height = bounds.height
 
+        let yOffset = (height - font.ascender - abs(font.descender)) / 2
+        
         stopAnimation()
 
-        if textWidth <= bounds.width {
-            // Center text if it fits
+        if textSize.width <= bounds.width {
             textLayer1.frame = CGRect(
-                x: (bounds.width - textWidth) / 2,
-                y: 0,
-                width: textWidth,
-                height: height
+                x: (bounds.width - textSize.width) / 2,
+                y: yOffset,
+                width: textSize.width,
+                height: textSize.height
             )
             textLayer2.isHidden = true
         } else {
-            // Scroll if it overflows
             textLayer1.frame = CGRect(
                 x: 0,
-                y: 0,
-                width: textWidth,
-                height: height
+                y: yOffset,
+                width: textSize.width,
+                height: textSize.height
             )
             textLayer2.frame = CGRect(
-                x: textWidth + 40,
-                y: 0,
-                width: textWidth,
-                height: height
+                x: textSize.width + 40,
+                y: yOffset,
+                width: textSize.width,
+                height: textSize.height
             )
             textLayer2.isHidden = !wrapAround
             if wrapAround {
-                startAnimation(totalWidth: textWidth + 40)
+                startAnimation(totalWidth: textSize.width + 40)
             }
         }
     }
@@ -253,12 +250,40 @@ func resolvedLabelColor(for appearance: NSAppearance) -> NSColor {
         )
         .frame(width: 150, height: 20)
 
-        AutoMarqueeTextView(
-            text: "short",
-            font: .systemFont(ofSize: 13),
-            speed: 40
-        )
-        .frame(width: 150, height: 20)
+        HStack(spacing: -3) {
+
+            VStack(spacing: -2) {
+
+                AutoMarqueeTextView(
+                    text: "short short short short short short",
+                    font: .systemFont(ofSize: 13),
+                    speed: 40
+                )
+                .frame(width: 30, height: 20)
+                .background(Color.red)
+
+                AutoMarqueeTextView(
+                    text: "short short short short short short",
+                    font: .systemFont(ofSize: 13),
+                    speed: 40
+                )
+                .frame(width: 30, height: 20)
+                .background(Color.red)
+            }
+
+            VStack(spacing: -2) {
+                Text("short")
+                    .font(.system(size: 13))
+                    .frame(width: 35, height: 20)
+                    .background(Color.red)
+                Text("short")
+                    .font(.system(size: 13))
+                    .frame(width: 35, height: 20)
+                    .background(Color.red)
+            }
+
+        }
+
     }
     .padding()
 })
