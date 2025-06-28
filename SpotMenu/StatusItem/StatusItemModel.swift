@@ -15,14 +15,14 @@ class StatusItemModel: ObservableObject {
     }
 
     func buildText(
-        visualPreferencesModel: VisualPreferencesModel,
+        menuBarPreferencesModel: MenuBarPreferencesModel,
         font: NSFont,
     ) -> String {
         let artistText =
-            (visualPreferencesModel.showArtist && !(artist).isEmpty)
+            (menuBarPreferencesModel.showArtist && !(artist).isEmpty)
             ? artist : nil
         let titleText =
-            (visualPreferencesModel.showTitle && !(title).isEmpty)
+            (menuBarPreferencesModel.showTitle && !(title).isEmpty)
             ? title : nil
 
         let label = [artistText, titleText]
@@ -34,14 +34,14 @@ class StatusItemModel: ObservableObject {
         let spaced =
             label.isEmpty
             ? nil
-            : (visualPreferencesModel.showIsPlayingIcon ? label : " \(label)")
+            : (menuBarPreferencesModel.showIsPlayingIcon ? label : " \(label)")
 
         let full = [spaced].compactMap { $0 }.joined(separator: " ")
 
         return truncateText(
             full,
             font: font,
-            maxWidth: visualPreferencesModel.maxStatusItemWidth
+            maxWidth: menuBarPreferencesModel.maxStatusItemWidth
         )
     }
 

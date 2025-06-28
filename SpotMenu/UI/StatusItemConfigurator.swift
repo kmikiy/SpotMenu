@@ -4,14 +4,14 @@ final class StatusItemConfigurator {
     static func configure(
         statusItem: NSStatusItem,
         statusItemModel: StatusItemModel,
-        visualPreferencesModel: VisualPreferencesModel,
+        menuBarPreferencesModel: MenuBarPreferencesModel,
         playBackModel: PlaybackModel,
         toggleAction: Selector,
         target: AnyObject
     ) {
         let view = StatusItemView(
             model: statusItemModel,
-            preferencesModel: visualPreferencesModel,
+            menuBarPreferencesModel: menuBarPreferencesModel,
             playbackModel: playBackModel
         )
         let hostingView = NSHostingView(rootView: view)

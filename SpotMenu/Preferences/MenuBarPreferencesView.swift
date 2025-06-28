@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct VisualPreferences: View {
-    @ObservedObject var model: VisualPreferencesModel
+struct MenuBarPreferencesView: View {
+    @ObservedObject var model: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
     @StateObject private var previewModel: StatusItemModel = {
         let model = StatusItemModel()
@@ -68,7 +68,7 @@ struct VisualPreferences: View {
                     HStack {
                         StatusItemView(
                             model: previewModel,
-                            preferencesModel: model,
+                            menuBarPreferencesModel: model,
                             playbackModel: playbackModel
                         )
                         .frame(width: model.maxStatusItemWidth, height: 22)
@@ -137,8 +137,8 @@ struct VisualPreferences: View {
 }
 
 #Preview {
-    VisualPreferences(
-        model: VisualPreferencesModel(),
+    MenuBarPreferencesView(
+        model: MenuBarPreferencesModel(),
         playbackModel: PlaybackModel(
             preferences: PlayerPreferencesModel()
         )

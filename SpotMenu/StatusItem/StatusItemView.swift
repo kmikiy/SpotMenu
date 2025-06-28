@@ -2,17 +2,17 @@ import SwiftUI
 
 struct StatusItemView: View {
     @ObservedObject var model: StatusItemModel
-    @ObservedObject var preferencesModel: VisualPreferencesModel
+    @ObservedObject var menuBarPreferencesModel: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
 
     var body: some View {
         let showIcon = StatusItemDisplayHelper.shouldShowAppIcon(
-            preferences: preferencesModel,
+            preferences: menuBarPreferencesModel,
             model: model
         )
 
         Group {
-            if showIcon && !preferencesModel.isTextVisible && !model.isPlaying {
+            if showIcon && !menuBarPreferencesModel.isTextVisible && !model.isPlaying {
                 Image(playbackModel.playerIconName)
                     .renderingMode(.template)
                     .resizable()
@@ -28,21 +28,21 @@ struct StatusItemView: View {
                             .clipShape(Circle())
                     }
 
-                    if preferencesModel.showIsPlayingIcon && model.isPlaying {
+                    if menuBarPreferencesModel.showIsPlayingIcon && model.isPlaying {
                         Text("♫").font(.system(size: 13))
                     }
 
-                    if preferencesModel.compactView {
-                        if !model.isTextEmpty && preferencesModel.isTextVisible
+                    if menuBarPreferencesModel.compactView {
+                        if !model.isTextEmpty && menuBarPreferencesModel.isTextVisible
                         {
                             VStack(spacing: -2) {
-                                if preferencesModel.showArtist {
+                                if menuBarPreferencesModel.showArtist {
                                     Text(model.artist)
                                         .font(
                                             .system(size: 10, weight: .medium)
                                         )
                                 }
-                                if preferencesModel.showTitle {
+                                if menuBarPreferencesModel.showTitle {
                                     Text(model.title)
                                         .font(.system(size: 9))
                                 }
@@ -51,7 +51,7 @@ struct StatusItemView: View {
                     } else {
                         Text(
                             model.buildText(
-                                visualPreferencesModel: preferencesModel,
+                                menuBarPreferencesModel: menuBarPreferencesModel,
                                 font: NSFont.systemFont(ofSize: 13)
                             )
                         )
@@ -64,7 +64,7 @@ struct StatusItemView: View {
         .padding(.horizontal, 0)
         .padding(.vertical, 2)
         .background(Color.clear)
-        .frame(maxWidth: preferencesModel.maxStatusItemWidth)
+        .frame(maxWidth: menuBarPreferencesModel.maxStatusItemWidth)
         .lineLimit(1)
         .truncationMode(.tail)
     }
@@ -72,7 +72,7 @@ struct StatusItemView: View {
 
 struct StatusItemDisplayHelper {
     static func shouldShowAppIcon(
-        preferences: VisualPreferencesModel,
+        preferences: MenuBarPreferencesModel,
         model: StatusItemModel
     ) -> Bool {
         if preferences.showAppIcon {
@@ -95,7 +95,7 @@ struct StatusItemDisplayHelper {
         "very long text that should be truncated very very long text"
     model.isPlaying = true
 
-    let preferences = VisualPreferencesModel()
+    let preferences = MenuBarPreferencesModel()
     preferences.showArtist = true
     preferences.showTitle = true
     preferences.showIsPlayingIcon = true
@@ -106,7 +106,7 @@ struct StatusItemDisplayHelper {
     )
     return StatusItemView(
         model: model,
-        preferencesModel: preferences,
+        menuBarPreferencesModel: preferences,
         playbackModel: playbackModel
     )
 }

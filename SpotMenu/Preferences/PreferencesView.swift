@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PreferencesView: View {
-    @ObservedObject var visualPreferencesModel: VisualPreferencesModel
+    @ObservedObject var menuBarPreferencesModel: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
     @ObservedObject var playerPreferencesModel: PlayerPreferencesModel
 
@@ -11,15 +11,15 @@ struct PreferencesView: View {
         VStack(spacing: 16) {
             TabView {
                 tabContainer {
-                    VisualPreferences(
-                        model: visualPreferencesModel,
+                    MenuBarPreferencesView(
+                        model: menuBarPreferencesModel,
                         playbackModel: playbackModel
                     )
                 }
                 .tabItem { Text("Visuals") }
 
                 tabContainer {
-                    ShortcutPreferences()
+                    ShortcutPreferencesView()
                 }
                 .tabItem { Text("Shortcuts") }
 
@@ -75,7 +75,7 @@ private struct TabHeightKey: PreferenceKey {
 
 #Preview {
     PreferencesView(
-        visualPreferencesModel: VisualPreferencesModel(),
+        menuBarPreferencesModel: MenuBarPreferencesModel(),
         playbackModel: PlaybackModel(preferences: PlayerPreferencesModel()),
         playerPreferencesModel: PlayerPreferencesModel()
     )

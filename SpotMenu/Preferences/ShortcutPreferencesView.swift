@@ -16,7 +16,7 @@ enum MediaAction: String, CaseIterable, Identifiable {
     }
 }
 
-struct ShortcutPreferences: View {
+struct ShortcutPreferencesView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Keyboard Shortcuts")
@@ -40,5 +40,5 @@ struct ShortcutPreferences: View {
 }
 
 #Preview {
-    ShortcutPreferences()
+    ShortcutPreferencesView()
 }
