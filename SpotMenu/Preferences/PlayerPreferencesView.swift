@@ -6,44 +6,104 @@ struct PlayerPreferencesView: View {
 
     init(model: PlayerPreferencesModel) {
         self.model = model
-        _selectedPlayer = State(initialValue: model.preferredPlayer)
+        _selectedPlayer = State(initialValue: model.preferredMusicApp)
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Music Player")
-                .font(.title2).bold()
+        VStack(alignment: .leading, spacing: 32) {
+            VStack(alignment: .leading, spacing: 16) {
 
-            HStack {
-                Text("Preferred Player")
+                Text("Music Player")
+                    .font(.title2).bold()
 
-                Spacer()
+                HStack {
+                    Text("Preferred Player")
 
-                Picker(selection: $selectedPlayer) {
-                    ForEach(PreferredPlayer.allCases) { player in
-                        Text(player.displayName).tag(player)
+                    Spacer()
+
+                    Picker(selection: $selectedPlayer) {
+                        ForEach(PreferredPlayer.allCases) { player in
+                            Text(player.displayName).tag(player)
+                        }
+                    } label: {
+
                     }
-                } label: {
+                    .pickerStyle(.menu)
+                    .frame(maxWidth: 120)
+                    .onChange(of: selectedPlayer) { newValue in
+                        DispatchQueue.main.async {
+                            model.preferredMusicApp = newValue
+                        }
+                    }
 
                 }
-                .pickerStyle(.menu)
-                .frame(maxWidth: 120)
-                .onChange(of: selectedPlayer) {
-                    model.preferredPlayer = selectedPlayer
-                }
+
+                Text(
+                    "“Automatic” selects the first available app at launch. If both Spotify and Apple Music are installed or running, Spotify is preferred."
+                )
+                .font(.caption)
+                .foregroundColor(.secondary)
 
             }
+            VStack(alignment: .leading, spacing: 16) {
 
-            Text(
-                "“Automatic” selects the first available app at launch. If both Spotify and Apple Music are installed or running, Spotify is preferred."
-            )
-            .font(.caption)
-            .foregroundColor(.secondary)
+                Text("Playback Appearance")
+                    .font(.title2).bold()
 
-            Spacer()
+                HStack {
+                    Text("Hover Tint Color")
+                    Spacer()
+
+                    ColorPicker(
+                        "",
+                        selection: Binding(
+                            get: { Color(model.hoverTintColor) },
+                            set: { model.hoverTintColor = NSColor($0) }
+                        )
+                    )
+                }
+
+                HStack {
+                    Text("Blur Intensity")
+                    Spacer()
+                    Slider(value: $model.blurIntensity, in: 0...1)
+                        .frame(width: 220)
+                }
+
+                HStack {
+                    Text("Appearance")
+
+                    Spacer()
+
+                    Picker(selection: $model.appearanceMode) {
+                        ForEach(PlayerPreferencesModel.AppearanceMode.allCases)
+                        {
+                            mode in
+                            Text(mode.rawValue.capitalized).tag(mode)
+                        }
+                    } label: {
+
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(width: 220)
+
+                }
+
+                Spacer()
+                HStack {
+                    Spacer()
+                    PlaybackView(
+                        model: PlaybackModel(
+                            preferences: PlayerPreferencesModel()
+                        )
+                    )
+                    Spacer()
+                }
+            }
         }
         .padding(20)
-        .frame(width: 400, height: 200)
+        .frame(width: 400, height: 640)
+
     }
 }
 
