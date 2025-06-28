@@ -61,7 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         // Set up popover manager
-        let playbackView = PlaybackView(model: playbackModel)
+        let playbackView = PlaybackView(model: playbackModel, preferences: playerPreferencesModel)
         popoverManager = PopoverManager(contentView: playbackView)
 
         // Global event monitor to dismiss popover

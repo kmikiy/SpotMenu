@@ -11,22 +11,19 @@ struct PlayerPreferencesView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
+            // MARK: Player Selection Section
             VStack(alignment: .leading, spacing: 16) {
-
                 Text("Music Player")
                     .font(.title2).bold()
 
                 HStack {
                     Text("Preferred Player")
-
                     Spacer()
-
                     Picker(selection: $selectedPlayer) {
                         ForEach(PreferredPlayer.allCases) { player in
                             Text(player.displayName).tag(player)
                         }
                     } label: {
-
                     }
                     .pickerStyle(.menu)
                     .frame(maxWidth: 120)
@@ -35,7 +32,6 @@ struct PlayerPreferencesView: View {
                             model.preferredMusicApp = newValue
                         }
                     }
-
                 }
 
                 Text(
@@ -43,17 +39,16 @@ struct PlayerPreferencesView: View {
                 )
                 .font(.caption)
                 .foregroundColor(.secondary)
-
             }
-            VStack(alignment: .leading, spacing: 16) {
 
+            // MARK: Playback Appearance Section
+            VStack(alignment: .leading, spacing: 16) {
                 Text("Playback Appearance")
                     .font(.title2).bold()
 
                 HStack {
                     Text("Hover Tint Color")
                     Spacer()
-
                     ColorPicker(
                         "",
                         selection: Binding(
@@ -61,6 +56,18 @@ struct PlayerPreferencesView: View {
                             set: { model.hoverTintColor = NSColor($0) }
                         )
                     )
+                }
+                
+                HStack {
+                    Text("Foreground Color")
+                    Spacer()
+                    Picker("", selection: $model.foregroundColor) {
+                        ForEach(PlayerPreferencesModel.ForegroundColorOption.allCases) { option in
+                            Text(option.rawValue.capitalized).tag(option)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .frame(width: 100)
                 }
 
                 HStack {
@@ -70,32 +77,13 @@ struct PlayerPreferencesView: View {
                         .frame(width: 220)
                 }
 
-                HStack {
-                    Text("Appearance")
-
-                    Spacer()
-
-                    Picker(selection: $model.appearanceMode) {
-                        ForEach(PlayerPreferencesModel.AppearanceMode.allCases)
-                        {
-                            mode in
-                            Text(mode.rawValue.capitalized).tag(mode)
-                        }
-                    } label: {
-
-                    }
-                    .pickerStyle(.segmented)
-                    .frame(width: 220)
-
-                }
-
+                // MARK: Live-updating Playback Preview
                 Spacer()
                 HStack {
                     Spacer()
                     PlaybackView(
-                        model: PlaybackModel(
-                            preferences: PlayerPreferencesModel()
-                        )
+                        model: PlaybackModel(preferences: model),
+                        preferences: model
                     )
                     Spacer()
                 }
@@ -103,7 +91,6 @@ struct PlayerPreferencesView: View {
         }
         .padding(20)
         .frame(width: 400, height: 640)
-
     }
 }
 

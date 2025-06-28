@@ -48,6 +48,16 @@ struct PreferencesView: View {
         .frame(width: 420)
         .padding()
     }
+    
+    private func colorScheme(for mode: PlayerPreferencesModel.AppearanceMode)
+        -> ColorScheme?
+    {
+        switch mode {
+        case .system: return nil
+        case .light: return .light
+        case .dark: return .dark
+        }
+    }
 
     private func tabContainer<Content: View>(
         @ViewBuilder content: () -> Content

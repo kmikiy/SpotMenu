@@ -11,6 +11,7 @@ class PlayerPreferencesModel: ObservableObject {
             )
         }
     }
+
     @Published var hoverTintColor: NSColor {
         didSet {
             if let data = try? NSKeyedArchiver.archivedData(
@@ -34,12 +35,23 @@ class PlayerPreferencesModel: ObservableObject {
         }
     }
 
-    @Published var appearanceMode: AppearanceMode {
+    @Published var foregroundColor: ForegroundColorOption {
         didSet {
             UserDefaults.standard.set(
-                appearanceMode.rawValue,
-                forKey: "playback.appearanceMode"
+                foregroundColor.rawValue,
+                forKey: "playback.foregroundColor"
             )
+        }
+    }
+
+    enum ForegroundColorOption: String, CaseIterable, Identifiable {
+        case white
+        case black
+
+        var id: String { self.rawValue }
+
+        var color: Color {
+            self == .white ? .white : .black
         }
     }
 
@@ -59,7 +71,6 @@ class PlayerPreferencesModel: ObservableObject {
             preferredMusicApp = .automatic
         }
 
-        // Hover tint color
         if let data = defaults.data(forKey: "playback.hoverTintColor"),
             let color = try? NSKeyedUnarchiver.unarchivedObject(
                 ofClass: NSColor.self,
@@ -75,13 +86,12 @@ class PlayerPreferencesModel: ObservableObject {
             defaults.object(forKey: "playback.blurIntensity") as? Double
         blurIntensity = storedBlur ?? 0.5
 
-        if let rawValue = defaults.string(forKey: "playback.appearanceMode"),
-            let mode = AppearanceMode(rawValue: rawValue)
+        if let rawValue = defaults.string(forKey: "playback.foregroundColor"),
+            let fg = ForegroundColorOption(rawValue: rawValue)
         {
-            appearanceMode = mode
+            foregroundColor = fg
         } else {
-            appearanceMode = .system
+            foregroundColor = .white
         }
     }
-
 }
