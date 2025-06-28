@@ -14,7 +14,7 @@ struct MenuBarPreferencesView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Visual Settings")
+            Text("Menu Bar Settings")
                 .font(.title2)
                 .bold()
                 .padding(.bottom, 8)

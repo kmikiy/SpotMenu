@@ -11,22 +11,23 @@ struct PreferencesView: View {
         VStack(spacing: 16) {
             TabView {
                 tabContainer {
+                    PlayerPreferencesView(model: playerPreferencesModel)
+                }
+                .tabItem { Text("Player") }
+
+                tabContainer {
                     MenuBarPreferencesView(
                         model: menuBarPreferencesModel,
                         playbackModel: playbackModel
                     )
                 }
-                .tabItem { Text("Visuals") }
+                .tabItem { Text("Menu Bar") }
 
                 tabContainer {
                     ShortcutPreferencesView()
                 }
                 .tabItem { Text("Shortcuts") }
 
-                tabContainer {
-                    PlayerPreferencesView(model: playerPreferencesModel)
-                }
-                .tabItem { Text("Player") }
             }
             .frame(height: tabHeight)
             .onPreferenceChange(TabHeightKey.self) { tabHeight = $0 }
