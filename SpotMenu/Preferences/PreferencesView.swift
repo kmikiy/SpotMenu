@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PreferencesView: View {
-    @ObservedObject var visualPreferencesModel: VisualPreferencesModel
+    @ObservedObject var menuBarPreferencesModel: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
     @ObservedObject var playerPreferencesModel: PlayerPreferencesModel
 
@@ -11,22 +11,23 @@ struct PreferencesView: View {
         VStack(spacing: 16) {
             TabView {
                 tabContainer {
-                    VisualPreferences(
-                        model: visualPreferencesModel,
-                        playbackModel: playbackModel
-                    )
-                }
-                .tabItem { Text("Visuals") }
-
-                tabContainer {
-                    ShortcutPreferences()
-                }
-                .tabItem { Text("Shortcuts") }
-
-                tabContainer {
                     PlayerPreferencesView(model: playerPreferencesModel)
                 }
                 .tabItem { Text("Player") }
+
+                tabContainer {
+                    MenuBarPreferencesView(
+                        model: menuBarPreferencesModel,
+                        playbackModel: playbackModel
+                    )
+                }
+                .tabItem { Text("Menu Bar") }
+
+                tabContainer {
+                    ShortcutPreferencesView()
+                }
+                .tabItem { Text("Shortcuts") }
+
             }
             .frame(height: tabHeight)
             .onPreferenceChange(TabHeightKey.self) { tabHeight = $0 }
@@ -46,6 +47,16 @@ struct PreferencesView: View {
         }
         .frame(width: 420)
         .padding()
+    }
+    
+    private func colorScheme(for mode: PlayerPreferencesModel.AppearanceMode)
+        -> ColorScheme?
+    {
+        switch mode {
+        case .system: return nil
+        case .light: return .light
+        case .dark: return .dark
+        }
     }
 
     private func tabContainer<Content: View>(
@@ -75,7 +86,7 @@ private struct TabHeightKey: PreferenceKey {
 
 #Preview {
     PreferencesView(
-        visualPreferencesModel: VisualPreferencesModel(),
+        menuBarPreferencesModel: MenuBarPreferencesModel(),
         playbackModel: PlaybackModel(preferences: PlayerPreferencesModel()),
         playerPreferencesModel: PlayerPreferencesModel()
     )

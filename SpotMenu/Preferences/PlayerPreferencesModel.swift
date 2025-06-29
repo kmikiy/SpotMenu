@@ -1,20 +1,111 @@
 import Combine
 import Foundation
+import SwiftUI
 
 class PlayerPreferencesModel: ObservableObject {
-    @Published var preferredPlayer: PreferredPlayer {
+    @Published var preferredMusicApp: PreferredPlayer {
         didSet {
             UserDefaults.standard.set(
-                preferredPlayer.rawValue,
-                forKey: "preferredPlayer"
+                preferredMusicApp.rawValue,
+                forKey: "playback.preferredMusicApp"
             )
         }
     }
 
+    @Published var hoverTintColor: NSColor {
+        didSet {
+            if let data = try? NSKeyedArchiver.archivedData(
+                withRootObject: hoverTintColor,
+                requiringSecureCoding: false
+            ) {
+                UserDefaults.standard.set(
+                    data,
+                    forKey: "playback.hoverTintColor"
+                )
+            }
+        }
+    }
+
+    @Published var blurIntensity: Double {
+        didSet {
+            UserDefaults.standard.set(
+                blurIntensity,
+                forKey: "playback.blurIntensity"
+            )
+        }
+    }
+
+    @Published var foregroundColor: ForegroundColorOption {
+        didSet {
+            UserDefaults.standard.set(
+                foregroundColor.rawValue,
+                forKey: "playback.foregroundColor"
+            )
+        }
+    }
+
+    @Published var hoverTintOpacity: Double {
+        didSet {
+            UserDefaults.standard.set(
+                hoverTintOpacity,
+                forKey: "playback.hoverTintOpacity"
+            )
+        }
+    }
+
+    enum ForegroundColorOption: String, CaseIterable, Identifiable {
+        case white
+        case black
+
+        var id: String { self.rawValue }
+
+        var color: Color {
+            self == .white ? .white : .black
+        }
+    }
+
+    enum AppearanceMode: String, CaseIterable, Identifiable {
+        case system, light, dark
+        var id: String { self.rawValue }
+    }
+
     init() {
-        let rawValue =
-            UserDefaults.standard.string(forKey: "preferredPlayer")
-            ?? "automatic"
-        preferredPlayer = PreferredPlayer(rawValue: rawValue) ?? .automatic
+        let defaults = UserDefaults.standard
+
+        if let rawValue = defaults.string(forKey: "playback.preferredMusicApp"),
+            let app = PreferredPlayer(rawValue: rawValue)
+        {
+            preferredMusicApp = app
+        } else {
+            preferredMusicApp = .automatic
+        }
+
+        if let data = defaults.data(forKey: "playback.hoverTintColor"),
+            let color = try? NSKeyedUnarchiver.unarchivedObject(
+                ofClass: NSColor.self,
+                from: data
+            )
+        {
+            hoverTintColor = color
+        } else {
+            hoverTintColor = .systemBlue
+        }
+
+        let storedBlur =
+            defaults.object(forKey: "playback.blurIntensity") as? Double
+        blurIntensity = storedBlur ?? 0.5
+
+        if let rawValue = defaults.string(forKey: "playback.foregroundColor"),
+            let fg = ForegroundColorOption(rawValue: rawValue)
+        {
+            foregroundColor = fg
+        } else {
+            foregroundColor = .white
+        }
+
+        hoverTintOpacity =
+            defaults.object(forKey: "playback.hoverTintOpacity") as? Double
+            ?? 0.3
+
     }
 }

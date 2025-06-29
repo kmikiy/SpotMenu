@@ -7,11 +7,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItemModel = StatusItemModel()
     var playerPreferencesModel = PlayerPreferencesModel()
     var playbackModel: PlaybackModel!
-    var visualPreferencesModel = VisualPreferencesModel()
+    var menuBarPreferencesModel = MenuBarPreferencesModel()
     var popoverManager: PopoverManager!
     var preferencesWindow: NSWindow?
     var eventMonitor: Any?
-    var visualPreferencesModelCancellable: AnyCancellable?
+    var menuBarPreferencesModelCancellable: AnyCancellable?
     var isUsingCustomStatusView = false
     var spotifyIcon: NSImage?
     var appleMusicIcon: NSImage?
@@ -61,7 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         // Set up popover manager
-        let playbackView = PlaybackView(model: playbackModel)
+        let playbackView = PlaybackView(model: playbackModel, preferences: playerPreferencesModel)
         popoverManager = PopoverManager(contentView: playbackView)
 
         // Global event monitor to dismiss popover
@@ -80,7 +80,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         StatusItemConfigurator.configure(
             statusItem: statusItem,
             statusItemModel: statusItemModel,
-            visualPreferencesModel: visualPreferencesModel,
+            menuBarPreferencesModel: menuBarPreferencesModel,
             playBackModel: playbackModel,
             toggleAction: #selector(togglePopover),
             target: self
@@ -89,7 +89,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupKeyboardShortcuts()
         updateStatusItem()
 
-        visualPreferencesModelCancellable = visualPreferencesModel
+        menuBarPreferencesModelCancellable = menuBarPreferencesModel
             .objectWillChange.sink { [weak self] _ in
                 self?.updateStatusItem()
             }
@@ -120,7 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         StatusItemConfigurator.updateWidth(
             statusItem: statusItem,
-            maxWidth: visualPreferencesModel.maxStatusItemWidth
+            maxWidth: menuBarPreferencesModel.maxStatusItemWidth
         )
     }
 
@@ -149,7 +149,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if preferencesWindow == nil {
             let hosting = NSHostingView(
                 rootView: PreferencesView(
-                    visualPreferencesModel: visualPreferencesModel,
+                    menuBarPreferencesModel: menuBarPreferencesModel,
                     playbackModel: playbackModel,
                     playerPreferencesModel: playerPreferencesModel
                 )

@@ -54,9 +54,24 @@ open SpotMenu.xcodeproj
 
 Accessible via right-clicking the menu bar icon → Preferences…
 
-![preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/preferences.mov)
+### Player Tab
 
-### Visuals Tab
+Choose which music player SpotMenu should control:
+
+- Automatic — Detects and uses whichever player is active.
+- Spotify
+- Apple Music
+
+Tweak player appearance:
+
+- Hover Tint Color
+- Foreground Color
+- Blur Intensity
+- Hover Tint Opacity
+
+![Player Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/player-preferences.mov)
+
+### Menu Bar Tab
 
 Toggle:
 
@@ -70,6 +85,8 @@ Adjust:
 
 - Max Width of the Status Item (80–300 pt)
 
+![Menu Bar Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/menu-bar-preferences.mov)
+
 ### Shortcuts Tab
 
 Assign keys for:
@@ -78,13 +95,7 @@ Assign keys for:
 - Next Track
 - Previous Track
 
-### Player Tab
-
-Choose which music player SpotMenu should control:
-
-- Automatic — Detects and uses whichever player is active.
-- Spotify
-- Apple Music
+![Shortcuts Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/shortcuts-preferences.mov)
 
 ## 🧠 Usage Tips
 

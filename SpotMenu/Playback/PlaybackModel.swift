@@ -72,7 +72,7 @@ class PlaybackModel: ObservableObject {
         self.preferences = preferences
 
         let (controller, type) = Self.selectController(
-            for: preferences.preferredPlayer
+            for: preferences.preferredMusicApp
         )
         self.controller = controller
         self.playerType = type
@@ -82,7 +82,7 @@ class PlaybackModel: ObservableObject {
             self.fetchInfo()
         }
 
-        cancellable = preferences.$preferredPlayer
+        cancellable = preferences.$preferredMusicApp
             .removeDuplicates()
             .sink { [weak self] newPreference in
                 self?.switchPlayer(to: newPreference)

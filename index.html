@@ -146,6 +146,11 @@
             max-height: none !important;
         }
 
+        .tall-video-xl {
+            height: 700px;
+            max-height: none !important;
+        }
+
         .donate {
             display: flex;
             flex-wrap: wrap;
@@ -219,10 +224,21 @@
     <section class="section">
         <h2>⚙️ Preferences</h2>
         <div class="video-card">
-            <video class="tall-video" src="assets/media/preferences.mov" autoplay loop muted playsinline
+            <video class="tall-video-xl" src="assets/media/player-preferences.mov" autoplay loop muted playsinline
                 controls></video>
-            <p class="video-caption">Customize visuals, shortcuts, and choose your music player (Spotify, Apple Music,
+            <p class="video-caption">Customize visuals and choose your music player (Spotify, Apple Music,
                 Auto).</p>
+        </div>
+
+        <div class="video-card">
+            <video class="tall-video" src="assets/media/menu-bar-preferences.mov" autoplay loop muted playsinline
+                controls></video>
+            <p class="video-caption">Customize menu bar look and max width.</p>
+        </div>
+
+        <div class="video-card">
+            <video src="assets/media/shortcuts-preferences.mov" autoplay loop muted playsinline controls></video>
+            <p class="video-caption">Add keyboard shortcuts.</p>
         </div>
     </section>
 
