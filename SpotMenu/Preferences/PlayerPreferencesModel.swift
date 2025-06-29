@@ -44,6 +44,15 @@ class PlayerPreferencesModel: ObservableObject {
         }
     }
 
+    @Published var hoverTintOpacity: Double {
+        didSet {
+            UserDefaults.standard.set(
+                hoverTintOpacity,
+                forKey: "playback.hoverTintOpacity"
+            )
+        }
+    }
+
     enum ForegroundColorOption: String, CaseIterable, Identifiable {
         case white
         case black
@@ -93,5 +102,10 @@ class PlayerPreferencesModel: ObservableObject {
         } else {
             foregroundColor = .white
         }
+
+        hoverTintOpacity =
+            defaults.object(forKey: "playback.hoverTintOpacity") as? Double
+            ?? 0.3
+
     }
 }

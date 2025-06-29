@@ -31,7 +31,9 @@ struct PlaybackView: View {
     private var content: some View {
         let blurRadius = isHovering ? preferences.blurIntensity * 10 : 0
         let overlayColor =
-            isHovering ? adaptiveHoverTintColor.opacity(0.3) : nil
+            isHovering
+            ? adaptiveHoverTintColor.opacity(preferences.hoverTintOpacity)
+            : nil
 
         if let url = model.imageURL {
             AsyncImage(url: url) { phase in

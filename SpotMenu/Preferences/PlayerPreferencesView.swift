@@ -57,12 +57,15 @@ struct PlayerPreferencesView: View {
                         )
                     )
                 }
-                
+
                 HStack {
                     Text("Foreground Color")
                     Spacer()
                     Picker("", selection: $model.foregroundColor) {
-                        ForEach(PlayerPreferencesModel.ForegroundColorOption.allCases) { option in
+                        ForEach(
+                            PlayerPreferencesModel.ForegroundColorOption
+                                .allCases
+                        ) { option in
                             Text(option.rawValue.capitalized).tag(option)
                         }
                     }
@@ -74,6 +77,13 @@ struct PlayerPreferencesView: View {
                     Text("Blur Intensity")
                     Spacer()
                     Slider(value: $model.blurIntensity, in: 0...1)
+                        .frame(width: 220)
+                }
+
+                HStack {
+                    Text("Hover Tint Opacity")
+                    Spacer()
+                    Slider(value: $model.hoverTintOpacity, in: 0...1)
                         .frame(width: 220)
                 }
 
@@ -90,7 +100,7 @@ struct PlayerPreferencesView: View {
             }
         }
         .padding(20)
-        .frame(width: 400, height: 640)
+        .frame(width: 400, height: 650)
     }
 }
 
