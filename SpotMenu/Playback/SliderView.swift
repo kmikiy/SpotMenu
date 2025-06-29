@@ -11,6 +11,8 @@ struct CustomSlider: View {
 
     var body: some View {
         GeometryReader { geometry in
+            let availableWidth = geometry.size.width - thumbSize
+
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: height / 2)
                     .fill(Color.gray.opacity(0.3))
@@ -20,7 +22,7 @@ struct CustomSlider: View {
                 RoundedRectangle(cornerRadius: height / 2)
                     .fill(trackColor)
                     .frame(
-                        width: progressWidth(in: geometry.size.width),
+                        width: progressWidth(in: availableWidth),
                         height: height
                     )
                     .frame(maxHeight: .infinity, alignment: .center)
@@ -29,7 +31,7 @@ struct CustomSlider: View {
                     .fill(foregroundColor)
                     .frame(width: thumbSize, height: thumbSize)
                     .offset(
-                        x: thumbOffset(in: geometry.size.width) - thumbSize / 2
+                        x: thumbOffset(in: availableWidth)
                     )
                     .frame(maxHeight: .infinity, alignment: .center)
                     .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1)
@@ -40,11 +42,12 @@ struct CustomSlider: View {
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { drag in
+                        let location = drag.location.x - thumbSize / 2
                         let clampedX = min(
-                            max(0, drag.location.x),
-                            geometry.size.width
+                            max(0, location),
+                            availableWidth
                         )
-                        let relative = clampedX / geometry.size.width
+                        let relative = clampedX / availableWidth
                         let newValue =
                             range.lowerBound
                             + (range.upperBound - range.lowerBound)
@@ -58,15 +61,15 @@ struct CustomSlider: View {
         .frame(height: thumbSize)
     }
 
-    private func progressWidth(in totalWidth: CGFloat) -> CGFloat {
+    private func progressWidth(in availableWidth: CGFloat) -> CGFloat {
         let clampedValue = max(range.lowerBound, min(range.upperBound, value))
         let percent =
             (clampedValue - range.lowerBound)
             / (range.upperBound - range.lowerBound)
-        return CGFloat(percent) * totalWidth
+        return CGFloat(percent) * availableWidth + thumbSize / 2
     }
 
-    private func thumbOffset(in totalWidth: CGFloat) -> CGFloat {
-        progressWidth(in: totalWidth)
+    private func thumbOffset(in availableWidth: CGFloat) -> CGFloat {
+        progressWidth(in: availableWidth) - thumbSize / 2
     }
 }
