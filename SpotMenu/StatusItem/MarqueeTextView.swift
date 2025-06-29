@@ -4,6 +4,7 @@ import SwiftUI
 struct AutoMarqueeTextView: View {
     var text: String
     var font: NSFont = .systemFont(ofSize: 13)
+    var weight: NSFont.Weight = .regular
     var speed: CGFloat = 40
     var wrapAround: Bool = true
 
@@ -16,7 +17,11 @@ struct AutoMarqueeTextView: View {
             if shouldScroll {
                 MarqueeTextView(
                     text: text,
-                    font: font,
+                    font: NSFont.systemFont(
+                        ofSize: font.pointSize,
+                        weight: weight
+                    ),  // slightly bolder
+
                     speed: speed,
                     wrapAround: wrapAround
                 )
@@ -99,15 +104,26 @@ class MarqueeView: NSView {
     func setup(font: NSFont) {
         self.font = font
         for textLayer in [textLayer1, textLayer2] {
-            textLayer.contentsScale = NSScreen.main?.backingScaleFactor ?? 2
+            let scale = NSScreen.main?.backingScaleFactor ?? 2
+            let ctFont = CTFontCreateWithName(
+                font.fontName as CFString,
+                font.pointSize,
+                nil
+            )
+
+            textLayer.contentsScale = scale
+            textLayer.rasterizationScale = scale
+            textLayer.shouldRasterize = false
+
             textLayer.alignmentMode = .left
             textLayer.truncationMode = .none
             textLayer.anchorPoint = .zero
             textLayer.isWrapped = false
-            textLayer.font = font
+            textLayer.font = ctFont
             textLayer.fontSize = font.pointSize
             textLayer.foregroundColor =
                 resolvedLabelColor(for: self.effectiveAppearance).cgColor
+
             layer?.addSublayer(textLayer)
         }
     }
@@ -122,10 +138,16 @@ class MarqueeView: NSView {
         self.speed = speed
         self.wrapAround = wrapAround
 
+        let ctFont = CTFontCreateWithName(
+            font.fontName as CFString,
+            font.pointSize,
+            nil
+        )
+
         textLayer1.string = text
         textLayer2.string = text
-        textLayer1.font = font
-        textLayer2.font = font
+        textLayer1.font = ctFont
+        textLayer2.font = ctFont
         textLayer1.fontSize = font.pointSize
         textLayer2.fontSize = font.pointSize
 
@@ -162,31 +184,30 @@ class MarqueeView: NSView {
 
         let textSize = (text as NSString).size(withAttributes: [.font: font])
         let height = bounds.height
-
-        let yOffset = (height - font.ascender - abs(font.descender)) / 2
+        let yOffset = (height - font.ascender - abs(font.descender) + 1) / 2
 
         stopAnimation()
 
         if textSize.width <= bounds.width {
             textLayer1.frame = CGRect(
-                x: (bounds.width - textSize.width) / 2,
-                y: yOffset,
-                width: textSize.width,
-                height: textSize.height
+                x: round((bounds.width - textSize.width) / 2),
+                y: round(yOffset),
+                width: round(textSize.width),
+                height: round(textSize.height)
             )
             textLayer2.isHidden = true
         } else {
             textLayer1.frame = CGRect(
                 x: 0,
-                y: yOffset,
-                width: textSize.width,
-                height: textSize.height
+                y: round(yOffset),
+                width: round(textSize.width),
+                height: round(textSize.height)
             )
             textLayer2.frame = CGRect(
-                x: textSize.width + 40,
-                y: yOffset,
-                width: textSize.width,
-                height: textSize.height
+                x: round(textSize.width + 40),
+                y: round(yOffset),
+                width: round(textSize.width),
+                height: round(textSize.height)
             )
             textLayer2.isHidden = !wrapAround
             if wrapAround {
@@ -196,7 +217,6 @@ class MarqueeView: NSView {
     }
 
     private func startAnimation(totalWidth: CGFloat) {
-        // Cancel any pending delayed animation
         animationDelayWorkItem?.cancel()
 
         let delay: TimeInterval = 2.0

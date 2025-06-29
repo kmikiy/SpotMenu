@@ -65,6 +65,7 @@ struct StatusItemView: View {
                                                     compactViewArtistFontSize,
                                                 weight: .medium
                                             ),
+                                            weight: .bold,
                                             speed: scrollSpeed
                                         )
                                         .frame(width: compactWidth, height: 12)
@@ -93,6 +94,7 @@ struct StatusItemView: View {
                                             font: .systemFont(
                                                 ofSize: compactViewTitleFontSize
                                             ),
+                                            weight: .medium,
                                             speed: scrollSpeed
                                         )
                                         .frame(width: compactWidth, height: 11)
@@ -133,6 +135,7 @@ struct StatusItemView: View {
                             AutoMarqueeTextView(
                                 text: text,
                                 font: .systemFont(ofSize: normalViewFontSize),
+                                weight: .semibold,
                                 speed: scrollSpeed
                             )
                             .frame(width: normalWidth, height: 18)
