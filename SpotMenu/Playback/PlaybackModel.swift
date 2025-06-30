@@ -70,6 +70,10 @@ class PlaybackModel: ObservableObject {
     var playerIconName: String {
         return playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon"
     }
+    
+    var showHeartIcon: Bool {
+        return playerType == .appleMusic ? false : true
+    }
 
     init(preferences: PlayerPreferencesModel) {
 

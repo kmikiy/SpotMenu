@@ -163,19 +163,22 @@ struct PlaybackView: View {
                     foregroundColor: preferences.foregroundColor.color,
                     trackColor: preferences.foregroundColor.color
                 )
-                .frame(width: 180)
+                .frame(width: model.showHeartIcon ? 180 : 200)
 
                 Text(formatTime(model.totalTime))
                     .font(.body.monospacedDigit())
                     .foregroundColor(preferences.foregroundColor.color)
                     .frame(width: 30, alignment: .trailing)
 
-                Group {
-                    if let isLiked = model.isLiked {
-                        Button(action: {
-                            model.toggleLiked()
-                        }) {
-                            Image(systemName: isLiked ? "heart.fill" : "heart")
+                if model.showHeartIcon {
+                    Group {
+                        if let isLiked = model.isLiked {
+                            Button(action: {
+                                model.toggleLiked()
+                            }) {
+                                Image(
+                                    systemName: isLiked ? "heart.fill" : "heart"
+                                )
                                 .renderingMode(.template)
                                 .resizable()
                                 .scaledToFit()
@@ -183,28 +186,31 @@ struct PlaybackView: View {
                                     preferences.foregroundColor.color
                                 )
                                 .frame(width: 20, height: 20)
-                        }
-                        .buttonStyle(.plain)
-                        .help("Toggle like status")
-                    } else {
-                        Button(action: {
-                            model.toggleLiked() // this will initiate login
-                        }) {
-                            Image(systemName: "heart")
-                                .renderingMode(.template)
-                                .resizable()
-                                .scaledToFit()
-                                .foregroundColor(
-                                    preferences.foregroundColor.color.opacity(
-                                        0.3
+                            }
+                            .buttonStyle(.plain)
+                            .help("Toggle like status")
+                        } else {
+                            Button(action: {
+                                model.toggleLiked()  // this will initiate login
+                            }) {
+                                Image(systemName: "heart")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(
+                                        preferences.foregroundColor.color
+                                            .opacity(
+                                                0.3
+                                            )
                                     )
-                                )
-                                .frame(width: 20, height: 20)
-                                .help("Login to enable liking tracks")
+                                    .frame(width: 20, height: 20)
+                                    .help("Login to enable liking tracks")
+                            }
+                            .buttonStyle(.plain)
                         }
-                        .buttonStyle(.plain)
                     }
                 }
+
             }
             .padding(.horizontal)
             .padding(.bottom, 16)
