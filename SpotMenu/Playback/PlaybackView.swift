@@ -170,21 +170,49 @@ struct PlaybackView: View {
                     .foregroundColor(preferences.foregroundColor.color)
                     .frame(width: 30, alignment: .trailing)
 
-                Button(action: {
-                    model.isLiked.toggle()
-                    // Optionally persist or send to backend/Apple Music/Spotify
-                    model.toggleLiked()
-                }) {
-                    Image(systemName: model.isLiked ? "heart.fill" : "heart")
-                        .renderingMode(.template)
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(preferences.foregroundColor.color)
-                        .frame(width: 20, height: 20)
-
+                Group {
+                    if let isLiked = model.isLiked {
+                        Button(action: {
+                            model.isLiked = !isLiked
+                            model.toggleLiked()
+                        }) {
+                            Image(systemName: isLiked ? "heart.fill" : "heart")
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(
+                                    preferences.foregroundColor.color
+                                )
+                                .frame(width: 20, height: 20)
+                        }
+                        .buttonStyle(.plain)
+                        .help("Toggle like status")
+                    } else {
+                        // Unknown state (e.g., not logged in)
+                        Image(systemName: "heart")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(
+                                preferences.foregroundColor.color.opacity(0.3)
+                            )
+                            .frame(width: 20, height: 20)
+                            .help("Login to enable liking tracks")
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 4)
+                                    .stroke(
+                                        style: StrokeStyle(
+                                            lineWidth: 1,
+                                            dash: [2]
+                                        )
+                                    )
+                                    .foregroundColor(
+                                        preferences.foregroundColor.color
+                                            .opacity(0.2)
+                                    )
+                            )
+                    }
                 }
-
-                .buttonStyle(.plain)
             }
             .padding(.horizontal)
             .padding(.bottom, 16)

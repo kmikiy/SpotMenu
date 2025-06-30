@@ -67,6 +67,105 @@ class SpotifyAuthManager: ObservableObject {
         completion(token)
     }
 
+    // MARK: - Spotify Liked Songs API
+
+    func checkIfTrackIsLiked(
+        trackID: String,
+        completion: @escaping (Bool?) -> Void
+    ) {
+        getAccessToken { token in
+            guard let token = token,
+                let url = URL(
+                    string:
+                        "https://api.spotify.com/v1/me/tracks/contains?ids=\(trackID)"
+                )
+            else {
+                completion(nil)
+                return
+            }
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            request.setValue(
+                "Bearer \(token)",
+                forHTTPHeaderField: "Authorization"
+            )
+
+            URLSession.shared.dataTask(with: request) { data, _, _ in
+                guard let data = data,
+                    let result = try? JSONDecoder().decode(
+                        [Bool].self,
+                        from: data
+                    ),
+                    let isLiked = result.first
+                else {
+                    completion(nil)
+                    return
+                }
+                completion(isLiked)
+            }.resume()
+        }
+    }
+
+    func addTrackToLiked(trackID: String, completion: ((Bool) -> Void)? = nil) {
+        getAccessToken { token in
+            guard let token = token,
+                let url = URL(string: "https://api.spotify.com/v1/me/tracks")
+            else {
+                completion?(false)
+                return
+            }
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "PUT"
+            request.setValue(
+                "Bearer \(token)",
+                forHTTPHeaderField: "Authorization"
+            )
+            request.setValue(
+                "application/json",
+                forHTTPHeaderField: "Content-Type"
+            )
+            request.httpBody = try? JSONEncoder().encode(["ids": [trackID]])
+
+            URLSession.shared.dataTask(with: request) { _, response, _ in
+                let success = (response as? HTTPURLResponse)?.statusCode == 200
+                completion?(success)
+            }.resume()
+        }
+    }
+
+    func removeTrackFromLiked(
+        trackID: String,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        getAccessToken { token in
+            guard let token = token,
+                let url = URL(string: "https://api.spotify.com/v1/me/tracks")
+            else {
+                completion?(false)
+                return
+            }
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "DELETE"
+            request.setValue(
+                "Bearer \(token)",
+                forHTTPHeaderField: "Authorization"
+            )
+            request.setValue(
+                "application/json",
+                forHTTPHeaderField: "Content-Type"
+            )
+            request.httpBody = try? JSONEncoder().encode(["ids": [trackID]])
+
+            URLSession.shared.dataTask(with: request) { _, response, _ in
+                let success = (response as? HTTPURLResponse)?.statusCode == 200
+                completion?(success)
+            }.resume()
+        }
+    }
+
     // MARK: - Private Logic
 
     private func requestAccessToken(code: String, codeVerifier: String) {

@@ -1,9 +1,12 @@
 import SwiftUI
 
 class SpotifyController: MusicPlayerController {
+    private var lastTrackID: String?
+    private var lastIsLiked: Bool?
+
     func fetchNowPlayingInfo() -> PlaybackInfo? {
         let script = """
-                tell application \"Spotify\"
+                tell application "Spotify"
                     if it is running then
                         set trackName to name of current track
                         set artistName to artist of current track
@@ -11,9 +14,10 @@ class SpotifyController: MusicPlayerController {
                         set durationSec to duration of current track
                         set currentSec to player position
                         set isPlayingState to (player state is playing)
-                        return trackName & \"|||SEP|||\" & artistName & \"|||SEP|||\" & artworkUrl & \"|||SEP|||\" & durationSec & \"|||SEP|||\" & currentSec & \"|||SEP|||\" & isPlayingState
+                        set trackId to id of current track
+                        return trackName & "|||SEP|||" & artistName & "|||SEP|||" & artworkUrl & "|||SEP|||" & durationSec & "|||SEP|||" & currentSec & "|||SEP|||" & isPlayingState & "|||SEP|||" & trackId
                     else
-                        return \"NOT_RUNNING\"
+                        return "NOT_RUNNING"
                     end if
                 end tell
             """
@@ -24,29 +28,46 @@ class SpotifyController: MusicPlayerController {
         }
 
         let parts = output.components(separatedBy: "|||SEP|||")
-        if parts.count == 6 {
-            let artist = parts[1]
-            let title = parts[0]
-            let imageURL = URL(string: parts[2])
-            let totalTime = (Double(parts[3]) ?? 1000) / 1000.0
-            let currentTime =
-                Double(parts[4].replacingOccurrences(of: ",", with: ".")) ?? 0
-            let isPlaying =
-                parts[5].trimmingCharacters(in: .whitespacesAndNewlines)
-                == "true"
+        guard parts.count == 7 else { return nil }
 
-            return PlaybackInfo(
-                artist: artist,
-                title: title,
-                isPlaying: isPlaying,
-                imageURL: imageURL,
-                totalTime: totalTime,
-                currentTime: min(currentTime, totalTime),
-                image: nil
-            )
+        let title = parts[0]
+        let artist = parts[1]
+        let imageURL = URL(string: parts[2])
+        let totalTime = (Double(parts[3]) ?? 1000) / 1000.0
+        let currentTime =
+            Double(parts[4].replacingOccurrences(of: ",", with: ".")) ?? 0
+        let isPlaying =
+            parts[5].trimmingCharacters(in: .whitespacesAndNewlines) == "true"
+        let trackURI = parts[6].trimmingCharacters(in: .whitespacesAndNewlines)
+        let trackID = trackURI.components(separatedBy: ":").last
+
+        var isLikedResult: Bool? = lastIsLiked
+
+        // Fetch isLiked only if track has changed
+        if let trackID = trackID, trackID != lastTrackID {
+            let semaphore = DispatchSemaphore(value: 0)
+
+            SpotifyAuthManager.shared.checkIfTrackIsLiked(trackID: trackID) {
+                isLiked in
+                self.lastIsLiked = isLiked
+                isLikedResult = isLiked
+                semaphore.signal()
+            }
+
+            _ = semaphore.wait(timeout: .now() + 2)
+            lastTrackID = trackID
         }
 
-        return nil
+        return PlaybackInfo(
+            artist: artist,
+            title: title,
+            isPlaying: isPlaying,
+            imageURL: imageURL,
+            totalTime: totalTime,
+            currentTime: min(currentTime, totalTime),
+            image: nil,
+            isLiked: isLikedResult
+        )
     }
 
     func togglePlayPause() {
@@ -72,17 +93,42 @@ class SpotifyController: MusicPlayerController {
         SpotMenu.openApp(bundleIdentifier: "com.spotify.client")
     }
 
-    func likeCurrentTrack() {
-        SpotifyAuthManager.shared.getAccessToken { token in
-            guard let accessToken = token else {
+    func toggleLiked() {
+        let script = """
+                tell application "Spotify"
+                    if it is running then
+                        return id of current track
+                    else
+                        return "NOT_RUNNING"
+                    end if
+                end tell
+            """
+
+        guard let trackURI = runAppleScript(script),
+            trackURI != "NOT_RUNNING",
+            let trackID = trackURI.components(separatedBy: ":").last
+        else {
+            return
+        }
+
+        SpotifyAuthManager.shared.checkIfTrackIsLiked(trackID: trackID) {
+            isLiked in
+            guard let isLiked = isLiked else {
                 DispatchQueue.main.async {
                     LoginWindowManager.showLoginWindow()
                 }
                 return
             }
 
-            // Proceed to like the track
-            // Example: SpotifyAPI.likeTrack(trackID, accessToken: accessToken)
+            if isLiked {
+                SpotifyAuthManager.shared.removeTrackFromLiked(trackID: trackID)
+            } else {
+                SpotifyAuthManager.shared.addTrackToLiked(trackID: trackID)
+            }
+
+            // Update cached state
+            self.lastTrackID = trackID
+            self.lastIsLiked = !isLiked
         }
     }
 }

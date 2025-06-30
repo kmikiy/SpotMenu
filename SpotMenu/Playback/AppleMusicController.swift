@@ -53,7 +53,8 @@ class AppleMusicController: MusicPlayerController {
                 imageURL: nil,
                 totalTime: totalTime,
                 currentTime: currentTime,
-                image: lastImage != nil ? Image(nsImage: lastImage!) : nil
+                image: lastImage != nil ? Image(nsImage: lastImage!) : nil,
+                isLiked: nil
             )
         }
 
@@ -106,7 +107,7 @@ class AppleMusicController: MusicPlayerController {
         SpotMenu.openApp(bundleIdentifier: "com.apple.Music")
     }
 
-    func likeCurrentTrack() {
+    func toggleLiked() {
         print("TODO: implement me please")
     }
 }

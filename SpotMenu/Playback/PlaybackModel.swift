@@ -36,6 +36,7 @@ struct PlaybackInfo {
     let totalTime: Double
     let currentTime: Double
     let image: Image?
+    let isLiked: Bool?
 }
 
 protocol MusicPlayerController {
@@ -45,7 +46,7 @@ protocol MusicPlayerController {
     func skipBack()
     func updatePlaybackPosition(to seconds: Double)
     func openApp()
-    func likeCurrentTrack()
+    func toggleLiked()
 }
 
 class PlaybackModel: ObservableObject {
@@ -57,7 +58,7 @@ class PlaybackModel: ObservableObject {
     @Published var totalTime: Double = 1
     @Published var currentTime: Double = 0
     @Published var playerType: PlayerType
-    @Published var isLiked: Bool = false
+    @Published var isLiked: Bool? = false
 
     private let preferences: PlayerPreferencesModel
     private var controller: MusicPlayerController
@@ -152,6 +153,7 @@ class PlaybackModel: ObservableObject {
             self.totalTime = info.totalTime
             self.currentTime = info.currentTime
             self.image = info.image
+            self.isLiked = info.isLiked
 
             NotificationCenter.default.post(
                 name: .contentModelDidUpdate,
@@ -177,7 +179,7 @@ class PlaybackModel: ObservableObject {
     }
 
     func toggleLiked() {
-        controller.likeCurrentTrack()
+        controller.toggleLiked()
         delayedFetch()
     }
 
