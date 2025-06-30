@@ -58,7 +58,8 @@ class PlaybackModel: ObservableObject {
     @Published var totalTime: Double = 1
     @Published var currentTime: Double = 0
     @Published var playerType: PlayerType
-    @Published var isLiked: Bool? = false
+    @Published var isLiked: Bool? = nil
+    @Published var likeChangedTo: Bool? = nil
 
     private let preferences: PlayerPreferencesModel
     private var controller: MusicPlayerController
@@ -179,8 +180,20 @@ class PlaybackModel: ObservableObject {
     }
 
     func toggleLiked() {
+        let previousLikeStatus = self.isLiked
+
         controller.toggleLiked()
         delayedFetch()
+
+        if let previous = previousLikeStatus {
+            likeChangedTo = !previous
+            isLiked = !previous
+            likeChangedTo = nil  // can set back to nil we need it for the side effect
+
+        } else {
+            likeChangedTo = nil
+        }
+
     }
 
     func updatePlaybackPosition(to seconds: Double) {

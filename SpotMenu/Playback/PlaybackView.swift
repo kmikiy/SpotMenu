@@ -173,7 +173,6 @@ struct PlaybackView: View {
                 Group {
                     if let isLiked = model.isLiked {
                         Button(action: {
-                            model.isLiked = !isLiked
                             model.toggleLiked()
                         }) {
                             Image(systemName: isLiked ? "heart.fill" : "heart")
