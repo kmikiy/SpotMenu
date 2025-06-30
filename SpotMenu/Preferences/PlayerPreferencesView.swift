@@ -2,13 +2,14 @@ import SwiftUI
 
 struct PlayerPreferencesView: View {
     @ObservedObject var model: PlayerPreferencesModel
+    @ObservedObject var playbackModel: PlaybackModel
     @State private var selectedPlayer: PreferredPlayer
 
-    init(model: PlayerPreferencesModel) {
+    init(model: PlayerPreferencesModel, playbackModel: PlaybackModel) {
         self.model = model
+        self.playbackModel = playbackModel
         _selectedPlayer = State(initialValue: model.preferredMusicApp)
     }
-
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
             // MARK: Player Selection Section
@@ -92,7 +93,7 @@ struct PlayerPreferencesView: View {
                 HStack {
                     Spacer()
                     PlaybackView(
-                        model: PlaybackModel(preferences: model),
+                        model: playbackModel,
                         preferences: model
                     )
                     Spacer()
@@ -105,5 +106,8 @@ struct PlayerPreferencesView: View {
 }
 
 #Preview {
-    PlayerPreferencesView(model: .init())
+    PlayerPreferencesView(
+        model: .init(),
+        playbackModel: PlaybackModel(preferences: .init())
+    )
 }

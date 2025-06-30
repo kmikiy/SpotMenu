@@ -11,7 +11,7 @@ struct PreferencesView: View {
         VStack(spacing: 16) {
             TabView {
                 tabContainer {
-                    PlayerPreferencesView(model: playerPreferencesModel)
+                    PlayerPreferencesView(model: playerPreferencesModel, playbackModel: playbackModel)
                 }
                 .tabItem { Text("Player") }
 
