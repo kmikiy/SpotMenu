@@ -148,6 +148,7 @@ struct PlaybackView: View {
             Spacer(minLength: 0)
 
             HStack {
+
                 Text(formatTime(model.currentTime))
                     .font(.body.monospacedDigit())
                     .foregroundColor(preferences.foregroundColor.color)
@@ -162,12 +163,28 @@ struct PlaybackView: View {
                     foregroundColor: preferences.foregroundColor.color,
                     trackColor: preferences.foregroundColor.color
                 )
-                .frame(width: 200)
+                .frame(width: 180)
 
                 Text(formatTime(model.totalTime))
                     .font(.body.monospacedDigit())
                     .foregroundColor(preferences.foregroundColor.color)
                     .frame(width: 30, alignment: .trailing)
+
+                Button(action: {
+                    model.isLiked.toggle()
+                    // Optionally persist or send to backend/Apple Music/Spotify
+                    model.toggleLiked()
+                }) {
+                    Image(systemName: model.isLiked ? "heart.fill" : "heart")
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(preferences.foregroundColor.color)
+                        .frame(width: 20, height: 20)
+
+                }
+
+                .buttonStyle(.plain)
             }
             .padding(.horizontal)
             .padding(.bottom, 16)

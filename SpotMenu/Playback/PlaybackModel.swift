@@ -45,6 +45,7 @@ protocol MusicPlayerController {
     func skipBack()
     func updatePlaybackPosition(to seconds: Double)
     func openApp()
+    func likeCurrentTrack()
 }
 
 class PlaybackModel: ObservableObject {
@@ -56,6 +57,7 @@ class PlaybackModel: ObservableObject {
     @Published var totalTime: Double = 1
     @Published var currentTime: Double = 0
     @Published var playerType: PlayerType
+    @Published var isLiked: Bool = false
 
     private let preferences: PlayerPreferencesModel
     private var controller: MusicPlayerController
@@ -171,6 +173,11 @@ class PlaybackModel: ObservableObject {
 
     func skipBack() {
         controller.skipBack()
+        delayedFetch()
+    }
+
+    func toggleLiked() {
+        controller.likeCurrentTrack()
         delayedFetch()
     }
 

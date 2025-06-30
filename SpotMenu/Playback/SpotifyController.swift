@@ -71,4 +71,18 @@ class SpotifyController: MusicPlayerController {
     func openApp() {
         SpotMenu.openApp(bundleIdentifier: "com.spotify.client")
     }
+
+    func likeCurrentTrack() {
+        SpotifyAuthManager.shared.getAccessToken { token in
+            guard let accessToken = token else {
+                DispatchQueue.main.async {
+                    LoginWindowManager.showLoginWindow()
+                }
+                return
+            }
+
+            // Proceed to like the track
+            // Example: SpotifyAPI.likeTrack(trackID, accessToken: accessToken)
+        }
+    }
 }

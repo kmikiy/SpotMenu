@@ -105,4 +105,8 @@ class AppleMusicController: MusicPlayerController {
     func openApp() {
         SpotMenu.openApp(bundleIdentifier: "com.apple.Music")
     }
+
+    func likeCurrentTrack() {
+        print("TODO: implement me please")
+    }
 }

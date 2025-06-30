@@ -61,7 +61,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         // Set up popover manager
-        let playbackView = PlaybackView(model: playbackModel, preferences: playerPreferencesModel)
+        let playbackView = PlaybackView(
+            model: playbackModel,
+            preferences: playerPreferencesModel
+        )
         popoverManager = PopoverManager(contentView: playbackView)
 
         // Global event monitor to dismiss popover
@@ -93,6 +96,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .objectWillChange.sink { [weak self] _ in
                 self?.updateStatusItem()
             }
+    }
+
+    func application(_ application: NSApplication, open urls: [URL]) {
+
+        guard let url = urls.first else { return }
+        SpotifyAuthManager.shared.handleRedirect(url: url)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     func applicationWillTerminate(_ notification: Notification) {
