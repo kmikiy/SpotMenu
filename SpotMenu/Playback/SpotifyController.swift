@@ -94,25 +94,9 @@ class SpotifyController: MusicPlayerController {
     }
 
     func toggleLiked() {
-        let script = """
-                tell application "Spotify"
-                    if it is running then
-                        return id of current track
-                    else
-                        return "NOT_RUNNING"
-                    end if
-                end tell
-            """
+        guard let trackID = getCurrentTrackID() else { return }
 
-        guard let trackURI = runAppleScript(script),
-            trackURI != "NOT_RUNNING",
-            let trackID = trackURI.components(separatedBy: ":").last
-        else {
-            return
-        }
-
-        SpotifyAuthManager.shared.checkIfTrackIsLiked(trackID: trackID) {
-            isLiked in
+        SpotifyAuthManager.shared.checkIfTrackIsLiked(trackID: trackID) { isLiked in
             guard let isLiked = isLiked else {
                 DispatchQueue.main.async {
                     LoginWindowManager.showLoginWindow()
@@ -121,14 +105,41 @@ class SpotifyController: MusicPlayerController {
             }
 
             if isLiked {
-                SpotifyAuthManager.shared.removeTrackFromLiked(trackID: trackID)
+                self.unlikeTrack()
             } else {
-                SpotifyAuthManager.shared.addTrackToLiked(trackID: trackID)
+                self.likeTrack()
             }
-
-            // Update cached state
-            self.lastTrackID = trackID
-            self.lastIsLiked = !isLiked
         }
+    }
+
+    func likeTrack() {
+        guard let trackID = getCurrentTrackID() else { return }
+        SpotifyAuthManager.shared.addTrackToLiked(trackID: trackID)
+        self.lastIsLiked = true
+    }
+
+    func unlikeTrack() {
+        guard let trackID = getCurrentTrackID() else { return }
+        SpotifyAuthManager.shared.removeTrackFromLiked(trackID: trackID)
+        self.lastIsLiked = false
+    }
+
+    private func getCurrentTrackID() -> String? {
+        let script = """
+            tell application "Spotify"
+                if it is running then
+                    return id of current track
+                else
+                    return "NOT_RUNNING"
+                end if
+            end tell
+        """
+        guard let trackURI = runAppleScript(script),
+              trackURI != "NOT_RUNNING",
+              let trackID = trackURI.components(separatedBy: ":").last
+        else {
+            return nil
+        }
+        return trackID
     }
 }

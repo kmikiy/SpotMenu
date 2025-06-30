@@ -47,6 +47,9 @@ protocol MusicPlayerController {
     func updatePlaybackPosition(to seconds: Double)
     func openApp()
     func toggleLiked()
+    
+    func likeTrack()
+    func unlikeTrack()
 }
 
 class PlaybackModel: ObservableObject {
@@ -197,7 +200,20 @@ class PlaybackModel: ObservableObject {
         } else {
             likeChangedTo = nil
         }
+    }
+    
+    func likeTrack() {
+        controller.likeTrack()
+        likeChangedTo = true
+        isLiked = true
+        likeChangedTo = nil
+    }
 
+    func unlikeTrack() {
+        controller.unlikeTrack()
+        likeChangedTo = false
+        isLiked = false
+        likeChangedTo = nil
     }
 
     func updatePlaybackPosition(to seconds: Double) {

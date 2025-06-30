@@ -35,18 +35,34 @@ struct ShortcutPreferencesView: View {
             }
 
             if model.isLikingEnabled {
+
+                HStack {
+                    Text("Like Track")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    KeyboardShortcuts.Recorder(for: .likeTrack)
+                }
+                
+                HStack {
+                    Text("Unlike Track")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    KeyboardShortcuts.Recorder(for: .unlikeTrack)
+                }
+                
                 HStack {
                     Text("Toggle Like")
                         .frame(width: 150, alignment: .leading)
                     Spacer()
                     KeyboardShortcuts.Recorder(for: .toggleLike)
                 }
+                
             }
 
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: model.isLikingEnabled ? 240 : 200)
+        .frame(width: 400, height: model.isLikingEnabled ? 320 : 200)
     }
 }
 

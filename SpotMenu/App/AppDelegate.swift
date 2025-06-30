@@ -124,6 +124,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         KeyboardShortcuts.onKeyUp(for: .toggleLike) { [weak self] in
             self?.playbackModel.toggleLiked()
         }
+        KeyboardShortcuts.onKeyUp(for: .likeTrack) { [weak self] in
+            self?.playbackModel.likeTrack()
+        }
+        KeyboardShortcuts.onKeyUp(for: .unlikeTrack) { [weak self] in
+            self?.playbackModel.unlikeTrack()
+        }
     }
 
     func updateStatusItem() {
