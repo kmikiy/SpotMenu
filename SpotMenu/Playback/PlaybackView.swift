@@ -163,7 +163,7 @@ struct PlaybackView: View {
                     foregroundColor: preferences.foregroundColor.color,
                     trackColor: preferences.foregroundColor.color
                 )
-                .frame(width: model.isLikingEnabled ? 180 : 200)
+                .frame(width: model.isLikingEnabled ? 160 : 180)
 
                 Text(formatTime(model.totalTime))
                     .font(.body.monospacedDigit())
