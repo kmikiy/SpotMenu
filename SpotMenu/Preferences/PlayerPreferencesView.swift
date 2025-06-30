@@ -101,7 +101,7 @@ struct PlayerPreferencesView: View {
             }
         }
         .padding(20)
-        .frame(width: 400, height: 650)
+        .frame(width: 400, height: 680)
     }
 }
 
