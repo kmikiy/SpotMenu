@@ -71,7 +71,7 @@ class PlaybackModel: ObservableObject {
         return playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon"
     }
     
-    var showHeartIcon: Bool {
+    var isLikingEnabled: Bool {
         return playerType == .appleMusic ? false : true
     }
 

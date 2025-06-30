@@ -24,7 +24,7 @@ struct PreferencesView: View {
                 .tabItem { Text("Menu Bar") }
 
                 tabContainer {
-                    ShortcutPreferencesView()
+                    ShortcutPreferencesView(model: playbackModel)
                 }
                 .tabItem { Text("Shortcuts") }
 
