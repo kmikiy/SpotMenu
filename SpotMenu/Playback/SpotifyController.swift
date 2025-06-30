@@ -96,7 +96,8 @@ class SpotifyController: MusicPlayerController {
     func toggleLiked() {
         guard let trackID = getCurrentTrackID() else { return }
 
-        SpotifyAuthManager.shared.checkIfTrackIsLiked(trackID: trackID) { isLiked in
+        SpotifyAuthManager.shared.checkIfTrackIsLiked(trackID: trackID) {
+            isLiked in
             guard let isLiked = isLiked else {
                 DispatchQueue.main.async {
                     LoginWindowManager.showLoginWindow()
@@ -105,38 +106,66 @@ class SpotifyController: MusicPlayerController {
             }
 
             if isLiked {
-                self.unlikeTrack()
+                SpotifyAuthManager.shared.removeTrackFromLiked(trackID: trackID)
+                self.lastIsLiked = false
             } else {
-                self.likeTrack()
+                SpotifyAuthManager.shared.addTrackToLiked(trackID: trackID)
+                self.lastIsLiked = true
             }
         }
     }
 
     func likeTrack() {
         guard let trackID = getCurrentTrackID() else { return }
-        SpotifyAuthManager.shared.addTrackToLiked(trackID: trackID)
-        self.lastIsLiked = true
+
+        SpotifyAuthManager.shared.checkIfTrackIsLiked(trackID: trackID) {
+            isLiked in
+            guard let isLiked = isLiked else {
+                DispatchQueue.main.async {
+                    LoginWindowManager.showLoginWindow()
+                }
+                return
+            }
+
+            if !isLiked {
+                SpotifyAuthManager.shared.addTrackToLiked(trackID: trackID)
+            }
+            self.lastIsLiked = true
+        }
     }
 
     func unlikeTrack() {
         guard let trackID = getCurrentTrackID() else { return }
-        SpotifyAuthManager.shared.removeTrackFromLiked(trackID: trackID)
-        self.lastIsLiked = false
+
+        SpotifyAuthManager.shared.checkIfTrackIsLiked(trackID: trackID) {
+            isLiked in
+            guard let isLiked = isLiked else {
+                DispatchQueue.main.async {
+                    LoginWindowManager.showLoginWindow()
+                }
+                return
+            }
+
+            if isLiked {
+                SpotifyAuthManager.shared.removeTrackFromLiked(trackID: trackID)
+            }
+            self.lastIsLiked = false
+        }
     }
 
     private func getCurrentTrackID() -> String? {
         let script = """
-            tell application "Spotify"
-                if it is running then
-                    return id of current track
-                else
-                    return "NOT_RUNNING"
-                end if
-            end tell
-        """
+                tell application "Spotify"
+                    if it is running then
+                        return id of current track
+                    else
+                        return "NOT_RUNNING"
+                    end if
+                end tell
+            """
         guard let trackURI = runAppleScript(script),
-              trackURI != "NOT_RUNNING",
-              let trackID = trackURI.components(separatedBy: ":").last
+            trackURI != "NOT_RUNNING",
+            let trackID = trackURI.components(separatedBy: ":").last
         else {
             return nil
         }
