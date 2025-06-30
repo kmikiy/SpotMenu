@@ -188,29 +188,22 @@ struct PlaybackView: View {
                         .buttonStyle(.plain)
                         .help("Toggle like status")
                     } else {
-                        // Unknown state (e.g., not logged in)
-                        Image(systemName: "heart")
-                            .renderingMode(.template)
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(
-                                preferences.foregroundColor.color.opacity(0.3)
-                            )
-                            .frame(width: 20, height: 20)
-                            .help("Login to enable liking tracks")
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 4)
-                                    .stroke(
-                                        style: StrokeStyle(
-                                            lineWidth: 1,
-                                            dash: [2]
-                                        )
+                        Button(action: {
+                            model.toggleLiked() // this will initiate login
+                        }) {
+                            Image(systemName: "heart")
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(
+                                    preferences.foregroundColor.color.opacity(
+                                        0.3
                                     )
-                                    .foregroundColor(
-                                        preferences.foregroundColor.color
-                                            .opacity(0.2)
-                                    )
-                            )
+                                )
+                                .frame(width: 20, height: 20)
+                                .help("Login to enable liking tracks")
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
             }
