@@ -87,6 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItem: statusItem,
             statusItemModel: statusItemModel,
             menuBarPreferencesModel: menuBarPreferencesModel,
+            musicPlayerPreferencesModel: musicPlayerPreferencesModel,
             playBackModel: playbackModel,
             toggleAction: #selector(togglePopover),
             target: self

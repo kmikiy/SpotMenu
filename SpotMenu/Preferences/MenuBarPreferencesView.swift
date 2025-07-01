@@ -3,12 +3,14 @@ import SwiftUI
 struct MenuBarPreferencesView: View {
     @ObservedObject var model: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
+    @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
     @StateObject private var previewModel: StatusItemModel = {
         let model = StatusItemModel()
         model.artist = "Lorem Ipsum"
         model.title =
             "Ut Sit Amet Justo Efficitur, Imperdiet Elit Sit Amet"
         model.isPlaying = true
+        model.isLiked = true
         return model
     }()
 
@@ -25,6 +27,10 @@ struct MenuBarPreferencesView: View {
                 settingsRow(
                     "Show Playing Icon",
                     binding: $model.showIsPlayingIcon
+                )
+                settingsRow(
+                    "Show Liked Icon",
+                    binding: $model.showIsLikedIcon
                 )
                 settingsRow("Display App Icon", binding: $model.showAppIcon)
                 settingsRow("Compact View", binding: $model.compactView)
@@ -69,6 +75,8 @@ struct MenuBarPreferencesView: View {
                         StatusItemView(
                             model: previewModel,
                             menuBarPreferencesModel: model,
+                            musicPlayerPreferencesModel:
+                                musicPlayerPreferencesModel,
                             playbackModel: playbackModel
                         )
                         .frame(width: model.maxStatusItemWidth, height: 22)
@@ -141,6 +149,7 @@ struct MenuBarPreferencesView: View {
         model: MenuBarPreferencesModel(),
         playbackModel: PlaybackModel(
             preferences: MusicPlayerPreferencesModel()
-        )
+        ),
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel()
     )
 }

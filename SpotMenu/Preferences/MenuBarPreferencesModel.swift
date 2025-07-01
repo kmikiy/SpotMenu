@@ -20,6 +20,14 @@ class MenuBarPreferencesModel: ObservableObject {
             )
         }
     }
+    @Published var showIsLikedIcon: Bool {
+        didSet {
+            UserDefaults.standard.set(
+                showIsLikedIcon,
+                forKey: "menuBar.showIsLikedIcon"
+            )
+        }
+    }
     @Published var showAppIcon: Bool {
         didSet {
             UserDefaults.standard.set(
@@ -58,6 +66,9 @@ class MenuBarPreferencesModel: ObservableObject {
             defaults.object(forKey: "menuBar.showTitle") as? Bool ?? true
         showIsPlayingIcon =
             defaults.object(forKey: "menuBar.showIsPlayingIcon") as? Bool
+            ?? true
+        showIsLikedIcon =
+            defaults.object(forKey: "menuBar.showIsLikedIcon") as? Bool
             ?? true
         showAppIcon =
             defaults.object(forKey: "menuBar.showAppIcon") as? Bool ?? true

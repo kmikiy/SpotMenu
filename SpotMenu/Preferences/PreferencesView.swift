@@ -32,7 +32,8 @@ struct PreferencesView: View {
                 tabContainer {
                     MenuBarPreferencesView(
                         model: menuBarPreferencesModel,
-                        playbackModel: playbackModel
+                        playbackModel: playbackModel,
+                        musicPlayerPreferencesModel: musicPlayerPreferencesModel
                     )
                 }
                 .tabItem { Text("Menu Bar") }

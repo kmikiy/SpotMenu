@@ -3,7 +3,9 @@ import SwiftUI
 struct StatusItemView: View {
     @ObservedObject var model: StatusItemModel
     @ObservedObject var menuBarPreferencesModel: MenuBarPreferencesModel
+    @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
+    
 
     var body: some View {
         content
@@ -30,7 +32,7 @@ struct StatusItemView: View {
                     .clipShape(Circle())
             }
 
-            if model.isLiked == true {
+            if model.isLiked == true && playbackModel.isLikingImplemented && musicPlayerPreferencesModel.likingEnabled && menuBarPreferencesModel.showIsLikedIcon {
                 Image(systemName: "heart.fill")
                     .renderingMode(.template)
                     .resizable()
@@ -106,6 +108,7 @@ struct StatusItemDisplayHelper {
     return StatusItemView(
         model: model,
         menuBarPreferencesModel: preferences,
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel(),
         playbackModel: playbackModel
     )
 }

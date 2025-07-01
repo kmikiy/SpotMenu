@@ -5,6 +5,7 @@ final class StatusItemConfigurator {
         statusItem: NSStatusItem,
         statusItemModel: StatusItemModel,
         menuBarPreferencesModel: MenuBarPreferencesModel,
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel,
         playBackModel: PlaybackModel,
         toggleAction: Selector,
         target: AnyObject
@@ -12,6 +13,7 @@ final class StatusItemConfigurator {
         let view = StatusItemView(
             model: statusItemModel,
             menuBarPreferencesModel: menuBarPreferencesModel,
+            musicPlayerPreferencesModel: musicPlayerPreferencesModel,
             playbackModel: playBackModel
         )
         let hostingView = NSHostingView(rootView: view)
