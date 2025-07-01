@@ -18,6 +18,7 @@ enum MediaAction: String, CaseIterable, Identifiable {
 
 struct ShortcutPreferencesView: View {
     @ObservedObject var model: PlaybackModel
+    @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -34,7 +35,9 @@ struct ShortcutPreferencesView: View {
                 }
             }
 
-            if model.isLikingImplemented {
+            if model.isLikingImplemented
+                && musicPlayerPreferencesModel.likingEnabled
+            {
 
                 HStack {
                     Text("Like Track")
@@ -62,12 +65,17 @@ struct ShortcutPreferencesView: View {
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: model.isLikingImplemented ? 320 : 200)
+        .frame(
+            width: 400,
+            height: model.isLikingImplemented
+                && musicPlayerPreferencesModel.likingEnabled ? 320 : 200
+        )
     }
 }
 
 #Preview {
     ShortcutPreferencesView(
-        model: PlaybackModel(preferences: MusicPlayerPreferencesModel())
+        model: PlaybackModel(preferences: MusicPlayerPreferencesModel()),
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel()
     )
 }

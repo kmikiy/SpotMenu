@@ -39,7 +39,7 @@ struct PreferencesView: View {
                 .tabItem { Text("Menu Bar") }
 
                 tabContainer {
-                    ShortcutPreferencesView(model: playbackModel)
+                    ShortcutPreferencesView(model: playbackModel, musicPlayerPreferencesModel: musicPlayerPreferencesModel)
                 }
                 .tabItem { Text("Shortcuts") }
 
