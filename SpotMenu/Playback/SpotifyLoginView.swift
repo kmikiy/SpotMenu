@@ -86,10 +86,12 @@ struct SpotifyLoginView: View {
                             }
                         }
                         .disabled(
-                            instructionStep == instructions.count - 1 &&
-                            (preferences.spotifyClientID ?? "")
-                                .trimmingCharacters(in: .whitespacesAndNewlines)
-                                .isEmpty
+                            instructionStep == instructions.count - 1
+                                && (preferences.spotifyClientID ?? "")
+                                    .trimmingCharacters(
+                                        in: .whitespacesAndNewlines
+                                    )
+                                    .isEmpty
                         )
                         .foregroundColor(.white)
                     }
@@ -123,7 +125,7 @@ struct SpotifyLoginView: View {
             )
             .textFieldStyle(.roundedBorder)
             .font(.system(size: 13))
-            .frame(width: 260)
+            .frame(width: 300)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text("Don't have one? Follow these steps:")
@@ -131,10 +133,47 @@ struct SpotifyLoginView: View {
                     .font(.headline)
                     .multilineTextAlignment(.leading)
 
-                ForEach(Array(instructions.enumerated()), id: \.offset) { index, step in
-                    Text(step)
-                        .font(.system(size: 15, weight: index == instructionStep ? .bold : .regular))
-                        .foregroundColor(index == instructionStep ? .white : .gray)
+                ForEach(Array(instructions.enumerated()), id: \.offset) {
+                    index,
+                    step in
+                    if index == 0 {
+                        HStack(alignment: .top, spacing: 0) {
+                            Text("1. Visit ")
+                                .font(
+                                    .system(
+                                        size: 15,
+                                        weight: index == instructionStep
+                                            ? .bold : .regular
+                                    )
+                                )
+                                .foregroundColor(
+                                    index == instructionStep ? .white : .gray
+                                )
+
+                            Button(action: {
+                                if let url = URL(
+                                    string:
+                                        "https://developer.spotify.com/dashboard"
+                                ) {
+                                    NSWorkspace.shared.open(url)
+                                }
+                            }) {
+                                Text("developer.spotify.com/dashboard")
+                                    .underline()
+                                    .font(
+                                        .system(
+                                            size: 15,
+                                            weight: index == instructionStep
+                                                ? .bold : .regular
+                                        )
+                                    )
+                                    .foregroundColor(
+                                        index == instructionStep
+                                            ? .white : .gray
+                                    )
+                            }
+                            .buttonStyle(.plain)
+                        }
                         .padding(.vertical, 2)
                         .padding(.horizontal, index == instructionStep ? 16 : 0)
                         .background(
@@ -142,8 +181,34 @@ struct SpotifyLoginView: View {
                                 ? Color.white.opacity(0.1).cornerRadius(6)
                                 : nil
                         )
-                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    } else {
+                        Text(step)
+                            .font(
+                                .system(
+                                    size: 15,
+                                    weight: index == instructionStep
+                                        ? .bold : .regular
+                                )
+                            )
+                            .foregroundColor(
+                                index == instructionStep ? .white : .gray
+                            )
+                            .padding(.vertical, 2)
+                            .padding(
+                                .horizontal,
+                                index == instructionStep ? 16 : 0
+                            )
+                            .background(
+                                index == instructionStep
+                                    ? Color.white.opacity(0.1).cornerRadius(6)
+                                    : nil
+                            )
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
+
             }
             .frame(width: 400, alignment: .leading)
         }
