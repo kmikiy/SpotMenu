@@ -100,7 +100,7 @@ struct SpotifyLoginView: View {
                 .padding(.vertical, 16)
             }
         }
-        .frame(width: 500, height: 580)
+        .frame(width: 500, height: 612)
         .onAppear {
             if hasValidClientID {
                 currentStep = 1
