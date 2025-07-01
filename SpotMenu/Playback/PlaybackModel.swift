@@ -47,7 +47,6 @@ protocol MusicPlayerController {
     func updatePlaybackPosition(to seconds: Double)
     func openApp()
     func toggleLiked()
-
     func likeTrack()
     func unlikeTrack()
 }
@@ -75,15 +74,15 @@ class PlaybackModel: ObservableObject {
     }
 
     var isLikingImplemented: Bool {
-        return playerType == .appleMusic ? false : true
+        return playerType == .spotify
     }
 
     init(preferences: MusicPlayerPreferencesModel) {
-
         self.preferences = preferences
 
         let (controller, type) = Self.selectController(
-            for: preferences.preferredMusicApp
+            for: preferences.preferredMusicApp,
+            preferences: preferences
         )
         self.controller = controller
         self.playerType = type
@@ -101,36 +100,42 @@ class PlaybackModel: ObservableObject {
     }
 
     func switchPlayer(to newPreference: PreferredPlayer) {
-        let (newController, newType) = Self.selectController(for: newPreference)
+        let (newController, newType) = Self.selectController(
+            for: newPreference,
+            preferences: preferences
+        )
         controller = newController
         playerType = newType
         fetchInfo()
     }
 
-    private static func selectController(for preference: PreferredPlayer) -> (
+    private static func selectController(
+        for preference: PreferredPlayer,
+        preferences: MusicPlayerPreferencesModel
+    ) -> (
         MusicPlayerController, PlayerType
     ) {
-        let spotifyInstalled = Self.isAppInstalled("com.spotify.client")
-        let appleMusicInstalled = Self.isAppInstalled("com.apple.Music")
-        let spotifyRunning = Self.isAppRunning("com.spotify.client")
-        let appleMusicRunning = Self.isAppRunning("com.apple.Music")
+        let spotifyInstalled = isAppInstalled("com.spotify.client")
+        let appleMusicInstalled = isAppInstalled("com.apple.Music")
+        let spotifyRunning = isAppRunning("com.spotify.client")
+        let appleMusicRunning = isAppRunning("com.apple.Music")
 
         switch preference {
         case .appleMusic:
             return (AppleMusicController(), .appleMusic)
         case .spotify:
-            return (SpotifyController(), .spotify)
+            return (SpotifyController(preferences: preferences), .spotify)
         case .automatic:
             if spotifyRunning {
-                return (SpotifyController(), .spotify)
+                return (SpotifyController(preferences: preferences), .spotify)
             } else if appleMusicRunning {
                 return (AppleMusicController(), .appleMusic)
             } else if spotifyInstalled {
-                return (SpotifyController(), .spotify)
+                return (SpotifyController(preferences: preferences), .spotify)
             } else if appleMusicInstalled {
                 return (AppleMusicController(), .appleMusic)
             } else {
-                return (SpotifyController(), .spotify)
+                return (SpotifyController(preferences: preferences), .spotify)
             }
         }
     }
@@ -196,7 +201,6 @@ class PlaybackModel: ObservableObject {
             likeChangedTo = !previous
             isLiked = !previous
             likeChangedTo = nil  // can set back to nil we need it for the side effect
-
         } else {
             likeChangedTo = nil
         }

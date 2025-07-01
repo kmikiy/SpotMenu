@@ -3,14 +3,14 @@ import SwiftUI
 class LoginWindowManager {
     static var loginWindow: NSWindow?
 
-    static func showLoginWindow() {
+    static func showLoginWindow(with preferences: MusicPlayerPreferencesModel){
         guard loginWindow == nil else {
             loginWindow?.makeKeyAndOrderFront(nil)
             NSApp.activate(ignoringOtherApps: true)
             return
         }
 
-        let view = SpotifyLoginView()
+        let view = SpotifyLoginView(preferences: preferences)
         let hosting = NSHostingView(rootView: view)
 
         let window = NSWindow(

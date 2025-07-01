@@ -4,6 +4,12 @@ class SpotifyController: MusicPlayerController {
     private var lastTrackID: String?
     private var lastIsLiked: Bool?
 
+    private let preferences: MusicPlayerPreferencesModel
+
+    init(preferences: MusicPlayerPreferencesModel) {
+        self.preferences = preferences
+    }
+
     func fetchNowPlayingInfo() -> PlaybackInfo? {
         let script = """
                 tell application "Spotify"
@@ -43,7 +49,6 @@ class SpotifyController: MusicPlayerController {
 
         var isLikedResult: Bool? = lastIsLiked
 
-        // Fetch isLiked only if track has changed
         if let trackID = trackID, trackID != lastTrackID {
             let semaphore = DispatchSemaphore(value: 0)
 
@@ -100,7 +105,7 @@ class SpotifyController: MusicPlayerController {
             isLiked in
             guard let isLiked = isLiked else {
                 DispatchQueue.main.async {
-                    LoginWindowManager.showLoginWindow()
+                    LoginWindowManager.showLoginWindow(with: self.preferences)
                 }
                 return
             }
@@ -122,7 +127,7 @@ class SpotifyController: MusicPlayerController {
             isLiked in
             guard let isLiked = isLiked else {
                 DispatchQueue.main.async {
-                    LoginWindowManager.showLoginWindow()
+                    LoginWindowManager.showLoginWindow(with: self.preferences)
                 }
                 return
             }
@@ -141,7 +146,7 @@ class SpotifyController: MusicPlayerController {
             isLiked in
             guard let isLiked = isLiked else {
                 DispatchQueue.main.async {
-                    LoginWindowManager.showLoginWindow()
+                    LoginWindowManager.showLoginWindow(with: self.preferences)
                 }
                 return
             }
