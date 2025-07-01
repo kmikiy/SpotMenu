@@ -163,14 +163,14 @@ struct PlaybackView: View {
                     foregroundColor: preferences.foregroundColor.color,
                     trackColor: preferences.foregroundColor.color
                 )
-                .frame(width: model.isLikingEnabled ? 160 : 180)
+                .frame(width: model.isLikingImplemented ? 160 : 180)
 
                 Text(formatTime(model.totalTime))
                     .font(.body.monospacedDigit())
                     .foregroundColor(preferences.foregroundColor.color)
                     .frame(width: 30, alignment: .trailing)
 
-                if model.isLikingEnabled {
+                if model.isLikingImplemented {
                     Group {
                         if let isLiked = model.isLiked {
                             Button(action: {

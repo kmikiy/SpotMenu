@@ -34,7 +34,7 @@ struct ShortcutPreferencesView: View {
                 }
             }
 
-            if model.isLikingEnabled {
+            if model.isLikingImplemented {
 
                 HStack {
                     Text("Like Track")
@@ -62,7 +62,7 @@ struct ShortcutPreferencesView: View {
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: model.isLikingEnabled ? 320 : 200)
+        .frame(width: 400, height: model.isLikingImplemented ? 320 : 200)
     }
 }
 

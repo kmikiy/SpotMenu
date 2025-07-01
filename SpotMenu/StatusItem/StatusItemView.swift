@@ -14,7 +14,6 @@ struct StatusItemView: View {
 
     var body: some View {
         ZStack {
-            // Normal content unless animating
             content
                 .opacity(animationState == nil ? 1 : 0)
 
