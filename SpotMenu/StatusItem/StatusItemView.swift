@@ -5,38 +5,14 @@ struct StatusItemView: View {
     @ObservedObject var menuBarPreferencesModel: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
 
-    @State private var animationState: AnimationType? = nil
-
-    enum AnimationType {
-        case heart
-        case brokenHeart
-    }
-
     var body: some View {
-        ZStack {
-            content
-                .opacity(animationState == nil ? 1 : 0)
-
-            if let animation = animationState {
-                Image(systemName: animation == .heart ? "heart.fill" : "heart.slash.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 10)
-                    .foregroundColor(animation == .heart ? .red : .gray)
-                    .scaleEffect(1.4)
-                    .transition(.scale.combined(with: .opacity))
-            }
-        }
-        .frame(maxWidth: menuBarPreferencesModel.maxStatusItemWidth)
-        .padding(.horizontal, 0)
-        .padding(.vertical, 2)
-        .background(Color.clear)
-        .lineLimit(1)
-        .truncationMode(.tail)
-        .onReceive(playbackModel.$likeChangedTo.removeDuplicates()) { newValue in
-            guard let newValue else { return }
-            triggerAnimation(newValue ? .heart : .brokenHeart)
-        }
+        content
+            .frame(maxWidth: menuBarPreferencesModel.maxStatusItemWidth)
+            .padding(.horizontal, 0)
+            .padding(.vertical, 2)
+            .background(Color.clear)
+            .lineLimit(1)
+            .truncationMode(.tail)
     }
 
     private var content: some View {
@@ -52,6 +28,15 @@ struct StatusItemView: View {
                     .resizable()
                     .frame(width: 16, height: 16)
                     .clipShape(Circle())
+            }
+            
+            if model.isLiked == true {
+                Image(systemName: "heart.fill")
+                    .renderingMode(.template)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 13, height: 13)
+                    .transition(.opacity)
             }
 
             if menuBarPreferencesModel.showIsPlayingIcon && model.isPlaying {
@@ -82,20 +67,7 @@ struct StatusItemView: View {
             }
         }
     }
-
-    private func triggerAnimation(_ type: AnimationType) {
-        withAnimation(.easeOut(duration: 0.2)) {
-            animationState = type
-        }
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-            withAnimation(.easeInOut(duration: 0.25)) {
-                animationState = nil
-            }
-        }
-    }
 }
-
 
 struct StatusItemDisplayHelper {
     static func shouldShowAppIcon(

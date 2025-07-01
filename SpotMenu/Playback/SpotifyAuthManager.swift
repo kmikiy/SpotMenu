@@ -283,34 +283,47 @@ class SpotifyAuthManager: ObservableObject {
 
 extension SpotifyAuthManager {
     private func saveKeychain(key: String, value: String) {
-        let data = Data(value.utf8)
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: keychainService,
-            kSecAttrAccount as String: key,
-            kSecValueData as String: data,
-        ]
-        SecItemDelete(query as CFDictionary)
-        SecItemAdd(query as CFDictionary, nil)
+        #if DEBUG
+            UserDefaults.standard.set(value, forKey: "dev.\(key)")
+        #else
+            let data = Data(value.utf8)
+            let query: [String: Any] = [
+                kSecClass as String: kSecClassGenericPassword,
+                kSecAttrService as String: keychainService,
+                kSecAttrAccount as String: key,
+                kSecValueData as String: data,
+                kSecAttrAccessible as String:
+                    kSecAttrAccessibleAfterFirstUnlock,
+            ]
+            SecItemDelete(query as CFDictionary)
+            SecItemAdd(query as CFDictionary, nil)
+        #endif
     }
 
     private func loadKeychain(key: String) -> String? {
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: keychainService,
-            kSecAttrAccount as String: key,
-            kSecReturnData as String: true,
-            kSecMatchLimit as String: kSecMatchLimitOne,
-        ]
+        #if DEBUG
+            return UserDefaults.standard.string(forKey: "dev.\(key)")
+        #else
+            let query: [String: Any] = [
+                kSecClass as String: kSecClassGenericPassword,
+                kSecAttrService as String: keychainService,
+                kSecAttrAccount as String: key,
+                kSecReturnData as String: true,
+                kSecMatchLimit as String: kSecMatchLimitOne,
+            ]
 
-        var result: AnyObject?
-        if SecItemCopyMatching(query as CFDictionary, &result) == noErr,
-            let data = result as? Data
-        {
-            return String(data: data, encoding: .utf8)
-        }
+            var result: AnyObject?
+            let status = SecItemCopyMatching(query as CFDictionary, &result)
 
-        return nil
+            if status == errSecSuccess,
+                let data = result as? Data,
+                let string = String(data: data, encoding: .utf8)
+            {
+                return string
+            } else {
+                return nil
+            }
+        #endif
     }
 
     private func saveDate(key: String, value: Date) {
