@@ -5,7 +5,6 @@ struct StatusItemView: View {
     @ObservedObject var menuBarPreferencesModel: MenuBarPreferencesModel
     @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
-    
 
     var body: some View {
         content
@@ -20,7 +19,9 @@ struct StatusItemView: View {
     private var content: some View {
         let showIcon = StatusItemDisplayHelper.shouldShowAppIcon(
             preferences: menuBarPreferencesModel,
-            model: model
+            model: model,
+            playbackModel: playbackModel,
+            musicPlayerPreferencesModel: musicPlayerPreferencesModel
         )
 
         return HStack(spacing: 4) {
@@ -32,7 +33,10 @@ struct StatusItemView: View {
                     .clipShape(Circle())
             }
 
-            if model.isLiked == true && playbackModel.isLikingImplemented && musicPlayerPreferencesModel.likingEnabled && menuBarPreferencesModel.showIsLikedIcon {
+            if model.isLiked == true && playbackModel.isLikingImplemented
+                && musicPlayerPreferencesModel.likingEnabled
+                && menuBarPreferencesModel.showIsLikedIcon
+            {
                 Image(systemName: "heart.fill")
                     .renderingMode(.template)
                     .resizable()
@@ -74,7 +78,9 @@ struct StatusItemView: View {
 struct StatusItemDisplayHelper {
     static func shouldShowAppIcon(
         preferences: MenuBarPreferencesModel,
-        model: StatusItemModel
+        model: StatusItemModel,
+        playbackModel: PlaybackModel,
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel
     ) -> Bool {
         if preferences.showAppIcon {
             return true
@@ -82,9 +88,14 @@ struct StatusItemDisplayHelper {
 
         let noArtist = !preferences.showArtist || model.artist.isEmpty
         let noTitle = !preferences.showTitle || model.title.isEmpty
-        let noPlaying = !preferences.showIsPlayingIcon || !model.isPlaying
+        let noIsPlaying = !preferences.showIsPlayingIcon || !model.isPlaying
+        let noIsLiked =
+            !preferences.showIsLikedIcon || !playbackModel.isLikingImplemented
+            || !musicPlayerPreferencesModel.likingEnabled
+            || model.isLiked != true
 
-        let nothingToShow = noArtist && noTitle && noPlaying
+        let nothingToShow = noArtist && noTitle && noIsPlaying && noIsLiked
+
         return nothingToShow
     }
 }
