@@ -15,15 +15,15 @@ class SpotifyAuthManager: ObservableObject {
     private let accessTokenKey = "accessToken"
     private let refreshTokenKey = "refreshToken"
     private let expiryDateKey = "tokenExpiry"
-    private var codeVerifier: String?
 
     @Published var isAuthenticated = false
 
     // MARK: - Public Interface
 
     func startAuthentication() {
-        codeVerifier = generateCodeVerifier()
-        guard let codeVerifier = codeVerifier else { return }
+        let codeVerifier = generateCodeVerifier()
+        UserDefaults.standard.set(codeVerifier, forKey: "spotify.codeVerifier")
+
         let codeChallenge = codeChallengeSHA256(codeVerifier)
 
         var components = URLComponents(string: authURL)!
@@ -49,8 +49,13 @@ class SpotifyAuthManager: ObservableObject {
             url.scheme == "com.github.kmikiy.spotmenu",
             let code = URLComponents(url: url, resolvingAgainstBaseURL: false)?
                 .queryItems?.first(where: { $0.name == "code" })?.value,
-            let codeVerifier = codeVerifier
+            let codeVerifier = UserDefaults.standard.string(
+                forKey: "spotify.codeVerifier"
+            )
         else { return }
+
+        // Clean up after use
+        UserDefaults.standard.removeObject(forKey: "spotify.codeVerifier")
 
         requestAccessToken(code: code, codeVerifier: codeVerifier)
     }
