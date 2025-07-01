@@ -100,7 +100,7 @@ struct SpotifyLoginView: View {
                 .padding(.vertical, 16)
             }
         }
-        .frame(width: 500, height: 500)
+        .frame(width: 500, height: 540)
         .onAppear {
             if hasValidClientID {
                 currentStep = 1
@@ -136,7 +136,8 @@ struct SpotifyLoginView: View {
                 ForEach(Array(instructions.enumerated()), id: \.offset) {
                     index,
                     step in
-                    if index == 0 {
+                    switch index {
+                    case 0:
                         HStack(alignment: .top, spacing: 0) {
                             Text("1. Visit ")
                                 .font(
@@ -173,19 +174,70 @@ struct SpotifyLoginView: View {
                                     )
                             }
                             .buttonStyle(.plain)
-                            .onHover { hovering in
-                                NSCursor.pointingHand.set()
+                            .onHover { _ in NSCursor.pointingHand.set() }
+                        }
+                        .padding(.vertical, 2)
+                        .padding(.horizontal, index == instructionStep ? 16 : 0)
+                        .background(
+                            index == instructionStep
+                                ? Color.white.opacity(0.1).cornerRadius(6) : nil
+                        )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                    case 3:
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("4. Set this redirect URI:")
+                                .font(
+                                    .system(
+                                        size: 15,
+                                        weight: index == instructionStep
+                                            ? .bold : .regular
+                                    )
+                                )
+                                .foregroundColor(
+                                    index == instructionStep ? .white : .gray
+                                )
+
+                            HStack(spacing: 8) {
+                                Text("com.github.kmikiy.spotmenu://callback")
+                                    .font(
+                                        .system(size: 13, design: .monospaced)
+                                    )
+                                    .foregroundColor(.white)
+                                    .padding(.vertical, 4)
+                                    .padding(.horizontal, 6)
+                                    .background(Color.white.opacity(0.05))
+                                    .cornerRadius(4)
+
+                                Button(action: {
+                                    let pasteboard = NSPasteboard.general
+                                    pasteboard.clearContents()
+                                    pasteboard.setString(
+                                        "com.github.kmikiy.spotmenu://callback",
+                                        forType: .string
+                                    )
+                                }) {
+                                    Image(systemName: "doc.on.doc")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 14, height: 14)
+                                        .foregroundColor(.white)
+                                        .padding(6)
+                                        .background(Color.white.opacity(0.1))
+                                        .cornerRadius(4)
+                                }
+                                .buttonStyle(.plain)
+                                .onHover { _ in NSCursor.pointingHand.set() }
                             }
                         }
                         .padding(.vertical, 2)
                         .padding(.horizontal, index == instructionStep ? 16 : 0)
                         .background(
                             index == instructionStep
-                                ? Color.white.opacity(0.1).cornerRadius(6)
-                                : nil
+                                ? Color.white.opacity(0.1).cornerRadius(6) : nil
                         )
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    } else {
+
+                    default:
                         Text(step)
                             .font(
                                 .system(
@@ -211,7 +263,6 @@ struct SpotifyLoginView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
-
             }
             .frame(width: 400, alignment: .leading)
         }
