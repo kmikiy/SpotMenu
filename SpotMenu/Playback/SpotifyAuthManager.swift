@@ -234,7 +234,8 @@ class SpotifyAuthManager: ObservableObject {
 
     private func refreshAccessToken(completion: @escaping (String?) -> Void) {
         guard let refreshToken = loadKeychain(key: refreshTokenKey),
-              let clientID = clientID, !clientID.isEmpty else {
+            let clientID = clientID, !clientID.isEmpty
+        else {
             completion(nil)
             return
         }
@@ -263,18 +264,27 @@ class SpotifyAuthManager: ObservableObject {
             guard let data = data,
                 let json = try? JSONSerialization.jsonObject(with: data)
                     as? [String: Any],
-                let accessToken = json["access_token"] as? String,
-                let expiresIn = json["expires_in"] as? Double
+                let accessToken = json["access_token"] as? String
             else {
                 completion(nil)
                 return
             }
 
             self.saveKeychain(key: self.accessTokenKey, value: accessToken)
-            self.saveDate(
-                key: self.expiryDateKey,
-                value: Date().addingTimeInterval(expiresIn)
-            )
+
+            if let newRefreshToken = json["refresh_token"] as? String {
+                self.saveKeychain(
+                    key: self.refreshTokenKey,
+                    value: newRefreshToken
+                )
+            }
+
+            if let expiresIn = json["expires_in"] as? Double {
+                self.saveDate(
+                    key: self.expiryDateKey,
+                    value: Date().addingTimeInterval(expiresIn)
+                )
+            }
 
             DispatchQueue.main.async {
                 completion(accessToken)
