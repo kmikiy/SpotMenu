@@ -29,7 +29,7 @@ struct StatusItemView: View {
                     .frame(width: 16, height: 16)
                     .clipShape(Circle())
             }
-            
+
             if model.isLiked == true {
                 Image(systemName: "heart.fill")
                     .renderingMode(.template)
@@ -101,7 +101,7 @@ struct StatusItemDisplayHelper {
     preferences.compactView = false
 
     let playbackModel = PlaybackModel(
-        preferences: PlayerPreferencesModel()
+        preferences: MusicPlayerPreferencesModel()
     )
     return StatusItemView(
         model: model,

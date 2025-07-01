@@ -5,7 +5,9 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var statusItemModel = StatusItemModel()
-    var playerPreferencesModel = PlayerPreferencesModel()
+    var playbackAppearancePreferencesModel =
+        PlaybackAppearancePreferencesModel()
+    var musicPlayerPreferencesModel = MusicPlayerPreferencesModel()
     var playbackModel: PlaybackModel!
     var menuBarPreferencesModel = MenuBarPreferencesModel()
     var popoverManager: PopoverManager!
@@ -19,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
 
-        playbackModel = PlaybackModel(preferences: playerPreferencesModel)
+        playbackModel = PlaybackModel(preferences: musicPlayerPreferencesModel)
 
         let circularAppleMusicIcon = Image("AppleMusicIcon")
             .resizable()
@@ -63,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Set up popover manager
         let playbackView = PlaybackView(
             model: playbackModel,
-            preferences: playerPreferencesModel
+            preferences: playbackAppearancePreferencesModel
         )
         popoverManager = PopoverManager(contentView: playbackView)
 
@@ -171,7 +173,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 rootView: PreferencesView(
                     menuBarPreferencesModel: menuBarPreferencesModel,
                     playbackModel: playbackModel,
-                    playerPreferencesModel: playerPreferencesModel
+                    musicPlayerPreferencesModel: musicPlayerPreferencesModel,
+                    playbackAppearancePreferencesModel:
+                        playbackAppearancePreferencesModel
                 )
             )
             let window = NSWindow(

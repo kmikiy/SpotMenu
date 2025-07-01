@@ -110,7 +110,7 @@ class AppleMusicController: MusicPlayerController {
     func toggleLiked() {
         print("Apple Music does not support liking tracks (yet).")
     }
-    
+
     func likeTrack() {
         print("Apple Music does not support liking tracks (yet).")
     }

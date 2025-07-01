@@ -2,16 +2,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-class PlayerPreferencesModel: ObservableObject {
-    @Published var preferredMusicApp: PreferredPlayer {
-        didSet {
-            UserDefaults.standard.set(
-                preferredMusicApp.rawValue,
-                forKey: "playback.preferredMusicApp"
-            )
-        }
-    }
-
+class PlaybackAppearancePreferencesModel: ObservableObject {
     @Published var hoverTintColor: NSColor {
         didSet {
             if let data = try? NSKeyedArchiver.archivedData(
@@ -53,32 +44,25 @@ class PlayerPreferencesModel: ObservableObject {
         }
     }
 
+    @Published var likingEnabled: Bool {
+        didSet {
+            UserDefaults.standard.set(
+                likingEnabled,
+                forKey: "playback.likingEnabled"
+            )
+        }
+    }
+
     enum ForegroundColorOption: String, CaseIterable, Identifiable {
-        case white
-        case black
-
-        var id: String { self.rawValue }
-
+        case white, black
+        var id: String { rawValue }
         var color: Color {
             self == .white ? .white : .black
         }
     }
 
-    enum AppearanceMode: String, CaseIterable, Identifiable {
-        case system, light, dark
-        var id: String { self.rawValue }
-    }
-
     init() {
         let defaults = UserDefaults.standard
-
-        if let rawValue = defaults.string(forKey: "playback.preferredMusicApp"),
-            let app = PreferredPlayer(rawValue: rawValue)
-        {
-            preferredMusicApp = app
-        } else {
-            preferredMusicApp = .automatic
-        }
 
         if let data = defaults.data(forKey: "playback.hoverTintColor"),
             let color = try? NSKeyedUnarchiver.unarchivedObject(
@@ -91,9 +75,8 @@ class PlayerPreferencesModel: ObservableObject {
             hoverTintColor = .systemBlue
         }
 
-        let storedBlur =
-            defaults.object(forKey: "playback.blurIntensity") as? Double
-        blurIntensity = storedBlur ?? 0.5
+        blurIntensity =
+            defaults.object(forKey: "playback.blurIntensity") as? Double ?? 0.5
 
         if let rawValue = defaults.string(forKey: "playback.foregroundColor"),
             let fg = ForegroundColorOption(rawValue: rawValue)
@@ -106,6 +89,7 @@ class PlayerPreferencesModel: ObservableObject {
         hoverTintOpacity =
             defaults.object(forKey: "playback.hoverTintOpacity") as? Double
             ?? 0.3
-
+        likingEnabled =
+            defaults.object(forKey: "playback.likingEnabled") as? Bool ?? true
     }
 }

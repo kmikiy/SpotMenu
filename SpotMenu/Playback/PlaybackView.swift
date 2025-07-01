@@ -3,7 +3,7 @@ import SwiftUI
 
 struct PlaybackView: View {
     @ObservedObject var model: PlaybackModel
-    @ObservedObject var preferences: PlayerPreferencesModel
+    @ObservedObject var preferences: PlaybackAppearancePreferencesModel
     @State private var isHovering = false
     @Environment(\.colorScheme) private var systemColorScheme
 
@@ -231,13 +231,16 @@ struct PlaybackView: View {
 }
 
 #Preview {
-    let model = PlaybackModel(preferences: PlayerPreferencesModel())
+    let model = PlaybackModel(preferences: MusicPlayerPreferencesModel())
     model.imageURL = URL(
         string:
             "https://i.scdn.co/image/ab67616d0000b27377054612c5275c1515b18a50"
     )
     model.artist = "The Weeknd"
-    return PlaybackView(model: model, preferences: PlayerPreferencesModel())
+    return PlaybackView(
+        model: model,
+        preferences: PlaybackAppearancePreferencesModel()
+    )
 }
 
 @ViewBuilder

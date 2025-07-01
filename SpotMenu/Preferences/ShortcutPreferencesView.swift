@@ -42,21 +42,21 @@ struct ShortcutPreferencesView: View {
                     Spacer()
                     KeyboardShortcuts.Recorder(for: .likeTrack)
                 }
-                
+
                 HStack {
                     Text("Unlike Track")
                         .frame(width: 150, alignment: .leading)
                     Spacer()
                     KeyboardShortcuts.Recorder(for: .unlikeTrack)
                 }
-                
+
                 HStack {
                     Text("Toggle Like")
                         .frame(width: 150, alignment: .leading)
                     Spacer()
                     KeyboardShortcuts.Recorder(for: .toggleLike)
                 }
-                
+
             }
 
             Spacer()
@@ -68,6 +68,6 @@ struct ShortcutPreferencesView: View {
 
 #Preview {
     ShortcutPreferencesView(
-        model: PlaybackModel(preferences: PlayerPreferencesModel())
+        model: PlaybackModel(preferences: MusicPlayerPreferencesModel())
     )
 }

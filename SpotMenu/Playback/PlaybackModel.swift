@@ -47,7 +47,7 @@ protocol MusicPlayerController {
     func updatePlaybackPosition(to seconds: Double)
     func openApp()
     func toggleLiked()
-    
+
     func likeTrack()
     func unlikeTrack()
 }
@@ -64,7 +64,7 @@ class PlaybackModel: ObservableObject {
     @Published var isLiked: Bool? = nil
     @Published var likeChangedTo: Bool? = nil
 
-    private let preferences: PlayerPreferencesModel
+    private let preferences: MusicPlayerPreferencesModel
     private var controller: MusicPlayerController
     private var timer: Timer?
 
@@ -73,12 +73,12 @@ class PlaybackModel: ObservableObject {
     var playerIconName: String {
         return playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon"
     }
-    
+
     var isLikingImplemented: Bool {
         return playerType == .appleMusic ? false : true
     }
 
-    init(preferences: PlayerPreferencesModel) {
+    init(preferences: MusicPlayerPreferencesModel) {
 
         self.preferences = preferences
 
@@ -201,7 +201,7 @@ class PlaybackModel: ObservableObject {
             likeChangedTo = nil
         }
     }
-    
+
     func likeTrack() {
         controller.likeTrack()
         likeChangedTo = true

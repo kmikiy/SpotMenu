@@ -140,7 +140,7 @@ struct MenuBarPreferencesView: View {
     MenuBarPreferencesView(
         model: MenuBarPreferencesModel(),
         playbackModel: PlaybackModel(
-            preferences: PlayerPreferencesModel()
+            preferences: MusicPlayerPreferencesModel()
         )
     )
 }
