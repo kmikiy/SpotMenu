@@ -100,7 +100,7 @@ struct SpotifyLoginView: View {
                 .padding(.vertical, 16)
             }
         }
-        .frame(width: 500, height: 540)
+        .frame(width: 500, height: 580)
         .onAppear {
             if hasValidClientID {
                 currentStep = 1
@@ -127,11 +127,12 @@ struct SpotifyLoginView: View {
             .font(.system(size: 13))
             .frame(width: 300)
 
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text("Don't have one? Follow these steps:")
-                    .foregroundColor(.white.opacity(0.8))
-                    .font(.headline)
+                    .foregroundColor(.white.opacity(0.85))
+                    .font(.system(size: 16, weight: .semibold))
                     .multilineTextAlignment(.leading)
+                    .padding([.bottom, .top])
 
                 ForEach(Array(instructions.enumerated()), id: \.offset) {
                     index,
@@ -140,13 +141,7 @@ struct SpotifyLoginView: View {
                     case 0:
                         HStack(alignment: .top, spacing: 0) {
                             Text("1. Visit ")
-                                .font(
-                                    .system(
-                                        size: 15,
-                                        weight: index == instructionStep
-                                            ? .bold : .regular
-                                    )
-                                )
+                                .font(.system(size: 15))
                                 .foregroundColor(
                                     index == instructionStep ? .white : .gray
                                 )
@@ -161,13 +156,7 @@ struct SpotifyLoginView: View {
                             }) {
                                 Text("developer.spotify.com/dashboard")
                                     .underline()
-                                    .font(
-                                        .system(
-                                            size: 15,
-                                            weight: index == instructionStep
-                                                ? .bold : .regular
-                                        )
-                                    )
+                                    .font(.system(size: 15))
                                     .foregroundColor(
                                         index == instructionStep
                                             ? .white : .gray
@@ -176,24 +165,19 @@ struct SpotifyLoginView: View {
                             .buttonStyle(.plain)
                             .onHover { _ in NSCursor.pointingHand.set() }
                         }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, index == instructionStep ? 16 : 0)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, index == instructionStep ? 12 : 0)
                         .background(
                             index == instructionStep
-                                ? Color.white.opacity(0.1).cornerRadius(6) : nil
+                                ? Color.white.opacity(0.08).cornerRadius(6)
+                                : nil
                         )
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                     case 3:
                         VStack(alignment: .leading, spacing: 4) {
                             Text("4. Set this redirect URI:")
-                                .font(
-                                    .system(
-                                        size: 15,
-                                        weight: index == instructionStep
-                                            ? .bold : .regular
-                                    )
-                                )
+                                .font(.system(size: 15))
                                 .foregroundColor(
                                     index == instructionStep ? .white : .gray
                                 )
@@ -230,33 +214,28 @@ struct SpotifyLoginView: View {
                                 .onHover { _ in NSCursor.pointingHand.set() }
                             }
                         }
-                        .padding(.vertical, 2)
-                        .padding(.horizontal, index == instructionStep ? 16 : 0)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, index == instructionStep ? 12 : 0)
                         .background(
                             index == instructionStep
-                                ? Color.white.opacity(0.1).cornerRadius(6) : nil
+                                ? Color.white.opacity(0.08).cornerRadius(6)
+                                : nil
                         )
 
                     default:
                         Text(step)
-                            .font(
-                                .system(
-                                    size: 15,
-                                    weight: index == instructionStep
-                                        ? .bold : .regular
-                                )
-                            )
+                            .font(.system(size: 15))
                             .foregroundColor(
                                 index == instructionStep ? .white : .gray
                             )
-                            .padding(.vertical, 2)
+                            .padding(.vertical, 4)
                             .padding(
                                 .horizontal,
-                                index == instructionStep ? 16 : 0
+                                index == instructionStep ? 12 : 0
                             )
                             .background(
                                 index == instructionStep
-                                    ? Color.white.opacity(0.1).cornerRadius(6)
+                                    ? Color.white.opacity(0.08).cornerRadius(6)
                                     : nil
                             )
                             .multilineTextAlignment(.leading)
