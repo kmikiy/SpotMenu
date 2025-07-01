@@ -65,7 +65,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Set up popover manager
         let playbackView = PlaybackView(
             model: playbackModel,
-            preferences: playbackAppearancePreferencesModel
+            preferences: playbackAppearancePreferencesModel,
+            musicPlayerPreferencesModel: musicPlayerPreferencesModel
         )
         popoverManager = PopoverManager(contentView: playbackView)
 

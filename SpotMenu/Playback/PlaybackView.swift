@@ -4,6 +4,7 @@ import SwiftUI
 struct PlaybackView: View {
     @ObservedObject var model: PlaybackModel
     @ObservedObject var preferences: PlaybackAppearancePreferencesModel
+    @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
     @State private var isHovering = false
     @Environment(\.colorScheme) private var systemColorScheme
 
@@ -163,14 +164,14 @@ struct PlaybackView: View {
                     foregroundColor: preferences.foregroundColor.color,
                     trackColor: preferences.foregroundColor.color
                 )
-                .frame(width: model.isLikingImplemented ? 160 : 180)
+                .frame(width: model.isLikingImplemented && musicPlayerPreferencesModel.likingEnabled ? 160 : 180)
 
                 Text(formatTime(model.totalTime))
                     .font(.body.monospacedDigit())
                     .foregroundColor(preferences.foregroundColor.color)
                     .frame(width: 30, alignment: .trailing)
 
-                if model.isLikingImplemented {
+                if model.isLikingImplemented && musicPlayerPreferencesModel.likingEnabled {
                     Group {
                         if let isLiked = model.isLiked {
                             Button(action: {
@@ -239,7 +240,8 @@ struct PlaybackView: View {
     model.artist = "The Weeknd"
     return PlaybackView(
         model: model,
-        preferences: PlaybackAppearancePreferencesModel()
+        preferences: PlaybackAppearancePreferencesModel(),
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel()
     )
 }
 

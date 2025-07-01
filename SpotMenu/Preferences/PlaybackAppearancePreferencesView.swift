@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PlaybackAppearancePreferencesView: View {
     @ObservedObject var model: PlaybackAppearancePreferencesModel
+    @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
 
     var body: some View {
@@ -54,7 +55,11 @@ struct PlaybackAppearancePreferencesView: View {
 
             HStack {
                 Spacer()
-                PlaybackView(model: playbackModel, preferences: model)
+                PlaybackView(
+                    model: playbackModel,
+                    preferences: model,
+                    musicPlayerPreferencesModel: musicPlayerPreferencesModel
+                )
                 Spacer()
             }
         }
@@ -66,6 +71,7 @@ struct PlaybackAppearancePreferencesView: View {
 #Preview {
     PlaybackAppearancePreferencesView(
         model: PlaybackAppearancePreferencesModel(),
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel(),
         playbackModel: PlaybackModel(preferences: MusicPlayerPreferencesModel())
     )
 }

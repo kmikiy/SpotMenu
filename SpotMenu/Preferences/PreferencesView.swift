@@ -23,6 +23,7 @@ struct PreferencesView: View {
                 tabContainer {
                     PlaybackAppearancePreferencesView(
                         model: playbackAppearancePreferencesModel,
+                        musicPlayerPreferencesModel: musicPlayerPreferencesModel,
                         playbackModel: playbackModel
                     )
                 }
