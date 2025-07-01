@@ -20,6 +20,15 @@ class MusicPlayerPreferencesModel: ObservableObject {
         }
     }
 
+    @Published var spotifyClientID: String? {
+        didSet {
+            UserDefaults.standard.set(
+                spotifyClientID,
+                forKey: "spotify.clientID"
+            )
+        }
+    }
+
     init() {
         let defaults = UserDefaults.standard
 
@@ -36,5 +45,6 @@ class MusicPlayerPreferencesModel: ObservableObject {
         likingEnabled =
             defaults.object(forKey: "playback.likingEnabled") as? Bool ?? true
 
+        spotifyClientID = defaults.string(forKey: "spotify.clientID")
     }
 }

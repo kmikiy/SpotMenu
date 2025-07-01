@@ -6,7 +6,9 @@ import Security
 class SpotifyAuthManager: ObservableObject {
     static let shared = SpotifyAuthManager()
 
-    private let clientID = "de1b88ac8f8e4c209d8d9f326327a296"
+    private var clientID: String? {
+        UserDefaults.standard.string(forKey: "spotify.clientID")
+    }
     private let redirectURI = "com.github.kmikiy.spotmenu://callback"
     private let tokenURL = "https://accounts.spotify.com/api/token"
     private let authURL = "https://accounts.spotify.com/authorize"
@@ -21,9 +23,13 @@ class SpotifyAuthManager: ObservableObject {
     // MARK: - Public Interface
 
     func startAuthentication() {
+        guard let clientID = clientID, !clientID.isEmpty else {
+            print("Missing Spotify Client ID")
+            return
+        }
+
         let codeVerifier = generateCodeVerifier()
         UserDefaults.standard.set(codeVerifier, forKey: "spotify.codeVerifier")
-
         let codeChallenge = codeChallengeSHA256(codeVerifier)
 
         var components = URLComponents(string: authURL)!
@@ -174,6 +180,11 @@ class SpotifyAuthManager: ObservableObject {
     // MARK: - Private Logic
 
     private func requestAccessToken(code: String, codeVerifier: String) {
+        guard let clientID = clientID, !clientID.isEmpty else {
+            print("Missing Spotify Client ID")
+            return
+        }
+
         var request = URLRequest(url: URL(string: tokenURL)!)
         request.httpMethod = "POST"
 
@@ -222,7 +233,8 @@ class SpotifyAuthManager: ObservableObject {
     }
 
     private func refreshAccessToken(completion: @escaping (String?) -> Void) {
-        guard let refreshToken = loadKeychain(key: refreshTokenKey) else {
+        guard let refreshToken = loadKeychain(key: refreshTokenKey),
+              let clientID = clientID, !clientID.isEmpty else {
             completion(nil)
             return
         }

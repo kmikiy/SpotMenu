@@ -36,6 +36,29 @@ struct MusicPlayerPreferencesView: View {
                         .toggleStyle(.switch)
                         .controlSize(.small)
                 }
+                if model.likingEnabled {
+                    Section {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Spotify Client ID")
+                            TextField(
+                                "Enter Spotify Client ID",
+                                text: Binding(
+                                    get: { model.spotifyClientID ?? "" },
+                                    set: { newValue in
+                                        model.spotifyClientID =
+                                            newValue.trimmingCharacters(
+                                                in: .whitespacesAndNewlines
+                                            ).isEmpty ? nil : newValue
+                                    }
+                                )
+                            )
+                            .textFieldStyle(.roundedBorder)
+                            .frame(maxWidth: .infinity)
+                            .font(.system(size: 12))
+                        }
+                    }
+                }
+
             }
 
             Spacer()
