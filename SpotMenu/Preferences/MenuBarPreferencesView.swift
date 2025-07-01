@@ -28,7 +28,11 @@ struct MenuBarPreferencesView: View {
                     "Show Playing Icon",
                     binding: $model.showIsPlayingIcon
                 )
-                settingsRow("Show Liked Icon", binding: $model.showIsLikedIcon)
+                if playbackModel.isLikingImplemented
+                    && musicPlayerPreferencesModel.likingEnabled {
+                    settingsRow("Show Liked Icon", binding: $model.showIsLikedIcon)
+                }
+                
                 settingsRow("Display App Icon", binding: $model.showAppIcon)
                 settingsRow("Compact View", binding: $model.compactView)
 
