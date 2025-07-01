@@ -173,6 +173,9 @@ struct SpotifyLoginView: View {
                                     )
                             }
                             .buttonStyle(.plain)
+                            .onHover { hovering in
+                                NSCursor.pointingHand.set()
+                            }
                         }
                         .padding(.vertical, 2)
                         .padding(.horizontal, index == instructionStep ? 16 : 0)
