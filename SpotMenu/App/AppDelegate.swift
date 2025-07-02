@@ -15,31 +15,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var eventMonitor: Any?
     var menuBarPreferencesModelCancellable: AnyCancellable?
     var isUsingCustomStatusView = false
-    var spotifyIcon: NSImage?
-    var appleMusicIcon: NSImage?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
 
         playbackModel = PlaybackModel(preferences: musicPlayerPreferencesModel)
-
-        let circularAppleMusicIcon = Image("AppleMusicIcon")
-            .resizable()
-            .frame(width: 16, height: 16)
-            .clipShape(Circle())
-
-        if let rendered = nsImage(
-            from: circularAppleMusicIcon,
-            size: CGSize(width: 16, height: 16)
-        ) {
-            appleMusicIcon = rendered
-            appleMusicIcon?.isTemplate = true
-            appleMusicIcon?.size = NSSize(width: 16, height: 16)
-        }
-
-        spotifyIcon = NSImage(named: "SpotifyIcon")
-        spotifyIcon?.isTemplate = true
-        spotifyIcon?.size = NSSize(width: 16, height: 16)
 
         // Configure status item and button
         statusItem = NSStatusBar.system.statusItem(
