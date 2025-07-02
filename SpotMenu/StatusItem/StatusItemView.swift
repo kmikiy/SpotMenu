@@ -17,26 +17,22 @@ struct StatusItemView: View {
     }
 
     private var content: some View {
-        let showIcon = StatusItemDisplayHelper.shouldShowAppIcon(
-            preferences: menuBarPreferencesModel,
-            model: model,
-            playbackModel: playbackModel,
-            musicPlayerPreferencesModel: musicPlayerPreferencesModel
+        let displayOptions = model.computeDisplayOptions(
+            menuBarPreferencesModel: menuBarPreferencesModel,
+            musicPlayerPreferencesModel: musicPlayerPreferencesModel,
+            playbackModel: playbackModel
         )
 
         return HStack(spacing: 4) {
-            if showIcon {
-                Image(playbackModel.playerIconName)
+            if displayOptions.showIcon {
+                Image(model.playerIconName)
                     .renderingMode(.template)
                     .resizable()
                     .frame(width: 16, height: 16)
                     .clipShape(Circle())
             }
 
-            if model.isLiked == true && playbackModel.isLikingImplemented
-                && musicPlayerPreferencesModel.likingEnabled
-                && menuBarPreferencesModel.showIsLikedIcon
-            {
+            if displayOptions.showHeartIcon {
                 Image(systemName: "heart.fill")
                     .renderingMode(.template)
                     .resizable()
@@ -45,58 +41,35 @@ struct StatusItemView: View {
                     .transition(.opacity)
             }
 
-            if menuBarPreferencesModel.showIsPlayingIcon && model.isPlaying {
+            if displayOptions.showMusicIcon {
                 Text("♫").font(.system(size: 13))
             }
 
-            if menuBarPreferencesModel.compactView {
-                if !model.isTextEmpty && menuBarPreferencesModel.isTextVisible {
+            if displayOptions.showText {
+                if displayOptions.showCompact {
                     VStack(spacing: -2) {
-                        if menuBarPreferencesModel.showArtist {
+                        if displayOptions.showArtist {
                             Text(model.artist)
                                 .font(.system(size: 10, weight: .medium))
                         }
-                        if menuBarPreferencesModel.showTitle {
+                        if displayOptions.showTitle {
                             Text(model.title)
                                 .font(.system(size: 9))
                         }
                     }
-                }
-            } else {
-                Text(
-                    model.buildText(
-                        menuBarPreferencesModel: menuBarPreferencesModel,
-                        font: NSFont.systemFont(ofSize: 13)
+
+                } else {
+                    Text(
+                        model.buildText(
+                            displayOptions: displayOptions,
+                            font: NSFont.systemFont(ofSize: 13),
+                        )
                     )
-                )
-                .font(.system(size: 13))
+                    .font(.system(size: 13))
+                }
+
             }
         }
-    }
-}
-
-struct StatusItemDisplayHelper {
-    static func shouldShowAppIcon(
-        preferences: MenuBarPreferencesModel,
-        model: StatusItemModel,
-        playbackModel: PlaybackModel,
-        musicPlayerPreferencesModel: MusicPlayerPreferencesModel
-    ) -> Bool {
-        if preferences.showAppIcon {
-            return true
-        }
-
-        let noArtist = !preferences.showArtist || model.artist.isEmpty
-        let noTitle = !preferences.showTitle || model.title.isEmpty
-        let noIsPlaying = !preferences.showIsPlayingIcon || !model.isPlaying
-        let noIsLiked =
-            !preferences.showIsLikedIcon || !playbackModel.isLikingImplemented
-            || !musicPlayerPreferencesModel.likingEnabled
-            || model.isLiked != true
-
-        let nothingToShow = noArtist && noTitle && noIsPlaying && noIsLiked
-
-        return nothingToShow
     }
 }
 
