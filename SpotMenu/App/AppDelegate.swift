@@ -42,18 +42,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self?.updateStatusItem()
         }
 
-        NotificationCenter.default.addObserver(
-            forName: .playbackDidTogglePlayPause,
-            object: nil,
-            queue: .main
-        ) { [weak self] _ in
-            guard let self else { return }
-            StatusItemConfigurator.updateWidth(
-                statusItem: self.statusItem,
-                maxWidth: self.menuBarPreferencesModel.maxStatusItemWidth
-            )
-        }
-
         // Set up popover manager
         let playbackView = PlaybackView(
             model: playbackModel,

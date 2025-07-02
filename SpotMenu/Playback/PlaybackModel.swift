@@ -177,10 +177,6 @@ class PlaybackModel: ObservableObject {
 
     func togglePlayPause() {
         controller.togglePlayPause()
-        self.isPlaying.toggle()
-
-        NotificationCenter.default.post(name: .playbackDidTogglePlayPause, object: nil)
-
         delayedFetch()
     }
 
@@ -278,8 +274,4 @@ func openApp(bundleIdentifier: String) {
             print("Failed to open app: \(error.localizedDescription)")
         }
     }
-}
-
-extension Notification.Name {
-    static let playbackDidTogglePlayPause = Notification.Name("playbackDidTogglePlayPause")
 }
