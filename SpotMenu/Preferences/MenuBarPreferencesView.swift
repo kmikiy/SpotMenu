@@ -117,7 +117,8 @@ struct MenuBarPreferencesView: View {
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: 460)
+        .frame(width: 400, height: playbackModel.isLikingImplemented
+               && musicPlayerPreferencesModel.likingEnabled ? 460 : 420)
     }
 
     @ViewBuilder
