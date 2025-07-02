@@ -34,9 +34,15 @@ class StatusItemModel: ObservableObject {
 
         let showCompact = menuBarPreferencesModel.compactView
 
-        let showArtist = menuBarPreferencesModel.hideArtistWhenPaused
+        let isPaused = !playbackModel.isPlaying
 
-        let showTitle = menuBarPreferencesModel.showTitle
+        let showArtist =
+            menuBarPreferencesModel.showArtist
+            && !(menuBarPreferencesModel.hideArtistWhenPaused && isPaused)
+
+        let showTitle =
+            menuBarPreferencesModel.showTitle
+            && !(menuBarPreferencesModel.hideTitleWhenPaused && isPaused)
 
         let hasTextContent = !artist.isEmpty || !title.isEmpty
         let isTextDisplayEnabled = showArtist || showTitle
