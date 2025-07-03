@@ -164,7 +164,7 @@ struct PlaybackView: View {
                     foregroundColor: preferences.foregroundColor.color,
                     trackColor: preferences.foregroundColor.color
                 )
-                .frame(width: model.isLikingImplemented && musicPlayerPreferencesModel.likingEnabled ? 160 : 180)
+                .frame(width: model.isLikingImplemented && musicPlayerPreferencesModel.likingEnabled ? 160 : 188)
 
                 Text(formatTime(model.totalTime))
                     .font(.body.monospacedDigit())
