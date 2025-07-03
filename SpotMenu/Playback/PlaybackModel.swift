@@ -191,7 +191,6 @@ class PlaybackModel: ObservableObject {
 
     func togglePlayPause() {
         controller.togglePlayPause()
-        self.isPlaying = !self.isPlaying
         delayedFetch()
     }
 

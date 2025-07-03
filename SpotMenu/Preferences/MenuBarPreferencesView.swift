@@ -15,110 +15,175 @@ struct MenuBarPreferencesView: View {
     }()
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 20) {
             Text("Menu Bar Settings")
-                .font(.title2)
-                .bold()
-                .padding(.bottom, 8)
+                .font(.title2.bold())
 
-            VStack(spacing: 10) {
-                settingsRow("Display Artist", binding: $model.showArtist)
-                settingsRow("Display Song Title", binding: $model.showTitle)
+            // TEXT DISPLAY SECTION
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Text Display")
+                    .font(.headline)
+
                 settingsRow(
-                    "Show Playing Icon",
-                    binding: $model.showIsPlayingIcon
+                    "Display Artist",
+                    binding: Binding(
+                        get: { model.showArtist },
+                        set: { newValue in
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                model.showArtist = newValue
+                            }
+                        }
+                    )
                 )
-                if playbackModel.isLikingImplemented
-                    && musicPlayerPreferencesModel.likingEnabled {
-                    settingsRow("Show Liked Icon", binding: $model.showIsLikedIcon)
-                }
-                
-                settingsRow("Display App Icon", binding: $model.showAppIcon)
-                settingsRow("Compact View", binding: $model.compactView)
 
-                HStack {
-                    Text("Max Width")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Slider(
-                        value: $model.maxStatusItemWidth,
-                        in: 80...300,
-                        step: 1
+                if model.showArtist {
+                    settingsRow(
+                        "Hide When Paused",
+                        binding: $model.hideArtistWhenPaused
                     )
-                    .frame(width: 200)
-                    Text("\(Int(model.maxStatusItemWidth)) pt")
-                        .frame(width: 50)
+                    .padding(.leading, 24)
+                    .transition(.opacity.combined(with: .move(edge: .top)))
                 }
 
-                if shouldShowAlwaysFallbackWarning {
-                    Text(
-                        "Note: All display options are turned off. The app icon will be shown as a fallback to prevent an empty status item."
+                settingsRow(
+                    "Display Song Title",
+                    binding: Binding(
+                        get: { model.showTitle },
+                        set: { newValue in
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                model.showTitle = newValue
+                            }
+                        }
                     )
-                    .font(.caption2)
-                    .foregroundColor(.orange)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, 2)
-                } else if shouldShowPlayingOnlyFallbackWarning {
-                    Text(
-                        "Note: If only 'Show Playing Icon' is enabled but nothing is playing, the app icon will be shown as a fallback."
-                    )
-                    .font(.caption2)
-                    .foregroundColor(.orange)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, 2)
-                } else if shouldShowLikedOnlyFallbackWarning {
-                    Text(
-                        "Note: If only 'Show Liked Icon' is enabled but the liked status is unavailable, the app icon will be shown as a fallback."
-                    )
-                    .font(.caption2)
-                    .foregroundColor(.orange)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.top, 2)
-                }
+                )
 
-                Spacer()
-
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("Status Item Preview")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-
-                    HStack {
-                        StatusItemView(
-                            model: previewModel,
-                            menuBarPreferencesModel: model,
-                            musicPlayerPreferencesModel:
-                                musicPlayerPreferencesModel,
-                            playbackModel: playbackModel
-                        )
-                        .frame(width: model.maxStatusItemWidth, height: 22)
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(6)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 6)
-                                .stroke(
-                                    style: StrokeStyle(lineWidth: 1, dash: [4])
-                                )
-                                .foregroundColor(.gray.opacity(0.4))
+                if model.showTitle {
+                    VStack(alignment: .leading, spacing: 0) {
+                        settingsRow(
+                            "Hide When Paused",
+                            binding: $model.hideTitleWhenPaused
                         )
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-
-                    Text(
-                        "Maximum width shown. Actual width may be smaller depending on content."
-                    )
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                    .padding(.top, 2)
-                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.leading, 24)
+                    .transition(.opacity.combined(with: .move(edge: .top)))
                 }
-                .frame(width: 300)
+            }
+
+            // ICON DISPLAY SECTION
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Icons")
+                    .font(.headline)
+
+                VStack(spacing: 8) {
+                    settingsRow(
+                        "Show Playing Icon",
+                        binding: $model.showIsPlayingIcon
+                    )
+
+                    if playbackModel.isLikingImplemented
+                        && musicPlayerPreferencesModel.likingEnabled
+                    {
+                        settingsRow(
+                            "Show Liked Icon",
+                            binding: $model.showIsLikedIcon
+                        )
+                    }
+
+                    settingsRow(
+                        "Display App Icon",
+                        binding: Binding(
+                            get: { model.showAppIcon },
+                            set: { newValue in
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    model.showAppIcon = newValue
+                                }
+                            }
+                        )
+                    )
+                    // FALLBACK NOTE
+                    if !model.showAppIcon {
+                        Text(
+                            "If nothing is currently visible based on your settings and playback status, the app icon will be shown as a fallback even if 'Display App Icon' is turned off."
+                        )
+                        .font(.caption2)
+                        .foregroundColor(.gray)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                    }
+
+                }
+
+            }
+
+            // LAYOUT SECTION
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Layout")
+                    .font(.headline)
+
+                VStack(spacing: 8) {
+                    settingsRow("Compact View", binding: $model.compactView)
+
+                    HStack {
+                        Text("Max Width")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Slider(
+                            value: $model.maxStatusItemWidth,
+                            in: 80...300,
+                            step: 1
+                        )
+                        .frame(width: 200)
+                        Text("\(Int(model.maxStatusItemWidth)) pt")
+                            .frame(width: 50)
+                    }
+                }
+            }
+
+            // PREVIEW SECTION
+            VStack(alignment: .leading, spacing: 8) {
+                Spacer()
+                Text("Status Item Preview")
+                    .font(.headline)
+
+                StatusItemView(
+                    model: previewModel,
+                    menuBarPreferencesModel: model,
+                    musicPlayerPreferencesModel: musicPlayerPreferencesModel,
+                    playbackModel: playbackModel
+                )
+                .frame(width: model.maxStatusItemWidth, height: 22)
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(6)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
+                        .foregroundColor(.gray.opacity(0.4))
+                )
+                .frame(maxWidth: .infinity, alignment: .center)
+
+                Text(
+                    "Maximum width shown. Actual width may be smaller depending on content."
+                )
+                .font(.caption2)
+                .foregroundColor(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
             }
 
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: playbackModel.isLikingImplemented
-               && musicPlayerPreferencesModel.likingEnabled ? 460 : 420)
+        .frame(width: 400, height: calculateHeight())
+    }
+
+    private func calculateHeight() -> CGFloat {
+        var height = 600.0
+
+        if playbackModel.isLikingImplemented
+            && musicPlayerPreferencesModel.likingEnabled
+        {
+            height = height + 30
+        }
+
+        return height
     }
 
     @ViewBuilder
@@ -132,45 +197,6 @@ struct MenuBarPreferencesView: View {
                 .toggleStyle(.switch)
                 .controlSize(.small)
         }
-    }
-
-    private var shouldShowAlwaysFallbackWarning: Bool {
-        let noArtist = !model.showArtist
-        let noTitle = !model.showTitle
-        let noIsPlaying = !model.showIsPlayingIcon
-        let noIsLiked =
-            !model.showIsLikedIcon || !playbackModel.isLikingImplemented
-            || !musicPlayerPreferencesModel.likingEnabled
-        let noDisplayAppIcon = !model.showAppIcon
-
-        return noArtist && noTitle && noIsPlaying && noIsLiked
-            && noDisplayAppIcon
-    }
-
-    private var shouldShowPlayingOnlyFallbackWarning: Bool {
-        let noArtist = !model.showArtist
-        let noTitle = !model.showTitle
-        let yesIsPlaying = model.showIsPlayingIcon
-        let noIsLiked =
-            !model.showIsLikedIcon || !playbackModel.isLikingImplemented
-            || !musicPlayerPreferencesModel.likingEnabled
-        let noDisplayAppIcon = !model.showAppIcon
-
-        return noArtist && noTitle && yesIsPlaying && noIsLiked
-            && noDisplayAppIcon
-    }
-
-    private var shouldShowLikedOnlyFallbackWarning: Bool {
-        let noArtist = !model.showArtist
-        let noTitle = !model.showTitle
-        let noIsPlaying = !model.showIsPlayingIcon
-        let yesIsLiked =
-            model.showIsLikedIcon && playbackModel.isLikingImplemented
-            && musicPlayerPreferencesModel.likingEnabled
-        let noDisplayAppIcon = !model.showAppIcon
-
-        return noArtist && noTitle && noIsPlaying && yesIsLiked
-            && noDisplayAppIcon
     }
 }
 

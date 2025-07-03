@@ -52,6 +52,22 @@ class MenuBarPreferencesModel: ObservableObject {
             )
         }
     }
+    @Published var hideArtistWhenPaused: Bool {
+        didSet {
+            UserDefaults.standard.set(
+                hideArtistWhenPaused,
+                forKey: "menuBar.hideArtistWhenPaused"
+            )
+        }
+    }
+    @Published var hideTitleWhenPaused: Bool {
+        didSet {
+            UserDefaults.standard.set(
+                hideTitleWhenPaused,
+                forKey: "menuBar.hideTitleWhenPaused"
+            )
+        }
+    }
 
     var isTextVisible: Bool {
         return showArtist || showTitle
@@ -77,5 +93,12 @@ class MenuBarPreferencesModel: ObservableObject {
         maxStatusItemWidth =
             defaults.object(forKey: "menuBar.maxStatusItemWidth") as? CGFloat
             ?? 150
+        hideArtistWhenPaused =
+            defaults.object(forKey: "menuBar.hideArtistWhenPaused") as? Bool
+            ?? false
+        hideTitleWhenPaused =
+            defaults.object(forKey: "menuBar.hideTitleWhenPaused") as? Bool
+            ?? false
+
     }
 }

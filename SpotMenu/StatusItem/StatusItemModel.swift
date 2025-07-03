@@ -6,25 +6,72 @@ class StatusItemModel: ObservableObject {
     @Published var title: String = ""
     @Published var isPlaying: Bool = false
     @Published var isLiked: Bool? = nil
+    @Published var playerIconName: String = "SpotifyIcon"
 
-    var showAppIconOnly: Bool {
-        return artist.isEmpty && title.isEmpty && !isPlaying
+    struct DisplayOptions {
+        let showIcon: Bool
+        let showHeartIcon: Bool
+        let showMusicIcon: Bool
+        let showCompact: Bool
+        let showText: Bool
+        let showArtist: Bool
+        let showTitle: Bool
+        let maxStatusItemWidth: CGFloat
     }
 
-    var isTextEmpty: Bool {
-        return artist.isEmpty && title.isEmpty
+    func computeDisplayOptions(
+        menuBarPreferencesModel: MenuBarPreferencesModel,
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel,
+        playbackModel: PlaybackModel
+    ) -> DisplayOptions {
+        let showHeartIcon =
+            isLiked == true && playbackModel.isLikingImplemented
+            && musicPlayerPreferencesModel.likingEnabled
+            && menuBarPreferencesModel.showIsLikedIcon
+
+        let showMusicIcon =
+            menuBarPreferencesModel.showIsPlayingIcon && isPlaying
+
+        let showCompact = menuBarPreferencesModel.compactView
+
+        let isPaused = !isPlaying
+
+        let showArtist =
+            menuBarPreferencesModel.showArtist
+            && !(menuBarPreferencesModel.hideArtistWhenPaused && isPaused)
+            && !artist.isEmpty
+
+        let showTitle =
+            menuBarPreferencesModel.showTitle
+            && !(menuBarPreferencesModel.hideTitleWhenPaused && isPaused)
+            && !title.isEmpty
+
+        let hasTextContent = !artist.isEmpty || !title.isEmpty
+        let isTextDisplayEnabled = showArtist || showTitle
+        let showText = hasTextContent && isTextDisplayEnabled
+
+        let showIcon =
+            menuBarPreferencesModel.showAppIcon
+            || (!showMusicIcon && !showHeartIcon && !showText)
+
+        return DisplayOptions(
+            showIcon: showIcon,
+            showHeartIcon: showHeartIcon,
+            showMusicIcon: showMusicIcon,
+            showCompact: showCompact,
+            showText: showText,
+            showArtist: showArtist,
+            showTitle: showTitle,
+            maxStatusItemWidth: menuBarPreferencesModel.maxStatusItemWidth
+        )
     }
 
     func buildText(
-        menuBarPreferencesModel: MenuBarPreferencesModel,
-        font: NSFont,
+        displayOptions: DisplayOptions,
+        font: NSFont
     ) -> String {
-        let artistText =
-            (menuBarPreferencesModel.showArtist && !(artist).isEmpty)
-            ? artist : nil
-        let titleText =
-            (menuBarPreferencesModel.showTitle && !(title).isEmpty)
-            ? title : nil
+        let artistText = displayOptions.showArtist ? artist : nil
+        let titleText = displayOptions.showTitle ? title : nil
 
         let label = [artistText, titleText]
             .compactMap { $0 }
@@ -32,17 +79,10 @@ class StatusItemModel: ObservableObject {
                 separator: (artistText != nil && titleText != nil) ? " - " : ""
             )
 
-        let spaced =
-            label.isEmpty
-            ? nil
-            : (menuBarPreferencesModel.showIsPlayingIcon ? label : " \(label)")
-
-        let full = [spaced].compactMap { $0 }.joined(separator: " ")
-
         return truncateText(
-            full,
+            label,
             font: font,
-            maxWidth: menuBarPreferencesModel.maxStatusItemWidth
+            maxWidth: displayOptions.maxStatusItemWidth
         )
     }
 
