@@ -54,13 +54,19 @@ open SpotMenu.xcodeproj
 
 Accessible via right-clicking the menu bar icon → Preferences…
 
-### Player Tab
+### Music Player Tab
 
 Choose which music player SpotMenu should control:
 
 - Automatic — Detects and uses whichever player is active.
 - Spotify
 - Apple Music
+
+Enable or disable liking tracks in Spotify.
+
+![Music Player Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/music-player-preferences.mov)
+
+### Playback Appearance Tab
 
 Tweak player appearance:
 
@@ -69,23 +75,29 @@ Tweak player appearance:
 - Blur Intensity
 - Hover Tint Opacity
 
-![Player Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/player-preferences.mov)
+![Playback Appearance Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/playback-appearance-preferences.mov)
 
 ### Menu Bar Tab
 
-Toggle:
+Adjust text:
 
 - Display Artist
+  - Hide When Playing
 - Display Song Title
+  - Hide When Playing
+
+Adjust icons:
+
 - Show Playing Icon
+- Show Liked Icon (Spotify only)
 - Display App Icon
+
+Adjust layout:
+
 - Compact View Mode
-
-Adjust:
-
 - Max Width of the Status Item (80–300 pt)
 
-![Menu Bar Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/menu-bar-preferences.mov)
+![Menu Bar Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/menu-bar-settings-preferences.mov)
 
 ### Shortcuts Tab
 
@@ -94,8 +106,11 @@ Assign keys for:
 - Play / Pause
 - Next Track
 - Previous Track
+- Like Track (Spotify only)
+- Unlike Track (Spotify only)
+- Toggle Like (Spotify only)
 
-![Shortcuts Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/shortcuts-preferences.mov)
+![Shortcuts Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/keyboard-shortcuts-preferences.mov)
 
 ## 🧠 Usage Tips
 
