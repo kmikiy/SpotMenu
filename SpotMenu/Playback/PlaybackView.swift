@@ -150,11 +150,16 @@ struct PlaybackView: View {
 
             HStack(alignment: .center) {
 
-                Text(model.formatTime(model.currentTime))
-                    .font(.body.monospacedDigit())
-                    .foregroundColor(preferences.foregroundColor.color)
-                    .frame(alignment: .leading)
-                    .fixedSize(horizontal: true, vertical: false)
+                Text(
+                    formatTime(
+                        model.currentTime,
+                        styleMatching: model.totalTime
+                    )
+                )
+                .font(.body.monospacedDigit())
+                .foregroundColor(preferences.foregroundColor.color)
+                .frame(alignment: .leading)
+                .fixedSize(horizontal: true, vertical: false)
 
                 CustomSlider(
                     value: Binding(
@@ -167,11 +172,13 @@ struct PlaybackView: View {
                 )
                 .frame(maxWidth: .infinity)
 
-                Text(model.formatTime(model.totalTime))
-                    .font(.body.monospacedDigit())
-                    .foregroundColor(preferences.foregroundColor.color)
-                    .frame(alignment: .trailing)
-                    .fixedSize(horizontal: true, vertical: false)
+                Text(
+                    formatTime(model.totalTime, styleMatching: model.totalTime)
+                )
+                .font(.body.monospacedDigit())
+                .foregroundColor(preferences.foregroundColor.color)
+                .frame(alignment: .trailing)
+                .fixedSize(horizontal: true, vertical: false)
 
                 if model.isLikingImplemented
                     && musicPlayerPreferencesModel.likingEnabled
@@ -220,6 +227,21 @@ struct PlaybackView: View {
         }
         .padding(.horizontal)
         .transition(.opacity)
+    }
+
+    func formatTime(_ seconds: Double, styleMatching total: Double) -> String {
+        let s = Int(seconds)
+        let t = Int(total)
+        let (h, m, sec) = (s / 3600, (s % 3600) / 60, s % 60)
+        let (th, tm) = (t / 3600, (t % 3600) / 60)
+
+        if th > 0 {
+            return String(format: "%d:%02d:%02d", h, m, sec)
+        } else if tm >= 10 {
+            return String(format: "%02d:%02d", m, sec)
+        } else {
+            return String(format: "%d:%02d", m, sec)
+        }
     }
 
     private var adaptiveHoverTintColor: Color {
