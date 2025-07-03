@@ -38,11 +38,11 @@ class StatusItemModel: ObservableObject {
 
         let showArtist =
             menuBarPreferencesModel.showArtist
-            && !(menuBarPreferencesModel.hideArtistWhenPaused && isPaused)
+        && !(menuBarPreferencesModel.hideArtistWhenPaused && isPaused) && !artist.isEmpty
 
         let showTitle =
             menuBarPreferencesModel.showTitle
-            && !(menuBarPreferencesModel.hideTitleWhenPaused && isPaused)
+            && !(menuBarPreferencesModel.hideTitleWhenPaused && isPaused) && !title.isEmpty
 
         let hasTextContent = !artist.isEmpty || !title.isEmpty
         let isTextDisplayEnabled = showArtist || showTitle
