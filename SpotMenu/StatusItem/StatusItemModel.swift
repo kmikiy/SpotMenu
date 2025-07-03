@@ -30,11 +30,11 @@ class StatusItemModel: ObservableObject {
             && menuBarPreferencesModel.showIsLikedIcon
 
         let showMusicIcon =
-            menuBarPreferencesModel.showIsPlayingIcon && playbackModel.isPlaying
+            menuBarPreferencesModel.showIsPlayingIcon && isPlaying
 
         let showCompact = menuBarPreferencesModel.compactView
 
-        let isPaused = !playbackModel.isPlaying
+        let isPaused = !isPlaying
 
         let showArtist =
             menuBarPreferencesModel.showArtist
