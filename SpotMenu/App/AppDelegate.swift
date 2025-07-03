@@ -103,7 +103,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func application(_ application: NSApplication, open urls: [URL]) {
-
         guard let url = urls.first else { return }
         SpotifyAuthManager.shared.handleRedirect(url: url)
         NSApp.activate(ignoringOtherApps: true)
