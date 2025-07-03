@@ -43,7 +43,7 @@ class MusicPlayerPreferencesModel: ObservableObject {
         }
 
         likingEnabled =
-            defaults.object(forKey: "playback.likingEnabled") as? Bool ?? true
+            defaults.object(forKey: "musicPlayer.likingEnabled") as? Bool ?? true
 
         spotifyClientID = defaults.string(forKey: "spotify.clientID")
     }
