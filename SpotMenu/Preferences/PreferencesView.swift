@@ -3,7 +3,9 @@ import SwiftUI
 struct PreferencesView: View {
     @ObservedObject var menuBarPreferencesModel: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
-    @ObservedObject var playerPreferencesModel: PlayerPreferencesModel
+    @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
+    @ObservedObject var playbackAppearancePreferencesModel:
+        PlaybackAppearancePreferencesModel
 
     @State private var tabHeight: CGFloat = 0
 
@@ -11,20 +13,33 @@ struct PreferencesView: View {
         VStack(spacing: 16) {
             TabView {
                 tabContainer {
-                    PlayerPreferencesView(model: playerPreferencesModel, playbackModel: playbackModel)
+                    MusicPlayerPreferencesView(
+                        model: musicPlayerPreferencesModel,
+                        playbackModel: playbackModel
+                    )
                 }
                 .tabItem { Text("Player") }
 
                 tabContainer {
+                    PlaybackAppearancePreferencesView(
+                        model: playbackAppearancePreferencesModel,
+                        musicPlayerPreferencesModel: musicPlayerPreferencesModel,
+                        playbackModel: playbackModel
+                    )
+                }
+                .tabItem { Text("Appearance") }
+
+                tabContainer {
                     MenuBarPreferencesView(
                         model: menuBarPreferencesModel,
-                        playbackModel: playbackModel
+                        playbackModel: playbackModel,
+                        musicPlayerPreferencesModel: musicPlayerPreferencesModel
                     )
                 }
                 .tabItem { Text("Menu Bar") }
 
                 tabContainer {
-                    ShortcutPreferencesView()
+                    ShortcutPreferencesView(model: playbackModel, musicPlayerPreferencesModel: musicPlayerPreferencesModel)
                 }
                 .tabItem { Text("Shortcuts") }
 
@@ -45,18 +60,8 @@ struct PreferencesView: View {
             }
             .padding(.top, 8)
         }
-        .frame(width: 420)
+        .frame(width: 440)
         .padding()
-    }
-    
-    private func colorScheme(for mode: PlayerPreferencesModel.AppearanceMode)
-        -> ColorScheme?
-    {
-        switch mode {
-        case .system: return nil
-        case .light: return .light
-        case .dark: return .dark
-        }
     }
 
     private func tabContainer<Content: View>(
@@ -87,7 +92,10 @@ private struct TabHeightKey: PreferenceKey {
 #Preview {
     PreferencesView(
         menuBarPreferencesModel: MenuBarPreferencesModel(),
-        playbackModel: PlaybackModel(preferences: PlayerPreferencesModel()),
-        playerPreferencesModel: PlayerPreferencesModel()
+        playbackModel: PlaybackModel(
+            preferences: MusicPlayerPreferencesModel()
+        ),
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel(),
+        playbackAppearancePreferencesModel: PlaybackAppearancePreferencesModel()
     )
 }

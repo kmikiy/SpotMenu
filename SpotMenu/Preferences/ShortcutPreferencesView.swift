@@ -17,6 +17,9 @@ enum MediaAction: String, CaseIterable, Identifiable {
 }
 
 struct ShortcutPreferencesView: View {
+    @ObservedObject var model: PlaybackModel
+    @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Keyboard Shortcuts")
@@ -32,13 +35,47 @@ struct ShortcutPreferencesView: View {
                 }
             }
 
+            if model.isLikingImplemented
+                && musicPlayerPreferencesModel.likingEnabled
+            {
+
+                HStack {
+                    Text("Like Track")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    KeyboardShortcuts.Recorder(for: .likeTrack)
+                }
+
+                HStack {
+                    Text("Unlike Track")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    KeyboardShortcuts.Recorder(for: .unlikeTrack)
+                }
+
+                HStack {
+                    Text("Toggle Like")
+                        .frame(width: 150, alignment: .leading)
+                    Spacer()
+                    KeyboardShortcuts.Recorder(for: .toggleLike)
+                }
+
+            }
+
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: 200)
+        .frame(
+            width: 400,
+            height: model.isLikingImplemented
+                && musicPlayerPreferencesModel.likingEnabled ? 320 : 200
+        )
     }
 }
 
 #Preview {
-    ShortcutPreferencesView()
+    ShortcutPreferencesView(
+        model: PlaybackModel(preferences: MusicPlayerPreferencesModel()),
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel()
+    )
 }

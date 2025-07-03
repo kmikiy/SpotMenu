@@ -5,6 +5,7 @@ class StatusItemModel: ObservableObject {
     @Published var artist: String = ""
     @Published var title: String = ""
     @Published var isPlaying: Bool = false
+    @Published var isLiked: Bool? = nil
 
     var showAppIconOnly: Bool {
         return artist.isEmpty && title.isEmpty && !isPlaying

@@ -3,12 +3,14 @@ import SwiftUI
 struct MenuBarPreferencesView: View {
     @ObservedObject var model: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
+    @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
+
     @StateObject private var previewModel: StatusItemModel = {
         let model = StatusItemModel()
         model.artist = "Lorem Ipsum"
-        model.title =
-            "Ut Sit Amet Justo Efficitur, Imperdiet Elit Sit Amet"
+        model.title = "Ut Sit Amet Justo Efficitur, Imperdiet Elit Sit Amet"
         model.isPlaying = true
+        model.isLiked = true
         return model
     }()
 
@@ -26,8 +28,14 @@ struct MenuBarPreferencesView: View {
                     "Show Playing Icon",
                     binding: $model.showIsPlayingIcon
                 )
+                if playbackModel.isLikingImplemented
+                    && musicPlayerPreferencesModel.likingEnabled {
+                    settingsRow("Show Liked Icon", binding: $model.showIsLikedIcon)
+                }
+                
                 settingsRow("Display App Icon", binding: $model.showAppIcon)
                 settingsRow("Compact View", binding: $model.compactView)
+
                 HStack {
                     Text("Max Width")
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -49,9 +57,17 @@ struct MenuBarPreferencesView: View {
                     .foregroundColor(.orange)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.top, 2)
-                } else if shouldShowConditionalFallbackWarning {
+                } else if shouldShowPlayingOnlyFallbackWarning {
                     Text(
                         "Note: If only 'Show Playing Icon' is enabled but nothing is playing, the app icon will be shown as a fallback."
+                    )
+                    .font(.caption2)
+                    .foregroundColor(.orange)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, 2)
+                } else if shouldShowLikedOnlyFallbackWarning {
+                    Text(
+                        "Note: If only 'Show Liked Icon' is enabled but the liked status is unavailable, the app icon will be shown as a fallback."
                     )
                     .font(.caption2)
                     .foregroundColor(.orange)
@@ -60,6 +76,7 @@ struct MenuBarPreferencesView: View {
                 }
 
                 Spacer()
+
                 VStack(alignment: .leading, spacing: 6) {
                     Text("Status Item Preview")
                         .font(.caption)
@@ -69,6 +86,8 @@ struct MenuBarPreferencesView: View {
                         StatusItemView(
                             model: previewModel,
                             menuBarPreferencesModel: model,
+                            musicPlayerPreferencesModel:
+                                musicPlayerPreferencesModel,
                             playbackModel: playbackModel
                         )
                         .frame(width: model.maxStatusItemWidth, height: 22)
@@ -93,13 +112,13 @@ struct MenuBarPreferencesView: View {
                     .fixedSize(horizontal: false, vertical: true)
                 }
                 .frame(width: 300)
-
             }
 
             Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: 420)
+        .frame(width: 400, height: playbackModel.isLikingImplemented
+               && musicPlayerPreferencesModel.likingEnabled ? 460 : 420)
     }
 
     @ViewBuilder
@@ -119,28 +138,48 @@ struct MenuBarPreferencesView: View {
         let noArtist = !model.showArtist
         let noTitle = !model.showTitle
         let noIsPlaying = !model.showIsPlayingIcon
+        let noIsLiked =
+            !model.showIsLikedIcon || !playbackModel.isLikingImplemented
+            || !musicPlayerPreferencesModel.likingEnabled
         let noDisplayAppIcon = !model.showAppIcon
 
-        return noArtist && noTitle && noIsPlaying && noDisplayAppIcon
-
+        return noArtist && noTitle && noIsPlaying && noIsLiked
+            && noDisplayAppIcon
     }
 
-    private var shouldShowConditionalFallbackWarning: Bool {
+    private var shouldShowPlayingOnlyFallbackWarning: Bool {
+        let noArtist = !model.showArtist
+        let noTitle = !model.showTitle
+        let yesIsPlaying = model.showIsPlayingIcon
+        let noIsLiked =
+            !model.showIsLikedIcon || !playbackModel.isLikingImplemented
+            || !musicPlayerPreferencesModel.likingEnabled
+        let noDisplayAppIcon = !model.showAppIcon
+
+        return noArtist && noTitle && yesIsPlaying && noIsLiked
+            && noDisplayAppIcon
+    }
+
+    private var shouldShowLikedOnlyFallbackWarning: Bool {
         let noArtist = !model.showArtist
         let noTitle = !model.showTitle
         let noIsPlaying = !model.showIsPlayingIcon
+        let yesIsLiked =
+            model.showIsLikedIcon && playbackModel.isLikingImplemented
+            && musicPlayerPreferencesModel.likingEnabled
         let noDisplayAppIcon = !model.showAppIcon
 
-        return noArtist && noTitle && !noIsPlaying && noDisplayAppIcon
+        return noArtist && noTitle && noIsPlaying && yesIsLiked
+            && noDisplayAppIcon
     }
-
 }
 
 #Preview {
     MenuBarPreferencesView(
         model: MenuBarPreferencesModel(),
         playbackModel: PlaybackModel(
-            preferences: PlayerPreferencesModel()
-        )
+            preferences: MusicPlayerPreferencesModel()
+        ),
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel()
     )
 }

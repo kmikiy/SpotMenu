@@ -3,7 +3,8 @@ import SwiftUI
 
 struct PlaybackView: View {
     @ObservedObject var model: PlaybackModel
-    @ObservedObject var preferences: PlayerPreferencesModel
+    @ObservedObject var preferences: PlaybackAppearancePreferencesModel
+    @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
     @State private var isHovering = false
     @Environment(\.colorScheme) private var systemColorScheme
 
@@ -147,11 +148,13 @@ struct PlaybackView: View {
 
             Spacer(minLength: 0)
 
-            HStack {
-                Text(formatTime(model.currentTime))
+            HStack(alignment: .center) {
+
+                Text(model.formatTime(model.currentTime))
                     .font(.body.monospacedDigit())
                     .foregroundColor(preferences.foregroundColor.color)
-                    .frame(width: 30, alignment: .leading)
+                    .frame(alignment: .leading)
+                    .fixedSize(horizontal: true, vertical: false)
 
                 CustomSlider(
                     value: Binding(
@@ -162,15 +165,58 @@ struct PlaybackView: View {
                     foregroundColor: preferences.foregroundColor.color,
                     trackColor: preferences.foregroundColor.color
                 )
-                .frame(width: 200)
+                .frame(maxWidth: .infinity)
 
-                Text(formatTime(model.totalTime))
+                Text(model.formatTime(model.totalTime))
                     .font(.body.monospacedDigit())
                     .foregroundColor(preferences.foregroundColor.color)
-                    .frame(width: 30, alignment: .trailing)
+                    .frame(alignment: .trailing)
+                    .fixedSize(horizontal: true, vertical: false)
+
+                if model.isLikingImplemented
+                    && musicPlayerPreferencesModel.likingEnabled
+                {
+                    Group {
+                        if let isLiked = model.isLiked {
+                            Button(action: {
+                                model.toggleLiked()
+                            }) {
+                                Image(
+                                    systemName: isLiked ? "heart.fill" : "heart"
+                                )
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(
+                                    preferences.foregroundColor.color
+                                )
+                                .frame(width: 20, height: 20)
+                            }
+                            .buttonStyle(.plain)
+                            .help("Toggle like status")
+                        } else {
+                            Button(action: {
+                                model.toggleLiked()  // triggers login
+                            }) {
+                                Image(systemName: "heart")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(
+                                        preferences.foregroundColor.color
+                                            .opacity(0.3)
+                                    )
+                                    .frame(width: 20, height: 20)
+                            }
+                            .buttonStyle(.plain)
+                            .help("Login to enable liking tracks")
+                        }
+                    }
+                }
             }
             .padding(.horizontal)
             .padding(.bottom, 16)
+
         }
         .padding(.horizontal)
         .transition(.opacity)
@@ -179,22 +225,20 @@ struct PlaybackView: View {
     private var adaptiveHoverTintColor: Color {
         return Color(preferences.hoverTintColor)
     }
-
-    private func formatTime(_ seconds: Double) -> String {
-        let mins = Int(seconds) / 60
-        let secs = Int(seconds) % 60
-        return String(format: "%d:%02d", mins, secs)
-    }
 }
 
 #Preview {
-    let model = PlaybackModel(preferences: PlayerPreferencesModel())
+    let model = PlaybackModel(preferences: MusicPlayerPreferencesModel())
     model.imageURL = URL(
         string:
             "https://i.scdn.co/image/ab67616d0000b27377054612c5275c1515b18a50"
     )
     model.artist = "The Weeknd"
-    return PlaybackView(model: model, preferences: PlayerPreferencesModel())
+    return PlaybackView(
+        model: model,
+        preferences: PlaybackAppearancePreferencesModel(),
+        musicPlayerPreferencesModel: MusicPlayerPreferencesModel()
+    )
 }
 
 @ViewBuilder

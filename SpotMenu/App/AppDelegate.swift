@@ -5,7 +5,9 @@ import SwiftUI
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var statusItemModel = StatusItemModel()
-    var playerPreferencesModel = PlayerPreferencesModel()
+    var playbackAppearancePreferencesModel =
+        PlaybackAppearancePreferencesModel()
+    var musicPlayerPreferencesModel = MusicPlayerPreferencesModel()
     var playbackModel: PlaybackModel!
     var menuBarPreferencesModel = MenuBarPreferencesModel()
     var popoverManager: PopoverManager!
@@ -19,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
 
-        playbackModel = PlaybackModel(preferences: playerPreferencesModel)
+        playbackModel = PlaybackModel(preferences: musicPlayerPreferencesModel)
 
         let circularAppleMusicIcon = Image("AppleMusicIcon")
             .resizable()
@@ -61,7 +63,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         // Set up popover manager
-        let playbackView = PlaybackView(model: playbackModel, preferences: playerPreferencesModel)
+        let playbackView = PlaybackView(
+            model: playbackModel,
+            preferences: playbackAppearancePreferencesModel,
+            musicPlayerPreferencesModel: musicPlayerPreferencesModel
+        )
         popoverManager = PopoverManager(contentView: playbackView)
 
         // Global event monitor to dismiss popover
@@ -81,6 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItem: statusItem,
             statusItemModel: statusItemModel,
             menuBarPreferencesModel: menuBarPreferencesModel,
+            musicPlayerPreferencesModel: musicPlayerPreferencesModel,
             playBackModel: playbackModel,
             toggleAction: #selector(togglePopover),
             target: self
@@ -93,6 +100,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .objectWillChange.sink { [weak self] _ in
                 self?.updateStatusItem()
             }
+    }
+
+    func application(_ application: NSApplication, open urls: [URL]) {
+        guard let url = urls.first else { return }
+        SpotifyAuthManager.shared.handleRedirect(url: url)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     func applicationWillTerminate(_ notification: Notification) {
@@ -111,12 +124,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         KeyboardShortcuts.onKeyUp(for: .previousTrack) { [weak self] in
             self?.playbackModel.skipBack()
         }
+        KeyboardShortcuts.onKeyUp(for: .toggleLike) { [weak self] in
+            self?.playbackModel.toggleLiked()
+        }
+        KeyboardShortcuts.onKeyUp(for: .likeTrack) { [weak self] in
+            self?.playbackModel.likeTrack()
+        }
+        KeyboardShortcuts.onKeyUp(for: .unlikeTrack) { [weak self] in
+            self?.playbackModel.unlikeTrack()
+        }
     }
 
     func updateStatusItem() {
         statusItemModel.artist = playbackModel.artist
         statusItemModel.title = playbackModel.title
         statusItemModel.isPlaying = playbackModel.isPlaying
+        statusItemModel.isLiked = playbackModel.isLiked
 
         StatusItemConfigurator.updateWidth(
             statusItem: statusItem,
@@ -151,7 +174,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 rootView: PreferencesView(
                     menuBarPreferencesModel: menuBarPreferencesModel,
                     playbackModel: playbackModel,
-                    playerPreferencesModel: playerPreferencesModel
+                    musicPlayerPreferencesModel: musicPlayerPreferencesModel,
+                    playbackAppearancePreferencesModel:
+                        playbackAppearancePreferencesModel
                 )
             )
             let window = NSWindow(

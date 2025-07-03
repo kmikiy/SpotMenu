@@ -53,7 +53,8 @@ class AppleMusicController: MusicPlayerController {
                 imageURL: nil,
                 totalTime: totalTime,
                 currentTime: currentTime,
-                image: lastImage != nil ? Image(nsImage: lastImage!) : nil
+                image: lastImage != nil ? Image(nsImage: lastImage!) : nil,
+                isLiked: nil
             )
         }
 
@@ -104,5 +105,17 @@ class AppleMusicController: MusicPlayerController {
 
     func openApp() {
         SpotMenu.openApp(bundleIdentifier: "com.apple.Music")
+    }
+
+    func toggleLiked() {
+        print("Apple Music does not support liking tracks (yet).")
+    }
+
+    func likeTrack() {
+        print("Apple Music does not support liking tracks (yet).")
+    }
+
+    func unlikeTrack() {
+        print("Apple Music does not support unliking tracks (yet).")
     }
 }
