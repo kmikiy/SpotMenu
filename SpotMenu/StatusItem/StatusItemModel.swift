@@ -38,11 +38,13 @@ class StatusItemModel: ObservableObject {
 
         let showArtist =
             menuBarPreferencesModel.showArtist
-        && !(menuBarPreferencesModel.hideArtistWhenPaused && isPaused) && !artist.isEmpty
+            && !(menuBarPreferencesModel.hideArtistWhenPaused && isPaused)
+            && !artist.isEmpty
 
         let showTitle =
             menuBarPreferencesModel.showTitle
-            && !(menuBarPreferencesModel.hideTitleWhenPaused && isPaused) && !title.isEmpty
+            && !(menuBarPreferencesModel.hideTitleWhenPaused && isPaused)
+            && !title.isEmpty
 
         let hasTextContent = !artist.isEmpty || !title.isEmpty
         let isTextDisplayEnabled = showArtist || showTitle
@@ -66,10 +68,9 @@ class StatusItemModel: ObservableObject {
 
     func buildText(
         displayOptions: DisplayOptions,
-        font: NSFont,
+        font: NSFont
     ) -> String {
-        let artistText =
-            displayOptions.showArtist ? artist : nil
+        let artistText = displayOptions.showArtist ? artist : nil
         let titleText = displayOptions.showTitle ? title : nil
 
         let label = [artistText, titleText]
@@ -78,15 +79,8 @@ class StatusItemModel: ObservableObject {
                 separator: (artistText != nil && titleText != nil) ? " - " : ""
             )
 
-        let spaced =
-            label.isEmpty
-            ? nil
-            : (displayOptions.showMusicIcon ? label : " \(label)")
-
-        let full = [spaced].compactMap { $0 }.joined(separator: " ")
-
         return truncateText(
-            full,
+            label,
             font: font,
             maxWidth: displayOptions.maxStatusItemWidth
         )
