@@ -3,7 +3,7 @@ import SwiftUI
 struct SpotifyLoginView: View {
     @ObservedObject var authManager = SpotifyAuthManager.shared
     @ObservedObject var preferences: MusicPlayerPreferencesModel
-    @State private var currentStep: Int = 0
+    @State private var currentStep: Int = -1  // -1 = Intro, 0 = Client ID, 1 = Login
     @State private var instructionStep: Int = 0
 
     private let instructions: [String] = [
@@ -38,21 +38,22 @@ struct SpotifyLoginView: View {
                         .font(.system(size: 26, weight: .bold))
                         .foregroundColor(.white)
 
-                    Text(
-                        currentStep == 0
-                            ? "Set up your Spotify Client ID"
-                            : "Log in to connect your Spotify account"
-                    )
-                    .font(.title3.bold())
-                    .foregroundColor(.white.opacity(0.85))
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: 280)
+                    Text(titleForCurrentStep)
+                        .font(.title3.bold())
+                        .foregroundColor(.white.opacity(0.85))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: 280)
                 }
 
-                if currentStep == 0 {
+                switch currentStep {
+                case -1:
+                    introStep
+                case 0:
                     stepClientIDEntry
-                } else {
+                case 1:
                     stepLogin
+                default:
+                    EmptyView()
                 }
 
                 Spacer()
@@ -63,13 +64,15 @@ struct SpotifyLoginView: View {
                 Spacer()
                 Divider()
                 HStack {
-                    if currentStep == 1 || instructionStep > 0 {
+                    if currentStep > -1 {
                         Button("Back") {
                             if currentStep == 1 {
                                 currentStep = 0
                                 instructionStep = instructions.count - 1
-                            } else {
+                            } else if currentStep == 0 && instructionStep > 0 {
                                 instructionStep -= 1
+                            } else {
+                                currentStep = -1
                             }
                         }
                         .foregroundColor(.gray)
@@ -77,23 +80,17 @@ struct SpotifyLoginView: View {
 
                     Spacer()
 
-                    if currentStep == 0 {
-                        Button("Continue") {
-                            if instructionStep < instructions.count - 1 {
-                                instructionStep += 1
-                            } else {
-                                currentStep = 1
-                            }
+                    if -1...0 ~= currentStep {
+                        Button(buttonTitleForCurrentStep) {
+                            handleContinue()
                         }
-                        .disabled(
-                            instructionStep == instructions.count - 1
-                                && (preferences.spotifyClientID ?? "")
-                                    .trimmingCharacters(
-                                        in: .whitespacesAndNewlines
-                                    )
-                                    .isEmpty
-                        )
                         .foregroundColor(.white)
+                        .disabled(
+                            currentStep == 0
+
+                                && instructionStep == instructions.count - 1
+                                && !hasValidClientID
+                        )
                     }
                 }
                 .padding(.horizontal, 32)
@@ -106,6 +103,101 @@ struct SpotifyLoginView: View {
                 currentStep = 1
             }
         }
+    }
+
+    private var titleForCurrentStep: String {
+        switch currentStep {
+        case -1:
+            return "Why Spotify login is needed"
+        case 0:
+            return "Set up your Spotify Client ID"
+        case 1:
+            return "Log in to connect your Spotify account"
+        default:
+            return ""
+        }
+    }
+
+    private var buttonTitleForCurrentStep: String {
+        switch currentStep {
+        case -1: return "Continue"
+        case 0:
+            return instructionStep < instructions.count - 1
+                ? "Next" : "Continue"
+        case 1: return ""
+        default: return "Continue"
+        }
+    }
+
+    private func handleContinue() {
+        switch currentStep {
+        case -1:
+            currentStep = 0
+        case 0:
+            if instructionStep < instructions.count - 1 {
+                instructionStep += 1
+            } else {
+                currentStep = 1
+            }
+        default:
+            break
+        }
+    }
+
+    private var introStep: some View {
+        VStack(spacing: 20) {
+            Text(
+                "SpotMenu needs access to the Spotify Web API to support liking tracks. AppleScript doesn't support liking on Spotify, so we use the Web API."
+            )
+            .font(.body)
+            .foregroundColor(.white.opacity(0.8))
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: 400)
+
+            Text(
+                "Spotify only allows this if you create your own developer app. Normally this requires 250k monthly users and being a legal entity. But creating your own app bypasses this limit."
+            )
+            .font(.body)
+            .foregroundColor(.white.opacity(0.8))
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: 400)
+
+            Text("Don’t worry. We’ll guide you through it step-by-step.")
+                .font(.headline)
+                .foregroundColor(.white)
+
+            VStack(spacing: 24) {
+                Button(action: {
+                    currentStep = 0
+                }) {
+                    HStack(alignment: .center, spacing: 12) {
+                        Image(systemName: "arrow.right.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(.black)
+
+                        Text("Let’s go")
+                            .foregroundColor(.black)
+                            .font(.headline)
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 22)
+                    .padding()
+                    .background(Color.spotifyGreen)
+                    .cornerRadius(8)
+                }
+                .buttonStyle(.plain)
+                .frame(width: 260)
+
+                Button("I'm scared, just turn it off instead") {
+                    preferences.likingEnabled = false
+                    NSApp.keyWindow?.close()
+                }
+                .foregroundColor(.gray)
+                .font(.subheadline)
+            }
+        }
+        .frame(width: 400)
     }
 
     private var stepClientIDEntry: some View {

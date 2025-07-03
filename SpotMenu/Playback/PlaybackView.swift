@@ -148,12 +148,13 @@ struct PlaybackView: View {
 
             Spacer(minLength: 0)
 
-            HStack {
+            HStack(alignment: .center) {
 
-                Text(formatTime(model.currentTime))
+                Text(model.formatTime(model.currentTime))
                     .font(.body.monospacedDigit())
                     .foregroundColor(preferences.foregroundColor.color)
-                    .frame(width: 30, alignment: .leading)
+                    .frame(alignment: .leading)
+                    .fixedSize(horizontal: true, vertical: false)
 
                 CustomSlider(
                     value: Binding(
@@ -164,14 +165,17 @@ struct PlaybackView: View {
                     foregroundColor: preferences.foregroundColor.color,
                     trackColor: preferences.foregroundColor.color
                 )
-                .frame(width: model.isLikingImplemented && musicPlayerPreferencesModel.likingEnabled ? 160 : 180)
+                .frame(maxWidth: .infinity)
 
-                Text(formatTime(model.totalTime))
+                Text(model.formatTime(model.totalTime))
                     .font(.body.monospacedDigit())
                     .foregroundColor(preferences.foregroundColor.color)
-                    .frame(width: 30, alignment: .trailing)
+                    .frame(alignment: .trailing)
+                    .fixedSize(horizontal: true, vertical: false)
 
-                if model.isLikingImplemented && musicPlayerPreferencesModel.likingEnabled {
+                if model.isLikingImplemented
+                    && musicPlayerPreferencesModel.likingEnabled
+                {
                     Group {
                         if let isLiked = model.isLiked {
                             Button(action: {
@@ -192,7 +196,7 @@ struct PlaybackView: View {
                             .help("Toggle like status")
                         } else {
                             Button(action: {
-                                model.toggleLiked()  // this will initiate login
+                                model.toggleLiked()  // triggers login
                             }) {
                                 Image(systemName: "heart")
                                     .renderingMode(.template)
@@ -200,21 +204,19 @@ struct PlaybackView: View {
                                     .scaledToFit()
                                     .foregroundColor(
                                         preferences.foregroundColor.color
-                                            .opacity(
-                                                0.3
-                                            )
+                                            .opacity(0.3)
                                     )
                                     .frame(width: 20, height: 20)
-                                    .help("Login to enable liking tracks")
                             }
                             .buttonStyle(.plain)
+                            .help("Login to enable liking tracks")
                         }
                     }
                 }
-
             }
             .padding(.horizontal)
             .padding(.bottom, 16)
+
         }
         .padding(.horizontal)
         .transition(.opacity)
@@ -222,12 +224,6 @@ struct PlaybackView: View {
 
     private var adaptiveHoverTintColor: Color {
         return Color(preferences.hoverTintColor)
-    }
-
-    private func formatTime(_ seconds: Double) -> String {
-        let mins = Int(seconds) / 60
-        let secs = Int(seconds) % 60
-        return String(format: "%d:%02d", mins, secs)
     }
 }
 
