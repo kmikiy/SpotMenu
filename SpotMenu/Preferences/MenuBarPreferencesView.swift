@@ -142,10 +142,10 @@ struct MenuBarPreferencesView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                         Slider(
                             value: $model.maxStatusItemWidth,
-                            in: 80...300,
+                            in: 40...300,
                             step: 1
                         )
-                        .frame(width: 200)
+                        .frame(width: 220)
                         Text("\(Int(model.maxStatusItemWidth)) pt")
                             .frame(width: 50)
                     }
