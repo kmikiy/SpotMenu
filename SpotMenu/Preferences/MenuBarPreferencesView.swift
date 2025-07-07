@@ -4,6 +4,7 @@ struct MenuBarPreferencesView: View {
     @ObservedObject var model: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
     @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
+    @State private var isSpotifyAuthenticated = false
 
     @StateObject private var previewModel: StatusItemModel = {
         let model = StatusItemModel()
@@ -85,7 +86,20 @@ struct MenuBarPreferencesView: View {
                     {
                         settingsRow(
                             "Show Liked Icon",
-                            binding: $model.showIsLikedIcon
+                            binding: Binding(
+                                get: { model.showIsLikedIcon },
+                                set: { newValue in
+                                    model.showIsLikedIcon = newValue
+
+                                    if newValue
+                                        && !isSpotifyAuthenticated
+                                    {
+                                        LoginWindowManager.showLoginWindow(
+                                            with: musicPlayerPreferencesModel
+                                        )
+                                    }
+                                }
+                            )
                         )
                     }
 
@@ -128,10 +142,10 @@ struct MenuBarPreferencesView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                         Slider(
                             value: $model.maxStatusItemWidth,
-                            in: 80...300,
+                            in: 40...300,
                             step: 1
                         )
-                        .frame(width: 200)
+                        .frame(width: 220)
                         Text("\(Int(model.maxStatusItemWidth)) pt")
                             .frame(width: 50)
                     }
@@ -172,6 +186,11 @@ struct MenuBarPreferencesView: View {
         }
         .padding(20)
         .frame(width: 400, height: calculateHeight())
+        .onAppear {
+            SpotifyAuthManager.shared.checkAuthenticationStatus {
+                self.isSpotifyAuthenticated = $0
+            }
+        }
     }
 
     private func calculateHeight() -> CGFloat {

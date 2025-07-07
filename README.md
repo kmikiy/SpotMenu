@@ -6,7 +6,7 @@ Minimalist Now Playing for macOS menu bar — works with **Spotify** 🎵 and **
 
 ## ✨ Overview
 
-SpotMenu is a macOS menu bar utility that shows your currently playing track with support for compact views, keyboard shortcuts, and rich visual controls. Built in Swift and SwiftUI, it supports **Spotify** and **Apple Music** through AppleScript integration.
+SpotMenu is a macOS menu bar utility that shows your currently playing track with support for compact views, keyboard shortcuts, and rich visual controls. Built in Swift and SwiftUI, it supports **Spotify** and **Apple Music** through AppleScript integration — with advanced features using Spotify's Web API.
 
 ## 🔧 Features
 
@@ -14,6 +14,7 @@ SpotMenu is a macOS menu bar utility that shows your currently playing track wit
 - 🎛️ **Compact/Custom Views** — Toggle between full and compact visual modes.
 - 🖼️ **Playback Controls** — Overlay with play/pause/skip buttons and album art.
 - ⌨️ **Keyboard Shortcuts** — Global hotkeys to control playback.
+- ❤️ **Track Liking** (Spotify only) — Like and unlike tracks via Spotify's Web API.
 - ⚙️ **User Preferences** — Configure visuals, shortcuts, and music player via Preferences window.
 - 🪄 **Live Updates** — Automatically syncs with playback changes.
 - 🔁 **Multi-Player Support** — Automatically detect or manually select between Spotify and Apple Music.
@@ -50,6 +51,30 @@ cd SpotMenu
 open SpotMenu.xcodeproj
 ```
 
+## 🔑 Spotify Setup (Required for Liking Tracks)
+
+SpotMenu uses the Spotify Web API to enable liking and unliking tracks. This requires creating your own Spotify Developer App with a Client ID and setting up a redirect URI.
+
+> 🛠️ This is **required only** if you want to use the like/unlike functionality in Spotify.
+
+### Step-by-Step:
+
+1. Visit [developer.spotify.com/dashboard](https://developer.spotify.com/dashboard)
+2. Log in and click **"Create an App"**
+3. Enter a name (e.g. `SpotMenu`) and description — any text will work.
+4. In the app settings, click **"Edit Settings"**
+5. Under **Redirect URIs**, add the following:
+
+   ```
+   com.github.kmikiy.spotmenu://callback
+   ```
+
+6. Click **Save**
+7. Enable _Track Liking_ in SpotMenu Preferences → _Music Player_ tab
+8. Copy your **Client ID** into SpotMenu and complete the login flow
+
+Once you're logged in, the like/unlike icons will appear and work as expected 🎉
+
 ## 🎨 Preferences
 
 Accessible via right-clicking the menu bar icon → Preferences…
@@ -63,6 +88,8 @@ Choose which music player SpotMenu should control:
 - Apple Music
 
 Enable or disable liking tracks in Spotify.
+
+> ⚠️ Liking requires setting up a Spotify Client ID and logging in (see section above).
 
 ![Music Player Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/music-player-preferences.mov)
 
@@ -82,9 +109,12 @@ Tweak player appearance:
 Adjust text:
 
 - Display Artist
-  - Hide When Playing
+
+  - Hide When Paused
+
 - Display Song Title
-  - Hide When Playing
+
+  - Hide When Paused
 
 Adjust icons:
 
@@ -95,7 +125,7 @@ Adjust icons:
 Adjust layout:
 
 - Compact View Mode
-- Max Width of the Status Item (80–300 pt)
+- Max Width of the Status Item (40–300 pt)
 
 ![Menu Bar Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/menu-bar-settings-preferences.mov)
 
