@@ -73,7 +73,7 @@ SpotMenu uses the Spotify Web API to enable liking and unliking tracks. This req
 7. Enable _Track Liking_ in SpotMenu Preferences → _Music Player_ tab
 8. Copy your **Client ID** into SpotMenu and complete the login flow
 
-Once you're logged in, the like/unlike icons will appear and work as expected 🎉
+Once you're logged in, the like/unlike icons will appear and work as expected
 
 ## 🎨 Preferences
 
