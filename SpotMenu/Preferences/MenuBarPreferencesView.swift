@@ -85,7 +85,21 @@ struct MenuBarPreferencesView: View {
                     {
                         settingsRow(
                             "Show Liked Icon",
-                            binding: $model.showIsLikedIcon
+                            binding: Binding(
+                                get: { model.showIsLikedIcon },
+                                set: { newValue in
+                                    model.showIsLikedIcon = newValue
+
+                                    if newValue
+                                        && !SpotifyAuthManager.shared
+                                            .isAuthenticated
+                                    {
+                                        LoginWindowManager.showLoginWindow(
+                                            with: musicPlayerPreferencesModel
+                                        )
+                                    }
+                                }
+                            )
                         )
                     }
 
