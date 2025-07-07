@@ -35,7 +35,15 @@ struct MusicPlayerPreferencesView: View {
                     Toggle("", isOn: $model.likingEnabled)
                         .toggleStyle(.switch)
                         .controlSize(.small)
+                        .onChange(of: model.likingEnabled) {
+                            if model.likingEnabled
+                                && !SpotifyAuthManager.shared.isAuthenticated
+                            {
+                                LoginWindowManager.showLoginWindow(with: model)
+                            }
+                        }
                 }
+
                 if model.likingEnabled {
                     Section {
                         VStack(alignment: .leading, spacing: 8) {
@@ -58,7 +66,6 @@ struct MusicPlayerPreferencesView: View {
                         }
                     }
                 }
-
             }
 
             Spacer()
