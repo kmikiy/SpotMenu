@@ -342,7 +342,7 @@ struct SpotifyLoginView: View {
 
     private var stepLogin: some View {
         VStack(spacing: 16) {
-            if authManager.isAuthenticated {
+            if authManager.didAuthenticate {
                 VStack(spacing: 8) {
                     HStack(spacing: 8) {
                         Image(systemName: "checkmark.circle.fill")

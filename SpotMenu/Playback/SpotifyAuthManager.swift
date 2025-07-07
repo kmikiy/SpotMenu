@@ -18,7 +18,7 @@ class SpotifyAuthManager: ObservableObject {
     private let refreshTokenKey = "refreshToken"
     private let expiryDateKey = "tokenExpiry"
 
-    @Published var isAuthenticated = false
+    @Published var didAuthenticate = false
 
     // MARK: - Public Interface
 
@@ -76,6 +76,12 @@ class SpotifyAuthManager: ObservableObject {
         }
 
         completion(token)
+    }
+
+    func checkAuthenticationStatus(completion: @escaping (Bool) -> Void) {
+        getAccessToken { token in
+            completion(token != nil)
+        }
     }
 
     // MARK: - Spotify Liked Songs API
@@ -215,7 +221,7 @@ class SpotifyAuthManager: ObservableObject {
                 let refreshToken = json["refresh_token"] as? String,
                 let expiresIn = json["expires_in"] as? Double
             else {
-                DispatchQueue.main.async { self.isAuthenticated = false }
+                DispatchQueue.main.async { self.didAuthenticate = false }
                 return
             }
 
@@ -227,7 +233,7 @@ class SpotifyAuthManager: ObservableObject {
             )
 
             DispatchQueue.main.async {
-                self.isAuthenticated = true
+                self.didAuthenticate = true
             }
         }.resume()
     }

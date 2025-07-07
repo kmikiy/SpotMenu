@@ -4,6 +4,7 @@ struct MenuBarPreferencesView: View {
     @ObservedObject var model: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
     @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
+    @State private var isSpotifyAuthenticated = false
 
     @StateObject private var previewModel: StatusItemModel = {
         let model = StatusItemModel()
@@ -91,8 +92,7 @@ struct MenuBarPreferencesView: View {
                                     model.showIsLikedIcon = newValue
 
                                     if newValue
-                                        && !SpotifyAuthManager.shared
-                                            .isAuthenticated
+                                        && !isSpotifyAuthenticated
                                     {
                                         LoginWindowManager.showLoginWindow(
                                             with: musicPlayerPreferencesModel
@@ -186,6 +186,11 @@ struct MenuBarPreferencesView: View {
         }
         .padding(20)
         .frame(width: 400, height: calculateHeight())
+        .onAppear {
+            SpotifyAuthManager.shared.checkAuthenticationStatus {
+                self.isSpotifyAuthenticated = $0
+            }
+        }
     }
 
     private func calculateHeight() -> CGFloat {
