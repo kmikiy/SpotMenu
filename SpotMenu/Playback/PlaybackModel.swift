@@ -175,7 +175,15 @@ class PlaybackModel: ObservableObject {
     }
 
     func togglePlayPause() {
+        // Execute the command first
         controller.togglePlayPause()
+        
+        // Small delay to allow the music player to process, then update UI
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+            self.isPlaying.toggle()
+            self.notifyModelUpdate()
+        }
+        
         delayedFetch()
     }
 
@@ -192,22 +200,36 @@ class PlaybackModel: ObservableObject {
     func toggleLiked() {
         let previousLikeStatus = self.isLiked
 
-        controller.toggleLiked()
-        delayedFetch()
-
+        // Immediately update like status for UI responsiveness
         if let previous = previousLikeStatus {
             isLiked = !previous
         }
+        
+        // Send notification to update status bar immediately
+        notifyModelUpdate()
+
+        controller.toggleLiked()
+        delayedFetch()
     }
 
     func likeTrack() {
-        controller.likeTrack()
+        // Immediately update like status for UI responsiveness
         isLiked = true
+        
+        // Send notification to update status bar immediately
+        notifyModelUpdate()
+        
+        controller.likeTrack()
     }
 
     func unlikeTrack() {
-        controller.unlikeTrack()
+        // Immediately update like status for UI responsiveness
         isLiked = false
+        
+        // Send notification to update status bar immediately
+        notifyModelUpdate()
+        
+        controller.unlikeTrack()
     }
 
     func updatePlaybackPosition(to seconds: Double) {
@@ -223,6 +245,13 @@ class PlaybackModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.fetchInfo()
         }
+    }
+    
+    private func notifyModelUpdate() {
+        NotificationCenter.default.post(
+            name: .contentModelDidUpdate,
+            object: nil
+        )
     }
 
     private func reset() {

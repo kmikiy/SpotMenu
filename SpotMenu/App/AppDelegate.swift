@@ -97,35 +97,71 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func setupKeyboardShortcuts() {
         KeyboardShortcuts.onKeyUp(for: .playPause) { [weak self] in
             self?.playbackModel.togglePlayPause()
+            // Immediately update status item for keyboard shortcut feedback
+            DispatchQueue.main.async {
+                self?.updateStatusItem()
+            }
         }
         KeyboardShortcuts.onKeyUp(for: .nextTrack) { [weak self] in
             self?.playbackModel.skipForward()
+            // Immediately update status item for keyboard shortcut feedback
+            DispatchQueue.main.async {
+                self?.updateStatusItem()
+            }
         }
         KeyboardShortcuts.onKeyUp(for: .previousTrack) { [weak self] in
             self?.playbackModel.skipBack()
+            // Immediately update status item for keyboard shortcut feedback
+            DispatchQueue.main.async {
+                self?.updateStatusItem()
+            }
         }
         KeyboardShortcuts.onKeyUp(for: .toggleLike) { [weak self] in
             self?.playbackModel.toggleLiked()
+            // Immediately update status item for keyboard shortcut feedback
+            DispatchQueue.main.async {
+                self?.updateStatusItem()
+            }
         }
         KeyboardShortcuts.onKeyUp(for: .likeTrack) { [weak self] in
             self?.playbackModel.likeTrack()
+            // Immediately update status item for keyboard shortcut feedback
+            DispatchQueue.main.async {
+                self?.updateStatusItem()
+            }
         }
         KeyboardShortcuts.onKeyUp(for: .unlikeTrack) { [weak self] in
             self?.playbackModel.unlikeTrack()
+            // Immediately update status item for keyboard shortcut feedback
+            DispatchQueue.main.async {
+                self?.updateStatusItem()
+            }
         }
     }
 
     func updateStatusItem() {
+        // Update status item model first
         statusItemModel.artist = playbackModel.artist
         statusItemModel.title = playbackModel.title
         statusItemModel.isPlaying = playbackModel.isPlaying
         statusItemModel.isLiked = playbackModel.isLiked
         statusItemModel.playerIconName = playbackModel.playerIconName
 
+        // Update width immediately and synchronously after model changes
         StatusItemConfigurator.updateWidth(
             statusItem: statusItem,
             maxWidth: menuBarPreferencesModel.maxStatusItemWidth
         )
+        
+        // Force immediate layout update to prevent truncation flash
+        statusItem.button?.needsLayout = true
+        statusItem.button?.layoutSubtreeIfNeeded()
+        
+        // Ensure the hosting view updates its layout immediately
+        if let hostingView = statusItem.button?.subviews.compactMap({ $0 as? NSHostingView<StatusItemView> }).first {
+            hostingView.needsLayout = true
+            hostingView.layoutSubtreeIfNeeded()
+        }
     }
 
     @objc func togglePopover() {
