@@ -57,7 +57,6 @@ struct PreferencesView: View {
                             .padding(.vertical, 8)
                     }
                     .buttonStyle(.plain)
-                    .foregroundColor(.red)
                     .keyboardShortcut("q", modifiers: [.command])
                 }
                 .background(Color(nsColor: .windowBackgroundColor))
