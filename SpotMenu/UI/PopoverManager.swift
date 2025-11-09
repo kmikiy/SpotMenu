@@ -29,7 +29,7 @@ class PopoverManager {
         let popoverSize = window.frame.size
 
         let menuBarHeight = screen.frame.maxY - screen.visibleFrame.maxY
-        let spacingBelowMenuBar: CGFloat = 6
+        let spacingBelowMenuBar: CGFloat = 0
         let totalOffset = menuBarHeight + spacingBelowMenuBar
 
         let popoverY = screen.frame.maxY - totalOffset - popoverSize.height
