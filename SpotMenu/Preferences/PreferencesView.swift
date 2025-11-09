@@ -67,6 +67,26 @@ struct PreferencesView: View {
                     .navigationTitle(selectedSection.rawValue)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color(nsColor: .windowBackgroundColor))
+                    .overlay(alignment: .top) {
+                        LinearGradient(
+                            colors: [
+                                Color(nsColor: .windowBackgroundColor).opacity(
+                                    1
+                                ),
+                                Color(nsColor: .windowBackgroundColor).opacity(
+                                    0.90
+                                ),
+                                Color(nsColor: .windowBackgroundColor).opacity(
+                                    0.0
+                                ),
+                            ],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                        .frame(height: 60)
+                        .allowsHitTesting(false)
+                        .ignoresSafeArea(edges: .top)
+                    }
             } else {
                 Text("Select a section")
                     .foregroundStyle(.secondary)
