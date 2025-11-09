@@ -180,6 +180,7 @@ struct MenuBarPreferencesView: View {
                 .fixedSize(horizontal: false, vertical: true)
             }
         }
+        .frame(maxWidth: 600)
         .padding(20)
     }
         .onAppear {

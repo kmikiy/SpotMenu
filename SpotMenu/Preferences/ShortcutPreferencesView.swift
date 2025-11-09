@@ -22,7 +22,7 @@ struct ShortcutPreferencesView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 20) {
                 ForEach(MediaAction.allCases) { action in
                 HStack {
                     Text(action.rawValue)
@@ -59,6 +59,7 @@ struct ShortcutPreferencesView: View {
 
             }
         }
+        .frame(maxWidth: 600)
         .padding(20)
     }
     }

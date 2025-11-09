@@ -12,7 +12,7 @@ struct MusicPlayerPreferencesView: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 20) {
                 HStack {
                 Text("Preferred Player")
                 Spacer()
@@ -104,6 +104,7 @@ struct MusicPlayerPreferencesView: View {
                 }
             }
         }
+        .frame(maxWidth: 600)
         .padding(20)
     }
         .onAppear {
