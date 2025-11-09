@@ -65,22 +65,25 @@ struct PlaybackAppearancePreferencesView: View {
                 .formStyle(.grouped)
                 .scrollContentBackground(.hidden)
 
-                VStack(spacing: 8) {
-                    Text("Preview")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                    HStack {
-                        Spacer()
-                        PlaybackView(
-                            model: playbackModel,
-                            preferences: model,
-                            musicPlayerPreferencesModel: musicPlayerPreferencesModel
-                        )
-                        Spacer()
+                Form {
+                    Section {
+                        HStack {
+                            Spacer()
+                            PlaybackView(
+                                model: playbackModel,
+                                preferences: model,
+                                musicPlayerPreferencesModel: musicPlayerPreferencesModel
+                            )
+                            Spacer()
+                        }
+                    } header: {
+                        Text("Preview")
+                    } footer: {
+                        Text("Live preview of the playback window with your current settings.")
                     }
                 }
-                .padding(.top, 8)
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
             }
         .frame(maxWidth: 600)
         .padding(20)

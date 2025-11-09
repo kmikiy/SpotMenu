@@ -126,36 +126,33 @@ struct MenuBarPreferencesView: View {
                 .formStyle(.grouped)
                 .scrollContentBackground(.hidden)
 
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Preview")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                    StatusItemView(
-                        model: previewModel,
-                        menuBarPreferencesModel: model,
-                        musicPlayerPreferencesModel: musicPlayerPreferencesModel,
-                        playbackModel: playbackModel
-                    )
-                    .frame(width: model.maxStatusItemWidth, height: 22)
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(6)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 6)
-                            .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
-                            .foregroundColor(.gray.opacity(0.4))
-                    )
-                    .frame(maxWidth: .infinity, alignment: .center)
-
-                    Text(
-                        "Maximum width shown. Actual width may be smaller depending on content."
-                    )
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                Form {
+                    Section {
+                        VStack(spacing: 8) {
+                            StatusItemView(
+                                model: previewModel,
+                                menuBarPreferencesModel: model,
+                                musicPlayerPreferencesModel: musicPlayerPreferencesModel,
+                                playbackModel: playbackModel
+                            )
+                            .frame(width: model.maxStatusItemWidth, height: 22)
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(6)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 6)
+                                    .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
+                                    .foregroundColor(.gray.opacity(0.4))
+                            )
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        }
+                    } header: {
+                        Text("Preview")
+                    } footer: {
+                        Text("Maximum width shown. Actual width may be smaller depending on content.")
+                    }
                 }
-                .padding(.top, 8)
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
             }
         .frame(maxWidth: 600)
         .padding(20)
