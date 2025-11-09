@@ -23,42 +23,56 @@ struct ShortcutPreferencesView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                ForEach(MediaAction.allCases) { action in
-                HStack {
-                    Text(action.rawValue)
-                        .frame(width: 150, alignment: .leading)
-                    Spacer()
-                    KeyboardShortcuts.Recorder(for: action.shortcutName)
+                Form {
+                    Section {
+                        ForEach(MediaAction.allCases) { action in
+                            HStack {
+                                Text(action.rawValue)
+                                Spacer()
+                                KeyboardShortcuts.Recorder(for: action.shortcutName)
+                            }
+                        }
+                    } header: {
+                        Text("Playback Controls")
+                    } footer: {
+                        Text("Set keyboard shortcuts for controlling music playback.")
+                    }
+                }
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
+
+                if model.isLikingImplemented
+                    && musicPlayerPreferencesModel.likingEnabled
+                {
+                    Form {
+                        Section {
+                            HStack {
+                                Text("Like Track")
+                                Spacer()
+                                KeyboardShortcuts.Recorder(for: .likeTrack)
+                            }
+
+                            HStack {
+                                Text("Unlike Track")
+                                Spacer()
+                                KeyboardShortcuts.Recorder(for: .unlikeTrack)
+                            }
+
+                            HStack {
+                                Text("Toggle Like")
+                                Spacer()
+                                KeyboardShortcuts.Recorder(for: .toggleLike)
+                            }
+                        } header: {
+                            Text("Track Liking")
+                        } footer: {
+                            Text("Set keyboard shortcuts for liking and unliking tracks.")
+                        }
+                    }
+                    .formStyle(.grouped)
+                    .scrollContentBackground(.hidden)
                 }
             }
-
-            if model.isLikingImplemented
-                && musicPlayerPreferencesModel.likingEnabled
-            {
-
-                HStack {
-                    Text("Like Track")
-                        .frame(width: 150, alignment: .leading)
-                    Spacer()
-                    KeyboardShortcuts.Recorder(for: .likeTrack)
-                }
-
-                HStack {
-                    Text("Unlike Track")
-                        .frame(width: 150, alignment: .leading)
-                    Spacer()
-                    KeyboardShortcuts.Recorder(for: .unlikeTrack)
-                }
-
-                HStack {
-                    Text("Toggle Like")
-                        .frame(width: 150, alignment: .leading)
-                    Spacer()
-                    KeyboardShortcuts.Recorder(for: .toggleLike)
-                }
-
-            }
-        }
         .frame(maxWidth: 600)
         .padding(20)
     }

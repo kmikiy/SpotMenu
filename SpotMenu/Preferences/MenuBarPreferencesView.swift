@@ -18,168 +18,145 @@ struct MenuBarPreferencesView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                // TEXT DISPLAY SECTION
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Text Display")
-                    .font(.headline)
-
-                settingsRow(
-                    "Display Artist",
-                    binding: Binding(
-                        get: { model.showArtist },
-                        set: { newValue in
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                model.showArtist = newValue
+                Form {
+                    Section {
+                        Toggle("Display Artist", isOn: Binding(
+                            get: { model.showArtist },
+                            set: { newValue in
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    model.showArtist = newValue
+                                }
                             }
+                        ))
+
+                        if model.showArtist {
+                            Toggle("Hide Artist When Paused", isOn: $model.hideArtistWhenPaused)
+                                .transition(.opacity.combined(with: .move(edge: .top)))
                         }
-                    )
-                )
 
-                if model.showArtist {
-                    settingsRow(
-                        "Hide When Paused",
-                        binding: $model.hideArtistWhenPaused
-                    )
-                    .padding(.leading, 24)
-                    .transition(.opacity.combined(with: .move(edge: .top)))
-                }
-
-                settingsRow(
-                    "Display Song Title",
-                    binding: Binding(
-                        get: { model.showTitle },
-                        set: { newValue in
-                            withAnimation(.easeInOut(duration: 0.2)) {
-                                model.showTitle = newValue
+                        Toggle("Display Song Title", isOn: Binding(
+                            get: { model.showTitle },
+                            set: { newValue in
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    model.showTitle = newValue
+                                }
                             }
-                        }
-                    )
-                )
+                        ))
 
-                if model.showTitle {
-                    VStack(alignment: .leading, spacing: 0) {
-                        settingsRow(
-                            "Hide When Paused",
-                            binding: $model.hideTitleWhenPaused
-                        )
+                        if model.showTitle {
+                            Toggle("Hide Title When Paused", isOn: $model.hideTitleWhenPaused)
+                                .transition(.opacity.combined(with: .move(edge: .top)))
+                        }
+                    } header: {
+                        Text("Text Display")
+                    } footer: {
+                        Text("Choose which text information to display in the menu bar.")
                     }
-                    .padding(.leading, 24)
-                    .transition(.opacity.combined(with: .move(edge: .top)))
                 }
-            }
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
 
-            // ICON DISPLAY SECTION
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Icons")
-                    .font(.headline)
+                Form {
+                    Section {
+                        Toggle("Show Playing Icon", isOn: $model.showIsPlayingIcon)
 
-                VStack(spacing: 8) {
-                    settingsRow(
-                        "Show Playing Icon",
-                        binding: $model.showIsPlayingIcon
-                    )
-
-                    if playbackModel.isLikingImplemented
-                        && musicPlayerPreferencesModel.likingEnabled
-                    {
-                        settingsRow(
-                            "Show Liked Icon",
-                            binding: Binding(
+                        if playbackModel.isLikingImplemented
+                            && musicPlayerPreferencesModel.likingEnabled
+                        {
+                            Toggle("Show Liked Icon", isOn: Binding(
                                 get: { model.showIsLikedIcon },
                                 set: { newValue in
                                     model.showIsLikedIcon = newValue
-
-                                    if newValue
-                                        && !isSpotifyAuthenticated
-                                    {
+                                    if newValue && !isSpotifyAuthenticated {
                                         LoginWindowManager.showLoginWindow(
                                             with: musicPlayerPreferencesModel
                                         )
                                     }
                                 }
-                            )
-                        )
-                    }
+                            ))
+                        }
 
-                    settingsRow(
-                        "Display App Icon",
-                        binding: Binding(
+                        Toggle("Display App Icon", isOn: Binding(
                             get: { model.showAppIcon },
                             set: { newValue in
                                 withAnimation(.easeInOut(duration: 0.2)) {
                                     model.showAppIcon = newValue
                                 }
                             }
-                        )
+                        ))
+                    } header: {
+                        Text("Icons")
+                    } footer: {
+                        if !model.showAppIcon {
+                            Text(
+                                "If nothing is currently visible based on your settings and playback status, the app icon will be shown as a fallback."
+                            )
+                        } else {
+                            Text("Choose which icons to display in the menu bar.")
+                        }
+                    }
+                }
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
+
+                Form {
+                    Section {
+                        Toggle("Compact View", isOn: $model.compactView)
+
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Text("Max Width")
+                                Spacer()
+                                Text("\(Int(model.maxStatusItemWidth)) pt")
+                                    .foregroundStyle(.secondary)
+                                    .font(.caption)
+                            }
+                            Slider(
+                                value: $model.maxStatusItemWidth,
+                                in: 40...300,
+                                step: 1
+                            )
+                        }
+                    } header: {
+                        Text("Layout")
+                    } footer: {
+                        Text("Adjust the maximum width for the menu bar item.")
+                    }
+                }
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Preview")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                    StatusItemView(
+                        model: previewModel,
+                        menuBarPreferencesModel: model,
+                        musicPlayerPreferencesModel: musicPlayerPreferencesModel,
+                        playbackModel: playbackModel
                     )
-                    // FALLBACK NOTE
-                    if !model.showAppIcon {
-                        Text(
-                            "If nothing is currently visible based on your settings and playback status, the app icon will be shown as a fallback even if 'Display App Icon' is turned off."
-                        )
-                        .font(.caption2)
-                        .foregroundColor(.gray)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .transition(.opacity.combined(with: .move(edge: .top)))
-                    }
+                    .frame(width: model.maxStatusItemWidth, height: 22)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(6)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
+                            .foregroundColor(.gray.opacity(0.4))
+                    )
+                    .frame(maxWidth: .infinity, alignment: .center)
 
+                    Text(
+                        "Maximum width shown. Actual width may be smaller depending on content."
+                    )
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .center)
                 }
-
+                .padding(.top, 8)
             }
-
-            // LAYOUT SECTION
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Layout")
-                    .font(.headline)
-
-                VStack(spacing: 8) {
-                    settingsRow("Compact View", binding: $model.compactView)
-
-                    HStack {
-                        Text("Max Width")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Slider(
-                            value: $model.maxStatusItemWidth,
-                            in: 40...300,
-                            step: 1
-                        )
-                        .frame(width: 220)
-                        Text("\(Int(model.maxStatusItemWidth)) pt")
-                            .frame(width: 50)
-                    }
-                }
-            }
-
-            // PREVIEW SECTION
-            VStack(alignment: .leading, spacing: 8) {
-                Spacer()
-                Text("Status Item Preview")
-                    .font(.headline)
-
-                StatusItemView(
-                    model: previewModel,
-                    menuBarPreferencesModel: model,
-                    musicPlayerPreferencesModel: musicPlayerPreferencesModel,
-                    playbackModel: playbackModel
-                )
-                .frame(width: model.maxStatusItemWidth, height: 22)
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(6)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 6)
-                        .stroke(style: StrokeStyle(lineWidth: 1, dash: [4]))
-                        .foregroundColor(.gray.opacity(0.4))
-                )
-                .frame(maxWidth: .infinity, alignment: .center)
-
-                Text(
-                    "Maximum width shown. Actual width may be smaller depending on content."
-                )
-                .font(.caption2)
-                .foregroundColor(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
-            }
-        }
         .frame(maxWidth: 600)
         .padding(20)
     }
@@ -187,19 +164,6 @@ struct MenuBarPreferencesView: View {
             SpotifyAuthManager.shared.checkAuthenticationStatus {
                 self.isSpotifyAuthenticated = $0
             }
-        }
-    }
-
-    @ViewBuilder
-    private func settingsRow(_ title: String, binding: Binding<Bool>)
-        -> some View
-    {
-        HStack {
-            Text(title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            Toggle("", isOn: binding)
-                .toggleStyle(.switch)
-                .controlSize(.small)
         }
     }
 }

@@ -8,58 +8,80 @@ struct PlaybackAppearancePreferencesView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                HStack {
-                Text("Hover Tint Color")
-                Spacer()
-                ColorPicker(
-                    "",
-                    selection: Binding(
-                        get: { Color(model.hoverTintColor) },
-                        set: { model.hoverTintColor = NSColor($0) }
-                    )
-                )
-            }
+                Form {
+                    Section {
+                        ColorPicker("Hover Tint Color", selection: Binding(
+                            get: { Color(model.hoverTintColor) },
+                            set: { model.hoverTintColor = NSColor($0) }
+                        ))
 
-            HStack {
-                Text("Foreground Color")
-                Spacer()
-                Picker("", selection: $model.foregroundColor) {
-                    ForEach(
-                        PlaybackAppearancePreferencesModel.ForegroundColorOption
-                            .allCases
-                    ) { option in
-                        Text(option.rawValue.capitalized).tag(option)
+                        Picker("Foreground Color", selection: $model.foregroundColor) {
+                            ForEach(
+                                PlaybackAppearancePreferencesModel.ForegroundColorOption
+                                    .allCases
+                            ) { option in
+                                Text(option.rawValue.capitalized).tag(option)
+                            }
+                        }
+                        .pickerStyle(.segmented)
+                    } header: {
+                        Text("Colors")
+                    } footer: {
+                        Text("Customize the color scheme for the playback window.")
                     }
                 }
-                .pickerStyle(.segmented)
-                .frame(width: 100)
-            }
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
 
-            HStack {
-                Text("Blur Intensity")
-                Spacer()
-                Slider(value: $model.blurIntensity, in: 0...1).frame(width: 220)
-            }
+                Form {
+                    Section {
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Text("Blur Intensity")
+                                Spacer()
+                                Text(String(format: "%.0f%%", model.blurIntensity * 100))
+                                    .foregroundStyle(.secondary)
+                                    .font(.caption)
+                            }
+                            Slider(value: $model.blurIntensity, in: 0...1)
+                        }
 
-            HStack {
-                Text("Hover Tint Opacity")
-                Spacer()
-                Slider(value: $model.hoverTintOpacity, in: 0...1).frame(
-                    width: 220
-                )
-            }
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Text("Hover Tint Opacity")
+                                Spacer()
+                                Text(String(format: "%.0f%%", model.hoverTintOpacity * 100))
+                                    .foregroundStyle(.secondary)
+                                    .font(.caption)
+                            }
+                            Slider(value: $model.hoverTintOpacity, in: 0...1)
+                        }
+                    } header: {
+                        Text("Effects")
+                    } footer: {
+                        Text("Adjust blur and tint intensity for the playback window.")
+                    }
+                }
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
 
-            HStack {
-                Spacer()
-                PlaybackView(
-                    model: playbackModel,
-                    preferences: model,
-                    musicPlayerPreferencesModel: musicPlayerPreferencesModel
-                )
-                Spacer()
+                VStack(spacing: 8) {
+                    Text("Preview")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                    HStack {
+                        Spacer()
+                        PlaybackView(
+                            model: playbackModel,
+                            preferences: model,
+                            musicPlayerPreferencesModel: musicPlayerPreferencesModel
+                        )
+                        Spacer()
+                    }
+                }
+                .padding(.top, 8)
             }
-            .padding(.top, 20)
-        }
         .frame(maxWidth: 600)
         .padding(20)
     }
