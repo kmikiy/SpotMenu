@@ -187,7 +187,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc func preferencesAction() {
         if preferencesWindow == nil {
-            let hosting = NSHostingView(
+            let hostingController = NSHostingController(
                 rootView: PreferencesView(
                     menuBarPreferencesModel: menuBarPreferencesModel,
                     playbackModel: playbackModel,
@@ -196,17 +196,33 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         playbackAppearancePreferencesModel
                 )
             )
-            let window = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 420, height: 240),
-                styleMask: [.titled, .closable],
-                backing: .buffered,
-                defer: false
-            )
+
+            let window = NSWindow(contentViewController: hostingController)
+            window.title = "Settings"
+            window.styleMask = [
+                .titled, .closable, .miniaturizable, .resizable,
+                .fullSizeContentView,
+            ]
+            window.titlebarAppearsTransparent = true
+            window.titleVisibility = .hidden
+
+            // Configure toolbar for modern macOS look
+            let toolbar = NSToolbar(identifier: "PreferencesToolbar")
+            toolbar.displayMode = .iconOnly
+            window.toolbar = toolbar
+            window.toolbarStyle = .unified
+
+            // Set window size
+            window.setContentSize(NSSize(width: 700, height: 500))
+            window.minSize = NSSize(width: 600, height: 400)
             window.center()
-            window.title = "Preferences"
-            window.contentView = hosting
             window.isReleasedWhenClosed = false
             window.level = .normal
+
+            // Modern rounded corners
+            window.backgroundColor = .clear
+            window.isOpaque = false
+
             preferencesWindow = window
         }
 

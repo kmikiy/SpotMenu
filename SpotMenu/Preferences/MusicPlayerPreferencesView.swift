@@ -11,11 +11,9 @@ struct MusicPlayerPreferencesView: View {
     @State private var isSpotifyAuthenticated = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Music Player")
-                .font(.title2.bold())
-
-            HStack {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                HStack {
                 Text("Preferred Player")
                 Spacer()
                 Picker(selection: $model.preferredMusicApp) {
@@ -105,11 +103,9 @@ struct MusicPlayerPreferencesView: View {
                     .padding(.top, 8)
                 }
             }
-
-            Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: 320)
+    }
         .onAppear {
             SpotifyAuthManager.shared.checkAuthenticationStatus { isAuthed in
                 DispatchQueue.main.async {

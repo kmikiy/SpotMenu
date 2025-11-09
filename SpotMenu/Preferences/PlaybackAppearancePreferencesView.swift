@@ -6,11 +6,9 @@ struct PlaybackAppearancePreferencesView: View {
     @ObservedObject var playbackModel: PlaybackModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Playback Appearance")
-                .font(.title2).bold()
-
-            HStack {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                HStack {
                 Text("Hover Tint Color")
                 Spacer()
                 ColorPicker(
@@ -51,8 +49,6 @@ struct PlaybackAppearancePreferencesView: View {
                 )
             }
 
-            Spacer()
-
             HStack {
                 Spacer()
                 PlaybackView(
@@ -62,9 +58,10 @@ struct PlaybackAppearancePreferencesView: View {
                 )
                 Spacer()
             }
+            .padding(.top, 20)
         }
         .padding(20)
-        .frame(width: 400, height: 580)
+    }
     }
 }
 

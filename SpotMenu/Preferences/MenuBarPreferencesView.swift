@@ -16,11 +16,9 @@ struct MenuBarPreferencesView: View {
     }()
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("Menu Bar Settings")
-                .font(.title2.bold())
-
-            // TEXT DISPLAY SECTION
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                // TEXT DISPLAY SECTION
             VStack(alignment: .leading, spacing: 8) {
                 Text("Text Display")
                     .font(.headline)
@@ -181,28 +179,14 @@ struct MenuBarPreferencesView: View {
                 .foregroundColor(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
             }
-
-            Spacer()
         }
         .padding(20)
-        .frame(width: 400, height: calculateHeight())
+    }
         .onAppear {
             SpotifyAuthManager.shared.checkAuthenticationStatus {
                 self.isSpotifyAuthenticated = $0
             }
         }
-    }
-
-    private func calculateHeight() -> CGFloat {
-        var height = 600.0
-
-        if playbackModel.isLikingImplemented
-            && musicPlayerPreferencesModel.likingEnabled
-        {
-            height = height + 30
-        }
-
-        return height
     }
 
     @ViewBuilder

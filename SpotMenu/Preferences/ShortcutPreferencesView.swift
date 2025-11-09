@@ -21,12 +21,9 @@ struct ShortcutPreferencesView: View {
     @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Keyboard Shortcuts")
-                .font(.title2)
-                .bold()
-
-            ForEach(MediaAction.allCases) { action in
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                ForEach(MediaAction.allCases) { action in
                 HStack {
                     Text(action.rawValue)
                         .frame(width: 150, alignment: .leading)
@@ -61,15 +58,9 @@ struct ShortcutPreferencesView: View {
                 }
 
             }
-
-            Spacer()
         }
         .padding(20)
-        .frame(
-            width: 400,
-            height: model.isLikingImplemented
-                && musicPlayerPreferencesModel.likingEnabled ? 320 : 200
-        )
+    }
     }
 }
 
