@@ -50,11 +50,11 @@ struct StatusItemView: View {
                     VStack(spacing: -2) {
                         if displayOptions.showArtist {
                             Text(model.artist)
-                                .font(.system(size: 10, weight: .medium))
+                                .font(.system(size: 10, weight: menuBarPreferencesModel.fontWeightCompactTop.fontWeight))
                         }
                         if displayOptions.showTitle {
                             Text(model.title)
-                                .font(.system(size: 9))
+                                .font(.system(size: 9, weight: menuBarPreferencesModel.fontWeightCompactBottom.fontWeight))
                         }
                     }
 
@@ -65,7 +65,7 @@ struct StatusItemView: View {
                             font: NSFont.systemFont(ofSize: 13),
                         )
                     )
-                    .font(.system(size: 13))
+                    .font(.system(size: 13, weight: menuBarPreferencesModel.fontWeightNormal.fontWeight))
                 }
 
             }

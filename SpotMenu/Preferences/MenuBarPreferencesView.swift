@@ -128,6 +128,40 @@ struct MenuBarPreferencesView: View {
 
                 Form {
                     Section {
+                        if model.compactView {
+                            Picker("Font weight (top row)", selection: $model.fontWeightCompactTop) {
+                                ForEach(MenuBarFontWeight.allCases, id: \.self) { weight in
+                                    Text(weight.rawValue.capitalized).tag(weight)
+                                }
+                            }
+
+                            Picker("Font weight (bottom row)", selection: $model.fontWeightCompactBottom) {
+                                ForEach(MenuBarFontWeight.allCases, id: \.self) { weight in
+                                    Text(weight.rawValue.capitalized).tag(weight)
+                                }
+                            }
+                        } else {
+                            Picker("Font weight", selection: $model.fontWeightNormal) {
+                                ForEach(MenuBarFontWeight.allCases, id: \.self) { weight in
+                                    Text(weight.rawValue.capitalized).tag(weight)
+                                }
+                            }
+                        }
+                    } header: {
+                        Text("Font Weights")
+                    } footer: {
+                        if model.compactView {
+                            Text("Adjust font weights for the top and bottom rows in compact view.")
+                        } else {
+                            Text("Adjust font weight for menu bar text in normal view.")
+                        }
+                    }
+                }
+                .formStyle(.grouped)
+                .scrollContentBackground(.hidden)
+
+                Form {
+                    Section {
                         VStack(spacing: 8) {
                             StatusItemView(
                                 model: previewModel,
