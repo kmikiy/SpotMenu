@@ -1,5 +1,32 @@
 import Combine
 import Foundation
+import SwiftUI
+
+enum MenuBarFontWeight: String, CaseIterable {
+    case ultraLight = "ultraLight"
+    case thin = "thin"
+    case light = "light"
+    case regular = "regular"
+    case medium = "medium"
+    case semibold = "semibold"
+    case bold = "bold"
+    case heavy = "heavy"
+    case black = "black"
+
+    var fontWeight: Font.Weight {
+        switch self {
+        case .ultraLight: return .ultraLight
+        case .thin: return .thin
+        case .light: return .light
+        case .regular: return .regular
+        case .medium: return .medium
+        case .semibold: return .semibold
+        case .bold: return .bold
+        case .heavy: return .heavy
+        case .black: return .black
+        }
+    }
+}
 
 class MenuBarPreferencesModel: ObservableObject {
     @Published var showArtist: Bool {
@@ -68,6 +95,30 @@ class MenuBarPreferencesModel: ObservableObject {
             )
         }
     }
+    @Published var fontWeightCompactTop: MenuBarFontWeight {
+        didSet {
+            UserDefaults.standard.set(
+                fontWeightCompactTop.rawValue,
+                forKey: "menuBar.fontWeightCompactTop"
+            )
+        }
+    }
+    @Published var fontWeightCompactBottom: MenuBarFontWeight {
+        didSet {
+            UserDefaults.standard.set(
+                fontWeightCompactBottom.rawValue,
+                forKey: "menuBar.fontWeightCompactBottom"
+            )
+        }
+    }
+    @Published var fontWeightNormal: MenuBarFontWeight {
+        didSet {
+            UserDefaults.standard.set(
+                fontWeightNormal.rawValue,
+                forKey: "menuBar.fontWeightNormal"
+            )
+        }
+    }
 
     var isTextVisible: Bool {
         return showArtist || showTitle
@@ -100,5 +151,14 @@ class MenuBarPreferencesModel: ObservableObject {
             defaults.object(forKey: "menuBar.hideTitleWhenPaused") as? Bool
             ?? false
 
+        fontWeightCompactTop = MenuBarFontWeight(
+            rawValue: defaults.string(forKey: "menuBar.fontWeightCompactTop") ?? "medium"
+        ) ?? .medium
+        fontWeightCompactBottom = MenuBarFontWeight(
+            rawValue: defaults.string(forKey: "menuBar.fontWeightCompactBottom") ?? "medium"
+        ) ?? .medium
+        fontWeightNormal = MenuBarFontWeight(
+            rawValue: defaults.string(forKey: "menuBar.fontWeightNormal") ?? "medium"
+        ) ?? .medium
     }
 }
