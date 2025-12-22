@@ -12,6 +12,22 @@ enum PlayerType {
     case appleMusic
 }
 
+enum LongFormTitleStyle: String, CaseIterable, Identifiable {
+    case titleOnly
+    case segmentOnly
+    case titleAndSegment
+
+    var id: String { rawValue }
+
+    var displayName: String {
+        switch self {
+        case .titleOnly: return "Title Only"
+        case .segmentOnly: return "Chapter/Episode Only"
+        case .titleAndSegment: return "Title + Chapter/Episode"
+        }
+    }
+}
+
 enum PreferredPlayer: String, CaseIterable, Identifiable {
     case automatic
     case spotify
@@ -28,6 +44,18 @@ enum PreferredPlayer: String, CaseIterable, Identifiable {
     }
 }
 
+enum LongFormKind {
+    case audiobook
+    case podcastEpisode
+}
+
+struct LongFormInfo {
+    let kind: LongFormKind
+    let title: String      // book or show title
+    let authors: [String]  // authors or publisher
+    let segmentTitle: String? // chapter or episode title
+}
+
 struct PlaybackInfo {
     let artist: String
     let title: String
@@ -37,6 +65,7 @@ struct PlaybackInfo {
     let currentTime: Double
     let image: Image?
     let isLiked: Bool?
+    let longFormInfo: LongFormInfo?
 }
 
 protocol MusicPlayerController {
@@ -61,6 +90,7 @@ class PlaybackModel: ObservableObject {
     @Published var currentTime: Double = 0
     @Published var playerType: PlayerType
     @Published var isLiked: Bool? = nil
+    @Published var longFormInfo: LongFormInfo? = nil
 
     private let preferences: MusicPlayerPreferencesModel
     private var controller: MusicPlayerController
@@ -157,15 +187,18 @@ class PlaybackModel: ObservableObject {
             return
         }
 
+        let displayText = computeDisplayText(from: info)
+
         DispatchQueue.main.async {
-            self.title = info.title
-            self.artist = info.artist
+            self.title = displayText.title
+            self.artist = displayText.artist
             self.isPlaying = info.isPlaying
             self.imageURL = info.imageURL
             self.totalTime = info.totalTime
             self.currentTime = info.currentTime
             self.image = info.image
             self.isLiked = info.isLiked
+            self.longFormInfo = info.longFormInfo
 
             NotificationCenter.default.post(
                 name: .contentModelDidUpdate,
@@ -263,7 +296,45 @@ class PlaybackModel: ObservableObject {
             self.currentTime = 0
             self.totalTime = 1
             self.image = nil
+            self.longFormInfo = nil
         }
+    }
+
+    private func computeDisplayText(from info: PlaybackInfo)
+        -> (artist: String, title: String)
+    {
+        guard let longFormInfo = info.longFormInfo else {
+            return (info.artist, info.title)
+        }
+
+        let authorText = longFormInfo.authors.joined(separator: ", ")
+        let baseTitle =
+            longFormInfo.title.isEmpty ? info.title : longFormInfo.title
+        let segmentTitle = longFormInfo.segmentTitle?.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        )
+
+        let titleText: String
+        switch preferences.longFormTitleStyle {
+        case .titleOnly:
+            titleText = baseTitle
+        case .segmentOnly:
+            titleText = segmentTitle?.isEmpty == false ? segmentTitle!
+                : baseTitle
+        case .titleAndSegment:
+            if let segment = segmentTitle,
+                !segment.isEmpty,
+                segment.caseInsensitiveCompare(baseTitle) != .orderedSame
+            {
+                titleText = "\(baseTitle) — \(segment)"
+            } else {
+                titleText = baseTitle
+            }
+        }
+
+        let artistText = authorText.isEmpty ? info.artist : authorText
+
+        return (artistText, titleText)
     }
 }
 
