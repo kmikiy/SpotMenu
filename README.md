@@ -112,8 +112,9 @@ Adjust text:
 
   - Hide When Paused
 
-- Display Song Title
+- Display Title
 
+  - Long-form Content (Audiobook/Podcast)
   - Hide When Paused
 
 Adjust icons:

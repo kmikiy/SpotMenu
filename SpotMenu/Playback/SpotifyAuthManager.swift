@@ -39,7 +39,8 @@ class SpotifyAuthManager: ObservableObject {
             .init(name: "redirect_uri", value: redirectURI),
             .init(
                 name: "scope",
-                value: "user-library-read user-library-modify"
+                value:
+                    "user-library-read user-library-modify user-read-playback-position"
             ),
             .init(name: "code_challenge_method", value: "S256"),
             .init(name: "code_challenge", value: codeChallenge),
