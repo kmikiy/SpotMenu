@@ -129,6 +129,7 @@
 				648170E42DFF5D2B002F5F05 /* Sources */,
 				648170E52DFF5D2B002F5F05 /* Frameworks */,
 				648170E62DFF5D2B002F5F05 /* Resources */,
+				6495B63B2EFBDC350015E63B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -264,6 +265,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6495B63B2EFBDC350015E63B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ngit_hash=$(git rev-parse --short HEAD)\n\n  if [ -z \"$git_hash\" ]; then\n      echo \"warning: Unable to get git hash\"\n      exit 0\n  fi\n\n  /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $git_hash\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\n  echo \"Build number set to: $git_hash\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		648170E42DFF5D2B002F5F05 /* Sources */ = {
@@ -432,6 +453,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -460,6 +482,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpotMenu/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
