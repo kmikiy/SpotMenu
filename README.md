@@ -1,36 +1,35 @@
-# SpotMenu ![Icon](https://github.com/user-attachments/assets/704ed30e-3995-4bf0-b33d-07e0291bc027)
+# SpotMenu
 
-Minimalist Now Playing for macOS menu bar — works with **Spotify** 🎵 and **Apple Music** 🍎
+**Spotify & Apple Music in your macOS menu bar**
 
-![demo](https://github.com/user-attachments/assets/4b6b8e15-7180-44f1-abf7-796566a02fbb)
+A minimalist menu bar utility that displays your currently playing track with playback controls, keyboard shortcuts, and a beautiful native UI. Built with Swift and SwiftUI.
 
-## ✨ Overview
+![Demo](https://github.com/user-attachments/assets/4b6b8e15-7180-44f1-abf7-796566a02fbb)
 
-SpotMenu is a macOS menu bar utility that shows your currently playing track with support for compact views, keyboard shortcuts, and rich visual controls. Built in Swift and SwiftUI, it supports **Spotify** and **Apple Music** through AppleScript integration — with advanced features using Spotify's Web API.
+---
 
-## 🔧 Features
+## Features
 
-- 🖥️ **Menu Bar Integration** — View artist and song title directly in your menu bar.
-- 🎛️ **Compact/Custom Views** — Toggle between full and compact visual modes.
-- 🖼️ **Playback Controls** — Overlay with play/pause/skip buttons and album art.
-- ⌨️ **Keyboard Shortcuts** — Global hotkeys to control playback.
-- ❤️ **Track Liking** (Spotify only) — Like and unlike tracks via Spotify's Web API.
-- ⚙️ **User Preferences** — Configure visuals, shortcuts, and music player via Preferences window.
-- 🪄 **Live Updates** — Automatically syncs with playback changes.
-- 🔁 **Multi-Player Support** — Automatically detect or manually select between Spotify and Apple Music.
-- 🍎 macOS native look and feel with SwiftUI.
+- **Menu Bar Integration** — View artist and song title directly in your menu bar
+- **Playback Controls** — Hover overlay with play/pause, skip, and album art
+- **Keyboard Shortcuts** — Global hotkeys for playback control
+- **Track Liking** — Like/unlike tracks via Spotify Web API (Spotify only)
+- **Compact View** — Toggle between full and compact display modes
+- **Live Updates** — Automatically syncs with playback changes
+- **Multi-Player Support** — Auto-detect or manually select Spotify / Apple Music
+- **Fully Customizable** — Configure visuals, shortcuts, and behavior
 
-## 📦 Installation
+---
 
-### Easy Install
+## Installation
 
-Download the latest [release](https://github.com/kmikiy/SpotMenu/releases/latest) and open `SpotMenu.app.zip`.
+### Download
 
-> ⚠️ You might need to allow the app in **System Preferences → Security & Privacy** as it's not signed by an Apple developer. Click here for detailed [instructions](https://support.apple.com/kb/PH25088?locale=en_US)!
+Get the latest release from [GitHub Releases](https://github.com/kmikiy/SpotMenu/releases/latest) and open `SpotMenu.app.zip`.
 
-### Advanced Install
+> **Note:** You may need to allow the app in **System Preferences → Privacy & Security** since it's not signed by an Apple developer. See [Apple's instructions](https://support.apple.com/kb/PH25088?locale=en_US) for details.
 
-via [Homebrew Cask](https://formulae.brew.sh/cask/)
+### Homebrew
 
 ```sh
 brew install --cask spotmenu
@@ -38,12 +37,7 @@ brew install --cask spotmenu
 
 ### Build from Source
 
-#### Requirements
-
-- macOS 11+
-- Xcode 14+
-
-#### Steps
+**Requirements:** macOS 26+, Xcode 16+
 
 ```bash
 git clone https://github.com/kmikiy/SpotMenu.git
@@ -51,99 +45,78 @@ cd SpotMenu
 open SpotMenu.xcodeproj
 ```
 
-## 🔑 Spotify Setup (Required for Liking Tracks)
+---
 
-SpotMenu uses the Spotify Web API to enable liking and unliking tracks. This requires creating your own Spotify Developer App with a Client ID and setting up a redirect URI.
+## Spotify Setup
 
-> 🛠️ This is **required only** if you want to use the like/unlike functionality in Spotify.
+To enable track liking/unliking, you need to set up a Spotify Developer App.
 
-### Step-by-Step:
-
-1. Visit [developer.spotify.com/dashboard](https://developer.spotify.com/dashboard)
-2. Log in and click **"Create an App"**
-3. Enter a name (e.g. `SpotMenu`) and description — any text will work.
-4. In the app settings, click **"Edit Settings"**
-5. Under **Redirect URIs**, add the following:
-
+1. Go to [developer.spotify.com/dashboard](https://developer.spotify.com/dashboard)
+2. Log in and click **Create an App**
+3. Enter any name and description
+4. In app settings, click **Edit Settings**
+5. Under **Redirect URIs**, add:
    ```
    com.github.kmikiy.spotmenu://callback
    ```
+6. Save and copy your **Client ID**
+7. In SpotMenu, go to **Preferences → Music Player** and enable Track Liking
+8. Paste your Client ID and complete the login flow
 
-6. Click **Save**
-7. Enable _Track Liking_ in SpotMenu Preferences → _Music Player_ tab
-8. Copy your **Client ID** into SpotMenu and complete the login flow
+---
 
-Once you're logged in, the like/unlike icons will appear and work as expected.
+## Preferences
 
-## 🎨 Preferences
+Access via right-click on the menu bar icon → **Preferences...**
 
-Accessible via right-clicking the menu bar icon → Preferences…
+### Music Player
 
-### Music Player Tab
+Choose your music player:
+- **Automatic** — Uses whichever player is active
+- **Spotify**
+- **Apple Music**
 
-Choose which music player SpotMenu should control:
+### Playback Appearance
 
-- Automatic — Detects and uses whichever player is active.
-- Spotify
-- Apple Music
-
-Enable or disable liking tracks in Spotify.
-
-> ⚠️ Liking requires setting up a Spotify Client ID and logging in (see section above).
-
-![Music Player Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/music-player-preferences.mov)
-
-### Playback Appearance Tab
-
-Tweak player appearance:
-
+Customize the player overlay:
 - Hover Tint Color
 - Foreground Color
 - Blur Intensity
 - Hover Tint Opacity
 
-![Playback Appearance Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/playback-appearance-preferences.mov)
+### Menu Bar
 
-### Menu Bar Tab
+Configure display options:
+- Show/hide artist and song title
+- Show playing icon, liked icon, app icon
+- Compact view mode
+- Max width (40–300pt)
 
-Adjust text:
+### Shortcuts
 
-- Display Artist
-
-  - Hide When Paused
-
-- Display Song Title
-
-  - Hide When Paused
-
-Adjust icons:
-
-- Show Playing Icon
-- Show Liked Icon (Spotify only)
-- Display App Icon
-
-Adjust layout:
-
-- Compact View Mode
-- Max Width of the Status Item (40–300 pt)
-
-![Menu Bar Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/menu-bar-settings-preferences.mov)
-
-### Shortcuts Tab
-
-Assign keys for:
-
+Set global hotkeys for:
 - Play / Pause
-- Next Track
-- Previous Track
-- Like Track (Spotify only)
-- Unlike Track (Spotify only)
-- Toggle Like (Spotify only)
+- Next / Previous Track
+- Like / Unlike / Toggle Like (Spotify only)
 
-![Shortcuts Preferences](https://github.com/kmikiy/SpotMenu/raw/refs/heads/master/assets/media/keyboard-shortcuts-preferences.mov)
+---
 
-## 🧠 Usage Tips
+## Usage
 
-- Menu Toggle: Left-click to show/hide the playback panel.
-- Right Click: Access Preferences and Quit.
-- Playback Panel: Hover to reveal play/pause, skip, and album art.
+| Action | Result |
+|--------|--------|
+| Left-click | Show/hide playback panel |
+| Right-click | Open context menu |
+| Hover on panel | Reveal playback controls |
+
+---
+
+## Support
+
+If you find SpotMenu useful, consider [supporting development](https://paypal.me/kmikiy).
+
+---
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
