@@ -8,3 +8,5 @@ xcuserdata
 .history
 
 node_modules
+website/dist/
+.DS_Store

@@ -1,0 +1,429 @@
+---
+import "../styles/global.css";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+const features = [
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" /></svg>`,
+    title: "Native SwiftUI",
+    description:
+      "Rebuilt from the ground up with SwiftUI for a truly native macOS experience.",
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" /></svg>`,
+    title: "Live Album Art",
+    description:
+      "Beautiful hoverable playback panel with real-time album artwork.",
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>`,
+    title: "Compact View",
+    description:
+      "Optional 2-line menu bar view to save space while showing all info.",
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg>`,
+    title: "Keyboard Shortcuts",
+    description: "Global hotkeys for Play/Pause, Next, Previous, and more.",
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>`,
+    title: "Fully Customizable",
+    description: "Control max width, blur intensity, tint opacity, and more.",
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" /></svg>`,
+    title: "Multi-Player Support",
+    description: "Choose between Spotify, Apple Music, or Auto detection.",
+  },
+];
+
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const demos = [
+  {
+    id: "main",
+    title: "Elegant Playback Controls",
+    description:
+      "Hover over the menu bar to reveal a beautiful playback panel with album art, track info, and media controls. The glassmorphism design blends perfectly with macOS.",
+    video: `${base}media/demo.mov`,
+  },
+  {
+    id: "player",
+    title: "Choose Your Player",
+    description:
+      "Seamlessly switch between Spotify and Apple Music, or let SpotMenu auto-detect which player is active. Enable track liking for Spotify.",
+    video: `${base}media/music-player-preferences.mov`,
+  },
+  {
+    id: "appearance",
+    title: "Customize Everything",
+    description:
+      "Fine-tune the blur intensity, hover tint opacity, and visual appearance to match your personal style and desktop setup.",
+    video: `${base}media/playback-appearance-preferences.mov`,
+  },
+  {
+    id: "menubar",
+    title: "Menu Bar Settings",
+    description:
+      "Control how SpotMenu appears in your menu bar. Set max width, choose display options, and configure behavior.",
+    video: `${base}media/menu-bar-settings-preferences.mov`,
+  },
+  {
+    id: "shortcuts",
+    title: "Global Shortcuts",
+    description:
+      "Set up keyboard shortcuts for instant control. Play, pause, skip tracks, and more without touching your mouse.",
+    video: `${base}media/keyboard-shortcuts-preferences.mov`,
+  },
+];
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href={`${base}media/app-icon.png`} type="image/png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>SpotMenu — Spotify & Apple Music in your macOS menu bar</title>
+    <meta
+      name="description"
+      content="SpotMenu brings Spotify and Apple Music to your macOS menu bar with beautiful album art, playback controls, and keyboard shortcuts."
+    />
+    <script is:inline>
+      // Prevent flash of wrong theme
+      const theme =
+        localStorage.getItem("theme") ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light");
+      if (theme === "dark") document.documentElement.classList.add("dark");
+    </script>
+  </head>
+
+  <body class="min-h-screen bg-background text-foreground antialiased">
+    <Header />
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-32">
+      <!-- Gradient background -->
+      <div class="absolute inset-0 -z-10">
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-violet-500/20 via-transparent to-blue-500/20 dark:from-violet-500/10 dark:to-blue-500/10"
+        >
+        </div>
+        <div
+          class="absolute top-0 left-1/2 -translate-x-1/2 h-[500px] w-[800px] bg-gradient-to-b from-violet-500/30 to-transparent blur-3xl dark:from-violet-500/20"
+        >
+        </div>
+      </div>
+
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="mx-auto max-w-4xl text-center">
+          <Badge
+            variant="secondary"
+            className="mb-6 px-4 py-1.5 text-sm font-medium"
+            client:load
+          >
+            Version 2 — Rebuilt with SwiftUI
+          </Badge>
+
+          <h1
+            class="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
+          >
+            Your music,
+            <span
+              class="bg-gradient-to-r from-violet-600 to-blue-500 bg-clip-text text-transparent"
+            >
+              always visible
+            </span>
+          </h1>
+
+          <p
+            class="mt-6 text-lg text-muted-foreground sm:text-xl max-w-2xl mx-auto"
+          >
+            SpotMenu brings Spotify and Apple Music to your macOS menu bar. See
+            what's playing, control playback, and enjoy beautiful album art —
+            all without leaving your workflow.
+          </p>
+
+          <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-violet-600 to-blue-500 text-white hover:from-violet-700 hover:to-blue-600 font-semibold text-base px-8 h-12 shadow-xl shadow-violet-500/25"
+              client:load
+            >
+              <a
+                href="https://github.com/kmikiy/SpotMenu/releases/latest/download/SpotMenu.app.zip"
+                class="inline-flex items-center"
+              >
+                <svg
+                  class="mr-2 h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  ></path>
+                </svg>
+                Download for Mac
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="font-semibold text-base px-8 h-12"
+              client:load
+            >
+              <a
+                href="https://github.com/kmikiy/SpotMenu"
+                target="_blank"
+                class="inline-flex items-center"
+              >
+                <svg
+                  class="mr-2 h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  ></path>
+                </svg>
+                GitHub
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="font-semibold text-base px-8 h-12 border-pink-500/50 text-pink-600 hover:bg-pink-500/10 dark:text-pink-400"
+              client:load
+            >
+              <a
+                href="https://paypal.me/kmikiy"
+                target="_blank"
+                class="inline-flex items-center"
+              >
+                <svg
+                  class="mr-2 h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                  ></path>
+                </svg>
+                Donate
+              </a>
+            </Button>
+          </div>
+
+          <p class="mt-6 text-sm text-muted-foreground">
+            Free & open source • macOS 26 Tahoe required
+          </p>
+        </div>
+
+        <!-- Hero Video -->
+        <div class="mt-12 sm:mt-16 flex justify-center">
+          <div class="relative">
+            <div
+              class="absolute -inset-3 rounded-2xl bg-gradient-to-r from-violet-500/20 to-blue-500/20 blur-2xl"
+            >
+            </div>
+            <div
+              class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/50 shadow-2xl backdrop-blur"
+            >
+              <video
+                src={`${base}media/demo.mov`}
+                autoplay
+                loop
+                muted
+                playsinline
+                class="max-w-[320px] sm:max-w-[450px]"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 md:py-32">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2
+            class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+          >
+            Everything you need,
+            <span class="text-muted-foreground">nothing you don't</span>
+          </h2>
+          <p class="mt-4 text-lg text-muted-foreground">
+            SpotMenu is designed to be minimal yet powerful. Control your music
+            without the clutter.
+          </p>
+        </div>
+
+        <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            features.map((feature) => (
+              <div class="group relative rounded-2xl border border-border bg-card p-8 transition-all hover:border-violet-500/50 hover:shadow-lg hover:shadow-violet-500/5">
+                <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500/10 to-blue-500/10 text-violet-600 dark:text-violet-400">
+                  <Fragment set:html={feature.icon} />
+                </div>
+                <h3 class="text-lg font-semibold text-foreground">
+                  {feature.title}
+                </h3>
+                <p class="mt-2 text-muted-foreground">{feature.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Preview Section -->
+    <section id="preview" class="py-24 md:py-32 bg-muted/30">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="mx-auto max-w-2xl text-center">
+          <h2
+            class="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
+          >
+            See it in action
+          </h2>
+          <p class="mt-4 text-lg text-muted-foreground">
+            Explore SpotMenu's features and customization options.
+          </p>
+        </div>
+
+        <div class="mt-16 space-y-16">
+          {
+            demos.map((demo, index) => (
+              <div
+                class:list={[
+                  "flex flex-col lg:flex-row gap-8 lg:gap-12 items-center",
+                  index % 2 === 1 && "lg:flex-row-reverse",
+                ]}
+              >
+                <div class="flex-1 lg:max-w-md">
+                  <h3 class="text-xl font-bold text-foreground sm:text-2xl">
+                    {demo.title}
+                  </h3>
+                  <p class="mt-3 text-muted-foreground">
+                    {demo.description}
+                  </p>
+                </div>
+                <div class="relative shrink-0">
+                  <div class="absolute -inset-3 rounded-2xl bg-gradient-to-r from-violet-500/10 to-blue-500/10 blur-xl" />
+                  <div class="relative overflow-hidden rounded-xl border border-border bg-card shadow-lg">
+                    <video
+                      src={demo.video}
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      controls
+                      class="max-w-[320px] sm:max-w-[400px]"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 md:py-32">
+      <div class="mx-auto max-w-7xl px-6">
+        <div
+          class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-600 to-blue-500"
+        >
+          <div
+            class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%220.1%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"
+          >
+          </div>
+
+          <div class="relative px-8 py-16 sm:px-16 sm:py-24 text-center">
+            <h2
+              class="text-3xl font-bold tracking-tight sm:text-4xl text-white"
+            >
+              Ready to enhance your menu bar?
+            </h2>
+            <p class="mt-4 text-lg max-w-xl mx-auto text-white/80">
+              Download SpotMenu for free and start enjoying your music in a
+              whole new way.
+            </p>
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="https://github.com/kmikiy/SpotMenu/releases/latest/download/SpotMenu.app.zip"
+                class="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white bg-white/20 px-8 h-12 text-base font-semibold text-white transition-all hover:bg-white/30"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  ></path>
+                </svg>
+                Download
+              </a>
+              <a
+                href="https://github.com/kmikiy/SpotMenu?tab=readme-ov-file#-installation"
+                target="_blank"
+                class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-white/10 px-8 h-12 text-base font-semibold text-white transition-all hover:bg-white/20"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  ></path>
+                </svg>
+                Docs
+              </a>
+              <a
+                href="https://paypal.me/kmikiy"
+                target="_blank"
+                class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-white/10 px-8 h-12 text-base font-semibold text-white transition-all hover:bg-white/20"
+              >
+                <svg
+                  class="h-5 w-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                  ></path>
+                </svg>
+                Donate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>
