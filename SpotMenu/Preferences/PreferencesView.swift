@@ -5,6 +5,7 @@ enum PreferencesSection: String, CaseIterable, Identifiable {
     case appearance = "Appearance"
     case menuBar = "Menu Bar"
     case shortcuts = "Shortcuts"
+    case about = "About"
 
     var id: String { rawValue }
 
@@ -18,6 +19,8 @@ enum PreferencesSection: String, CaseIterable, Identifiable {
             return "menubar.rectangle"
         case .shortcuts:
             return "command"
+        case .about:
+            return "info.circle"
         }
     }
 }
@@ -119,6 +122,8 @@ struct PreferencesView: View {
             )
         case .shortcuts:
             ShortcutPreferencesView(model: playbackModel, musicPlayerPreferencesModel: musicPlayerPreferencesModel)
+        case .about:
+            AboutPreferencesView()
         }
     }
 }
