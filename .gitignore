@@ -6,3 +6,5 @@ Carthage
 
 xcuserdata
 .history
+
+node_modules
