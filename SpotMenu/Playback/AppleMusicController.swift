@@ -54,7 +54,8 @@ class AppleMusicController: MusicPlayerController {
                 totalTime: totalTime,
                 currentTime: currentTime,
                 image: lastImage != nil ? Image(nsImage: lastImage!) : nil,
-                isLiked: nil
+                isLiked: nil,
+                longFormInfo: nil
             )
         }
 

@@ -29,6 +29,15 @@ class MusicPlayerPreferencesModel: ObservableObject {
         }
     }
 
+    @Published var longFormTitleStyle: LongFormTitleStyle {
+        didSet {
+            UserDefaults.standard.set(
+                longFormTitleStyle.rawValue,
+                forKey: "spotify.longFormTitleStyle"
+            )
+        }
+    }
+
     init() {
         let defaults = UserDefaults.standard
 
@@ -46,5 +55,20 @@ class MusicPlayerPreferencesModel: ObservableObject {
             defaults.object(forKey: "musicPlayer.likingEnabled") as? Bool ?? true
 
         spotifyClientID = defaults.string(forKey: "spotify.clientID")
+
+        if let storedRaw = defaults.string(
+            forKey: "spotify.longFormTitleStyle"
+        ), let storedStyle = LongFormTitleStyle(rawValue: storedRaw) {
+            longFormTitleStyle = storedStyle
+        } else if let legacyAppend =
+            defaults.object(
+                forKey: "spotify.showAudiobookChapterInTitle"
+            ) as? Bool
+        {
+            longFormTitleStyle =
+                legacyAppend ? .titleAndSegment : .titleOnly
+        } else {
+            longFormTitleStyle = .titleOnly
+        }
     }
 }

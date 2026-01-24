@@ -34,7 +34,7 @@ struct MenuBarPreferencesView: View {
                                 .transition(.opacity.combined(with: .move(edge: .top)))
                         }
 
-                        Toggle("Display Song Title", isOn: Binding(
+                        Toggle("Display Title", isOn: Binding(
                             get: { model.showTitle },
                             set: { newValue in
                                 withAnimation(.easeInOut(duration: 0.2)) {
@@ -44,6 +44,20 @@ struct MenuBarPreferencesView: View {
                         ))
 
                         if model.showTitle {
+                            Picker(
+                                "Long-form Content",
+                                selection: $musicPlayerPreferencesModel
+                                    .longFormTitleStyle
+                            ) {
+                                ForEach(
+                                    LongFormTitleStyle.allCases,
+                                    id: \.self
+                                ) { style in
+                                    Text(style.displayName).tag(style)
+                                }
+                            }
+                            .transition(.opacity.combined(with: .move(edge: .top)))
+                            
                             Toggle("Hide Title When Paused", isOn: $model.hideTitleWhenPaused)
                                 .transition(.opacity.combined(with: .move(edge: .top)))
                         }
