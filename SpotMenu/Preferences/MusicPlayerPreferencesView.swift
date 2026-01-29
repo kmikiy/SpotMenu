@@ -35,8 +35,8 @@ struct MusicPlayerPreferencesView: View {
                     Form {
                         Section {
                             Toggle("Enable Track Liking", isOn: $model.likingEnabled)
-                                .onChange(of: model.likingEnabled) {
-                                    if model.likingEnabled && !isSpotifyAuthenticated {
+                                .onChange(of: model.likingEnabled) { newValue in
+                                    if newValue && !isSpotifyAuthenticated {
                                         LoginWindowManager.showLoginWindow(with: model)
                                     }
                                 }
@@ -115,7 +115,7 @@ struct MusicPlayerPreferencesView: View {
                 }
             }
         }
-        .onChange(of: spotifyAuthManager.didAuthenticate) { _, newValue in
+        .onChange(of: spotifyAuthManager.didAuthenticate) { newValue in
             if newValue {
                 isSpotifyAuthenticated = true
                 spotifyConnectionTestResult = true
