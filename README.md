@@ -37,7 +37,7 @@ brew install --cask spotmenu
 
 ### Build from Source
 
-**Requirements:** macOS 26+, Xcode 16+
+**Requirements:** macOS 13+ (Ventura), Xcode 15+
 
 ```bash
 git clone https://github.com/kmikiy/SpotMenu.git
