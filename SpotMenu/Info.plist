@@ -6,16 +6,24 @@
 	<true/>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>This app needs permission to control Spotify / Apple Music using AppleScript.</string>
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-        <key>CFBundleURLName</key>
-        <string>com.github.kmikiy.SpotMenu</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>com.github.kmikiy.spotmenu</string>
-        </array>
-      </dict>
-    </array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.github.kmikiy.SpotMenu</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.github.kmikiy.spotmenu</string>
+			</array>
+		</dict>
+	</array>
+	<!-- Sparkle Update Configuration -->
+	<key>SUPublicEDKey</key>
+	<string>BzDKlhTkBhiTizw1GoS4Lxq7rWs7fh2vZuHz3OojDuE=</string>
+	<key>SUFeedURL</key>
+	<string>https://raw.githubusercontent.com/kmikiy/SpotMenu/master/appcast.xml</string>
+	<!-- Enable Sparkle's Installer XPC Service for sandboxed updates -->
+	<key>SUEnableInstallerLauncherService</key>
+	<true/>
 </dict>
 </plist>

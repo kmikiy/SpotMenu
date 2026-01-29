@@ -1,3 +1,4 @@
+import Sparkle
 import SwiftUI
 
 struct AboutPreferencesView: View {
@@ -8,6 +9,12 @@ struct AboutPreferencesView: View {
     private var buildNumber: String {
         Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
     }
+
+    // Sparkle updater (shared instance)
+    private var updater: SPUUpdater { UpdaterManager.shared.updater }
+    @State private var automaticallyChecksForUpdates = false
+    @State private var automaticallyDownloadsUpdates = false
+    @State private var lastUpdateCheckDate: Date?
 
     var body: some View {
         ScrollView {
@@ -72,6 +79,69 @@ struct AboutPreferencesView: View {
                     Text("Built with SwiftUI for macOS")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
+                }
+
+                Divider()
+                    .padding(.horizontal, 40)
+
+                // Software Updates Section
+                VStack(spacing: 12) {
+                    Text("Software Updates")
+                        .font(.headline)
+
+                    Toggle(
+                        "Automatically check for updates",
+                        isOn: Binding(
+                            get: { automaticallyChecksForUpdates },
+                            set: { newValue in
+                                automaticallyChecksForUpdates = newValue
+                                updater.automaticallyChecksForUpdates = newValue
+                            }
+                        )
+                    )
+                    .toggleStyle(.switch)
+
+                    Toggle(
+                        "Automatically download updates",
+                        isOn: Binding(
+                            get: { automaticallyDownloadsUpdates },
+                            set: { newValue in
+                                automaticallyDownloadsUpdates = newValue
+                                updater.automaticallyDownloadsUpdates = newValue
+                            }
+                        )
+                    )
+                    .toggleStyle(.switch)
+                    .disabled(!automaticallyChecksForUpdates)
+
+                    HStack {
+                        Text("Last checked:")
+                            .foregroundStyle(.secondary)
+                        Spacer()
+                        if let lastCheck = lastUpdateCheckDate {
+                            Text(lastCheck.formatted(date: .abbreviated, time: .shortened))
+                                .foregroundStyle(.secondary)
+                        } else {
+                            Text("Never")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .font(.subheadline)
+
+                    Button("Check for Updates Now") {
+                        updater.checkForUpdates()
+                        // Update the displayed date after a short delay
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            lastUpdateCheckDate = updater.lastUpdateCheckDate
+                        }
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+                .padding(.horizontal, 20)
+                .onAppear {
+                    automaticallyChecksForUpdates = updater.automaticallyChecksForUpdates
+                    automaticallyDownloadsUpdates = updater.automaticallyDownloadsUpdates
+                    lastUpdateCheckDate = updater.lastUpdateCheckDate
                 }
 
                 Divider()
