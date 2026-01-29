@@ -7,6 +7,7 @@ class SpotifyController: MusicPlayerController {
     private var lastIsLiked: Bool?
     private var longFormInfoCache =
         LRUCache<String, LongFormInfo>(capacity: 100)
+    private var pendingLongFormFetches = Set<String>()
 
     private let preferences: MusicPlayerPreferencesModel
 
@@ -61,7 +62,6 @@ class SpotifyController: MusicPlayerController {
         default: longFormKind = nil
         }
         let isTrack = trackType == "track"
-        let isLongForm = longFormKind != nil
         lastTrackType = trackType
 
         var isLikedResult: Bool? = lastIsLiked
@@ -72,19 +72,26 @@ class SpotifyController: MusicPlayerController {
             lastIsLiked = nil
         }
 
-        if isLongForm, let trackID, let longFormKind {
+        if longFormKind != nil, let trackID, let longFormKind {
             let cacheKey = "\(trackType ?? "unknown")|\(trackID)"
             if let cached = longFormInfoCache[cacheKey] {
                 longFormInfo = cached
-            } else if let fetched = fetchLongFormInfo(
-                id: trackID,
-                kind: longFormKind,
-                chapterTitle: title,
-                fallbackAlbum: album,
-                fallbackArtist: artist
-            ) {
-                longFormInfo = fetched
-                longFormInfoCache[cacheKey] = fetched
+            } else {
+                // Return fallback immediately, fetch API data in background
+                longFormInfo = makeFallbackLongFormInfo(
+                    kind: longFormKind,
+                    chapterTitle: title,
+                    fallbackAlbum: album,
+                    fallbackArtist: artist
+                )
+                fetchLongFormInfoAsync(
+                    cacheKey: cacheKey,
+                    id: trackID,
+                    kind: longFormKind,
+                    chapterTitle: title,
+                    fallbackAlbum: album,
+                    fallbackArtist: artist
+                )
             }
         }
 
@@ -222,21 +229,42 @@ class SpotifyController: MusicPlayerController {
         return trackID
     }
 
-    private func fetchLongFormInfo(
+    private func makeFallbackLongFormInfo(
+        kind: LongFormKind,
+        chapterTitle: String,
+        fallbackAlbum: String,
+        fallbackArtist: String
+    ) -> LongFormInfo {
+        let authors =
+            fallbackArtist.split(separator: ",").map {
+                $0.trimmingCharacters(in: .whitespaces)
+            }.filter { !$0.isEmpty }
+        return LongFormInfo(
+            kind: kind,
+            title: fallbackAlbum.isEmpty ? chapterTitle : fallbackAlbum,
+            authors: authors,
+            segmentTitle: chapterTitle
+        )
+    }
+
+    private func fetchLongFormInfoAsync(
+        cacheKey: String,
         id: String,
         kind: LongFormKind,
         chapterTitle: String,
         fallbackAlbum: String,
         fallbackArtist: String
-    ) -> LongFormInfo? {
-        var fetchedInfo: LongFormInfo?
-        let semaphore = DispatchSemaphore(value: 0)
+    ) {
+        // Avoid duplicate fetches for the same track
+        guard !pendingLongFormFetches.contains(cacheKey) else { return }
+        pendingLongFormFetches.insert(cacheKey)
 
-        SpotifyAuthManager.shared.getAccessToken { token in
-            guard let token = token,
+        SpotifyAuthManager.shared.getAccessToken { [weak self] token in
+            guard let self = self,
+                let token = token,
                 let url = self.makeLongFormURL(id: id, kind: kind)
             else {
-                semaphore.signal()
+                self?.pendingLongFormFetches.remove(cacheKey)
                 return
             }
 
@@ -247,14 +275,16 @@ class SpotifyController: MusicPlayerController {
                 forHTTPHeaderField: "Authorization"
             )
 
-            URLSession.shared.dataTask(with: request) { data, _, error in
-                defer { semaphore.signal() }
+            URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
+                defer { self?.pendingLongFormFetches.remove(cacheKey) }
 
-                guard let data = data, error == nil else { return }
+                guard let self = self, let data = data, error == nil else { return }
 
                 do {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    var fetchedInfo: LongFormInfo?
+
                     if kind == .audiobook {
                         let chapter = try decoder.decode(
                             SpotifyChapter.self,
@@ -290,27 +320,15 @@ class SpotifyController: MusicPlayerController {
                             )
                         }
                     }
+
+                    if let info = fetchedInfo {
+                        self.longFormInfoCache[cacheKey] = info
+                    }
                 } catch {
-                    // Ignore decoding failures and fall back below
+                    // Ignore decoding failures, fallback metadata is already shown
                 }
             }.resume()
         }
-
-        _ = semaphore.wait(timeout: .now() + 2)
-        if fetchedInfo == nil {
-            // Fallback to basic metadata if API failed
-            let authors =
-                fallbackArtist.split(separator: ",").map {
-                    $0.trimmingCharacters(in: .whitespaces)
-                }.filter { !$0.isEmpty }
-            fetchedInfo = LongFormInfo(
-                kind: kind,
-                title: fallbackAlbum.isEmpty ? chapterTitle : fallbackAlbum,
-                authors: authors,
-                segmentTitle: chapterTitle
-            )
-        }
-        return fetchedInfo
     }
 
     private func makeLongFormURL(id: String, kind: LongFormKind) -> URL? {
