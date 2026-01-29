@@ -27,7 +27,7 @@ A minimalist menu bar utility that displays your currently playing track with pl
 
 Get the latest release from [GitHub Releases](https://github.com/kmikiy/SpotMenu/releases/latest) and open `SpotMenu.app.zip`.
 
-> **Note:** You may need to allow the app in **System Preferences → Privacy & Security** since it's not signed by an Apple developer. See [Apple's instructions](https://support.apple.com/kb/PH25088?locale=en_US) for details.
+The app is signed and notarized, and includes automatic updates via Sparkle.
 
 ### Homebrew
 
@@ -72,6 +72,7 @@ Access via right-click on the menu bar icon → **Preferences...**
 ### Music Player
 
 Choose your music player:
+
 - **Automatic** — Uses whichever player is active
 - **Spotify**
 - **Apple Music**
@@ -79,6 +80,7 @@ Choose your music player:
 ### Playback Appearance
 
 Customize the player overlay:
+
 - Hover Tint Color
 - Foreground Color
 - Blur Intensity
@@ -87,6 +89,7 @@ Customize the player overlay:
 ### Menu Bar
 
 Configure display options:
+
 - Show/hide artist and song title
 - Show playing icon, liked icon, app icon
 - Compact view mode
@@ -95,6 +98,7 @@ Configure display options:
 ### Shortcuts
 
 Set global hotkeys for:
+
 - Play / Pause
 - Next / Previous Track
 - Like / Unlike / Toggle Like (Spotify only)
@@ -103,10 +107,10 @@ Set global hotkeys for:
 
 ## Usage
 
-| Action | Result |
-|--------|--------|
-| Left-click | Show/hide playback panel |
-| Right-click | Open context menu |
+| Action         | Result                   |
+| -------------- | ------------------------ |
+| Left-click     | Show/hide playback panel |
+| Right-click    | Open context menu        |
 | Hover on panel | Reveal playback controls |
 
 ---
