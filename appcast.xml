@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>SpotMenu</title>
+        <item>
+            <title>2.3.0</title>
+            <pubDate>Thu, 29 Jan 2026 14:40:50 +0000</pubDate>
+            <sparkle:version>v520:02dc9ec</sparkle:version>
+            <sparkle:shortVersionString>2.3.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v2.3.0/SpotMenu.app.zip" length="2805636" type="application/octet-stream" sparkle:edSignature="tSworKwgi0v+ajotRyXnONjof098lZBcqhBhXdQJ9ew9L/sgWYSVEOtY/YpoVhKzeFoPtPOLLFTIYBz5txfDAA=="/>
+        </item>
+    </channel>
+</rss>
