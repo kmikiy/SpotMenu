@@ -1,0 +1,121 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+<channel>
+<title>SpotMenu</title>
+
+<!-- SpotMenu 2.0 - Major Update Notice -->
+<item>
+<title>2.0.0 - Major Update Available!</title>
+<description><![CDATA[
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; padding: 20px; }
+  .notice { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; }
+  .notice h2 { margin-top: 0; }
+  .download-btn { display: inline-block; background: white; color: #667eea; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+  .features { background: #f5f5f7; padding: 20px; border-radius: 12px; }
+  .features h3 { margin-top: 0; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 8px; }
+</style>
+
+<div class="notice">
+  <h2>🎉 SpotMenu 2.0 is Here!</h2>
+  <p><strong>SpotMenu has been completely rebuilt from the ground up with SwiftUI!</strong></p>
+  <p>This is a major update that requires a fresh download. Automatic updates are not available for this transition.</p>
+  <a href="https://kmikiy.github.io/SpotMenu/" class="download-btn">Download SpotMenu 2.0 →</a>
+</div>
+
+<div class="features">
+  <h3>What's New in 2.0</h3>
+  <ul>
+    <li><strong>Complete SwiftUI Rebuild</strong> - Native, modern, and beautiful</li>
+    <li><strong>New Playback Panel</strong> - Hover over the menu bar to reveal album art and controls</li>
+    <li><strong>Track Liking</strong> - Like/unlike tracks directly from the menu bar (Spotify)</li>
+    <li><strong>Customizable Appearance</strong> - Blur intensity, tint colors, font weights</li>
+    <li><strong>Compact View</strong> - Optional 2-line display mode</li>
+    <li><strong>Global Keyboard Shortcuts</strong> - Control playback from anywhere</li>
+    <li><strong>Audiobook & Podcast Support</strong> - Display chapter/episode information</li>
+    <li><strong>Automatic Updates</strong> - Future updates will install automatically</li>
+  </ul>
+
+  <h3>How to Update</h3>
+  <ol>
+    <li>Quit the current SpotMenu</li>
+    <li>Download SpotMenu 2.0 from <a href="https://kmikiy.github.io/SpotMenu/">kmikiy.github.io/SpotMenu</a></li>
+    <li>Move the new SpotMenu to your Applications folder (replace the old one)</li>
+    <li>Launch SpotMenu 2.0 and enjoy!</li>
+  </ol>
+
+  <p><em>Thank you for using SpotMenu! ❤️</em></p>
+</div>
+]]></description>
+<pubDate>Wed, 29 Jan 2026 12:00:00 +0000</pubDate>
+<sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+<enclosure
+  url="https://github.com/kmikiy/SpotMenu/releases/latest/download/SpotMenu.app.zip"
+  sparkle:version="2.0.0"
+  sparkle:shortVersionString="2.0.0"
+  length="5000000"
+  type="application/octet-stream"/>
+</item>
+
+<!-- Legacy versions preserved for reference -->
+<item>
+<title>1.9.0</title>
+<description><![CDATA[
+<ul>
+  <li>Layout updated</li>
+  <li>Fixed light album cover issue on MacOS Mojave</li>
+  <li>Cross fade animation on track change</li>
+  <li>Scrolling text</li>
+</ul>
+]]></description>
+<pubDate>Mon, 24 Dec 2018 19:29:42 +0100</pubDate>
+<sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.9/SpotMenu190.zip" sparkle:version="1.9.0" sparkle:shortVersionString="1.9.0" length="7969360" type="application/octet-stream" sparkle:dsaSignature="MCwCFEE7vhabauymiESoQylAnWaNMOL2AhRld2cRNcVE9kIEHXOtLqxhZAaIqw=="/>
+</item>
+
+<item>
+<title>1.8.0</title>
+<description><![CDATA[
+<ul>
+  <li>SpotMenu now supports iTunes</li>
+  <li>About page added to preferences</li>
+  <li>Option added to hide title and artist when music player is paused</li>
+</ul>
+]]></description>
+<pubDate>Mon, 18 Dec 2017 16:52:04 +0100</pubDate>
+<sparkle:minimumSystemVersion>10.11</sparkle:minimumSystemVersion>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.8/SpotMenu180.zip" sparkle:version="1.8.0" sparkle:shortVersionString="1.8.0" length="7261924" type="application/octet-stream" sparkle:dsaSignature="MCwCFH51gzQ5wFKXQV+bbWOzBVia0bfpAhQtzCwXifLbsEYa1KarTss8TgAI1w=="/>
+</item>
+
+<item>
+<title>1.7</title>
+<description><![CDATA[
+<ul>
+  <li>New layout</li>
+  <li>Option added in preferences to turn off now playing keyboard shortcut toast</li>
+  <li>Source code updated to Swift 4</li>
+</ul>
+]]></description>
+<pubDate>Sat, 21 Oct 2017 22:11:05 +0200</pubDate>
+<sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.7/SpotMenu170.zip" sparkle:version="1.7" sparkle:shortVersionString="1.7" length="6322073" type="application/octet-stream" sparkle:dsaSignature="MCwCFEYDgBJXx/9Wx26JOkg35q0bVRc3AhRPZ9BI9mlQP598auXZgmD5kwfsiA=="/>
+</item>
+
+<item>
+<title>1.6.0</title>
+<description><![CDATA[
+<ul>
+  <li>Automatic updates added.</li>
+  <li>German translation added.</li>
+  <li>Dutch translation added.</li>
+</ul>
+]]></description>
+<pubDate>Sun, 17 Sep 2017 15:04:41 +0200</pubDate>
+<sparkle:minimumSystemVersion>10.10</sparkle:minimumSystemVersion>
+<enclosure url="https://github.com/kmikiy/SpotMenu/releases/download/v1.6/SpotMenu160.zip" sparkle:version="1.6.0" sparkle:shortVersionString="1.6.0" length="4842809" type="application/octet-stream" sparkle:dsaSignature="MCwCFBa5Sp0jTfBeb9oMVyC2Z6ugOcNzAhRVNesOZGaIqBxAGGOsNf6SdsX80g=="/>
+</item>
+
+</channel>
+</rss>
