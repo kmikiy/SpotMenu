@@ -91,12 +91,19 @@ class SpotifyAuthManager: ObservableObject {
         completion: @escaping (Bool?) -> Void
     ) {
         getAccessToken { token in
-            guard let token = token,
-                let url = URL(
-                    string:
-                        "https://api.spotify.com/v1/me/tracks/contains?ids=\(trackID)"
-                )
-            else {
+            guard let token = token else {
+                completion(nil)
+                return
+            }
+
+            var components = URLComponents(
+                string: "https://api.spotify.com/v1/me/library/contains"
+            )!
+            components.queryItems = [
+                URLQueryItem(name: "uris", value: "spotify:track:\(trackID)")
+            ]
+
+            guard let url = components.url else {
                 completion(nil)
                 return
             }
@@ -126,9 +133,19 @@ class SpotifyAuthManager: ObservableObject {
 
     func addTrackToLiked(trackID: String, completion: ((Bool) -> Void)? = nil) {
         getAccessToken { token in
-            guard let token = token,
-                let url = URL(string: "https://api.spotify.com/v1/me/tracks")
-            else {
+            guard let token = token else {
+                completion?(false)
+                return
+            }
+
+            var components = URLComponents(
+                string: "https://api.spotify.com/v1/me/library"
+            )!
+            components.queryItems = [
+                URLQueryItem(name: "uris", value: "spotify:track:\(trackID)")
+            ]
+
+            guard let url = components.url else {
                 completion?(false)
                 return
             }
@@ -139,11 +156,6 @@ class SpotifyAuthManager: ObservableObject {
                 "Bearer \(token)",
                 forHTTPHeaderField: "Authorization"
             )
-            request.setValue(
-                "application/json",
-                forHTTPHeaderField: "Content-Type"
-            )
-            request.httpBody = try? JSONEncoder().encode(["ids": [trackID]])
 
             URLSession.shared.dataTask(with: request) { _, response, _ in
                 let success = (response as? HTTPURLResponse)?.statusCode == 200
@@ -157,9 +169,19 @@ class SpotifyAuthManager: ObservableObject {
         completion: ((Bool) -> Void)? = nil
     ) {
         getAccessToken { token in
-            guard let token = token,
-                let url = URL(string: "https://api.spotify.com/v1/me/tracks")
-            else {
+            guard let token = token else {
+                completion?(false)
+                return
+            }
+
+            var components = URLComponents(
+                string: "https://api.spotify.com/v1/me/library"
+            )!
+            components.queryItems = [
+                URLQueryItem(name: "uris", value: "spotify:track:\(trackID)")
+            ]
+
+            guard let url = components.url else {
                 completion?(false)
                 return
             }
@@ -170,11 +192,6 @@ class SpotifyAuthManager: ObservableObject {
                 "Bearer \(token)",
                 forHTTPHeaderField: "Authorization"
             )
-            request.setValue(
-                "application/json",
-                forHTTPHeaderField: "Content-Type"
-            )
-            request.httpBody = try? JSONEncoder().encode(["ids": [trackID]])
 
             URLSession.shared.dataTask(with: request) { _, response, _ in
                 let success = (response as? HTTPURLResponse)?.statusCode == 200
