@@ -203,6 +203,10 @@ final class CiderSession: ObservableObject {
     private var refreshTask: Task<Void, Never>?
     private var refreshAgain = false
     private var socketConnected = false
+    private var lastSocketEventAt: Date?
+    private var socketRetryAfter = Date.distantPast
+    private var displayTimer: Timer?
+    private var progress = CiderProgressClock()
     private var currentTrackID: String?
     private var currentInfo: PlaybackInfo?
     private var generation = 0
@@ -226,11 +230,19 @@ final class CiderSession: ObservableObject {
             tokenLoaded = true
         }
         generation += 1
+        displayTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            Task { @MainActor in self?.tickProgress() }
+        }
         refresh()
         monitor = Task { [weak self] in
             while let self, !Task.isCancelled {
+                if self.socketConnected,
+                   let lastEvent = self.lastSocketEventAt,
+                   Date().timeIntervalSince(lastEvent) >= 15 {
+                    self.suspendSilentSocket()
+                }
                 if !self.socketConnected { self.refresh() }
-                try? await Task.sleep(nanoseconds: 30_000_000_000)
+                try? await Task.sleep(nanoseconds: 15_000_000_000)
             }
         }
     }
@@ -239,6 +251,8 @@ final class CiderSession: ObservableObject {
         generation += 1
         monitor?.cancel()
         monitor = nil
+        displayTimer?.invalidate()
+        displayTimer = nil
         refreshTask?.cancel()
         refreshTask = nil
         socket?.removeAllHandlers()
@@ -246,6 +260,11 @@ final class CiderSession: ObservableObject {
         socket = nil
         socketManager = nil
         socketConnected = false
+        lastSocketEventAt = nil
+        socketRetryAfter = .distantPast
+        progress.reset()
+        currentInfo = nil
+        currentTrackID = nil
     }
 
     func reconnect() {
@@ -272,7 +291,7 @@ final class CiderSession: ObservableObject {
                 connection = .connected
                 statusMessage = nil
                 apply(snapshot)
-                if socket == nil { connectSocket() }
+                if socket == nil && Date() >= socketRetryAfter { connectSocket() }
             } catch let error as CiderRPCError {
                 guard requestGeneration == generation else { return }
                 switch error {
@@ -282,22 +301,76 @@ final class CiderSession: ObservableObject {
                 }
                 currentInfo = nil
                 currentTrackID = nil
+                progress.reset()
                 onPlayback?(nil, true)
             } catch {
                 guard requestGeneration == generation else { return }
                 connection = .failed("Could not read Cider playback.")
                 currentTrackID = nil
                 currentInfo = nil
+                progress.reset()
                 onPlayback?(nil, true)
             }
         }
     }
 
     private func apply(_ snapshot: CiderSnapshot) {
+        if progress.shouldWaitForNewTrack(snapshot.trackID) {
+            refreshAfterTransition()
+            return
+        }
         let trackChanged = snapshot.trackID != currentTrackID
+        let hadTrack = currentTrackID != nil
+        if trackChanged && currentTrackID != nil && snapshot.trackID != nil {
+            progress.markTrackChange()
+        }
         currentTrackID = snapshot.trackID
-        currentInfo = snapshot.info
-        onPlayback?(snapshot.info, trackChanged)
+        guard let info = snapshot.info else {
+            progress.reset()
+            currentInfo = nil
+            onPlayback?(nil, trackChanged)
+            return
+        }
+        let elapsed = progress.acceptSnapshot(trackID: snapshot.trackID, elapsed: info.currentTime,
+                                              duration: info.totalTime, playing: info.isPlaying)
+        publish(info, elapsed: elapsed, trackChanged: trackChanged)
+        if trackChanged && hadTrack && snapshot.trackID != nil { refreshAfterTransition() }
+    }
+
+    private func publish(_ info: PlaybackInfo, elapsed: Double, trackChanged: Bool) {
+        let updated = PlaybackInfo(artist: info.artist, title: info.title,
+            isPlaying: info.isPlaying, imageURL: info.imageURL,
+            totalTime: info.totalTime, currentTime: elapsed,
+            image: info.image, isLiked: info.isLiked, longFormInfo: info.longFormInfo)
+        currentInfo = updated
+        onPlayback?(updated, trackChanged)
+    }
+
+    private func tickProgress() {
+        guard let info = currentInfo, info.isPlaying else { return }
+        let elapsed = progress.current()
+        if abs(elapsed - info.currentTime) >= 0.25 {
+            publish(info, elapsed: elapsed, trackChanged: false)
+        }
+    }
+
+    private func refreshAfterTransition() {
+        let requestGeneration = generation
+        Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 500_000_000)
+            guard let self, requestGeneration == self.generation else { return }
+            self.refresh()
+        }
+    }
+
+    private func suspendSilentSocket() {
+        socket?.removeAllHandlers()
+        socket?.disconnect()
+        socket = nil
+        socketManager = nil
+        socketConnected = false
+        lastSocketEventAt = nil
+        socketRetryAfter = Date().addingTimeInterval(60)
     }
 
     private func connectSocket() {
@@ -308,6 +381,7 @@ final class CiderSession: ObservableObject {
         let client = manager.defaultSocket
         client.on(clientEvent: .connect) { [weak self] _, _ in
             self?.socketConnected = true
+            self?.lastSocketEventAt = Date()
             self?.refresh()
         }
         client.on(clientEvent: .disconnect) { [weak self] _, _ in
@@ -315,19 +389,28 @@ final class CiderSession: ObservableObject {
         }
         client.on("API:Playback") { [weak self] data, _ in
             guard let event = data.first as? [String: Any], let type = event["type"] as? String else { return }
+            self?.lastSocketEventAt = Date()
             switch type {
-            case "playbackStatus.nowPlayingItemDidChange", "playbackStatus.playbackStateDidChange",
-                 "playbackStatus.transitionCompleted":
+            case "playbackStatus.nowPlayingItemDidChange":
+                if let self, let info = self.currentInfo {
+                    self.progress.markTrackChange()
+                    self.publish(info, elapsed: 0, trackChanged: false)
+                }
+                self?.refresh()
+                self?.refreshAfterTransition()
+            case "playbackStatus.playbackStateDidChange", "playbackStatus.transitionCompleted":
                 self?.refresh()
             case "playbackStatus.playbackTimeDidChange":
                 guard let payload = event["data"] as? [String: Any], let self,
                       let info = self.currentInfo else { return }
-                let time = payload["currentPlaybackTime"] as? Double ?? info.currentTime
-                self.currentInfo = PlaybackInfo(artist: info.artist, title: info.title,
-                    isPlaying: payload["isPlaying"] as? Bool ?? info.isPlaying,
-                    imageURL: info.imageURL, totalTime: info.totalTime, currentTime: time,
-                    image: nil, isLiked: nil, longFormInfo: nil)
-                self.onPlayback?(self.currentInfo, false)
+                let playing = payload["isPlaying"] as? Bool ?? info.isPlaying
+                let time = payload["currentPlaybackTime"] as? Double
+                let elapsed = self.progress.acceptTime(time ?? self.progress.current(), playing: playing)
+                let updated = PlaybackInfo(artist: info.artist, title: info.title,
+                    isPlaying: playing, imageURL: info.imageURL, totalTime: info.totalTime,
+                    currentTime: info.currentTime, image: info.image, isLiked: info.isLiked,
+                    longFormInfo: info.longFormInfo)
+                self.publish(updated, elapsed: elapsed, trackChanged: false)
             default: break
             }
         }

@@ -58,6 +58,32 @@ struct SpotMenuTests {
         #expect(snapshot.info == nil)
     }
 
+    @Test func ciderProgressResetsAndRejectsPreviousTrackTime() {
+        var clock = CiderProgressClock()
+        let start = Date(timeIntervalSince1970: 1_000)
+        #expect(clock.acceptSnapshot(trackID: "old", elapsed: 77, duration: 240,
+                                     playing: true, at: start) == 77)
+        clock.markTrackChange(at: start.addingTimeInterval(1))
+        #expect(clock.current(at: start.addingTimeInterval(1)) == 0)
+        #expect(clock.shouldWaitForNewTrack("old", at: start.addingTimeInterval(1.1)))
+        #expect(clock.acceptSnapshot(trackID: "new", elapsed: 77, duration: 260,
+                                     playing: true, at: start.addingTimeInterval(1.2)) == 0)
+        #expect(!clock.shouldWaitForNewTrack("new", at: start.addingTimeInterval(1.3)))
+        #expect(clock.acceptTime(0.5, at: start.addingTimeInterval(1.5)) == 0.5)
+        #expect(abs(clock.acceptTime(78, at: start.addingTimeInterval(1.6)) - 0.6) < 0.001)
+        #expect(clock.current(at: start.addingTimeInterval(3.5)) == 2.5)
+    }
+
+    @Test func ciderProgressStartsAtActualPositionAndStopsWhenPaused() {
+        var clock = CiderProgressClock()
+        let start = Date(timeIntervalSince1970: 2_000)
+        #expect(clock.acceptSnapshot(trackID: "song", elapsed: 31, duration: 100,
+                                     playing: true, at: start) == 31)
+        #expect(clock.current(at: start.addingTimeInterval(2)) == 33)
+        #expect(clock.acceptTime(33, playing: false, at: start.addingTimeInterval(2)) == 33)
+        #expect(clock.current(at: start.addingTimeInterval(5)) == 33)
+    }
+
     @Test func ciderRedirectIsNeverFollowed() {
         let delegate = CiderNoRedirect()
         let task = URLSession.shared.dataTask(with: URL(string: "http://127.0.0.1:10767/api/v2/playback")!)
