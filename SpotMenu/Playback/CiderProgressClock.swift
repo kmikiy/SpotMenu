@@ -44,6 +44,7 @@ struct CiderProgressClock {
             anchor = 0
             sampledAt = now
             transitionAt = nil
+            previousTrackID = nil
             return 0
         }
 
@@ -67,7 +68,10 @@ struct CiderProgressClock {
             if age < 10 && resemblesPreviousTime(elapsed, at: now) {
                 return current(at: now)
             }
-            if age >= 10 { self.transitionAt = nil }
+            if age >= 10 {
+                self.transitionAt = nil
+                previousTrackID = nil
+            }
         }
         anchor = min(elapsed, duration)
         sampledAt = now

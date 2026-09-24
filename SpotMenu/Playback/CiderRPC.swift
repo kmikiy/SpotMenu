@@ -108,7 +108,7 @@ final class CiderRPC {
         do {
             (data, response) = try await session.data(for: request)
         } catch let error as URLError {
-            if error.code == .timedOut { throw CiderRPCError.timedOut }
+            if error.code == .timedOut && !authenticated { throw CiderRPCError.timedOut }
             throw CiderRPCError.offline
         }
         return try decode(data, response: response, authenticated: authenticated)

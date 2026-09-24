@@ -18,6 +18,7 @@ final class CiderSession: ObservableObject {
     private var monitor: Task<Void, Never>?
     private var refreshTask: Task<Void, Never>?
     private var refreshAgain = false
+    private var isRunning = false
     private var lastSocketEventAt: Date?
     private var eventCheckStartedAt = Date()
     private var lastRefreshAttemptAt = Date.distantPast
@@ -48,6 +49,7 @@ final class CiderSession: ObservableObject {
             tokenLoaded = true
         }
         generation += 1
+        isRunning = true
         liveUpdates = .checking
         eventCheckStartedAt = Date()
         displayTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
@@ -77,6 +79,8 @@ final class CiderSession: ObservableObject {
 
     func stop() {
         generation += 1
+        isRunning = false
+        refreshAgain = false
         monitor?.cancel()
         monitor = nil
         displayTimer?.invalidate()
@@ -104,15 +108,17 @@ final class CiderSession: ObservableObject {
     }
 
     func refresh() {
-        guard monitor != nil || generation > 0 else { return }
+        guard isRunning else { return }
         guard refreshTask == nil else { refreshAgain = true; return }
         lastRefreshAttemptAt = Date()
         let requestGeneration = generation
         refreshTask = Task { [weak self] in
             guard let self else { return }
             defer {
-                refreshTask = nil
-                if refreshAgain { refreshAgain = false; refresh() }
+                if requestGeneration == generation {
+                    refreshTask = nil
+                    if refreshAgain { refreshAgain = false; refresh() }
+                }
             }
             do {
                 let info = try await rpc.clientInfo()
