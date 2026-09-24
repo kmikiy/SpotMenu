@@ -188,12 +188,6 @@ private struct CiderPreferencesSection: View {
     var body: some View {
         Form {
             Section("Cider Integration") {
-                Text("Authorize SpotMenu in Cider for playback access. The RPC token is stored in macOS Keychain.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Text("Enable WebSockets API in Cider Settings → Connections → External Applications for live updates. When events are unavailable, SpotMenu checks playback about every two seconds.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
                 TextField("Host", text: $model.ciderHost)
                     .help("Loopback only: 127.0.0.1, localhost, or ::1")
                 TextField("Port", value: $model.ciderPort, format: .number)
@@ -235,7 +229,10 @@ private struct CiderPreferencesSection: View {
                     Text(message).font(.caption).foregroundStyle(.secondary)
                 }
                 HStack {
-                    Button("Authorize in Cider") { cider.authorize() }
+                    Button(isActive && cider.connection == .connected ? "Reauthorize in Cider" : "Authorize in Cider") {
+                        cider.authorize()
+                    }
+                        .help("SpotMenu stores Cider's playback token in macOS Keychain.")
                         .disabled(cider.authorizationBusy)
                     if cider.authorizationBusy { ProgressView().controlSize(.small) }
                     if isActive { Button("Retry Connection") { cider.reconnect() } }
