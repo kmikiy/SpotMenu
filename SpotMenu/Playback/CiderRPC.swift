@@ -192,7 +192,7 @@ struct CiderSnapshot {
 
 enum CiderTokenStore {
     enum ReadResult { case token(String), missing, failed }
-    private static let service = "com.jeremyhiggs.SpotMenu.cider.rpc"
+    private static let service = "com.github.kmikiy.spotmenu.cider.rpc"
     private static let account = "apptoken"
 
     private static var query: [String: Any] {
