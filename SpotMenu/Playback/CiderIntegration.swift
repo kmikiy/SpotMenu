@@ -75,7 +75,8 @@ final class CiderRPC {
     func playback() async throws -> CiderSnapshot { CiderSnapshot.parse(try await request("playback")) }
 
     func control(_ action: CiderAction) async throws {
-        _ = try await request("playback/\(action.rawValue)", method: "POST")
+        _ = try await request("playback/\(action.rawValue)", method: "POST",
+                              body: action == .previous ? ["force": false] : nil)
     }
 
     func authorize() async throws -> String {
@@ -205,6 +206,7 @@ final class CiderSession: ObservableObject {
     private var socketConnected = false
     private var lastSocketEventAt: Date?
     private var socketRetryAfter = Date.distantPast
+    private var lastSnapshotAt = Date.distantPast
     private var displayTimer: Timer?
     private var progress = CiderProgressClock()
     private var pendingPlaybackState: (playing: Bool, until: Date)?
@@ -242,7 +244,11 @@ final class CiderSession: ObservableObject {
                    Date().timeIntervalSince(lastEvent) >= 15 {
                     self.suspendSilentSocket()
                 }
-                if !self.socketConnected { self.refresh() }
+                // Cider may start an Automix transition partway into a song.
+                // A slow HTTP snapshot corrects any missed or incomplete socket time update.
+                if !self.socketConnected || Date().timeIntervalSince(self.lastSnapshotAt) >= 30 {
+                    self.refresh()
+                }
                 try? await Task.sleep(nanoseconds: 15_000_000_000)
             }
         }
@@ -263,6 +269,7 @@ final class CiderSession: ObservableObject {
         socketConnected = false
         lastSocketEventAt = nil
         socketRetryAfter = .distantPast
+        lastSnapshotAt = .distantPast
         progress.reset()
         pendingPlaybackState = nil
         currentInfo = nil
@@ -289,6 +296,7 @@ final class CiderSession: ObservableObject {
                 let info = try await rpc.clientInfo()
                 let snapshot = try await rpc.playback()
                 guard requestGeneration == generation else { return }
+                lastSnapshotAt = Date()
                 rpcVersion = info["version"] as? String
                 connection = .connected
                 statusMessage = nil

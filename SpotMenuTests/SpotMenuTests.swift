@@ -65,6 +65,7 @@ struct SpotMenuTests {
         #expect(clock.acceptSnapshot(trackID: "old", elapsed: 77, duration: 240,
                                      playing: true, at: start) == 77)
         clock.markTrackChange(at: start.addingTimeInterval(1))
+        clock.markTrackChange(at: start.addingTimeInterval(1.05))
         #expect(clock.current(at: start.addingTimeInterval(1)) == 0)
         #expect(clock.shouldWaitForNewTrack("old", at: start.addingTimeInterval(1.1)))
         #expect(clock.acceptSnapshot(trackID: "new", elapsed: 77, duration: 260,
@@ -83,6 +84,19 @@ struct SpotMenuTests {
         #expect(clock.current(at: start.addingTimeInterval(2)) == 33)
         #expect(clock.acceptTime(33, playing: false, at: start.addingTimeInterval(2)) == 33)
         #expect(clock.current(at: start.addingTimeInterval(5)) == 33)
+    }
+
+    @Test func ciderAutomixAcceptsNewSongOffsetAndLaterCorrectsDrift() {
+        var clock = CiderProgressClock()
+        let start = Date(timeIntervalSince1970: 3_000)
+        _ = clock.acceptSnapshot(trackID: "old", elapsed: 260, duration: 300,
+                                 playing: true, at: start)
+        clock.markTrackChange(at: start.addingTimeInterval(1))
+        #expect(clock.acceptSnapshot(trackID: "new", elapsed: 21, duration: 240,
+                                     playing: true, at: start.addingTimeInterval(1.2)) == 21)
+        #expect(clock.current(at: start.addingTimeInterval(3.2)) == 23)
+        #expect(clock.acceptSnapshot(trackID: "new", elapsed: 30, duration: 240,
+                                     playing: true, at: start.addingTimeInterval(31)) == 30)
     }
 
     @Test func ciderRedirectIsNeverFollowed() {
@@ -137,8 +151,20 @@ struct SpotMenuTests {
         CiderRequestStub.handle = { request in
             #expect(request.url?.path == "/api/v2/playback/previous")
             #expect(request.httpMethod == "POST")
-            #expect(request.httpBody == nil)
-            #expect(request.httpBodyStream == nil)
+            let body: Data
+            if let direct = request.httpBody {
+                body = direct
+            } else if let stream = request.httpBodyStream {
+                stream.open()
+                defer { stream.close() }
+                var bytes = [UInt8](repeating: 0, count: 4096)
+                let count = stream.read(&bytes, maxLength: bytes.count)
+                body = Data(bytes.prefix(max(0, count)))
+            } else {
+                body = Data()
+            }
+            let json = try? JSONSerialization.jsonObject(with: body) as? [String: Bool]
+            #expect(json?["force"] == false)
             return (200, Data("{}".utf8))
         }
         defer { CiderRequestStub.handle = nil }

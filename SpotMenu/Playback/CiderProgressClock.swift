@@ -8,6 +8,8 @@ struct CiderProgressClock {
     private var sampledAt = Date.distantPast
     private var transitionAt: Date?
     private var previousTrackID: String?
+    private var previousElapsed = 0.0
+    private var previousWasPlaying = false
     private var duration = 1.0
     private var playing = false
 
@@ -16,6 +18,10 @@ struct CiderProgressClock {
     }
 
     mutating func markTrackChange(at now: Date = Date()) {
+        if previousTrackID == nil {
+            previousElapsed = current(at: now)
+            previousWasPlaying = playing
+        }
         transitionAt = now
         previousTrackID = trackID
         anchor = 0
@@ -45,7 +51,7 @@ struct CiderProgressClock {
             anchor = 0
             sampledAt = now
             previousTrackID = nil
-            return 0
+            if resemblesPreviousTime(elapsed, at: now) { return 0 }
         }
         _ = acceptTime(elapsed, at: now)
         return current(at: now)
@@ -58,7 +64,9 @@ struct CiderProgressClock {
         if let transitionAt {
             let age = max(0, now.timeIntervalSince(transitionAt))
             // Cider can briefly pair the new item with the previous item's time.
-            if age < 10 && elapsed > age + 5 { return current(at: now) }
+            if age < 10 && resemblesPreviousTime(elapsed, at: now) {
+                return current(at: now)
+            }
             if age >= 10 { self.transitionAt = nil }
         }
         anchor = min(elapsed, duration)
@@ -70,5 +78,11 @@ struct CiderProgressClock {
         guard trackID != nil else { return 0 }
         let advance = playing ? max(0, now.timeIntervalSince(sampledAt)) : 0
         return min(duration, max(0, anchor + advance))
+    }
+
+    private func resemblesPreviousTime(_ elapsed: Double, at now: Date) -> Bool {
+        guard let transitionAt, elapsed > 5 else { return false }
+        let advance = previousWasPlaying ? max(0, now.timeIntervalSince(transitionAt)) : 0
+        return abs(elapsed - previousElapsed - advance) < 4
     }
 }
