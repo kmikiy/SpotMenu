@@ -99,6 +99,29 @@ struct SpotMenuTests {
                                      playing: true, at: start.addingTimeInterval(31)) == 30)
     }
 
+    @Test func ciderLiveUpdatesFallBackAfterPlayingEventSilence() {
+        let start = Date(timeIntervalSince1970: 4_000)
+        #expect(!CiderLiveUpdates.shouldMarkUnavailable(
+            isPlaying: true, lastEventAt: nil, checkingSince: start,
+            at: start.addingTimeInterval(5.9)))
+        #expect(CiderLiveUpdates.shouldMarkUnavailable(
+            isPlaying: true, lastEventAt: nil, checkingSince: start,
+            at: start.addingTimeInterval(6)))
+        #expect(!CiderLiveUpdates.shouldMarkUnavailable(
+            isPlaying: false, lastEventAt: nil, checkingSince: start,
+            at: start.addingTimeInterval(30)))
+        #expect(!CiderLiveUpdates.shouldMarkUnavailable(
+            isPlaying: true, lastEventAt: start.addingTimeInterval(10), checkingSince: start,
+            at: start.addingTimeInterval(15)))
+    }
+
+    @Test func ciderLiveUpdatesPollQuicklyOnlyWithoutEvents() {
+        #expect(CiderLiveUpdates.checking.snapshotInterval(connected: true) == 2)
+        #expect(CiderLiveUpdates.unavailable.snapshotInterval(connected: true) == 2)
+        #expect(CiderLiveUpdates.active.snapshotInterval(connected: true) == 30)
+        #expect(CiderLiveUpdates.active.snapshotInterval(connected: false) == 15)
+    }
+
     @Test func ciderRedirectIsNeverFollowed() {
         let delegate = CiderNoRedirect()
         let task = URLSession.shared.dataTask(with: URL(string: "http://127.0.0.1:10767/api/v2/playback")!)

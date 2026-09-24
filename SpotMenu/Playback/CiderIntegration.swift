@@ -32,8 +32,6 @@ enum CiderConnection: Equatable {
     }
 }
 
-enum CiderLiveUpdates { case checking, active, unavailable }
-
 enum CiderRPCError: Error {
     case invalidEndpoint, offline, unauthorized, denied, timedOut, invalidResponse, http(Int)
 
@@ -245,13 +243,14 @@ final class CiderSession: ObservableObject {
         monitor = Task { [weak self] in
             while let self, !Task.isCancelled {
                 let now = Date()
-                if self.currentInfo?.isPlaying == true,
-                   self.liveUpdates != .unavailable,
-                   now.timeIntervalSince(self.lastSocketEventAt ?? self.eventCheckStartedAt) >= 6 {
+                if self.liveUpdates != .unavailable,
+                   CiderLiveUpdates.shouldMarkUnavailable(
+                    isPlaying: self.currentInfo?.isPlaying == true,
+                    lastEventAt: self.lastSocketEventAt,
+                    checkingSince: self.eventCheckStartedAt, at: now) {
                     self.liveUpdates = .unavailable
                 }
-                let interval: TimeInterval = self.connection == .connected
-                    ? (self.liveUpdates == .active ? 30 : 2) : 15
+                let interval = self.liveUpdates.snapshotInterval(connected: self.connection == .connected)
                 let lastCheck = self.liveUpdates == .active
                     ? self.lastSnapshotAt : self.lastRefreshAttemptAt
                 if now.timeIntervalSince(lastCheck) >= interval {
