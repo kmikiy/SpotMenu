@@ -103,11 +103,11 @@ class PlaybackModel: ObservableObject {
 
     private var cancellable: AnyCancellable?
 
-    var playerIconName: String {
+    var playerIcon: Image {
         switch playerType {
-        case .appleMusic: return "AppleMusicIcon"
-        case .spotify: return "SpotifyIcon"
-        case .cider: return ""
+        case .appleMusic: return Image("AppleMusicIcon")
+        case .spotify: return Image("SpotifyIcon")
+        case .cider: return Image(systemName: "c.circle.fill")
         }
     }
 

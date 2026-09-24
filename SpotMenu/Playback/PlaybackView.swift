@@ -81,9 +81,7 @@ struct PlaybackView: View {
         VStack(spacing: 0) {
             HStack {
                 Button(action: model.openMusicApp) {
-                    (model.playerType == .cider
-                        ? Image(systemName: "c.circle.fill")
-                        : Image(model.playerIconName))
+                    model.playerIcon
                         .renderingMode(.template)
                         .resizable()
                         .scaledToFit()

@@ -30,11 +30,15 @@ class MusicPlayerPreferencesModel: ObservableObject {
     }
 
     @Published var ciderHost: String {
-        didSet { UserDefaults.standard.set(ciderHost, forKey: "cider.host") }
+        didSet {
+            UserDefaults.standard.set(ciderHost, forKey: "cider.host")
+        }
     }
 
     @Published var ciderPort: Int {
-        didSet { UserDefaults.standard.set(ciderPort, forKey: "cider.port") }
+        didSet {
+            UserDefaults.standard.set(ciderPort, forKey: "cider.port")
+        }
     }
 
     @Published var longFormTitleStyle: LongFormTitleStyle {

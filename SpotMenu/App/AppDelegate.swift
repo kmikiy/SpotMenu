@@ -146,7 +146,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItemModel.title = playbackModel.title
         statusItemModel.isPlaying = playbackModel.isPlaying
         statusItemModel.isLiked = playbackModel.isLiked
-        statusItemModel.playerIconName = playbackModel.playerIconName
 
         // Update width immediately and synchronously after model changes
         StatusItemConfigurator.updateWidth(

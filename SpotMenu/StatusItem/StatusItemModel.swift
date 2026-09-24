@@ -7,7 +7,6 @@ class StatusItemModel: ObservableObject {
     @Published var title: String = ""
     @Published var isPlaying: Bool = false
     @Published var isLiked: Bool? = nil
-    @Published var playerIconName: String = "SpotifyIcon"
 
     struct DisplayOptions {
         let showIcon: Bool
