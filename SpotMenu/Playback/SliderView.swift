@@ -46,6 +46,8 @@ struct CustomSlider: View {
                     .onChanged { drag in
                         let newValue = position(at: drag.location.x, width: availableWidth)
                         withAnimation(.easeInOut(duration: 0.15)) {
+                            // Cider uses an async RPC, so keep drag feedback local and send
+                            // one seek when released. Existing players retain live seeking.
                             if commitOnEnd { previewValue = newValue } else { value = newValue }
                         }
                     }

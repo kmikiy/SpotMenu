@@ -2,6 +2,8 @@ import AppKit
 import Foundation
 
 extension CiderSession {
+    // The RPC acts on Cider's current song. Keep the response attached to the song
+    // shown when the user clicked, so a late reply cannot change the next song's heart.
     func setFavorite(_ favorite: Bool) {
         guard connection == .connected, !libraryAuthorizationRequired,
               currentTrackID != nil else { return }
@@ -14,6 +16,8 @@ extension CiderSession {
                 setFavoriteStatus(favorite)
                 favoriteTask?.cancel()
                 favoriteTask = nil
+                // Cider can publish its new rating after the control request returns.
+                // Recheck the server so a delayed library update settles the displayed heart.
                 refreshFavoriteStatus(initialDelay: 1)
             } catch CiderRPCError.unauthorized {
                 libraryAuthorizationRequired = true

@@ -86,6 +86,8 @@ final class CiderRPC {
         _ = try await request("playback/seek", method: "POST", body: ["position": seconds])
     }
 
+    // Cider's now-playing status reports the current rating even when the song
+    // is not in the user's library, so library membership cannot stand in for a heart.
     func favoriteStatus() async throws -> Bool {
         let result = try await request("library/now-playing/status")
         guard let rating = result["rating"] as? Int else { throw CiderRPCError.invalidResponse }
@@ -105,6 +107,8 @@ final class CiderRPC {
                                        body: ["app_name": "SpotMenu", "scopes": ["playback", "library"]],
                                        authenticated: false, timeout: 90)
         guard let token = result["token"] as? String, !token.isEmpty else { throw CiderRPCError.invalidResponse }
+        // An older playback-only grant still plays music, but cannot read or change favorites.
+        // Refuse it here so onboarding never saves a token that leaves the heart unusable.
         guard let scopes = result["scopes"] as? [String],
               scopes.contains("playback"), scopes.contains("library") else {
             throw CiderRPCError.denied
