@@ -35,7 +35,7 @@ struct MusicPlayerPreferencesView: View {
                 CiderPreferencesSection(model: model, cider: playbackModel.cider,
                                         isActive: playbackModel.playerType == .cider)
 
-                if playbackModel.isLikingImplemented {
+                if playbackModel.playerType == .spotify {
                     Form {
                         Section {
                             Toggle("Enable Track Liking", isOn: $model.likingEnabled)
