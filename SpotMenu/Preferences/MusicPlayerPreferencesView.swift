@@ -199,6 +199,19 @@ private struct CiderPreferencesSection: View {
                 TextField("Port", value: $model.ciderPort, format: .number)
                 if isActive {
                     Text(cider.connection.message).foregroundStyle(.secondary)
+                    if cider.connection == .connected {
+                        switch cider.liveUpdates {
+                        case .checking:
+                            Text("Waiting for playback events to confirm WebSockets API")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        case .active:
+                            Label("WebSocket playback updates active", systemImage: "checkmark.circle.fill")
+                                .foregroundStyle(.green)
+                        case .unavailable:
+                            EmptyView()
+                        }
+                    }
                 } else {
                     Text("Select Cider as the preferred player to check its connection.")
                         .foregroundStyle(.secondary)
