@@ -32,10 +32,12 @@ struct MusicPlayerPreferencesView: View {
                 .formStyle(.grouped)
                 .scrollContentBackground(.hidden)
 
-                CiderPreferencesSection(model: model, cider: playbackModel.cider,
-                                        isActive: playbackModel.playerType == .cider)
+                // Automatic may use either integration, so show each setup section there.
+                if model.preferredMusicApp == .automatic || model.preferredMusicApp == .cider {
+                    CiderPreferencesSection(model: model, cider: playbackModel.cider,
+                                            isActive: playbackModel.playerType == .cider)
+                }
 
-                // Automatic can choose either player, so show both integration sections.
                 if model.preferredMusicApp == .automatic || model.preferredMusicApp == .spotify {
                     Form {
                         Section {
@@ -101,7 +103,10 @@ struct MusicPlayerPreferencesView: View {
                         } header: {
                             Text("Spotify Integration")
                         } footer: {
-                            Text("Enable liking tracks requires a Spotify Client ID. You can create one at developer.spotify.com.")
+                            Text(
+                                "Enable liking tracks requires a Spotify Client ID. " +
+                                "You can create one at developer.spotify.com."
+                            )
                         }
                     }
                     .formStyle(.grouped)
