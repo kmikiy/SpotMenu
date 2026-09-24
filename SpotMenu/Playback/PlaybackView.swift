@@ -81,7 +81,7 @@ struct PlaybackView: View {
         VStack(spacing: 0) {
             HStack {
                 Button(action: model.openMusicApp) {
-                    Image(model.playerIconName)
+                    model.playerIcon
                         .renderingMode(.template)
                         .resizable()
                         .scaledToFit()
@@ -168,7 +168,8 @@ struct PlaybackView: View {
                     ),
                     range: 0...model.totalTime,
                     foregroundColor: preferences.foregroundColor.color,
-                    trackColor: preferences.foregroundColor.color
+                    trackColor: preferences.foregroundColor.color,
+                    commitOnEnd: model.playerType == .cider
                 )
                 .frame(maxWidth: .infinity)
 
@@ -181,8 +182,7 @@ struct PlaybackView: View {
                 .fixedSize(horizontal: true, vertical: false)
 
                 if model.isLikingImplemented
-                    && musicPlayerPreferencesModel.likingEnabled
-                {
+                    && (model.playerType == .cider || musicPlayerPreferencesModel.likingEnabled) {
                     Group {
                         if let isLiked = model.isLiked {
                             Button(action: {
@@ -201,7 +201,7 @@ struct PlaybackView: View {
                             }
                             .buttonStyle(.plain)
                             .help("Toggle like status")
-                        } else {
+                        } else if model.playerType != .cider {
                             Button(action: {
                                 model.toggleLiked()  // triggers login
                             }) {

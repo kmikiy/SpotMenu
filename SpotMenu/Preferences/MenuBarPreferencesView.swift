@@ -75,13 +75,13 @@ struct MenuBarPreferencesView: View {
                         Toggle("Show Playing Icon", isOn: $model.showIsPlayingIcon)
 
                         if playbackModel.isLikingImplemented
-                            && musicPlayerPreferencesModel.likingEnabled
+                            && (playbackModel.playerType == .cider || musicPlayerPreferencesModel.likingEnabled)
                         {
                             Toggle("Show Liked Icon", isOn: Binding(
                                 get: { model.showIsLikedIcon },
                                 set: { newValue in
                                     model.showIsLikedIcon = newValue
-                                    if newValue && !isSpotifyAuthenticated {
+                                    if newValue && playbackModel.playerType == .spotify && !isSpotifyAuthenticated {
                                         LoginWindowManager.showLoginWindow(
                                             with: musicPlayerPreferencesModel
                                         )

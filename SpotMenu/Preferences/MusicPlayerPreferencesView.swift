@@ -24,14 +24,21 @@ struct MusicPlayerPreferencesView: View {
                         Text("Music Player")
                     } footer: {
                         Text(
-                            "\"Automatic\" selects the first available app at launch. If both Spotify and Apple Music are installed or running, Spotify is preferred."
+                            "\"Automatic\" selects a running player first, then an installed player. " +
+                            "Priority is Spotify, Apple Music, then Cider."
                         )
                     }
                 }
                 .formStyle(.grouped)
                 .scrollContentBackground(.hidden)
 
-                if playbackModel.isLikingImplemented {
+                // Automatic may use either integration, so show each setup section there.
+                if model.preferredMusicApp == .automatic || model.preferredMusicApp == .cider {
+                    CiderPreferencesSection(model: model, cider: playbackModel.cider,
+                                            isActive: playbackModel.playerType == .cider)
+                }
+
+                if model.preferredMusicApp == .automatic || model.preferredMusicApp == .spotify {
                     Form {
                         Section {
                             Toggle("Enable Track Liking", isOn: $model.likingEnabled)
@@ -96,7 +103,10 @@ struct MusicPlayerPreferencesView: View {
                         } header: {
                             Text("Spotify Integration")
                         } footer: {
-                            Text("Enable liking tracks requires a Spotify Client ID. You can create one at developer.spotify.com.")
+                            Text(
+                                "Enable liking tracks requires a Spotify Client ID. " +
+                                "You can create one at developer.spotify.com."
+                            )
                         }
                     }
                     .formStyle(.grouped)
@@ -172,6 +182,89 @@ struct MusicPlayerPreferencesView: View {
         } else {
             return .gray
         }
+    }
+}
+
+private struct CiderPreferencesSection: View {
+    @ObservedObject var model: MusicPlayerPreferencesModel
+    @ObservedObject var cider: CiderSession
+    let isActive: Bool
+    @State private var showManualToken = false
+    @State private var manualToken = ""
+
+    var body: some View {
+        Form {
+            Section("Cider Integration") {
+                TextField("Host", text: $model.ciderHost)
+                    .help("Loopback only: 127.0.0.1, localhost, or ::1")
+                TextField("Port", value: $model.ciderPort, format: .number.grouping(.never))
+                if isActive {
+                    Text(cider.connection.message).foregroundStyle(.secondary)
+                    if cider.connection == .connected {
+                        switch cider.liveUpdates {
+                        case .checking:
+                            Text("Waiting for playback events to confirm WebSockets API")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        case .active:
+                            Label("WebSocket playback updates active", systemImage: "checkmark.circle.fill")
+                                .foregroundStyle(.green)
+                        case .unavailable:
+                            EmptyView()
+                        }
+                    }
+                } else {
+                    Text("Select Cider as the preferred player to check its connection.")
+                        .foregroundStyle(.secondary)
+                }
+                if isActive && cider.connection == .connected && cider.liveUpdates == .unavailable {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Label("Live playback updates are unavailable", systemImage: "exclamationmark.triangle")
+                        Text(
+                            "In Cider, open Settings → Connections → External Applications " +
+                            "and enable WebSockets API. SpotMenu checks playback about every " +
+                            "two seconds until live updates return."
+                        )
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        HStack {
+                            Button("Open Cider") { openApp(bundleIdentifier: "sh.cider.genten.mac") }
+                            Button("Check Again") { cider.reconnect() }
+                        }
+                    }
+                }
+                if isActive && cider.libraryAuthorizationRequired {
+                    Text("Approve SpotMenu again in Cider to enable favorites. The new request adds library access.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                if isActive, let version = cider.rpcVersion {
+                    Text("RPC version \(version)").font(.caption).foregroundStyle(.secondary)
+                }
+                if let message = cider.statusMessage {
+                    Text(message).font(.caption).foregroundStyle(.secondary)
+                }
+                HStack {
+                    Button(isActive && cider.connection == .connected ? "Reauthorize in Cider" : "Authorize in Cider") {
+                        cider.authorize()
+                    }
+                        .help("SpotMenu stores Cider's playback and library token in macOS Keychain.")
+                        .disabled(cider.authorizationBusy)
+                    if cider.authorizationBusy { ProgressView().controlSize(.small) }
+                    if isActive { Button("Retry Connection") { cider.reconnect() } }
+                }
+                DisclosureGroup("Enter token manually", isExpanded: $showManualToken) {
+                    SecureField("Cider RPC token", text: $manualToken)
+                    Button("Save Token") {
+                        cider.saveManualToken(manualToken)
+                        manualToken = ""
+                    }
+                    .disabled(manualToken.isEmpty)
+                }
+            }
+        }
+        .formStyle(.grouped)
+        .scrollContentBackground(.hidden)
     }
 }
 
