@@ -65,7 +65,7 @@ final class CiderRPC {
         self.endpoint = endpoint
         self.token = token
         let configuration = URLSessionConfiguration.ephemeral
-        configuration.timeoutIntervalForRequest = 8
+        configuration.timeoutIntervalForRequest = 90
         self.session = session ?? URLSession(
             configuration: configuration,
             delegate: CiderNoRedirect(),
