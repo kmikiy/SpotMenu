@@ -5,8 +5,8 @@ import Testing
 private final class CiderRequestStub: URLProtocol {
     static var handle: ((URLRequest) -> (Int, Data))?
 
-    override class func canInit(with request: URLRequest) -> Bool { true }
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
+    override static func canInit(with request: URLRequest) -> Bool { true }
+    override static func canonicalRequest(for request: URLRequest) -> URLRequest { request }
 
     override func startLoading() {
         guard let handle = Self.handle, let url = request.url else { return }

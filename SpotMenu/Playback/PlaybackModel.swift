@@ -7,12 +7,6 @@ extension Notification.Name {
     )
 }
 
-enum PlayerType {
-    case spotify
-    case appleMusic
-    case cider
-}
-
 enum LongFormTitleStyle: String, CaseIterable, Identifiable {
     case titleOnly
     case segmentOnly
@@ -25,24 +19,6 @@ enum LongFormTitleStyle: String, CaseIterable, Identifiable {
         case .titleOnly: return "Title Only"
         case .segmentOnly: return "Chapter/Episode Only"
         case .titleAndSegment: return "Title + Chapter/Episode"
-        }
-    }
-}
-
-enum PreferredPlayer: String, CaseIterable, Identifiable {
-    case automatic
-    case spotify
-    case appleMusic
-    case cider
-
-    var id: String { rawValue }
-
-    var displayName: String {
-        switch self {
-        case .automatic: return "Automatic"
-        case .spotify: return "Spotify"
-        case .appleMusic: return "Apple Music"
-        case .cider: return "Cider"
         }
     }
 }

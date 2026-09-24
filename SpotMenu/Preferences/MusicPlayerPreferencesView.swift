@@ -24,7 +24,8 @@ struct MusicPlayerPreferencesView: View {
                         Text("Music Player")
                     } footer: {
                         Text(
-                            "\"Automatic\" selects a running player first, then an installed player. Priority is Spotify, Apple Music, then Cider."
+                            "\"Automatic\" selects a running player first, then an installed player. " +
+                            "Priority is Spotify, Apple Music, then Cider."
                         )
                     }
                 }
@@ -213,7 +214,11 @@ private struct CiderPreferencesSection: View {
                 if isActive && cider.connection == .connected && cider.liveUpdates == .unavailable {
                     VStack(alignment: .leading, spacing: 8) {
                         Label("Live playback updates are unavailable", systemImage: "exclamationmark.triangle")
-                        Text("In Cider, open Settings → Connections → External Applications and enable WebSockets API. SpotMenu checks playback about every two seconds until live updates return.")
+                        Text(
+                            "In Cider, open Settings → Connections → External Applications " +
+                            "and enable WebSockets API. SpotMenu checks playback about every " +
+                            "two seconds until live updates return."
+                        )
                             .font(.caption)
                             .foregroundStyle(.secondary)
                         HStack {

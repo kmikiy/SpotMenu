@@ -177,7 +177,9 @@ struct PlaybackView: View {
                         Capsule().fill(preferences.foregroundColor.color.opacity(0.3))
                             .overlay(alignment: .leading) {
                                 Capsule().fill(preferences.foregroundColor.color)
-                                    .frame(width: geometry.size.width * min(1, model.currentTime / max(1, model.totalTime)))
+                                    .frame(
+                                        width: geometry.size.width * min(1, model.currentTime / max(1, model.totalTime))
+                                    )
                             }
                     }
                     .frame(height: 4)
