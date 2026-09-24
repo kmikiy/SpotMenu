@@ -32,6 +32,8 @@ enum CiderConnection: Equatable {
     }
 }
 
+enum CiderLiveUpdates { case checking, active, unavailable }
+
 enum CiderRPCError: Error {
     case invalidEndpoint, offline, unauthorized, denied, timedOut, invalidResponse, http(Int)
 
@@ -194,6 +196,7 @@ final class CiderSession: ObservableObject {
     @Published private(set) var authorizationBusy = false
     @Published private(set) var rpcVersion: String?
     @Published private(set) var statusMessage: String?
+    @Published private(set) var liveUpdates: CiderLiveUpdates = .checking
 
     var onPlayback: ((PlaybackInfo?, Bool) -> Void)?
     private let preferences: MusicPlayerPreferencesModel
@@ -203,9 +206,9 @@ final class CiderSession: ObservableObject {
     private var monitor: Task<Void, Never>?
     private var refreshTask: Task<Void, Never>?
     private var refreshAgain = false
-    private var socketConnected = false
     private var lastSocketEventAt: Date?
-    private var socketRetryAfter = Date.distantPast
+    private var eventCheckStartedAt = Date()
+    private var lastRefreshAttemptAt = Date.distantPast
     private var lastSnapshotAt = Date.distantPast
     private var displayTimer: Timer?
     private var progress = CiderProgressClock()
@@ -233,23 +236,28 @@ final class CiderSession: ObservableObject {
             tokenLoaded = true
         }
         generation += 1
+        liveUpdates = .checking
+        eventCheckStartedAt = Date()
         displayTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             Task { @MainActor in self?.tickProgress() }
         }
         refresh()
         monitor = Task { [weak self] in
             while let self, !Task.isCancelled {
-                if self.socketConnected,
-                   let lastEvent = self.lastSocketEventAt,
-                   Date().timeIntervalSince(lastEvent) >= 15 {
-                    self.suspendSilentSocket()
+                let now = Date()
+                if self.currentInfo?.isPlaying == true,
+                   self.liveUpdates != .unavailable,
+                   now.timeIntervalSince(self.lastSocketEventAt ?? self.eventCheckStartedAt) >= 6 {
+                    self.liveUpdates = .unavailable
                 }
-                // Cider may start an Automix transition partway into a song.
-                // A slow HTTP snapshot corrects any missed or incomplete socket time update.
-                if !self.socketConnected || Date().timeIntervalSince(self.lastSnapshotAt) >= 30 {
+                let interval: TimeInterval = self.connection == .connected
+                    ? (self.liveUpdates == .active ? 30 : 2) : 15
+                let lastCheck = self.liveUpdates == .active
+                    ? self.lastSnapshotAt : self.lastRefreshAttemptAt
+                if now.timeIntervalSince(lastCheck) >= interval {
                     self.refresh()
                 }
-                try? await Task.sleep(nanoseconds: 15_000_000_000)
+                try? await Task.sleep(nanoseconds: 1_000_000_000)
             }
         }
     }
@@ -266,9 +274,9 @@ final class CiderSession: ObservableObject {
         socket?.disconnect()
         socket = nil
         socketManager = nil
-        socketConnected = false
         lastSocketEventAt = nil
-        socketRetryAfter = .distantPast
+        liveUpdates = .checking
+        lastRefreshAttemptAt = .distantPast
         lastSnapshotAt = .distantPast
         progress.reset()
         pendingPlaybackState = nil
@@ -285,6 +293,7 @@ final class CiderSession: ObservableObject {
     func refresh() {
         guard monitor != nil || generation > 0 else { return }
         guard refreshTask == nil else { refreshAgain = true; return }
+        lastRefreshAttemptAt = Date()
         let requestGeneration = generation
         refreshTask = Task { [weak self] in
             guard let self else { return }
@@ -301,7 +310,7 @@ final class CiderSession: ObservableObject {
                 connection = .connected
                 statusMessage = nil
                 apply(snapshot)
-                if socket == nil && Date() >= socketRetryAfter { connectSocket() }
+                if socket == nil { connectSocket() }
             } catch let error as CiderRPCError {
                 guard requestGeneration == generation else { return }
                 switch error {
@@ -382,16 +391,6 @@ final class CiderSession: ObservableObject {
         }
     }
 
-    private func suspendSilentSocket() {
-        socket?.removeAllHandlers()
-        socket?.disconnect()
-        socket = nil
-        socketManager = nil
-        socketConnected = false
-        lastSocketEventAt = nil
-        socketRetryAfter = Date().addingTimeInterval(60)
-    }
-
     private func connectSocket() {
         guard let url = rpc.endpoint.url else { return }
         let manager = SocketManager(socketURL: url, config: [
@@ -399,16 +398,18 @@ final class CiderSession: ObservableObject {
         ])
         let client = manager.defaultSocket
         client.on(clientEvent: .connect) { [weak self] _, _ in
-            self?.socketConnected = true
-            self?.lastSocketEventAt = Date()
+            self?.lastSocketEventAt = nil
+            self?.eventCheckStartedAt = Date()
+            self?.liveUpdates = .checking
             self?.refresh()
         }
         client.on(clientEvent: .disconnect) { [weak self] _, _ in
-            self?.socketConnected = false
+            self?.liveUpdates = .unavailable
         }
         client.on("API:Playback") { [weak self] data, _ in
             guard let event = data.first as? [String: Any], let type = event["type"] as? String else { return }
             self?.lastSocketEventAt = Date()
+            self?.liveUpdates = .active
             switch type {
             case "playbackStatus.nowPlayingItemDidChange":
                 if let self, let info = self.currentInfo {
@@ -485,8 +486,12 @@ final class CiderSession: ObservableObject {
                 }
                 rpc.token = token
                 tokenLoaded = true
-                statusMessage = nil
-                reconnect()
+                if monitor == nil {
+                    statusMessage = "Authorization saved. Select Cider as the preferred player to connect."
+                } else {
+                    statusMessage = nil
+                    reconnect()
+                }
             } catch let error as CiderRPCError { statusMessage = error.message }
             catch { statusMessage = "Authorization failed. Select Authorize to retry." }
         }
@@ -501,6 +506,10 @@ final class CiderSession: ObservableObject {
         }
         rpc.token = token
         tokenLoaded = true
-        reconnect()
+        if monitor == nil {
+            statusMessage = "Authorization saved. Select Cider as the preferred player to connect."
+        } else {
+            reconnect()
+        }
     }
 }

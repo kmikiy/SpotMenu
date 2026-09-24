@@ -31,9 +31,8 @@ struct MusicPlayerPreferencesView: View {
                 .formStyle(.grouped)
                 .scrollContentBackground(.hidden)
 
-                if playbackModel.playerType == .cider {
-                    CiderPreferencesSection(model: model, cider: playbackModel.cider)
-                }
+                CiderPreferencesSection(model: model, cider: playbackModel.cider,
+                                        isActive: playbackModel.playerType == .cider)
 
                 if playbackModel.isLikingImplemented {
                     Form {
@@ -182,17 +181,41 @@ struct MusicPlayerPreferencesView: View {
 private struct CiderPreferencesSection: View {
     @ObservedObject var model: MusicPlayerPreferencesModel
     @ObservedObject var cider: CiderSession
+    let isActive: Bool
     @State private var showManualToken = false
     @State private var manualToken = ""
 
     var body: some View {
         Form {
-            Section("Cider Connection") {
+            Section("Cider Integration") {
+                Text("Authorize SpotMenu in Cider for playback access. The RPC token is stored in macOS Keychain.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text("Enable WebSockets API in Cider Settings → Connections → External Applications for live updates. When events are unavailable, SpotMenu checks playback about every two seconds.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 TextField("Host", text: $model.ciderHost)
                     .help("Loopback only: 127.0.0.1, localhost, or ::1")
                 TextField("Port", value: $model.ciderPort, format: .number)
-                Text(cider.connection.message).foregroundStyle(.secondary)
-                if let version = cider.rpcVersion {
+                if isActive {
+                    Text(cider.connection.message).foregroundStyle(.secondary)
+                } else {
+                    Text("Select Cider as the preferred player to check its connection.")
+                        .foregroundStyle(.secondary)
+                }
+                if isActive && cider.connection == .connected && cider.liveUpdates == .unavailable {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Label("Live playback updates are unavailable", systemImage: "exclamationmark.triangle")
+                        Text("In Cider, open Settings → Connections → External Applications and enable WebSockets API. SpotMenu checks playback about every two seconds until live updates return.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        HStack {
+                            Button("Open Cider") { openApp(bundleIdentifier: "sh.cider.genten.mac") }
+                            Button("Check Again") { cider.reconnect() }
+                        }
+                    }
+                }
+                if isActive, let version = cider.rpcVersion {
                     Text("RPC version \(version)").font(.caption).foregroundStyle(.secondary)
                 }
                 if let message = cider.statusMessage {
@@ -202,7 +225,7 @@ private struct CiderPreferencesSection: View {
                     Button("Authorize in Cider") { cider.authorize() }
                         .disabled(cider.authorizationBusy)
                     if cider.authorizationBusy { ProgressView().controlSize(.small) }
-                    Button("Retry Connection") { cider.reconnect() }
+                    if isActive { Button("Retry Connection") { cider.reconnect() } }
                 }
                 DisclosureGroup("Enter token manually", isExpanded: $showManualToken) {
                     SecureField("Cider RPC token", text: $manualToken)
