@@ -191,7 +191,7 @@ private struct CiderPreferencesSection: View {
             Section("Cider Integration") {
                 TextField("Host", text: $model.ciderHost)
                     .help("Loopback only: 127.0.0.1, localhost, or ::1")
-                TextField("Port", value: $model.ciderPort, format: .number)
+                TextField("Port", value: $model.ciderPort, format: .number.grouping(.never))
                 if isActive {
                     Text(cider.connection.message).foregroundStyle(.secondary)
                     if cider.connection == .connected {
@@ -227,6 +227,11 @@ private struct CiderPreferencesSection: View {
                         }
                     }
                 }
+                if isActive && cider.libraryAuthorizationRequired {
+                    Text("Approve SpotMenu again in Cider to enable favorites. The new request adds library access.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
                 if isActive, let version = cider.rpcVersion {
                     Text("RPC version \(version)").font(.caption).foregroundStyle(.secondary)
                 }
@@ -237,7 +242,7 @@ private struct CiderPreferencesSection: View {
                     Button(isActive && cider.connection == .connected ? "Reauthorize in Cider" : "Authorize in Cider") {
                         cider.authorize()
                     }
-                        .help("SpotMenu stores Cider's playback token in macOS Keychain.")
+                        .help("SpotMenu stores Cider's playback and library token in macOS Keychain.")
                         .disabled(cider.authorizationBusy)
                     if cider.authorizationBusy { ProgressView().controlSize(.small) }
                     if isActive { Button("Retry Connection") { cider.reconnect() } }

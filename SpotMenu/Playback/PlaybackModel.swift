@@ -87,11 +87,7 @@ class PlaybackModel: ObservableObject {
         }
     }
 
-    var isLikingImplemented: Bool {
-        return playerType == .spotify
-    }
-
-    var canSeek: Bool { playerType != .cider }
+    var isLikingImplemented: Bool { playerType == .spotify || playerType == .cider }
 
     init(preferences: MusicPlayerPreferencesModel) {
         self.preferences = preferences
@@ -226,13 +222,13 @@ class PlaybackModel: ObservableObject {
         if playerType == .cider { cider.control(.toggle); return }
         // Execute the command first
         controller?.togglePlayPause()
-        
+
         // Small delay to allow the music player to process, then update UI
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             self.isPlaying.toggle()
             self.notifyModelUpdate()
         }
-        
+
         delayedFetch()
     }
 
@@ -248,55 +244,8 @@ class PlaybackModel: ObservableObject {
         delayedFetch()
     }
 
-    func toggleLiked() {
-        guard isLikingImplemented else { return }
-        let previousLikeStatus = self.isLiked
-
-        // Immediately update like status for UI responsiveness
-        if let previous = previousLikeStatus {
-            isLiked = !previous
-        }
-        
-        // Send notification to update status bar immediately
-        notifyModelUpdate()
-
-        controller?.toggleLiked()
-        delayedFetch()
-    }
-
-    func likeTrack() {
-        guard isLikingImplemented else { return }
-        // Immediately update like status for UI responsiveness
-        isLiked = true
-        
-        // Send notification to update status bar immediately
-        notifyModelUpdate()
-        
-        controller?.likeTrack()
-    }
-
-    func unlikeTrack() {
-        guard isLikingImplemented else { return }
-        // Immediately update like status for UI responsiveness
-        isLiked = false
-        
-        // Send notification to update status bar immediately
-        notifyModelUpdate()
-        
-        controller?.unlikeTrack()
-    }
-
-    func updatePlaybackPosition(to seconds: Double) {
-        guard canSeek else { return }
-        controller?.updatePlaybackPosition(to: seconds)
-        self.currentTime = seconds
-    }
-
     func openMusicApp() {
-        if playerType == .cider {
-            openApp(bundleIdentifier: "sh.cider.genten.mac")
-            return
-        }
+        if playerType == .cider { openApp(bundleIdentifier: "sh.cider.genten.mac"); return }
         controller?.openApp()
     }
 
@@ -305,7 +254,7 @@ class PlaybackModel: ObservableObject {
             self.fetchInfo()
         }
     }
-    
+
     private func notifyModelUpdate() {
         NotificationCenter.default.post(
             name: .contentModelDidUpdate,
@@ -361,6 +310,59 @@ class PlaybackModel: ObservableObject {
         let artistText = authorText.isEmpty ? info.artist : authorText
 
         return (artistText, titleText)
+    }
+}
+
+extension PlaybackModel {
+    func toggleLiked() {
+        guard isLikingImplemented else { return }
+        if playerType == .cider {
+            guard let isLiked else { return }
+            cider.setFavorite(!isLiked)
+            return
+        }
+        let previousLikeStatus = self.isLiked
+
+        // Immediately update like status for UI responsiveness
+        if let previous = previousLikeStatus {
+            isLiked = !previous
+        }
+
+        // Send notification to update status bar immediately
+        notifyModelUpdate()
+
+        controller?.toggleLiked()
+        delayedFetch()
+    }
+
+    func likeTrack() {
+        guard isLikingImplemented else { return }
+        if playerType == .cider { cider.setFavorite(true); return }
+        // Immediately update like status for UI responsiveness
+        isLiked = true
+
+        // Send notification to update status bar immediately
+        notifyModelUpdate()
+
+        controller?.likeTrack()
+    }
+
+    func unlikeTrack() {
+        guard isLikingImplemented else { return }
+        if playerType == .cider { cider.setFavorite(false); return }
+        // Immediately update like status for UI responsiveness
+        isLiked = false
+
+        // Send notification to update status bar immediately
+        notifyModelUpdate()
+
+        controller?.unlikeTrack()
+    }
+
+    func updatePlaybackPosition(to seconds: Double) {
+        if playerType == .cider { cider.seek(to: seconds); return }
+        controller?.updatePlaybackPosition(to: seconds)
+        self.currentTime = seconds
     }
 }
 

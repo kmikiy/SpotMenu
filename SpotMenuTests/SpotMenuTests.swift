@@ -21,6 +21,16 @@ private final class CiderRequestStub: URLProtocol {
     override func stopLoading() {}
 }
 
+private func requestBody(_ request: URLRequest) -> Data {
+    if let body = request.httpBody { return body }
+    guard let stream = request.httpBodyStream else { return Data() }
+    stream.open()
+    defer { stream.close() }
+    var bytes = [UInt8](repeating: 0, count: 4096)
+    let count = stream.read(&bytes, maxLength: bytes.count)
+    return Data(bytes.prefix(max(0, count)))
+}
+
 @Suite(.serialized)
 struct SpotMenuTests {
     @Test func ciderEndpointAcceptsOnlyLoopback() {
@@ -39,7 +49,7 @@ struct SpotMenuTests {
                 "id": "song-1",
                 "attributes": [
                     "name": "Track", "artistName": "Artist", "albumName": "Album",
-                    "durationInMillis": 200_000,
+                    "durationInMillis": 200_000, "inFavorites": true,
                     "artwork": ["url": "https://example.com/{w}x{h}.jpg"]
                 ]
             ],
@@ -50,6 +60,7 @@ struct SpotMenuTests {
         #expect(snapshot.info?.title == "Track")
         #expect(snapshot.info?.currentTime == 12.5)
         #expect(snapshot.info?.totalTime == 200)
+        #expect(snapshot.info?.isLiked == true)
         #expect(snapshot.info?.imageURL?.absoluteString == "https://example.com/300x300.jpg")
     }
 
@@ -159,8 +170,8 @@ struct SpotMenuTests {
             }
             let body = try? JSONSerialization.jsonObject(with: bodyData) as? [String: Any]
             #expect(body?["app_name"] as? String == "SpotMenu")
-            #expect(body?["scopes"] as? [String] == ["playback"])
-            return (200, Data("{\"data\":{\"token\":\"test-value\",\"scopes\":[\"playback\"]}}".utf8))
+            #expect(body?["scopes"] as? [String] == ["playback", "library"])
+            return (200, Data("{\"data\":{\"token\":\"test-value\",\"scopes\":[\"playback\",\"library\"]}}".utf8))
         }
         defer { CiderRequestStub.handle = nil }
         #expect(try await rpc.authorize() == "test-value")
@@ -192,5 +203,53 @@ struct SpotMenuTests {
         }
         defer { CiderRequestStub.handle = nil }
         try await rpc.control(.previous)
+    }
+
+    @Test @MainActor func ciderAuthorizationRequiresLibraryScopeForFavorites() async {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [CiderRequestStub.self]
+        let rpc = CiderRPC(endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
+                           session: URLSession(configuration: configuration))
+        CiderRequestStub.handle = { _ in
+            (200, Data("{\"data\":{\"token\":\"test-value\",\"scopes\":[\"playback\"]}}".utf8))
+        }
+        defer { CiderRequestStub.handle = nil }
+        do {
+            _ = try await rpc.authorize()
+            Issue.record("Authorization accepted a token without library scope")
+        } catch CiderRPCError.denied {
+            // A limited token must not replace the existing Keychain item.
+        } catch {
+            Issue.record("Unexpected authorization error")
+        }
+    }
+
+    @Test @MainActor func ciderSeekAndFavoritesUseV2RPC() async throws {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [CiderRequestStub.self]
+        let rpc = CiderRPC(endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
+                           token: "test-value", session: URLSession(configuration: configuration))
+        CiderRequestStub.handle = { request in
+            #expect(request.value(forHTTPHeaderField: "apptoken") == "test-value")
+            switch (request.httpMethod, request.url?.path) {
+            case ("POST", "/api/v2/playback/seek"):
+                let json = try? JSONSerialization.jsonObject(with: requestBody(request)) as? [String: Double]
+                #expect(json?["position"] == 42.5)
+                return (204, Data())
+            case ("GET", "/api/v2/library/now-playing/status"):
+                return (200, Data("{\"data\":{\"rating\":1,\"inLibrary\":false}}".utf8))
+            case ("POST", "/api/v2/library/now-playing/love"),
+                 ("DELETE", "/api/v2/library/now-playing/rating"):
+                return (204, Data())
+            default:
+                Issue.record("Unexpected Cider RPC request")
+                return (404, Data())
+            }
+        }
+        defer { CiderRequestStub.handle = nil }
+        try await rpc.seek(to: 42.5)
+        #expect(try await rpc.favoriteStatus())
+        try await rpc.setFavorite(true)
+        try await rpc.setFavorite(false)
     }
 }

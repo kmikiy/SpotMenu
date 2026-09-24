@@ -161,31 +161,17 @@ struct PlaybackView: View {
                 .frame(alignment: .leading)
                 .fixedSize(horizontal: true, vertical: false)
 
-                if model.canSeek {
-                    CustomSlider(
-                        value: Binding(
-                            get: { model.currentTime },
-                            set: { model.updatePlaybackPosition(to: $0) }
-                        ),
-                        range: 0...model.totalTime,
-                        foregroundColor: preferences.foregroundColor.color,
-                        trackColor: preferences.foregroundColor.color
-                    )
-                    .frame(maxWidth: .infinity)
-                } else {
-                    GeometryReader { geometry in
-                        Capsule().fill(preferences.foregroundColor.color.opacity(0.3))
-                            .overlay(alignment: .leading) {
-                                Capsule().fill(preferences.foregroundColor.color)
-                                    .frame(
-                                        width: geometry.size.width * min(1, model.currentTime / max(1, model.totalTime))
-                                    )
-                            }
-                    }
-                    .frame(height: 4)
-                    .frame(maxWidth: .infinity)
-                    .accessibilityLabel("Playback progress")
-                }
+                CustomSlider(
+                    value: Binding(
+                        get: { model.currentTime },
+                        set: { model.updatePlaybackPosition(to: $0) }
+                    ),
+                    range: 0...model.totalTime,
+                    foregroundColor: preferences.foregroundColor.color,
+                    trackColor: preferences.foregroundColor.color,
+                    commitOnEnd: model.playerType == .cider
+                )
+                .frame(maxWidth: .infinity)
 
                 Text(
                     formatTime(model.totalTime, styleMatching: model.totalTime)
@@ -196,8 +182,7 @@ struct PlaybackView: View {
                 .fixedSize(horizontal: true, vertical: false)
 
                 if model.isLikingImplemented
-                    && musicPlayerPreferencesModel.likingEnabled
-                {
+                    && (model.playerType == .cider || musicPlayerPreferencesModel.likingEnabled) {
                     Group {
                         if let isLiked = model.isLiked {
                             Button(action: {
@@ -216,7 +201,7 @@ struct PlaybackView: View {
                             }
                             .buttonStyle(.plain)
                             .help("Toggle like status")
-                        } else {
+                        } else if model.playerType != .cider {
                             Button(action: {
                                 model.toggleLiked()  // triggers login
                             }) {

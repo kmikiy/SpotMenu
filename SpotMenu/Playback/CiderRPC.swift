@@ -81,11 +81,34 @@ final class CiderRPC {
                               body: action == .previous ? ["force": false] : nil)
     }
 
+    func seek(to seconds: Double) async throws {
+        guard seconds.isFinite, seconds >= 0 else { throw CiderRPCError.invalidResponse }
+        _ = try await request("playback/seek", method: "POST", body: ["position": seconds])
+    }
+
+    func favoriteStatus() async throws -> Bool {
+        let result = try await request("library/now-playing/status")
+        guard let rating = result["rating"] as? Int else { throw CiderRPCError.invalidResponse }
+        return rating == 1
+    }
+
+    func setFavorite(_ favorite: Bool) async throws {
+        if favorite {
+            _ = try await request("library/now-playing/love", method: "POST")
+        } else {
+            _ = try await request("library/now-playing/rating", method: "DELETE")
+        }
+    }
+
     func authorize() async throws -> String {
         let result = try await request("auth/request", method: "POST",
-                                       body: ["app_name": "SpotMenu", "scopes": ["playback"]],
+                                       body: ["app_name": "SpotMenu", "scopes": ["playback", "library"]],
                                        authenticated: false, timeout: 90)
         guard let token = result["token"] as? String, !token.isEmpty else { throw CiderRPCError.invalidResponse }
+        guard let scopes = result["scopes"] as? [String],
+              scopes.contains("playback"), scopes.contains("library") else {
+            throw CiderRPCError.denied
+        }
         return token
     }
 
@@ -158,7 +181,8 @@ struct CiderSnapshot {
         return CiderSnapshot(trackID: id, info: PlaybackInfo(
             artist: artist, title: title, isPlaying: state == "playing", imageURL: artworkURL,
             totalTime: max(1, duration), currentTime: max(0, elapsed), image: nil,
-            isLiked: nil, longFormInfo: nil))
+            isLiked: fields["inFavorites"] as? Bool ?? item["inFavorites"] as? Bool,
+            longFormInfo: nil))
     }
 }
 
