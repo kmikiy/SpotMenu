@@ -25,7 +25,9 @@ struct StatusItemView: View {
 
         return HStack(spacing: 4) {
             if displayOptions.showIcon {
-                Image(model.playerIconName)
+                (playbackModel.playerType == .cider
+                    ? Image(systemName: "c.circle.fill")
+                    : Image(model.playerIconName))
                     .renderingMode(.template)
                     .resizable()
                     .frame(width: 16, height: 16)

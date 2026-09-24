@@ -2,6 +2,7 @@ import Combine
 import KeyboardShortcuts
 import SwiftUI
 
+@MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem!
     var statusItemModel = StatusItemModel()
@@ -39,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.updateStatusItem()
+            Task { @MainActor in self?.updateStatusItem() }
         }
 
         // Set up popover manager
@@ -60,7 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Update UI periodically
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             [weak self] _ in
-            self?.updateStatusItem()
+            Task { @MainActor in self?.updateStatusItem() }
         }
 
         StatusItemConfigurator.configure(
@@ -96,42 +97,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func setupKeyboardShortcuts() {
         KeyboardShortcuts.onKeyUp(for: .playPause) { [weak self] in
-            self?.playbackModel.togglePlayPause()
+            DispatchQueue.main.async { self?.playbackModel.togglePlayPause() }
             // Immediately update status item for keyboard shortcut feedback
             DispatchQueue.main.async {
                 self?.updateStatusItem()
             }
         }
         KeyboardShortcuts.onKeyUp(for: .nextTrack) { [weak self] in
-            self?.playbackModel.skipForward()
+            DispatchQueue.main.async { self?.playbackModel.skipForward() }
             // Immediately update status item for keyboard shortcut feedback
             DispatchQueue.main.async {
                 self?.updateStatusItem()
             }
         }
         KeyboardShortcuts.onKeyUp(for: .previousTrack) { [weak self] in
-            self?.playbackModel.skipBack()
+            DispatchQueue.main.async { self?.playbackModel.skipBack() }
             // Immediately update status item for keyboard shortcut feedback
             DispatchQueue.main.async {
                 self?.updateStatusItem()
             }
         }
         KeyboardShortcuts.onKeyUp(for: .toggleLike) { [weak self] in
-            self?.playbackModel.toggleLiked()
+            DispatchQueue.main.async { self?.playbackModel.toggleLiked() }
             // Immediately update status item for keyboard shortcut feedback
             DispatchQueue.main.async {
                 self?.updateStatusItem()
             }
         }
         KeyboardShortcuts.onKeyUp(for: .likeTrack) { [weak self] in
-            self?.playbackModel.likeTrack()
+            DispatchQueue.main.async { self?.playbackModel.likeTrack() }
             // Immediately update status item for keyboard shortcut feedback
             DispatchQueue.main.async {
                 self?.updateStatusItem()
             }
         }
         KeyboardShortcuts.onKeyUp(for: .unlikeTrack) { [weak self] in
-            self?.playbackModel.unlikeTrack()
+            DispatchQueue.main.async { self?.playbackModel.unlikeTrack() }
             // Immediately update status item for keyboard shortcut feedback
             DispatchQueue.main.async {
                 self?.updateStatusItem()

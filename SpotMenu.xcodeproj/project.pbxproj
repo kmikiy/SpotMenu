@@ -11,6 +11,7 @@
 		64134C322E05AF1800EB3AE3 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 64134C312E05AF1800EB3AE3 /* LICENSE */; };
 		64134C342E05AF1E00EB3AE3 /* ISSUE_TEMPLATE.md in Resources */ = {isa = PBXBuildFile; fileRef = 64134C332E05AF1E00EB3AE3 /* ISSUE_TEMPLATE.md */; };
 		648D41AD2E02904C001D8CE5 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 648D41AC2E02904C001D8CE5 /* KeyboardShortcuts */; };
+		64C1DE0012F000000000001 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 64C1DE0012F000000000002 /* SocketIO */; };
 		64SPARKLE012F00000000001 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 64SPARKLE012F00000000002 /* Sparkle */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				648D41AD2E02904C001D8CE5 /* KeyboardShortcuts in Frameworks */,
+				64C1DE0012F000000000001 /* SocketIO in Frameworks */,
 				64SPARKLE012F00000000001 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +145,7 @@
 			name = SpotMenu;
 			packageProductDependencies = (
 				648D41AC2E02904C001D8CE5 /* KeyboardShortcuts */,
+				64C1DE0012F000000000002 /* SocketIO */,
 				64SPARKLE012F00000000002 /* Sparkle */,
 			);
 			productName = SpotMenu;
@@ -229,6 +232,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				648D41A92E028FAF001D8CE5 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+				64C1DE0012F000000000003 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 				64SPARKLE012F00000000003 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -610,6 +614,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		64C1DE0012F000000000003 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 16.1.1;
+			};
+		};
 		648D41A92E028FAF001D8CE5 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
@@ -629,6 +641,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		64C1DE0012F000000000002 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 64C1DE0012F000000000003 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
+		};
 		648D41AC2E02904C001D8CE5 /* KeyboardShortcuts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 648D41A92E028FAF001D8CE5 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;

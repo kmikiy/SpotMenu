@@ -1,6 +1,7 @@
 import AppKit
 import Foundation
 
+@MainActor
 class StatusItemModel: ObservableObject {
     @Published var artist: String = ""
     @Published var title: String = ""

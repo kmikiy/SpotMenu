@@ -81,7 +81,9 @@ struct PlaybackView: View {
         VStack(spacing: 0) {
             HStack {
                 Button(action: model.openMusicApp) {
-                    Image(model.playerIconName)
+                    (model.playerType == .cider
+                        ? Image(systemName: "c.circle.fill")
+                        : Image(model.playerIconName))
                         .renderingMode(.template)
                         .resizable()
                         .scaledToFit()
@@ -161,16 +163,29 @@ struct PlaybackView: View {
                 .frame(alignment: .leading)
                 .fixedSize(horizontal: true, vertical: false)
 
-                CustomSlider(
-                    value: Binding(
-                        get: { model.currentTime },
-                        set: { model.updatePlaybackPosition(to: $0) }
-                    ),
-                    range: 0...model.totalTime,
-                    foregroundColor: preferences.foregroundColor.color,
-                    trackColor: preferences.foregroundColor.color
-                )
-                .frame(maxWidth: .infinity)
+                if model.canSeek {
+                    CustomSlider(
+                        value: Binding(
+                            get: { model.currentTime },
+                            set: { model.updatePlaybackPosition(to: $0) }
+                        ),
+                        range: 0...model.totalTime,
+                        foregroundColor: preferences.foregroundColor.color,
+                        trackColor: preferences.foregroundColor.color
+                    )
+                    .frame(maxWidth: .infinity)
+                } else {
+                    GeometryReader { geometry in
+                        Capsule().fill(preferences.foregroundColor.color.opacity(0.3))
+                            .overlay(alignment: .leading) {
+                                Capsule().fill(preferences.foregroundColor.color)
+                                    .frame(width: geometry.size.width * min(1, model.currentTime / max(1, model.totalTime)))
+                            }
+                    }
+                    .frame(height: 4)
+                    .frame(maxWidth: .infinity)
+                    .accessibilityLabel("Playback progress")
+                }
 
                 Text(
                     formatTime(model.totalTime, styleMatching: model.totalTime)

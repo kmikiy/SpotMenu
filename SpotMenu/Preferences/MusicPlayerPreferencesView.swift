@@ -24,12 +24,16 @@ struct MusicPlayerPreferencesView: View {
                         Text("Music Player")
                     } footer: {
                         Text(
-                            "\"Automatic\" selects the first available app at launch. If both Spotify and Apple Music are installed or running, Spotify is preferred."
+                            "\"Automatic\" selects a running player first, then an installed player. Priority is Spotify, Apple Music, then Cider."
                         )
                     }
                 }
                 .formStyle(.grouped)
                 .scrollContentBackground(.hidden)
+
+                if playbackModel.playerType == .cider {
+                    CiderPreferencesSection(model: model, cider: playbackModel.cider)
+                }
 
                 if playbackModel.isLikingImplemented {
                     Form {
@@ -172,6 +176,46 @@ struct MusicPlayerPreferencesView: View {
         } else {
             return .gray
         }
+    }
+}
+
+private struct CiderPreferencesSection: View {
+    @ObservedObject var model: MusicPlayerPreferencesModel
+    @ObservedObject var cider: CiderSession
+    @State private var showManualToken = false
+    @State private var manualToken = ""
+
+    var body: some View {
+        Form {
+            Section("Cider Connection") {
+                TextField("Host", text: $model.ciderHost)
+                    .help("Loopback only: 127.0.0.1, localhost, or ::1")
+                TextField("Port", value: $model.ciderPort, format: .number)
+                Text(cider.connection.message).foregroundStyle(.secondary)
+                if let version = cider.rpcVersion {
+                    Text("RPC version \(version)").font(.caption).foregroundStyle(.secondary)
+                }
+                if let message = cider.statusMessage {
+                    Text(message).font(.caption).foregroundStyle(.secondary)
+                }
+                HStack {
+                    Button("Authorize in Cider") { cider.authorize() }
+                        .disabled(cider.authorizationBusy)
+                    if cider.authorizationBusy { ProgressView().controlSize(.small) }
+                    Button("Retry Connection") { cider.reconnect() }
+                }
+                DisclosureGroup("Enter token manually", isExpanded: $showManualToken) {
+                    SecureField("Cider RPC token", text: $manualToken)
+                    Button("Save Token") {
+                        cider.saveManualToken(manualToken)
+                        manualToken = ""
+                    }
+                    .disabled(manualToken.isEmpty)
+                }
+            }
+        }
+        .formStyle(.grouped)
+        .scrollContentBackground(.hidden)
     }
 }
 
