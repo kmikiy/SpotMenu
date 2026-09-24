@@ -21,6 +21,7 @@ private final class CiderRequestStub: URLProtocol {
     override func stopLoading() {}
 }
 
+@Suite(.serialized)
 struct SpotMenuTests {
     @Test func ciderEndpointAcceptsOnlyLoopback() {
         #expect(CiderEndpoint(host: "127.0.0.1", port: 10767).url?.absoluteString == "http://127.0.0.1:10767")
@@ -126,5 +127,21 @@ struct SpotMenuTests {
         }
         defer { CiderRequestStub.handle = nil }
         #expect(try await rpc.authorize() == "test-value")
+    }
+
+    @Test @MainActor func ciderPreviousUsesDefaultBehavior() async throws {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [CiderRequestStub.self]
+        let rpc = CiderRPC(endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
+                           session: URLSession(configuration: configuration))
+        CiderRequestStub.handle = { request in
+            #expect(request.url?.path == "/api/v2/playback/previous")
+            #expect(request.httpMethod == "POST")
+            #expect(request.httpBody == nil)
+            #expect(request.httpBodyStream == nil)
+            return (200, Data("{}".utf8))
+        }
+        defer { CiderRequestStub.handle = nil }
+        try await rpc.control(.previous)
     }
 }

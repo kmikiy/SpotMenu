@@ -207,6 +207,7 @@ final class CiderSession: ObservableObject {
     private var socketRetryAfter = Date.distantPast
     private var displayTimer: Timer?
     private var progress = CiderProgressClock()
+    private var pendingPlaybackState: (playing: Bool, until: Date)?
     private var currentTrackID: String?
     private var currentInfo: PlaybackInfo?
     private var generation = 0
@@ -263,6 +264,7 @@ final class CiderSession: ObservableObject {
         lastSocketEventAt = nil
         socketRetryAfter = .distantPast
         progress.reset()
+        pendingPlaybackState = nil
         currentInfo = nil
         currentTrackID = nil
     }
@@ -302,6 +304,7 @@ final class CiderSession: ObservableObject {
                 currentInfo = nil
                 currentTrackID = nil
                 progress.reset()
+                pendingPlaybackState = nil
                 onPlayback?(nil, true)
             } catch {
                 guard requestGeneration == generation else { return }
@@ -309,6 +312,7 @@ final class CiderSession: ObservableObject {
                 currentTrackID = nil
                 currentInfo = nil
                 progress.reset()
+                pendingPlaybackState = nil
                 onPlayback?(nil, true)
             }
         }
@@ -319,6 +323,13 @@ final class CiderSession: ObservableObject {
             refreshAfterTransition()
             return
         }
+        if let pendingPlaybackState, snapshot.trackID == currentTrackID,
+           let info = snapshot.info, info.isPlaying != pendingPlaybackState.playing,
+           Date() < pendingPlaybackState.until {
+            refreshAfterTransition()
+            return
+        }
+        pendingPlaybackState = nil
         let trackChanged = snapshot.trackID != currentTrackID
         let hadTrack = currentTrackID != nil
         if trackChanged && currentTrackID != nil && snapshot.trackID != nil {
@@ -423,7 +434,26 @@ final class CiderSession: ObservableObject {
         guard connection == .connected else { return }
         Task { [weak self] in
             guard let self else { return }
-            do { try await rpc.control(action); refresh() }
+            do {
+                try await rpc.control(action)
+                if let info = currentInfo {
+                    switch action {
+                    case .toggle:
+                        let playing = !info.isPlaying
+                        pendingPlaybackState = (playing, Date().addingTimeInterval(2))
+                        let elapsed = progress.acceptTime(progress.current(), playing: playing)
+                        let updated = PlaybackInfo(artist: info.artist, title: info.title,
+                            isPlaying: playing, imageURL: info.imageURL,
+                            totalTime: info.totalTime, currentTime: info.currentTime,
+                            image: info.image, isLiked: info.isLiked, longFormInfo: info.longFormInfo)
+                        publish(updated, elapsed: elapsed, trackChanged: false)
+                    case .previous, .next:
+                        progress.markTrackChange()
+                        publish(info, elapsed: 0, trackChanged: false)
+                    }
+                }
+                refreshAfterTransition()
+            }
             catch let error as CiderRPCError { statusMessage = error.message; refresh() }
             catch { statusMessage = "Cider control failed." }
         }
