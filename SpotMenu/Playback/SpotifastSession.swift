@@ -30,12 +30,17 @@ enum SpotifastBridge {
         connection.resume()
         defer { connection.invalidate() }
         return try await withCheckedThrowingContinuation { continuation in
+            let proxyError = NSError(domain: "SpotifastBridge", code: 1,
+                userInfo: [NSLocalizedDescriptionKey:
+                    "Could not connect to the Spotifast helper. Restart SpotMenu and retry."])
             let proxy = connection.remoteObjectProxyWithErrorHandler { _ in
-                continuation.resume(throwing: NSError(domain: "SpotifastBridge", code: 1,
-                    userInfo: [NSLocalizedDescriptionKey:
-                        "Could not connect to the Spotifast helper. Restart SpotMenu and retry."]))
+                continuation.resume(throwing: proxyError)
             } as? SpotifastBridgeProtocol
-            proxy?.execute(arguments) { output, message in
+            guard let proxy else {
+                continuation.resume(throwing: proxyError)
+                return
+            }
+            proxy.execute(arguments) { output, message in
                 if let output {
                     continuation.resume(returning: output)
                 } else {
