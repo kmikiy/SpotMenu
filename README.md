@@ -51,12 +51,31 @@ For command-line builds, use the repository scripts:
 ./scripts/build.sh
 ./scripts/run.sh
 ./scripts/test.sh
+./scripts/lint.sh
+./scripts/format.sh --check
 ./scripts/validate.sh
 ```
 
 The scripts use a local Apple Development certificate and detect its development team.
 Set `SPOTMENU_SIGN_IDENTITY` and `SPOTMENU_DEVELOPMENT_TEAM` to select another signing identity.
 Set `SPOTMENU_BUILD_DIR` to change the build directory. The default is `spotmenu-build` in the temporary directory.
+
+### Continuous integration
+
+The CI branch adds macOS build and unit-test checks, SwiftLint, Swift formatting, and shell syntax checks.
+Builds use Xcode 26.6 and ad-hoc signing on GitHub's `macos-26` runners, without a developer certificate or signing secrets.
+The live Spotifast test remains an explicit local check because CI has no signed-in music player.
+
+SwiftLint checks correctness rules in `.swiftlint.yml`. Swift's formatter owns layout, with four-space indentation and a 120-column limit.
+Run `./scripts/format.sh --write` to apply formatting, or `./scripts/format.sh --check` to check without changes.
+The tools are available through Xcode and Homebrew (`brew install swiftlint`).
+Run `./scripts/test-ci.sh` to test with CI signing and locked Swift dependencies.
+
+The dependency workflow runs on pushes, pull requests, manual dispatch, and each Monday at 06:23 UTC.
+OSV-Scanner 2.7.0 checks the Swift `Package.resolved` and the website's `package-lock.json`, including transitive dependencies.
+It fails on known vulnerabilities and uploads the JSON report even when findings fail the job.
+The weekly schedule starts after the workflow reaches the default branch.
+For the same scan locally, install OSV-Scanner and run `./scripts/audit.sh`.
 
 ### Spotifast
 

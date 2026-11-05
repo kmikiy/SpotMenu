@@ -2,8 +2,13 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-identity="${SPOTMENU_SIGN_IDENTITY:-Apple Development}"
-team="${SPOTMENU_DEVELOPMENT_TEAM:-}"
+if [[ "${CI:-false}" == true ]]; then
+    identity=-
+    team=""
+else
+    identity="${SPOTMENU_SIGN_IDENTITY:-Apple Development}"
+    team="${SPOTMENU_DEVELOPMENT_TEAM:-}"
+fi
 if [[ -z "$team" && "$identity" != - ]]; then
     team=$(security find-certificate -c "$identity" -p | \
         openssl x509 -noout -subject -nameopt multiline | \

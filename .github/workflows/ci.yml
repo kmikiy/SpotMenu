@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
+
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: macos-26
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Build with locked dependencies
+        run: ./scripts/build.sh -disableAutomaticPackageResolution -onlyUsePackageVersionsFromResolvedFile
+      - name: Run unit tests
+        run: ./scripts/test-ci.sh -resultBundlePath "$RUNNER_TEMP/SpotMenuTests.xcresult"
+      - name: Upload test results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: macos-test-results
+          path: ${{ runner.temp }}/SpotMenuTests.xcresult
+          if-no-files-found: ignore
+
+  lint-and-format:
+    name: Lint and format
+    runs-on: macos-26
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: SwiftLint
+        run: ./scripts/lint.sh
+      - name: Check Swift formatting
+        run: ./scripts/format.sh --check
+      - name: Check shell syntax
+        run: |
+          for script in scripts/*.sh; do
+            bash -n "$script"
+          done
