@@ -33,6 +33,82 @@ private func requestBody(_ request: URLRequest) -> Data {
 
 @Suite(.serialized)
 struct SpotMenuTests {
+    @Test @MainActor func spotifastLikedIconDoesNotRequireSpotifyLiking() {
+        let defaults = UserDefaults.standard
+        let keys = ["musicPlayer.preferredMusicApp", "musicPlayer.likingEnabled", "menuBar.showIsLikedIcon"]
+        let savedValues = keys.map { defaults.object(forKey: $0) }
+        defer {
+            for (key, value) in zip(keys, savedValues) { defaults.set(value, forKey: key) }
+        }
+        let music = MusicPlayerPreferencesModel()
+        music.preferredMusicApp = .spotifast
+        music.likingEnabled = false
+        let playback = PlaybackModel(preferences: music)
+        defer { playback.spotifast.stop() }
+        let menu = MenuBarPreferencesModel()
+        menu.showIsLikedIcon = true
+        let status = StatusItemModel()
+        status.isLiked = true
+        #expect(status.computeDisplayOptions(menuBarPreferencesModel: menu,
+            musicPlayerPreferencesModel: music, playbackModel: playback).showHeartIcon)
+        menu.showIsLikedIcon = false
+        #expect(!status.computeDisplayOptions(menuBarPreferencesModel: menu,
+            musicPlayerPreferencesModel: music, playbackModel: playback).showHeartIcon)
+    }
+
+    @Test(.enabled(if: ProcessInfo.processInfo.environment["SPOTMENU_LIVE_SPOTIFAST"] == "1"))
+    func spotifastBridgeReadsLivePlayer() async throws {
+        let output = try await SpotifastBridge.run(["now-playing", "--raw"])
+        let info = try #require(SpotifastSnapshot.parse(output))
+        #expect(!info.title.isEmpty)
+        #expect(info.totalTime > 0)
+        #expect(info.imageURL != nil)
+        // Exercise a command without changing the listener's playback state.
+        _ = try await SpotifastBridge.run([info.isPlaying ? "play" : "pause"])
+        let refreshed = SpotifastSnapshot.parse(try await SpotifastBridge.run(["now-playing", "--raw"]))
+        #expect(refreshed?.title == info.title)
+        #expect(refreshed?.isPlaying == info.isPlaying)
+    }
+
+    @Test func spotifastSnapshotReadsMetadataAndMilliseconds() {
+        let snapshot = SpotifastSnapshot.parse(
+            "playing\tSong\tArtist One, Artist Two\tAlbum\t8278\t267880\t100\toff\toff\thttps://example.com/art.jpg\tyes\tThis computer\n"
+        )
+        #expect(snapshot?.title == "Song")
+        #expect(snapshot?.artist == "Artist One, Artist Two")
+        #expect(snapshot?.isPlaying == true)
+        #expect(snapshot?.currentTime == 8.278)
+        #expect(snapshot?.totalTime == 267.88)
+        #expect(snapshot?.isLiked == true)
+        #expect(snapshot?.imageURL?.absoluteString == "https://example.com/art.jpg")
+    }
+
+    @Test func spotifastSnapshotHandlesStoppedUnknownAndFutureFields() {
+        #expect(SpotifastSnapshot.parse("stopped\n") == nil)
+        #expect(SpotifastSnapshot.parse("playing\tIncomplete") == nil)
+        let snapshot = SpotifastSnapshot.parse(
+            "paused\tSong\tArtist\tAlbum\t10000\t5000\t100\toff\toff\t\tunknown\tDevice\tfuture-field\n"
+        )
+        #expect(snapshot?.isPlaying == false)
+        #expect(snapshot?.currentTime == 5)
+        #expect(snapshot?.imageURL == nil)
+        #expect(snapshot?.isLiked == nil)
+        #expect(SpotifastSnapshot.parse(
+            "playing\tSong\tArtist\tAlbum\tNaN\t5000\t100\toff\toff\t\tno\tDevice"
+        ) == nil)
+    }
+
+    @Test func spotifastBridgeAcceptsOnlyPlaybackCommands() {
+        #expect(SpotifastBridgeCommand.isAllowed(["now-playing", "--raw"]))
+        #expect(SpotifastBridgeCommand.isAllowed(["seek-to", "90"]))
+        #expect(SpotifastBridgeCommand.isAllowed(["play-pause"]))
+        #expect(!SpotifastBridgeCommand.isAllowed(["seek-to", "-1"]))
+        #expect(!SpotifastBridgeCommand.isAllowed(["seek-to", "nan"]))
+        #expect(!SpotifastBridgeCommand.isAllowed(["--verbose"]))
+        #expect(!SpotifastBridgeCommand.isAllowed(["play", "unexpected"]))
+        #expect(!SpotifastBridgeCommand.isAllowed(["sh", "-c", "echo unsafe"]))
+    }
+
     @Test func ciderEndpointAcceptsOnlyLoopback() {
         #expect(CiderEndpoint(host: "127.0.0.1", port: 10767).url?.absoluteString == "http://127.0.0.1:10767")
         #expect(CiderEndpoint(host: "localhost", port: 10767).url?.host == "127.0.0.1")

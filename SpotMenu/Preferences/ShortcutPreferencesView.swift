@@ -42,7 +42,7 @@ struct ShortcutPreferencesView: View {
                 .scrollContentBackground(.hidden)
 
                 if model.isLikingImplemented
-                    && (model.playerType == .cider || musicPlayerPreferencesModel.likingEnabled) {
+                    && (model.usesPlayerLiking || musicPlayerPreferencesModel.likingEnabled) {
                     Form {
                         Section {
                             HStack {

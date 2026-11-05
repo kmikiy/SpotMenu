@@ -75,7 +75,7 @@ struct MenuBarPreferencesView: View {
                         Toggle("Show Playing Icon", isOn: $model.showIsPlayingIcon)
 
                         if playbackModel.isLikingImplemented
-                            && (playbackModel.playerType == .cider || musicPlayerPreferencesModel.likingEnabled)
+                            && (playbackModel.usesPlayerLiking || musicPlayerPreferencesModel.likingEnabled)
                         {
                             Toggle("Show Liked Icon", isOn: Binding(
                                 get: { model.showIsLikedIcon },

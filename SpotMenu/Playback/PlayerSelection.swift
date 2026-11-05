@@ -1,5 +1,6 @@
 enum PlayerType {
     case spotify
+    case spotifast
     case appleMusic
     case cider
 }
@@ -7,6 +8,7 @@ enum PlayerType {
 enum PreferredPlayer: String, CaseIterable, Identifiable {
     case automatic
     case spotify
+    case spotifast
     case appleMusic
     case cider
 
@@ -16,6 +18,7 @@ enum PreferredPlayer: String, CaseIterable, Identifiable {
         switch self {
         case .automatic: return "Automatic"
         case .spotify: return "Spotify"
+        case .spotifast: return "Spotifast"
         case .appleMusic: return "Apple Music"
         case .cider: return "Cider"
         }

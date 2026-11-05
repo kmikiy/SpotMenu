@@ -13,6 +13,9 @@
 		648D41AD2E02904C001D8CE5 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 648D41AC2E02904C001D8CE5 /* KeyboardShortcuts */; };
 		64C1DE0012F000000000001 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 64C1DE0012F000000000002 /* SocketIO */; };
 		64SPARKLE012F00000000001 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 64SPARKLE012F00000000002 /* Sparkle */; };
+		A50000000000000000000007 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50000000000000000000004; };
+		A50000000000000000000008 /* SpotifastBridgeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50000000000000000000006; };
+		A50000000000000000000009 /* SpotifastBridge.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = A50000000000000000000002; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +33,12 @@
 			remoteGlobalIDString = 648170E72DFF5D2B002F5F05;
 			remoteInfo = SpotMenu;
 		};
+		A50000000000000000000011 = {isa = PBXContainerItemProxy; containerPortal = 648170E02DFF5D2B002F5F05; proxyType = 1; remoteGlobalIDString = A50000000000000000000001; remoteInfo = SpotifastBridge; };
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A5000000000000000000000C /* Embed XPC Services */ = {isa = PBXCopyFilesBuildPhase; buildActionMask = 2147483647; dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices"; dstSubfolderSpec = 16; files = (A50000000000000000000009, ); name = "Embed XPC Services"; runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		64134C2F2E05AF0E00EB3AE3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -39,6 +47,10 @@
 		648170E82DFF5D2B002F5F05 /* SpotMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		648170F62DFF5D2D002F5F05 /* SpotMenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotMenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		648171002DFF5D2D002F5F05 /* SpotMenuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotMenuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A50000000000000000000002 /* SpotifastBridge.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; path = SpotifastBridge.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		A50000000000000000000004 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A50000000000000000000005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A50000000000000000000006 /* SpotifastBridgeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotMenu/Playback/SpotifastBridgeProtocol.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -97,6 +109,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5000000000000000000000B = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -104,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				64134C332E05AF1E00EB3AE3 /* ISSUE_TEMPLATE.md */,
+				A50000000000000000000003 /* SpotifastBridge */,
 				64134C2F2E05AF0E00EB3AE3 /* README.md */,
 				64134C312E05AF1800EB3AE3 /* LICENSE */,
 				648170EA2DFF5D2B002F5F05 /* SpotMenu */,
@@ -116,6 +130,7 @@
 		648170E92DFF5D2B002F5F05 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				A50000000000000000000002 /* SpotifastBridge.xpc */,
 				648170E82DFF5D2B002F5F05 /* SpotMenu.app */,
 				648170F62DFF5D2D002F5F05 /* SpotMenuTests.xctest */,
 				648171002DFF5D2D002F5F05 /* SpotMenuUITests.xctest */,
@@ -123,6 +138,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A50000000000000000000003 /* SpotifastBridge */ = {isa = PBXGroup; children = (A50000000000000000000004, A50000000000000000000005, A50000000000000000000006, ); path = SpotifastBridge; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,11 +149,13 @@
 				648170E42DFF5D2B002F5F05 /* Sources */,
 				648170E52DFF5D2B002F5F05 /* Frameworks */,
 				648170E62DFF5D2B002F5F05 /* Resources */,
+				A5000000000000000000000C /* Embed XPC Services */,
 				6495B63B2EFBDC350015E63B /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A50000000000000000000010,
 			);
 			fileSystemSynchronizedGroups = (
 				648170EA2DFF5D2B002F5F05 /* SpotMenu */,
@@ -198,6 +216,17 @@
 			productReference = 648171002DFF5D2D002F5F05 /* SpotMenuUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		A50000000000000000000001 /* SpotifastBridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5000000000000000000000D;
+			buildPhases = (A5000000000000000000000A, A5000000000000000000000B, );
+			buildRules = ();
+			dependencies = ();
+			name = SpotifastBridge;
+			productName = SpotifastBridge;
+			productReference = A50000000000000000000002;
+			productType = "com.apple.product-type.xpc-service";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -240,6 +269,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				A50000000000000000000001 /* SpotifastBridge */,
 				648170E72DFF5D2B002F5F05 /* SpotMenu */,
 				648170F52DFF5D2D002F5F05 /* SpotMenuTests */,
 				648170FF2DFF5D2D002F5F05 /* SpotMenuUITests */,
@@ -316,6 +346,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5000000000000000000000A = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A50000000000000000000007, A50000000000000000000008, ); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -329,6 +360,7 @@
 			target = 648170E72DFF5D2B002F5F05 /* SpotMenu */;
 			targetProxy = 648171012DFF5D2D002F5F05 /* PBXContainerItemProxy */;
 		};
+		A50000000000000000000010 = {isa = PBXTargetDependency; target = A50000000000000000000001; targetProxy = A50000000000000000000011; };
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -572,6 +604,38 @@
 			};
 			name = Release;
 		};
+		A5000000000000000000000E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpotifastBridge/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.kmikiy.SpotMenu.SpotifastBridge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A5000000000000000000000F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpotifastBridge/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.kmikiy.SpotMenu.SpotifastBridge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -611,6 +675,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		A5000000000000000000000D = {isa = XCConfigurationList; buildConfigurations = (A5000000000000000000000E, A5000000000000000000000F, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */

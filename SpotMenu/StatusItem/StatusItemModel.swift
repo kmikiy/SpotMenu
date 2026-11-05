@@ -26,7 +26,7 @@ class StatusItemModel: ObservableObject {
     ) -> DisplayOptions {
         let showHeartIcon =
             isLiked == true && playbackModel.isLikingImplemented
-            && musicPlayerPreferencesModel.likingEnabled
+            && (playbackModel.usesPlayerLiking || musicPlayerPreferencesModel.likingEnabled)
             && menuBarPreferencesModel.showIsLikedIcon
 
         let showMusicIcon =

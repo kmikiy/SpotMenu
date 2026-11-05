@@ -25,12 +25,17 @@ struct MusicPlayerPreferencesView: View {
                     } footer: {
                         Text(
                             "\"Automatic\" selects a running player first, then an installed player. " +
-                            "Priority is Spotify, Apple Music, then Cider."
+                            "Priority is Spotifast, Spotify, Apple Music, then Cider."
                         )
                     }
                 }
                 .formStyle(.grouped)
                 .scrollContentBackground(.hidden)
+
+                if model.preferredMusicApp == .automatic || model.preferredMusicApp == .spotifast {
+                    SpotifastPreferencesSection(spotifast: playbackModel.spotifast,
+                                               isActive: playbackModel.playerType == .spotifast)
+                }
 
                 // Automatic may use either integration, so show each setup section there.
                 if model.preferredMusicApp == .automatic || model.preferredMusicApp == .cider {
@@ -182,6 +187,30 @@ struct MusicPlayerPreferencesView: View {
         } else {
             return .gray
         }
+    }
+}
+
+private struct SpotifastPreferencesSection: View {
+    @ObservedObject var spotifast: SpotifastSession
+    let isActive: Bool
+
+    var body: some View {
+        Form {
+            Section("Spotifast") {
+                Text("Keep Spotifast 0.17.1 or later open. Playback and liking use your existing Spotifast sign-in.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                if isActive, let message = spotifast.statusMessage {
+                    Text(message).font(.caption).foregroundStyle(.secondary)
+                }
+                HStack {
+                    Button("Open Spotifast") { openApp(bundleIdentifier: "rocks.spotifast.Spotifast") }
+                    if isActive { Button("Retry Connection") { spotifast.refresh() } }
+                }
+            }
+        }
+        .formStyle(.grouped)
+        .scrollContentBackground(.hidden)
     }
 }
 

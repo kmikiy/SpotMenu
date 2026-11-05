@@ -169,7 +169,7 @@ struct PlaybackView: View {
                     range: 0...model.totalTime,
                     foregroundColor: preferences.foregroundColor.color,
                     trackColor: preferences.foregroundColor.color,
-                    commitOnEnd: model.playerType == .cider
+                    commitOnEnd: model.playerType == .cider || model.playerType == .spotifast
                 )
                 .frame(maxWidth: .infinity)
 
@@ -182,7 +182,7 @@ struct PlaybackView: View {
                 .fixedSize(horizontal: true, vertical: false)
 
                 if model.isLikingImplemented
-                    && (model.playerType == .cider || musicPlayerPreferencesModel.likingEnabled) {
+                    && (model.usesPlayerLiking || musicPlayerPreferencesModel.likingEnabled) {
                     Group {
                         if let isLiked = model.isLiked {
                             Button(action: {
@@ -201,7 +201,7 @@ struct PlaybackView: View {
                             }
                             .buttonStyle(.plain)
                             .help("Toggle like status")
-                        } else if model.playerType != .cider {
+                        } else if !model.usesPlayerLiking {
                             Button(action: {
                                 model.toggleLiked()  // triggers login
                             }) {

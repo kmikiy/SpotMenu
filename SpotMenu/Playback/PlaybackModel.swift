@@ -76,6 +76,7 @@ class PlaybackModel: ObservableObject {
     private var controller: MusicPlayerController?
     private var timer: Timer?
     let cider: CiderSession
+    let spotifast = SpotifastSession()
 
     private var cancellable: AnyCancellable?
 
@@ -83,11 +84,13 @@ class PlaybackModel: ObservableObject {
         switch playerType {
         case .appleMusic: return Image("AppleMusicIcon")
         case .spotify: return Image("SpotifyIcon")
+        case .spotifast: return Image(systemName: "bolt.circle.fill")
         case .cider: return Image(systemName: "c.circle.fill")
         }
     }
 
-    var isLikingImplemented: Bool { playerType == .spotify || playerType == .cider }
+    var isLikingImplemented: Bool { playerType != .appleMusic }
+    var usesPlayerLiking: Bool { playerType == .cider || playerType == .spotifast }
 
     init(preferences: MusicPlayerPreferencesModel) {
         self.preferences = preferences
@@ -104,6 +107,10 @@ class PlaybackModel: ObservableObject {
             guard let self, self.playerType == .cider else { return }
             self.apply(info, trackChanged: trackChanged)
         }
+        spotifast.onPlayback = { [weak self] info in
+            guard let self, self.playerType == .spotifast else { return }
+            self.apply(info)
+        }
         startSelectedPlayer()
 
         cancellable = preferences.$preferredMusicApp
@@ -117,6 +124,7 @@ class PlaybackModel: ObservableObject {
         timer?.invalidate()
         timer = nil
         cider.stop()
+        spotifast.stop()
         let (newController, newType) = Self.selectController(
             for: newPreference,
             preferences: preferences
@@ -127,7 +135,10 @@ class PlaybackModel: ObservableObject {
     }
 
     private func startSelectedPlayer() {
-        if playerType == .cider {
+        if playerType == .spotifast {
+            reset()
+            spotifast.start()
+        } else if playerType == .cider {
             reset()
             cider.start()
         } else {
@@ -145,9 +156,11 @@ class PlaybackModel: ObservableObject {
         MusicPlayerController?, PlayerType
     ) {
         let spotifyInstalled = isAppInstalled("com.spotify.client")
+        let spotifastInstalled = isAppInstalled("rocks.spotifast.Spotifast")
         let appleMusicInstalled = isAppInstalled("com.apple.Music")
         let ciderInstalled = isAppInstalled("sh.cider.genten.mac")
         let spotifyRunning = isAppRunning("com.spotify.client")
+        let spotifastRunning = isAppRunning("rocks.spotifast.Spotifast")
         let appleMusicRunning = isAppRunning("com.apple.Music")
         let ciderRunning = isAppRunning("sh.cider.genten.mac")
 
@@ -156,15 +169,21 @@ class PlaybackModel: ObservableObject {
             return (AppleMusicController(), .appleMusic)
         case .spotify:
             return (SpotifyController(preferences: preferences), .spotify)
+        case .spotifast:
+            return (nil, .spotifast)
         case .cider:
             return (nil, .cider)
         case .automatic:
-            if spotifyRunning {
+            if spotifastRunning {
+                return (nil, .spotifast)
+            } else if spotifyRunning {
                 return (SpotifyController(preferences: preferences), .spotify)
             } else if appleMusicRunning {
                 return (AppleMusicController(), .appleMusic)
             } else if ciderRunning {
                 return (nil, .cider)
+            } else if spotifastInstalled {
+                return (nil, .spotifast)
             } else if spotifyInstalled {
                 return (SpotifyController(preferences: preferences), .spotify)
             } else if appleMusicInstalled {
@@ -190,6 +209,7 @@ class PlaybackModel: ObservableObject {
     }
 
     func fetchInfo() {
+        if playerType == .spotifast { spotifast.refresh(); return }
         if playerType == .cider {
             cider.refresh()
             return
@@ -219,6 +239,7 @@ class PlaybackModel: ObservableObject {
     }
 
     func togglePlayPause() {
+        if playerType == .spotifast { spotifast.control(["play-pause"]); return }
         if playerType == .cider { cider.control(.toggle); return }
         // Execute the command first
         controller?.togglePlayPause()
@@ -233,18 +254,21 @@ class PlaybackModel: ObservableObject {
     }
 
     func skipForward() {
+        if playerType == .spotifast { spotifast.control(["next"]); return }
         if playerType == .cider { cider.control(.next); return }
         controller?.skipForward()
         delayedFetch()
     }
 
     func skipBack() {
+        if playerType == .spotifast { spotifast.control(["previous"]); return }
         if playerType == .cider { cider.control(.previous); return }
         controller?.skipBack()
         delayedFetch()
     }
 
     func openMusicApp() {
+        if playerType == .spotifast { openApp(bundleIdentifier: "rocks.spotifast.Spotifast"); return }
         if playerType == .cider { openApp(bundleIdentifier: "sh.cider.genten.mac"); return }
         controller?.openApp()
     }
@@ -316,6 +340,7 @@ class PlaybackModel: ObservableObject {
 extension PlaybackModel {
     func toggleLiked() {
         guard isLikingImplemented else { return }
+        if playerType == .spotifast { spotifast.control(["like"]); return }
         if playerType == .cider {
             guard let isLiked else { return }
             cider.setFavorite(!isLiked)
@@ -337,6 +362,7 @@ extension PlaybackModel {
 
     func likeTrack() {
         guard isLikingImplemented else { return }
+        if playerType == .spotifast { spotifast.control(["like"], desiredLike: true); return }
         if playerType == .cider { cider.setFavorite(true); return }
         // Immediately update like status for UI responsiveness
         isLiked = true
@@ -349,6 +375,7 @@ extension PlaybackModel {
 
     func unlikeTrack() {
         guard isLikingImplemented else { return }
+        if playerType == .spotifast { spotifast.control(["like"], desiredLike: false); return }
         if playerType == .cider { cider.setFavorite(false); return }
         // Immediately update like status for UI responsiveness
         isLiked = false
@@ -360,6 +387,7 @@ extension PlaybackModel {
     }
 
     func updatePlaybackPosition(to seconds: Double) {
+        if playerType == .spotifast { spotifast.seek(to: seconds); return }
         if playerType == .cider { cider.seek(to: seconds); return }
         controller?.updatePlaybackPosition(to: seconds)
         self.currentTime = seconds

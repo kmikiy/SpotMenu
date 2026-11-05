@@ -1,0 +1,4 @@
+#!/bin/bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+exec ./scripts/build.sh test -only-testing:SpotMenuTests "$@"
