@@ -33,8 +33,10 @@ struct CiderProgressClock {
         return incomingID == previousTrackID
     }
 
-    mutating func acceptSnapshot(trackID incomingID: String?, elapsed: Double,
-                                 duration: Double, playing: Bool, at now: Date = Date()) -> Double {
+    mutating func acceptSnapshot(
+        trackID incomingID: String?, elapsed: Double,
+        duration: Double, playing: Bool, at now: Date = Date()
+    ) -> Double {
         let changed = incomingID != trackID
         let hadTrack = trackID != nil
         trackID = incomingID
@@ -58,8 +60,10 @@ struct CiderProgressClock {
         return current(at: now)
     }
 
-    mutating func acceptTime(_ elapsed: Double, playing: Bool? = nil,
-                             at now: Date = Date()) -> Double {
+    mutating func acceptTime(
+        _ elapsed: Double, playing: Bool? = nil,
+        at now: Date = Date()
+    ) -> Double {
         if let playing { self.playing = playing }
         guard elapsed.isFinite, elapsed >= 0 else { return current(at: now) }
         if let transitionAt {

@@ -42,7 +42,8 @@ struct ShortcutPreferencesView: View {
                 .scrollContentBackground(.hidden)
 
                 if model.isLikingImplemented
-                    && (model.usesPlayerLiking || musicPlayerPreferencesModel.likingEnabled) {
+                    && (model.usesPlayerLiking || musicPlayerPreferencesModel.likingEnabled)
+                {
                     Form {
                         Section {
                             HStack {
@@ -72,9 +73,9 @@ struct ShortcutPreferencesView: View {
                     .scrollContentBackground(.hidden)
                 }
             }
-        .frame(maxWidth: 600)
-        .padding(20)
-    }
+            .frame(maxWidth: 600)
+            .padding(20)
+        }
     }
 }
 

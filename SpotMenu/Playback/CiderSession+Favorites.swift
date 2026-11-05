@@ -6,7 +6,8 @@ extension CiderSession {
     // shown when the user clicked, so a late reply cannot change the next song's heart.
     func setFavorite(_ favorite: Bool) {
         guard connection == .connected, !libraryAuthorizationRequired,
-              currentTrackID != nil else { return }
+            currentTrackID != nil
+        else { return }
         let trackID = currentTrackID
         Task { [weak self] in
             guard let self else { return }

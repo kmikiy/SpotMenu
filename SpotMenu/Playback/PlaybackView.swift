@@ -132,8 +132,7 @@ struct PlaybackView: View {
                         model.togglePlayPause()
                     }
 
-                    tappableIconButton(imageName: "forward.fill", imageSize: 30)
-                    {
+                    tappableIconButton(imageName: "forward.fill", imageSize: 30) {
                         model.skipForward()
                     }
                 }
@@ -182,7 +181,8 @@ struct PlaybackView: View {
                 .fixedSize(horizontal: true, vertical: false)
 
                 if model.isLikingImplemented
-                    && (model.usesPlayerLiking || musicPlayerPreferencesModel.likingEnabled) {
+                    && (model.usesPlayerLiking || musicPlayerPreferencesModel.likingEnabled)
+                {
                     Group {
                         if let isLiked = model.isLiked {
                             Button(action: {

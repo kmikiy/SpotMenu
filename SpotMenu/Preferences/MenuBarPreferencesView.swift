@@ -20,28 +20,32 @@ struct MenuBarPreferencesView: View {
             VStack(alignment: .leading, spacing: 20) {
                 Form {
                     Section {
-                        Toggle("Display Artist", isOn: Binding(
-                            get: { model.showArtist },
-                            set: { newValue in
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    model.showArtist = newValue
+                        Toggle(
+                            "Display Artist",
+                            isOn: Binding(
+                                get: { model.showArtist },
+                                set: { newValue in
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        model.showArtist = newValue
+                                    }
                                 }
-                            }
-                        ))
+                            ))
 
                         if model.showArtist {
                             Toggle("Hide Artist When Paused", isOn: $model.hideArtistWhenPaused)
                                 .transition(.opacity.combined(with: .move(edge: .top)))
                         }
 
-                        Toggle("Display Title", isOn: Binding(
-                            get: { model.showTitle },
-                            set: { newValue in
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    model.showTitle = newValue
+                        Toggle(
+                            "Display Title",
+                            isOn: Binding(
+                                get: { model.showTitle },
+                                set: { newValue in
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        model.showTitle = newValue
+                                    }
                                 }
-                            }
-                        ))
+                            ))
 
                         if model.showTitle {
                             Picker(
@@ -57,7 +61,7 @@ struct MenuBarPreferencesView: View {
                                 }
                             }
                             .transition(.opacity.combined(with: .move(edge: .top)))
-                            
+
                             Toggle("Hide Title When Paused", isOn: $model.hideTitleWhenPaused)
                                 .transition(.opacity.combined(with: .move(edge: .top)))
                         }
@@ -77,27 +81,31 @@ struct MenuBarPreferencesView: View {
                         if playbackModel.isLikingImplemented
                             && (playbackModel.usesPlayerLiking || musicPlayerPreferencesModel.likingEnabled)
                         {
-                            Toggle("Show Liked Icon", isOn: Binding(
-                                get: { model.showIsLikedIcon },
+                            Toggle(
+                                "Show Liked Icon",
+                                isOn: Binding(
+                                    get: { model.showIsLikedIcon },
+                                    set: { newValue in
+                                        model.showIsLikedIcon = newValue
+                                        if newValue && playbackModel.playerType == .spotify && !isSpotifyAuthenticated {
+                                            LoginWindowManager.showLoginWindow(
+                                                with: musicPlayerPreferencesModel
+                                            )
+                                        }
+                                    }
+                                ))
+                        }
+
+                        Toggle(
+                            "Display App Icon",
+                            isOn: Binding(
+                                get: { model.showAppIcon },
                                 set: { newValue in
-                                    model.showIsLikedIcon = newValue
-                                    if newValue && playbackModel.playerType == .spotify && !isSpotifyAuthenticated {
-                                        LoginWindowManager.showLoginWindow(
-                                            with: musicPlayerPreferencesModel
-                                        )
+                                    withAnimation(.easeInOut(duration: 0.2)) {
+                                        model.showAppIcon = newValue
                                     }
                                 }
                             ))
-                        }
-
-                        Toggle("Display App Icon", isOn: Binding(
-                            get: { model.showAppIcon },
-                            set: { newValue in
-                                withAnimation(.easeInOut(duration: 0.2)) {
-                                    model.showAppIcon = newValue
-                                }
-                            }
-                        ))
                     } header: {
                         Text("Icons")
                     } footer: {
@@ -202,9 +210,9 @@ struct MenuBarPreferencesView: View {
                 .formStyle(.grouped)
                 .scrollContentBackground(.hidden)
             }
-        .frame(maxWidth: 600)
-        .padding(20)
-    }
+            .frame(maxWidth: 600)
+            .padding(20)
+        }
         .onAppear {
             SpotifyAuthManager.shared.checkAuthenticationStatus {
                 self.isSpotifyAuthenticated = $0

@@ -152,11 +152,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusItem: statusItem,
             maxWidth: menuBarPreferencesModel.maxStatusItemWidth
         )
-        
+
         // Force immediate layout update to prevent truncation flash
         statusItem.button?.needsLayout = true
         statusItem.button?.layoutSubtreeIfNeeded()
-        
+
         // Ensure the hosting view updates its layout immediately
         if let hostingView = statusItem.button?.subviews.compactMap({ $0 as? NSHostingView<StatusItemView> }).first {
             hostingView.needsLayout = true

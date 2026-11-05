@@ -44,11 +44,13 @@ struct AboutPreferencesView: View {
                     Text("Support Development")
                         .font(.headline)
 
-                    Text("SpotMenu is free and open source.\nIf you enjoy it, consider fueling my coffee addiction\nso I can mass produce more questionable side projects.")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .multilineTextAlignment(.center)
-                        .lineSpacing(2)
+                    Text(
+                        "SpotMenu is free and open source.\nIf you enjoy it, consider fueling my coffee addiction\nso I can mass produce more questionable side projects."
+                    )
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(2)
 
                     Button(action: {
                         if let url = URL(string: "https://paypal.me/kmikiy") {

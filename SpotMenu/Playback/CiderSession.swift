@@ -65,14 +65,16 @@ final class CiderSession: ObservableObject {
             while let self, !Task.isCancelled {
                 let now = Date()
                 if self.liveUpdates != .unavailable,
-                   CiderLiveUpdates.shouldMarkUnavailable(
-                    isPlaying: self.currentInfo?.isPlaying == true,
-                    lastEventAt: self.lastSocketEventAt,
-                    checkingSince: self.eventCheckStartedAt, at: now) {
+                    CiderLiveUpdates.shouldMarkUnavailable(
+                        isPlaying: self.currentInfo?.isPlaying == true,
+                        lastEventAt: self.lastSocketEventAt,
+                        checkingSince: self.eventCheckStartedAt, at: now)
+                {
                     self.liveUpdates = .unavailable
                 }
                 let interval = self.liveUpdates.snapshotInterval(connected: self.connection == .connected)
-                let lastCheck = self.liveUpdates == .active
+                let lastCheck =
+                    self.liveUpdates == .active
                     ? self.lastSnapshotAt : self.lastRefreshAttemptAt
                 if now.timeIntervalSince(lastCheck) >= interval {
                     self.refresh()
@@ -173,14 +175,16 @@ final class CiderSession: ObservableObject {
             return
         }
         if let pendingPlaybackState, snapshot.trackID == currentTrackID,
-           let info = snapshot.info, info.isPlaying != pendingPlaybackState.playing,
-           Date() < pendingPlaybackState.until {
+            let info = snapshot.info, info.isPlaying != pendingPlaybackState.playing,
+            Date() < pendingPlaybackState.until
+        {
             refreshAfterTransition()
             return
         }
         if let pendingSeek, snapshot.trackID == currentTrackID,
-           let info = snapshot.info, abs(info.currentTime - pendingSeek.position) > 3,
-           Date() < pendingSeek.until {
+            let info = snapshot.info, abs(info.currentTime - pendingSeek.position) > 3,
+            Date() < pendingSeek.until
+        {
             refreshAfterTransition()
             return
         }
@@ -203,15 +207,17 @@ final class CiderSession: ObservableObject {
             onPlayback?(nil, trackChanged)
             return
         }
-        let elapsed = progress.acceptSnapshot(trackID: snapshot.trackID, elapsed: info.currentTime,
-                                              duration: info.totalTime, playing: info.isPlaying)
+        let elapsed = progress.acceptSnapshot(
+            trackID: snapshot.trackID, elapsed: info.currentTime,
+            duration: info.totalTime, playing: info.isPlaying)
         publish(info, elapsed: elapsed, trackChanged: trackChanged)
         if trackChanged && !libraryAuthorizationRequired { refreshFavoriteStatus() }
         if trackChanged && hadTrack && snapshot.trackID != nil { refreshAfterTransition() }
     }
 
     private func publish(_ info: PlaybackInfo, elapsed: Double, trackChanged: Bool) {
-        let updated = PlaybackInfo(artist: info.artist, title: info.title,
+        let updated = PlaybackInfo(
+            artist: info.artist, title: info.title,
             isPlaying: info.isPlaying, imageURL: info.imageURL,
             totalTime: info.totalTime, currentTime: elapsed,
             image: info.image,
@@ -255,11 +261,13 @@ extension CiderSession {
             for delay in [initialDelay, 1.0, 2.0] {
                 if delay > 0 { try? await Task.sleep(for: .seconds(delay)) }
                 guard !Task.isCancelled, requestGeneration == generation,
-                      trackID == currentTrackID else { return }
+                    trackID == currentTrackID
+                else { return }
                 do {
                     let favorite = try await rpc.favoriteStatus()
                     guard !Task.isCancelled, requestGeneration == generation,
-                          trackID == currentTrackID else { return }
+                        trackID == currentTrackID
+                    else { return }
                     libraryAuthorizationRequired = false
                     setFavoriteStatus(favorite)
                 } catch CiderRPCError.unauthorized {
@@ -283,9 +291,11 @@ extension CiderSession {
 extension CiderSession {
     private func connectSocket() {
         guard let url = rpc.endpoint.url else { return }
-        let manager = SocketManager(socketURL: url, config: [
-            .forceWebsockets(true), .reconnects(true), .reconnectWait(2), .handleQueue(.main)
-        ])
+        let manager = SocketManager(
+            socketURL: url,
+            config: [
+                .forceWebsockets(true), .reconnects(true), .reconnectWait(2), .handleQueue(.main),
+            ])
         let client = manager.defaultSocket
         client.on(clientEvent: .connect) { [weak self] _, _ in
             self?.lastSocketEventAt = nil
@@ -320,7 +330,10 @@ extension CiderSession {
             refresh()
         case "playbackStatus.nowPlayingStatusDidChange":
             if let payload = event["data"] as? [String: Any],
-               let favorite = payload["inFavorites"] as? Bool { setFavoriteStatus(favorite) }
+                let favorite = payload["inFavorites"] as? Bool
+            {
+                setFavoriteStatus(favorite)
+            }
         case "playbackStatus.playbackTimeDidChange":
             if let payload = event["data"] as? [String: Any] { handlePlaybackTimeEvent(payload) }
         default: break
@@ -332,10 +345,14 @@ extension CiderSession {
         let playing = payload["isPlaying"] as? Bool ?? info.isPlaying
         let time = payload["currentPlaybackTime"] as? Double
         if let pendingSeek, let time,
-           abs(time - pendingSeek.position) > 3, Date() < pendingSeek.until { return }
+            abs(time - pendingSeek.position) > 3, Date() < pendingSeek.until
+        {
+            return
+        }
         pendingSeek = nil
         let elapsed = progress.acceptTime(time ?? progress.current(), playing: playing)
-        let updated = PlaybackInfo(artist: info.artist, title: info.title,
+        let updated = PlaybackInfo(
+            artist: info.artist, title: info.title,
             isPlaying: playing, imageURL: info.imageURL, totalTime: info.totalTime,
             currentTime: info.currentTime, image: info.image, isLiked: info.isLiked,
             longFormInfo: info.longFormInfo)
@@ -354,7 +371,8 @@ extension CiderSession {
                         let playing = !info.isPlaying
                         pendingPlaybackState = (playing, Date().addingTimeInterval(2))
                         let elapsed = progress.acceptTime(progress.current(), playing: playing)
-                        let updated = PlaybackInfo(artist: info.artist, title: info.title,
+                        let updated = PlaybackInfo(
+                            artist: info.artist, title: info.title,
                             isPlaying: playing, imageURL: info.imageURL,
                             totalTime: info.totalTime, currentTime: info.currentTime,
                             image: info.image, isLiked: info.isLiked, longFormInfo: info.longFormInfo)
@@ -376,7 +394,8 @@ extension CiderSession {
 
     func seek(to seconds: Double) {
         guard connection == .connected, let info = currentInfo,
-              seconds.isFinite, info.totalTime > 0 else { return }
+            seconds.isFinite, info.totalTime > 0
+        else { return }
         let position = min(max(0, seconds), info.totalTime)
         let trackID = currentTrackID
         Task { [weak self] in

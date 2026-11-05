@@ -29,8 +29,7 @@ struct PreferencesView: View {
     @ObservedObject var menuBarPreferencesModel: MenuBarPreferencesModel
     @ObservedObject var playbackModel: PlaybackModel
     @ObservedObject var musicPlayerPreferencesModel: MusicPlayerPreferencesModel
-    @ObservedObject var playbackAppearancePreferencesModel:
-        PlaybackAppearancePreferencesModel
+    @ObservedObject var playbackAppearancePreferencesModel: PlaybackAppearancePreferencesModel
 
     @State private var selectedSection: PreferencesSection? = .player
 

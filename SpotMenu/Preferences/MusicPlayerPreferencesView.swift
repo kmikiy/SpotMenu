@@ -24,8 +24,8 @@ struct MusicPlayerPreferencesView: View {
                         Text("Music Player")
                     } footer: {
                         Text(
-                            "\"Automatic\" selects a running player first, then an installed player. " +
-                            "Priority is Spotifast, Spotify, Apple Music, then Cider."
+                            "\"Automatic\" selects a running player first, then an installed player. "
+                                + "Priority is Spotifast, Spotify, Apple Music, then Cider."
                         )
                     }
                 }
@@ -33,14 +33,16 @@ struct MusicPlayerPreferencesView: View {
                 .scrollContentBackground(.hidden)
 
                 if model.preferredMusicApp == .automatic || model.preferredMusicApp == .spotifast {
-                    SpotifastPreferencesSection(spotifast: playbackModel.spotifast,
-                                               isActive: playbackModel.playerType == .spotifast)
+                    SpotifastPreferencesSection(
+                        spotifast: playbackModel.spotifast,
+                        isActive: playbackModel.playerType == .spotifast)
                 }
 
                 // Automatic may use either integration, so show each setup section there.
                 if model.preferredMusicApp == .automatic || model.preferredMusicApp == .cider {
-                    CiderPreferencesSection(model: model, cider: playbackModel.cider,
-                                            isActive: playbackModel.playerType == .cider)
+                    CiderPreferencesSection(
+                        model: model, cider: playbackModel.cider,
+                        isActive: playbackModel.playerType == .cider)
                 }
 
                 if model.preferredMusicApp == .automatic || model.preferredMusicApp == .spotify {
@@ -109,8 +111,8 @@ struct MusicPlayerPreferencesView: View {
                             Text("Spotify Integration")
                         } footer: {
                             Text(
-                                "Enable liking tracks requires a Spotify Client ID. " +
-                                "You can create one at developer.spotify.com."
+                                "Enable liking tracks requires a Spotify Client ID. "
+                                    + "You can create one at developer.spotify.com."
                             )
                         }
                     }
@@ -118,9 +120,9 @@ struct MusicPlayerPreferencesView: View {
                     .scrollContentBackground(.hidden)
                 }
             }
-        .frame(maxWidth: 600)
-        .padding(20)
-    }
+            .frame(maxWidth: 600)
+            .padding(20)
+        }
         .onAppear {
             SpotifyAuthManager.shared.checkAuthenticationStatus { isAuthed in
                 DispatchQueue.main.async {
@@ -250,12 +252,12 @@ private struct CiderPreferencesSection: View {
                     VStack(alignment: .leading, spacing: 8) {
                         Label("Live playback updates are unavailable", systemImage: "exclamationmark.triangle")
                         Text(
-                            "In Cider, open Settings → Connections → External Applications " +
-                            "and enable WebSockets API. SpotMenu checks playback about every " +
-                            "two seconds until live updates return."
+                            "In Cider, open Settings → Connections → External Applications "
+                                + "and enable WebSockets API. SpotMenu checks playback about every "
+                                + "two seconds until live updates return."
                         )
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                         HStack {
                             Button("Open Cider") { openApp(bundleIdentifier: "sh.cider.genten.mac") }
                             Button("Check Again") { cider.reconnect() }
@@ -277,8 +279,8 @@ private struct CiderPreferencesSection: View {
                     Button(isActive && cider.connection == .connected ? "Reauthorize in Cider" : "Authorize in Cider") {
                         cider.authorize()
                     }
-                        .help("SpotMenu stores Cider's playback and library token in macOS Keychain.")
-                        .disabled(cider.authorizationBusy)
+                    .help("SpotMenu stores Cider's playback and library token in macOS Keychain.")
+                    .disabled(cider.authorizationBusy)
                     if cider.authorizationBusy { ProgressView().controlSize(.small) }
                     if isActive { Button("Retry Connection") { cider.reconnect() } }
                 }

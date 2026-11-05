@@ -3,8 +3,10 @@ import Foundation
 enum CiderLiveUpdates: Equatable {
     case checking, active, unavailable
 
-    static func shouldMarkUnavailable(isPlaying: Bool, lastEventAt: Date?,
-                                      checkingSince: Date, at now: Date) -> Bool {
+    static func shouldMarkUnavailable(
+        isPlaying: Bool, lastEventAt: Date?,
+        checkingSince: Date, at now: Date
+    ) -> Bool {
         isPlaying && now.timeIntervalSince(lastEventAt ?? checkingSince) >= 6
     }
 

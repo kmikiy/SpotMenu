@@ -47,10 +47,12 @@ enum CiderRPCError: Error {
 }
 
 final class CiderNoRedirect: NSObject, URLSessionTaskDelegate {
-    func urlSession(_ session: URLSession, task: URLSessionTask,
-                    willPerformHTTPRedirection response: HTTPURLResponse,
-                    newRequest request: URLRequest,
-                    completionHandler: @escaping (URLRequest?) -> Void) {
+    func urlSession(
+        _ session: URLSession, task: URLSessionTask,
+        willPerformHTTPRedirection response: HTTPURLResponse,
+        newRequest request: URLRequest,
+        completionHandler: @escaping (URLRequest?) -> Void
+    ) {
         completionHandler(nil)
     }
 }
@@ -66,19 +68,22 @@ final class CiderRPC {
         self.token = token
         let configuration = URLSessionConfiguration.ephemeral
         configuration.timeoutIntervalForRequest = 90
-        self.session = session ?? URLSession(
-            configuration: configuration,
-            delegate: CiderNoRedirect(),
-            delegateQueue: nil
-        )
+        self.session =
+            session
+            ?? URLSession(
+                configuration: configuration,
+                delegate: CiderNoRedirect(),
+                delegateQueue: nil
+            )
     }
 
     func clientInfo() async throws -> [String: Any] { try await request("client/info") }
     func playback() async throws -> CiderSnapshot { CiderSnapshot.parse(try await request("playback")) }
 
     func control(_ action: CiderAction) async throws {
-        _ = try await request("playback/\(action.rawValue)", method: "POST",
-                              body: action == .previous ? ["force": false] : nil)
+        _ = try await request(
+            "playback/\(action.rawValue)", method: "POST",
+            body: action == .previous ? ["force": false] : nil)
     }
 
     func seek(to seconds: Double) async throws {
@@ -103,21 +108,25 @@ final class CiderRPC {
     }
 
     func authorize() async throws -> String {
-        let result = try await request("auth/request", method: "POST",
-                                       body: ["app_name": "SpotMenu", "scopes": ["playback", "library"]],
-                                       authenticated: false, timeout: 90)
+        let result = try await request(
+            "auth/request", method: "POST",
+            body: ["app_name": "SpotMenu", "scopes": ["playback", "library"]],
+            authenticated: false, timeout: 90)
         guard let token = result["token"] as? String, !token.isEmpty else { throw CiderRPCError.invalidResponse }
         // An older playback-only grant still plays music, but cannot read or change favorites.
         // Refuse it here so onboarding never saves a token that leaves the heart unusable.
         guard let scopes = result["scopes"] as? [String],
-              scopes.contains("playback"), scopes.contains("library") else {
+            scopes.contains("playback"), scopes.contains("library")
+        else {
             throw CiderRPCError.denied
         }
         return token
     }
 
-    private func request(_ path: String, method: String = "GET", body: [String: Any]? = nil,
-                         authenticated: Bool = true, timeout: TimeInterval = 8) async throws -> [String: Any] {
+    private func request(
+        _ path: String, method: String = "GET", body: [String: Any]? = nil,
+        authenticated: Bool = true, timeout: TimeInterval = 8
+    ) async throws -> [String: Any] {
         guard let base = endpoint.url else { throw CiderRPCError.invalidEndpoint }
         let url = base.appendingPathComponent("api/v2/\(path)")
         var request = URLRequest(url: url)
@@ -176,17 +185,20 @@ struct CiderSnapshot {
         let artwork = fields["artwork"] as? [String: Any]
         let rawArtwork = artwork?["url"] as? String
         let artworkURL = rawArtwork.flatMap {
-            URL(string: $0.replacingOccurrences(of: "{w}", with: "300")
-                .replacingOccurrences(of: "{h}", with: "300"))
+            URL(
+                string: $0.replacingOccurrences(of: "{w}", with: "300")
+                    .replacingOccurrences(of: "{h}", with: "300"))
         }
         let time = object["time"] as? [String: Any]
         let duration = time?["duration"] as? Double ?? (fields["durationInMillis"] as? Double ?? 0) / 1000
         let elapsed = time?["currentTime"] as? Double ?? 0
-        return CiderSnapshot(trackID: id, info: PlaybackInfo(
-            artist: artist, title: title, isPlaying: state == "playing", imageURL: artworkURL,
-            totalTime: max(1, duration), currentTime: max(0, elapsed), image: nil,
-            isLiked: fields["inFavorites"] as? Bool ?? item["inFavorites"] as? Bool,
-            longFormInfo: nil))
+        return CiderSnapshot(
+            trackID: id,
+            info: PlaybackInfo(
+                artist: artist, title: title, isPlaying: state == "playing", imageURL: artworkURL,
+                totalTime: max(1, duration), currentTime: max(0, elapsed), image: nil,
+                isLiked: fields["inFavorites"] as? Bool ?? item["inFavorites"] as? Bool,
+                longFormInfo: nil))
     }
 }
 
@@ -196,8 +208,10 @@ enum CiderTokenStore {
     private static let account = "apptoken"
 
     private static var query: [String: Any] {
-        [kSecClass as String: kSecClassGenericPassword,
-         kSecAttrService as String: service, kSecAttrAccount as String: account]
+        [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: service, kSecAttrAccount as String: account,
+        ]
     }
 
     static func read() -> ReadResult {
@@ -208,7 +222,8 @@ enum CiderTokenStore {
         let status = SecItemCopyMatching(request as CFDictionary, &result)
         if status == errSecItemNotFound { return .missing }
         guard status == errSecSuccess, let data = result as? Data,
-              let token = String(data: data, encoding: .utf8) else { return .failed }
+            let token = String(data: data, encoding: .utf8)
+        else { return .failed }
         return .token(token)
     }
 

@@ -11,8 +11,9 @@ private final class CiderRequestStub: URLProtocol {
     override func startLoading() {
         guard let handle = Self.handle, let url = request.url else { return }
         let (status, data) = handle(request)
-        let response = HTTPURLResponse(url: url, statusCode: status, httpVersion: nil,
-                                       headerFields: ["Content-Type": "application/json"])!
+        let response = HTTPURLResponse(
+            url: url, statusCode: status, httpVersion: nil,
+            headerFields: ["Content-Type": "application/json"])!
         client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
         client?.urlProtocol(self, didLoad: data)
         client?.urlProtocolDidFinishLoading(self)
@@ -49,11 +50,17 @@ struct SpotMenuTests {
         menu.showIsLikedIcon = true
         let status = StatusItemModel()
         status.isLiked = true
-        #expect(status.computeDisplayOptions(menuBarPreferencesModel: menu,
-            musicPlayerPreferencesModel: music, playbackModel: playback).showHeartIcon)
+        #expect(
+            status.computeDisplayOptions(
+                menuBarPreferencesModel: menu,
+                musicPlayerPreferencesModel: music, playbackModel: playback
+            ).showHeartIcon)
         menu.showIsLikedIcon = false
-        #expect(!status.computeDisplayOptions(menuBarPreferencesModel: menu,
-            musicPlayerPreferencesModel: music, playbackModel: playback).showHeartIcon)
+        #expect(
+            !status.computeDisplayOptions(
+                menuBarPreferencesModel: menu,
+                musicPlayerPreferencesModel: music, playbackModel: playback
+            ).showHeartIcon)
     }
 
     @Test(.enabled(if: ProcessInfo.processInfo.environment["SPOTMENU_LIVE_SPOTIFAST"] == "1"))
@@ -93,9 +100,10 @@ struct SpotMenuTests {
         #expect(snapshot?.currentTime == 5)
         #expect(snapshot?.imageURL == nil)
         #expect(snapshot?.isLiked == nil)
-        #expect(SpotifastSnapshot.parse(
-            "playing\tSong\tArtist\tAlbum\tNaN\t5000\t100\toff\toff\t\tno\tDevice"
-        ) == nil)
+        #expect(
+            SpotifastSnapshot.parse(
+                "playing\tSong\tArtist\tAlbum\tNaN\t5000\t100\toff\toff\t\tno\tDevice"
+            ) == nil)
     }
 
     @Test func spotifastBridgeAcceptsOnlyPlaybackCommands() {
@@ -126,10 +134,10 @@ struct SpotMenuTests {
                 "attributes": [
                     "name": "Track", "artistName": "Artist", "albumName": "Album",
                     "durationInMillis": 200_000, "inFavorites": true,
-                    "artwork": ["url": "https://example.com/{w}x{h}.jpg"]
-                ]
+                    "artwork": ["url": "https://example.com/{w}x{h}.jpg"],
+                ],
             ],
-            "time": ["currentTime": 12.5, "duration": 200.0]
+            "time": ["currentTime": 12.5, "duration": 200.0],
         ])
         #expect(snapshot.trackID == "song-1")
         #expect(snapshot.info?.isPlaying == true)
@@ -149,14 +157,18 @@ struct SpotMenuTests {
     @Test func ciderProgressResetsAndRejectsPreviousTrackTime() {
         var clock = CiderProgressClock()
         let start = Date(timeIntervalSince1970: 1_000)
-        #expect(clock.acceptSnapshot(trackID: "old", elapsed: 77, duration: 240,
-                                     playing: true, at: start) == 77)
+        #expect(
+            clock.acceptSnapshot(
+                trackID: "old", elapsed: 77, duration: 240,
+                playing: true, at: start) == 77)
         clock.markTrackChange(at: start.addingTimeInterval(1))
         clock.markTrackChange(at: start.addingTimeInterval(1.05))
         #expect(clock.current(at: start.addingTimeInterval(1)) == 0)
         #expect(clock.shouldWaitForNewTrack("old", at: start.addingTimeInterval(1.1)))
-        #expect(clock.acceptSnapshot(trackID: "new", elapsed: 77, duration: 260,
-                                     playing: true, at: start.addingTimeInterval(1.2)) == 0)
+        #expect(
+            clock.acceptSnapshot(
+                trackID: "new", elapsed: 77, duration: 260,
+                playing: true, at: start.addingTimeInterval(1.2)) == 0)
         #expect(!clock.shouldWaitForNewTrack("new", at: start.addingTimeInterval(1.3)))
         #expect(clock.acceptTime(0.5, at: start.addingTimeInterval(1.5)) == 0.5)
         #expect(abs(clock.acceptTime(78, at: start.addingTimeInterval(1.6)) - 0.6) < 0.001)
@@ -166,8 +178,10 @@ struct SpotMenuTests {
     @Test func ciderProgressStartsAtActualPositionAndStopsWhenPaused() {
         var clock = CiderProgressClock()
         let start = Date(timeIntervalSince1970: 2_000)
-        #expect(clock.acceptSnapshot(trackID: "song", elapsed: 31, duration: 100,
-                                     playing: true, at: start) == 31)
+        #expect(
+            clock.acceptSnapshot(
+                trackID: "song", elapsed: 31, duration: 100,
+                playing: true, at: start) == 31)
         #expect(clock.current(at: start.addingTimeInterval(2)) == 33)
         #expect(clock.acceptTime(33, playing: false, at: start.addingTimeInterval(2)) == 33)
         #expect(clock.current(at: start.addingTimeInterval(5)) == 33)
@@ -176,30 +190,39 @@ struct SpotMenuTests {
     @Test func ciderAutomixAcceptsNewSongOffsetAndLaterCorrectsDrift() {
         var clock = CiderProgressClock()
         let start = Date(timeIntervalSince1970: 3_000)
-        _ = clock.acceptSnapshot(trackID: "old", elapsed: 260, duration: 300,
-                                 playing: true, at: start)
+        _ = clock.acceptSnapshot(
+            trackID: "old", elapsed: 260, duration: 300,
+            playing: true, at: start)
         clock.markTrackChange(at: start.addingTimeInterval(1))
-        #expect(clock.acceptSnapshot(trackID: "new", elapsed: 21, duration: 240,
-                                     playing: true, at: start.addingTimeInterval(1.2)) == 21)
+        #expect(
+            clock.acceptSnapshot(
+                trackID: "new", elapsed: 21, duration: 240,
+                playing: true, at: start.addingTimeInterval(1.2)) == 21)
         #expect(clock.current(at: start.addingTimeInterval(3.2)) == 23)
-        #expect(clock.acceptSnapshot(trackID: "new", elapsed: 30, duration: 240,
-                                     playing: true, at: start.addingTimeInterval(31)) == 30)
+        #expect(
+            clock.acceptSnapshot(
+                trackID: "new", elapsed: 30, duration: 240,
+                playing: true, at: start.addingTimeInterval(31)) == 30)
     }
 
     @Test func ciderLiveUpdatesFallBackAfterPlayingEventSilence() {
         let start = Date(timeIntervalSince1970: 4_000)
-        #expect(!CiderLiveUpdates.shouldMarkUnavailable(
-            isPlaying: true, lastEventAt: nil, checkingSince: start,
-            at: start.addingTimeInterval(5.9)))
-        #expect(CiderLiveUpdates.shouldMarkUnavailable(
-            isPlaying: true, lastEventAt: nil, checkingSince: start,
-            at: start.addingTimeInterval(6)))
-        #expect(!CiderLiveUpdates.shouldMarkUnavailable(
-            isPlaying: false, lastEventAt: nil, checkingSince: start,
-            at: start.addingTimeInterval(30)))
-        #expect(!CiderLiveUpdates.shouldMarkUnavailable(
-            isPlaying: true, lastEventAt: start.addingTimeInterval(10), checkingSince: start,
-            at: start.addingTimeInterval(15)))
+        #expect(
+            !CiderLiveUpdates.shouldMarkUnavailable(
+                isPlaying: true, lastEventAt: nil, checkingSince: start,
+                at: start.addingTimeInterval(5.9)))
+        #expect(
+            CiderLiveUpdates.shouldMarkUnavailable(
+                isPlaying: true, lastEventAt: nil, checkingSince: start,
+                at: start.addingTimeInterval(6)))
+        #expect(
+            !CiderLiveUpdates.shouldMarkUnavailable(
+                isPlaying: false, lastEventAt: nil, checkingSince: start,
+                at: start.addingTimeInterval(30)))
+        #expect(
+            !CiderLiveUpdates.shouldMarkUnavailable(
+                isPlaying: true, lastEventAt: start.addingTimeInterval(10), checkingSince: start,
+                at: start.addingTimeInterval(15)))
     }
 
     @Test func ciderLiveUpdatesPollQuicklyOnlyWithoutEvents() {
@@ -212,13 +235,16 @@ struct SpotMenuTests {
     @Test func ciderRedirectIsNeverFollowed() {
         let delegate = CiderNoRedirect()
         let task = URLSession.shared.dataTask(with: URL(string: "http://127.0.0.1:10767/api/v2/playback")!)
-        let response = HTTPURLResponse(url: task.originalRequest!.url!, statusCode: 302,
-                                       httpVersion: nil, headerFields: ["Location": "https://example.com/"])!
+        let response = HTTPURLResponse(
+            url: task.originalRequest!.url!, statusCode: 302,
+            httpVersion: nil, headerFields: ["Location": "https://example.com/"])!
         var redirectedRequest = URLRequest(url: URL(string: "https://example.com/")!)
         redirectedRequest.setValue("test-value", forHTTPHeaderField: "apptoken")
         var allowed: URLRequest?
-        delegate.urlSession(.shared, task: task, willPerformHTTPRedirection: response,
-                            newRequest: redirectedRequest) { allowed = $0 }
+        delegate.urlSession(
+            .shared, task: task, willPerformHTTPRedirection: response,
+            newRequest: redirectedRequest
+        ) { allowed = $0 }
         #expect(allowed == nil)
     }
 
@@ -226,8 +252,9 @@ struct SpotMenuTests {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [CiderRequestStub.self]
         let session = URLSession(configuration: configuration)
-        let rpc = CiderRPC(endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
-                           token: "stored-value", session: session)
+        let rpc = CiderRPC(
+            endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
+            token: "stored-value", session: session)
         CiderRequestStub.handle = { request in
             #expect(request.url?.path == "/api/v2/auth/request")
             #expect(request.httpMethod == "POST")
@@ -256,8 +283,9 @@ struct SpotMenuTests {
     @Test @MainActor func ciderPreviousUsesDefaultBehavior() async throws {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [CiderRequestStub.self]
-        let rpc = CiderRPC(endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
-                           session: URLSession(configuration: configuration))
+        let rpc = CiderRPC(
+            endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
+            session: URLSession(configuration: configuration))
         CiderRequestStub.handle = { request in
             #expect(request.url?.path == "/api/v2/playback/previous")
             #expect(request.httpMethod == "POST")
@@ -284,8 +312,9 @@ struct SpotMenuTests {
     @Test @MainActor func ciderAuthorizationRequiresLibraryScopeForFavorites() async {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [CiderRequestStub.self]
-        let rpc = CiderRPC(endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
-                           session: URLSession(configuration: configuration))
+        let rpc = CiderRPC(
+            endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
+            session: URLSession(configuration: configuration))
         CiderRequestStub.handle = { _ in
             (200, Data("{\"data\":{\"token\":\"test-value\",\"scopes\":[\"playback\"]}}".utf8))
         }
@@ -303,8 +332,9 @@ struct SpotMenuTests {
     @Test @MainActor func ciderSeekAndFavoritesUseV2RPC() async throws {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [CiderRequestStub.self]
-        let rpc = CiderRPC(endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
-                           token: "test-value", session: URLSession(configuration: configuration))
+        let rpc = CiderRPC(
+            endpoint: CiderEndpoint(host: "127.0.0.1", port: 10767),
+            token: "test-value", session: URLSession(configuration: configuration))
         CiderRequestStub.handle = { request in
             #expect(request.value(forHTTPHeaderField: "apptoken") == "test-value")
             switch (request.httpMethod, request.url?.path) {
@@ -315,7 +345,7 @@ struct SpotMenuTests {
             case ("GET", "/api/v2/library/now-playing/status"):
                 return (200, Data("{\"data\":{\"rating\":1,\"inLibrary\":false}}".utf8))
             case ("POST", "/api/v2/library/now-playing/love"),
-                 ("DELETE", "/api/v2/library/now-playing/rating"):
+                ("DELETE", "/api/v2/library/now-playing/rating"):
                 return (204, Data())
             default:
                 Issue.record("Unexpected Cider RPC request")

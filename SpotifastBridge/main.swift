@@ -20,9 +20,11 @@ final class SpotifastService: NSObject, NSXPCListenerDelegate, SpotifastBridgePr
             return
         }
         commands.async {
-            guard let app = NSWorkspace.shared.urlForApplication(
-                withBundleIdentifier: "rocks.spotifast.Spotifast"
-            ), let executable = Bundle(url: app)?.executableURL else {
+            guard
+                let app = NSWorkspace.shared.urlForApplication(
+                    withBundleIdentifier: "rocks.spotifast.Spotifast"
+                ), let executable = Bundle(url: app)?.executableURL
+            else {
                 reply(nil, "Install Spotifast to use this player.")
                 return
             }

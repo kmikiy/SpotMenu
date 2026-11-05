@@ -6,8 +6,8 @@ enum SpotifastSnapshot {
         let fields = output.trimmingCharacters(in: .newlines)
             .components(separatedBy: "\t")
         guard fields.count >= 12, ["playing", "paused"].contains(fields[0]),
-              let position = Double(fields[4]), position.isFinite, position >= 0,
-              let duration = Double(fields[5]), duration.isFinite, duration > 0
+            let position = Double(fields[4]), position.isFinite, position >= 0,
+            let duration = Double(fields[5]), duration.isFinite, duration > 0
         else { return nil }
         let liked: Bool?
         switch fields[10] {
@@ -15,7 +15,8 @@ enum SpotifastSnapshot {
         case "no": liked = false
         default: liked = nil
         }
-        return PlaybackInfo(artist: fields[2], title: fields[1],
+        return PlaybackInfo(
+            artist: fields[2], title: fields[1],
             isPlaying: fields[0] == "playing",
             imageURL: fields[9].isEmpty ? nil : URL(string: fields[9]),
             totalTime: duration / 1000, currentTime: min(position, duration) / 1000,
@@ -30,12 +31,16 @@ enum SpotifastBridge {
         connection.resume()
         defer { connection.invalidate() }
         return try await withCheckedThrowingContinuation { continuation in
-            let proxyError = NSError(domain: "SpotifastBridge", code: 1,
-                userInfo: [NSLocalizedDescriptionKey:
-                    "Could not connect to the Spotifast helper. Restart SpotMenu and retry."])
-            let proxy = connection.remoteObjectProxyWithErrorHandler { _ in
-                continuation.resume(throwing: proxyError)
-            } as? SpotifastBridgeProtocol
+            let proxyError = NSError(
+                domain: "SpotifastBridge", code: 1,
+                userInfo: [
+                    NSLocalizedDescriptionKey:
+                        "Could not connect to the Spotifast helper. Restart SpotMenu and retry."
+                ])
+            let proxy =
+                connection.remoteObjectProxyWithErrorHandler { _ in
+                    continuation.resume(throwing: proxyError)
+                } as? SpotifastBridgeProtocol
             guard let proxy else {
                 continuation.resume(throwing: proxyError)
                 return
@@ -44,8 +49,10 @@ enum SpotifastBridge {
                 if let output {
                     continuation.resume(returning: output)
                 } else {
-                    continuation.resume(throwing: NSError(domain: "SpotifastBridge", code: 2,
-                        userInfo: [NSLocalizedDescriptionKey: message ?? "Could not read Spotifast playback."]))
+                    continuation.resume(
+                        throwing: NSError(
+                            domain: "SpotifastBridge", code: 2,
+                            userInfo: [NSLocalizedDescriptionKey: message ?? "Could not read Spotifast playback."]))
                 }
             }
         }
@@ -121,8 +128,9 @@ final class SpotifastSession: ObservableObject {
                 if let desiredLike {
                     let output = try await SpotifastBridge.run(["now-playing", "--raw"])
                     guard !Task.isCancelled, requestGeneration == generation,
-                          let isLiked = SpotifastSnapshot.parse(output)?.isLiked,
-                          isLiked != desiredLike else { return }
+                        let isLiked = SpotifastSnapshot.parse(output)?.isLiked,
+                        isLiked != desiredLike
+                    else { return }
                 }
                 _ = try await SpotifastBridge.run(arguments)
                 guard requestGeneration == generation else { return }

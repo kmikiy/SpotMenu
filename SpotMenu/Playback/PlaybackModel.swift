@@ -30,9 +30,9 @@ enum LongFormKind {
 
 struct LongFormInfo {
     let kind: LongFormKind
-    let title: String      // book or show title
+    let title: String  // book or show title
     let authors: [String]  // authors or publisher
-    let segmentTitle: String? // chapter or episode title
+    let segmentTitle: String?  // chapter or episode title
 }
 
 struct PlaybackInfo {
@@ -318,7 +318,9 @@ class PlaybackModel: ObservableObject {
         case .titleOnly:
             titleText = baseTitle
         case .segmentOnly:
-            titleText = segmentTitle?.isEmpty == false ? segmentTitle!
+            titleText =
+                segmentTitle?.isEmpty == false
+                ? segmentTitle!
                 : baseTitle
         case .titleAndSegment:
             if let segment = segmentTitle,
