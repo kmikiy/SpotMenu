@@ -68,7 +68,8 @@ The live Spotifast test remains an explicit local check because CI has no signed
 
 SwiftLint checks correctness rules in `.swiftlint.yml`. Swift's formatter owns layout, with four-space indentation and a 120-column limit.
 Run `./scripts/format.sh --write` to apply formatting, or `./scripts/format.sh --check` to check without changes.
-The tools are available through Xcode and Homebrew (`brew install swiftlint`).
+CI installs checksum-verified SwiftLint 0.65.1 instead of relying on runner packages.
+For local use, install SwiftLint through Homebrew (`brew install swiftlint`); the formatter is included in Xcode.
 Run `./scripts/test-ci.sh` to test with CI signing and locked Swift dependencies.
 
 The dependency workflow runs on pushes, pull requests, manual dispatch, and each Monday at 06:23 UTC.
