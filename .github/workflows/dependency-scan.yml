@@ -31,14 +31,11 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
-      - name: Install OSV-Scanner 2.7.0
-        run: |
-          curl --fail --silent --show-error --location --retry 3 \
-            https://github.com/google/osv-scanner/releases/download/v2.7.0/osv-scanner_linux_amd64 \
-            --output "$RUNNER_TEMP/osv-scanner"
-          echo "160c6253e2922e9e0a6a9771c5c4c40a4b3c6090b34a3cdd5e80c96cc2e4218b  $RUNNER_TEMP/osv-scanner" | sha256sum --check
-          chmod +x "$RUNNER_TEMP/osv-scanner"
-          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+      - name: Install OSV-Scanner with mise
+        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5
+        with:
+          version: 2026.11.1
+          install_args: osv-scanner
       - name: Scan ${{ matrix.ecosystem }} locked dependencies
         run: ./scripts/audit.sh ${{ matrix.ecosystem }} --format=json --all-packages --output-file="$RUNNER_TEMP/dependencies.json"
       - name: Upload vulnerability report
