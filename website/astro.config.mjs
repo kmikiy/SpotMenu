@@ -9,6 +9,7 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://kmikiy.github.io',
   base: '/SpotMenu',
+  compressHTML: true,
   vite: {
     plugins: [tailwindcss()],
   },

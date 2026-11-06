@@ -3,7 +3,7 @@ import SwiftUI
 class LoginWindowManager {
     static var loginWindow: NSWindow?
 
-    static func showLoginWindow(with preferences: MusicPlayerPreferencesModel){
+    static func showLoginWindow(with preferences: MusicPlayerPreferencesModel) {
         guard loginWindow == nil else {
             loginWindow?.makeKeyAndOrderFront(nil)
             NSApp.activate(ignoringOtherApps: true)

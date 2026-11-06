@@ -151,14 +151,17 @@ class MenuBarPreferencesModel: ObservableObject {
             defaults.object(forKey: "menuBar.hideTitleWhenPaused") as? Bool
             ?? false
 
-        fontWeightCompactTop = MenuBarFontWeight(
-            rawValue: defaults.string(forKey: "menuBar.fontWeightCompactTop") ?? "medium"
-        ) ?? .medium
-        fontWeightCompactBottom = MenuBarFontWeight(
-            rawValue: defaults.string(forKey: "menuBar.fontWeightCompactBottom") ?? "medium"
-        ) ?? .medium
-        fontWeightNormal = MenuBarFontWeight(
-            rawValue: defaults.string(forKey: "menuBar.fontWeightNormal") ?? "medium"
-        ) ?? .medium
+        fontWeightCompactTop =
+            MenuBarFontWeight(
+                rawValue: defaults.string(forKey: "menuBar.fontWeightCompactTop") ?? "medium"
+            ) ?? .medium
+        fontWeightCompactBottom =
+            MenuBarFontWeight(
+                rawValue: defaults.string(forKey: "menuBar.fontWeightCompactBottom") ?? "medium"
+            ) ?? .medium
+        fontWeightNormal =
+            MenuBarFontWeight(
+                rawValue: defaults.string(forKey: "menuBar.fontWeightNormal") ?? "medium"
+            ) ?? .medium
     }
 }

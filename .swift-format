@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "indentation": { "spaces": 4 },
+  "lineLength": 120,
+  "rules": {
+    "AlwaysUseLowerCamelCase": false,
+    "DontRepeatTypeInStaticProperties": false,
+    "FileScopedDeclarationPrivacy": false,
+    "GroupNumericLiterals": false,
+    "NoAssignmentInExpressions": false,
+    "OneVariableDeclarationPerLine": false,
+    "ReplaceForEachWithForLoop": false,
+    "UseExplicitNilCheckInConditions": false,
+    "UseSynthesizedInitializer": false
+  }
+}

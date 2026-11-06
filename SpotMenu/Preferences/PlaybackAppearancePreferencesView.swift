@@ -10,10 +10,12 @@ struct PlaybackAppearancePreferencesView: View {
             VStack(alignment: .leading, spacing: 20) {
                 Form {
                     Section {
-                        ColorPicker("Hover Tint Color", selection: Binding(
-                            get: { Color(model.hoverTintColor) },
-                            set: { model.hoverTintColor = NSColor($0) }
-                        ))
+                        ColorPicker(
+                            "Hover Tint Color",
+                            selection: Binding(
+                                get: { Color(model.hoverTintColor) },
+                                set: { model.hoverTintColor = NSColor($0) }
+                            ))
 
                         Picker("Foreground Color", selection: $model.foregroundColor) {
                             ForEach(
@@ -85,9 +87,9 @@ struct PlaybackAppearancePreferencesView: View {
                 .formStyle(.grouped)
                 .scrollContentBackground(.hidden)
             }
-        .frame(maxWidth: 600)
-        .padding(20)
-    }
+            .frame(maxWidth: 600)
+            .padding(20)
+        }
     }
 }
 

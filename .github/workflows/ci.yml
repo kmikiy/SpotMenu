@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  website:
+    name: Website build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5
+        with:
+          version: 2026.11.1
+          install_args: node
+      - run: npm ci
+      - run: npm run build
+
+  build-and-test:
+    name: Build and test
+    runs-on: macos-26
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Show selected Xcode
+        run: xcodebuild -version
+      - name: Build with locked dependencies
+        run: ./scripts/build.sh -disableAutomaticPackageResolution -onlyUsePackageVersionsFromResolvedFile
+      - name: Run unit tests
+        run: ./scripts/test-ci.sh -resultBundlePath "$RUNNER_TEMP/SpotMenuTests.xcresult"
+      - name: Upload test results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: macos-test-results
+          path: ${{ runner.temp }}/SpotMenuTests.xcresult
+          if-no-files-found: ignore
+
+  lint-and-format:
+    name: Lint and format
+    runs-on: macos-26
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Install lint tools with mise
+        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5
+        with:
+          version: 2026.11.1
+          install_args: swiftlint actionlint
+      - name: SwiftLint
+        run: ./scripts/lint.sh
+      - name: Check Swift formatting
+        run: ./scripts/format.sh --check
+      - name: Check GitHub workflows
+        run: actionlint
+      - name: Check shell syntax
+        run: |
+          for script in scripts/*.sh; do
+            bash -n "$script"
+          done

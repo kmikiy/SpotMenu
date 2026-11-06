@@ -25,7 +25,7 @@ struct StatusItemView: View {
 
         return HStack(spacing: 4) {
             if displayOptions.showIcon {
-                Image(model.playerIconName)
+                playbackModel.playerIcon
                     .renderingMode(.template)
                     .resizable()
                     .frame(width: 16, height: 16)
@@ -50,11 +50,14 @@ struct StatusItemView: View {
                     VStack(spacing: -2) {
                         if displayOptions.showArtist {
                             Text(model.artist)
-                                .font(.system(size: 10, weight: menuBarPreferencesModel.fontWeightCompactTop.fontWeight))
+                                .font(
+                                    .system(size: 10, weight: menuBarPreferencesModel.fontWeightCompactTop.fontWeight))
                         }
                         if displayOptions.showTitle {
                             Text(model.title)
-                                .font(.system(size: 9, weight: menuBarPreferencesModel.fontWeightCompactBottom.fontWeight))
+                                .font(
+                                    .system(size: 9, weight: menuBarPreferencesModel.fontWeightCompactBottom.fontWeight)
+                                )
                         }
                     }
 

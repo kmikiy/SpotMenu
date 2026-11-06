@@ -1,0 +1,47 @@
+name: Dependency vulnerabilities
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dependencies-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scan:
+    name: ${{ matrix.name }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ecosystem: swift
+            name: Swift / SwiftPM dependencies
+          - ecosystem: website
+            name: Website / Node.js npm dependencies
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Install OSV-Scanner with mise
+        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5
+        with:
+          version: 2026.11.1
+          install_args: osv-scanner
+      - name: Scan ${{ matrix.ecosystem }} locked dependencies
+        run: ./scripts/audit.sh ${{ matrix.ecosystem }} --format=json --all-packages --output-file="$RUNNER_TEMP/dependencies.json"
+      - name: Upload vulnerability report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: dependency-vulnerabilities-${{ matrix.ecosystem }}
+          path: ${{ runner.temp }}/dependencies.json
+          if-no-files-found: warn

@@ -29,6 +29,18 @@ class MusicPlayerPreferencesModel: ObservableObject {
         }
     }
 
+    @Published var ciderHost: String {
+        didSet {
+            UserDefaults.standard.set(ciderHost, forKey: "cider.host")
+        }
+    }
+
+    @Published var ciderPort: Int {
+        didSet {
+            UserDefaults.standard.set(ciderPort, forKey: "cider.port")
+        }
+    }
+
     @Published var longFormTitleStyle: LongFormTitleStyle {
         didSet {
             UserDefaults.standard.set(
@@ -55,6 +67,9 @@ class MusicPlayerPreferencesModel: ObservableObject {
             defaults.object(forKey: "musicPlayer.likingEnabled") as? Bool ?? true
 
         spotifyClientID = defaults.string(forKey: "spotify.clientID")
+        ciderHost = defaults.string(forKey: "cider.host") ?? "127.0.0.1"
+        let savedCiderPort = defaults.integer(forKey: "cider.port")
+        ciderPort = savedCiderPort == 0 ? 10767 : savedCiderPort
 
         if let storedRaw = defaults.string(
             forKey: "spotify.longFormTitleStyle"

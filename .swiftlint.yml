@@ -1,0 +1,23 @@
+included:
+  - SpotMenu
+  - SpotifastBridge
+  - SpotMenuTests
+  - SpotMenuUITests
+
+# swift-format owns layout; SwiftLint checks correctness without a style baseline.
+only_rules:
+  - block_based_kvo
+  - class_delegate_protocol
+  - compiler_protocol_init
+  - duplicate_conditions
+  - duplicate_enum_cases
+  - duplicate_imports
+  - duplicated_key_in_dictionary_literal
+  - force_cast
+  - force_try
+  - invalid_swiftlint_command
+  - nsobject_prefer_isequal
+  - unavailable_condition
+  - unused_enumerated
+  - unused_optional_binding
+  - unused_setter_value

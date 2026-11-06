@@ -42,7 +42,7 @@ struct ShortcutPreferencesView: View {
                 .scrollContentBackground(.hidden)
 
                 if model.isLikingImplemented
-                    && musicPlayerPreferencesModel.likingEnabled
+                    && (model.usesPlayerLiking || musicPlayerPreferencesModel.likingEnabled)
                 {
                     Form {
                         Section {
@@ -73,9 +73,9 @@ struct ShortcutPreferencesView: View {
                     .scrollContentBackground(.hidden)
                 }
             }
-        .frame(maxWidth: 600)
-        .padding(20)
-    }
+            .frame(maxWidth: 600)
+            .padding(20)
+        }
     }
 }
 

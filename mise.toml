@@ -1,0 +1,5 @@
+[tools]
+node = "24.22.2"
+actionlint = "1.7.12"
+swiftlint = "0.65.1"
+osv-scanner = "2.7.0"

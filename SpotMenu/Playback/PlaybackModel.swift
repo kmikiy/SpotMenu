@@ -7,11 +7,6 @@ extension Notification.Name {
     )
 }
 
-enum PlayerType {
-    case spotify
-    case appleMusic
-}
-
 enum LongFormTitleStyle: String, CaseIterable, Identifiable {
     case titleOnly
     case segmentOnly
@@ -28,22 +23,6 @@ enum LongFormTitleStyle: String, CaseIterable, Identifiable {
     }
 }
 
-enum PreferredPlayer: String, CaseIterable, Identifiable {
-    case automatic
-    case spotify
-    case appleMusic
-
-    var id: String { rawValue }
-
-    var displayName: String {
-        switch self {
-        case .automatic: return "Automatic"
-        case .spotify: return "Spotify"
-        case .appleMusic: return "Apple Music"
-        }
-    }
-}
-
 enum LongFormKind {
     case audiobook
     case podcastEpisode
@@ -51,9 +30,9 @@ enum LongFormKind {
 
 struct LongFormInfo {
     let kind: LongFormKind
-    let title: String      // book or show title
+    let title: String  // book or show title
     let authors: [String]  // authors or publisher
-    let segmentTitle: String? // chapter or episode title
+    let segmentTitle: String?  // chapter or episode title
 }
 
 struct PlaybackInfo {
@@ -80,6 +59,7 @@ protocol MusicPlayerController {
     func unlikeTrack()
 }
 
+@MainActor
 class PlaybackModel: ObservableObject {
     @Published var imageURL: URL?
     @Published var image: Image? = nil
@@ -93,21 +73,28 @@ class PlaybackModel: ObservableObject {
     @Published var longFormInfo: LongFormInfo? = nil
 
     private let preferences: MusicPlayerPreferencesModel
-    private var controller: MusicPlayerController
+    private var controller: MusicPlayerController?
     private var timer: Timer?
+    let cider: CiderSession
+    let spotifast = SpotifastSession()
 
     private var cancellable: AnyCancellable?
 
-    var playerIconName: String {
-        return playerType == .appleMusic ? "AppleMusicIcon" : "SpotifyIcon"
+    var playerIcon: Image {
+        switch playerType {
+        case .appleMusic: return Image("AppleMusicIcon")
+        case .spotify: return Image("SpotifyIcon")
+        case .spotifast: return Image(systemName: "bolt.circle.fill")
+        case .cider: return Image(systemName: "c.circle.fill")
+        }
     }
 
-    var isLikingImplemented: Bool {
-        return playerType == .spotify
-    }
+    var isLikingImplemented: Bool { playerType != .appleMusic }
+    var usesPlayerLiking: Bool { playerType == .cider || playerType == .spotifast }
 
     init(preferences: MusicPlayerPreferencesModel) {
         self.preferences = preferences
+        self.cider = CiderSession(preferences: preferences)
 
         let (controller, type) = Self.selectController(
             for: preferences.preferredMusicApp,
@@ -116,10 +103,15 @@ class PlaybackModel: ObservableObject {
         self.controller = controller
         self.playerType = type
 
-        fetchInfo()
-        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { _ in
-            self.fetchInfo()
+        cider.onPlayback = { [weak self] info, trackChanged in
+            guard let self, self.playerType == .cider else { return }
+            self.apply(info, trackChanged: trackChanged)
         }
+        spotifast.onPlayback = { [weak self] info in
+            guard let self, self.playerType == .spotifast else { return }
+            self.apply(info)
+        }
+        startSelectedPlayer()
 
         cancellable = preferences.$preferredMusicApp
             .removeDuplicates()
@@ -129,40 +121,75 @@ class PlaybackModel: ObservableObject {
     }
 
     func switchPlayer(to newPreference: PreferredPlayer) {
+        timer?.invalidate()
+        timer = nil
+        cider.stop()
+        spotifast.stop()
         let (newController, newType) = Self.selectController(
             for: newPreference,
             preferences: preferences
         )
         controller = newController
         playerType = newType
-        fetchInfo()
+        startSelectedPlayer()
+    }
+
+    private func startSelectedPlayer() {
+        if playerType == .spotifast {
+            reset()
+            spotifast.start()
+        } else if playerType == .cider {
+            reset()
+            cider.start()
+        } else {
+            fetchInfo()
+            timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { [weak self] _ in
+                Task { @MainActor in self?.fetchInfo() }
+            }
+        }
     }
 
     private static func selectController(
         for preference: PreferredPlayer,
         preferences: MusicPlayerPreferencesModel
     ) -> (
-        MusicPlayerController, PlayerType
+        MusicPlayerController?, PlayerType
     ) {
         let spotifyInstalled = isAppInstalled("com.spotify.client")
+        let spotifastInstalled = isAppInstalled("rocks.spotifast.Spotifast")
         let appleMusicInstalled = isAppInstalled("com.apple.Music")
+        let ciderInstalled = isAppInstalled("sh.cider.genten.mac")
         let spotifyRunning = isAppRunning("com.spotify.client")
+        let spotifastRunning = isAppRunning("rocks.spotifast.Spotifast")
         let appleMusicRunning = isAppRunning("com.apple.Music")
+        let ciderRunning = isAppRunning("sh.cider.genten.mac")
 
         switch preference {
         case .appleMusic:
             return (AppleMusicController(), .appleMusic)
         case .spotify:
             return (SpotifyController(preferences: preferences), .spotify)
+        case .spotifast:
+            return (nil, .spotifast)
+        case .cider:
+            return (nil, .cider)
         case .automatic:
-            if spotifyRunning {
+            if spotifastRunning {
+                return (nil, .spotifast)
+            } else if spotifyRunning {
                 return (SpotifyController(preferences: preferences), .spotify)
             } else if appleMusicRunning {
                 return (AppleMusicController(), .appleMusic)
+            } else if ciderRunning {
+                return (nil, .cider)
+            } else if spotifastInstalled {
+                return (nil, .spotifast)
             } else if spotifyInstalled {
                 return (SpotifyController(preferences: preferences), .spotify)
             } else if appleMusicInstalled {
                 return (AppleMusicController(), .appleMusic)
+            } else if ciderInstalled {
+                return (nil, .cider)
             } else {
                 return (SpotifyController(preferences: preferences), .spotify)
             }
@@ -182,96 +209,68 @@ class PlaybackModel: ObservableObject {
     }
 
     func fetchInfo() {
-        guard let info = controller.fetchNowPlayingInfo() else {
+        if playerType == .spotifast { spotifast.refresh(); return }
+        if playerType == .cider {
+            cider.refresh()
+            return
+        }
+        guard let info = controller?.fetchNowPlayingInfo() else {
             reset()
             return
         }
 
+        apply(info)
+    }
+
+    private func apply(_ info: PlaybackInfo?, trackChanged: Bool = true) {
+        guard let info else { reset(); return }
         let displayText = computeDisplayText(from: info)
 
-        DispatchQueue.main.async {
-            self.title = displayText.title
-            self.artist = displayText.artist
-            self.isPlaying = info.isPlaying
-            self.imageURL = info.imageURL
-            self.totalTime = info.totalTime
-            self.currentTime = info.currentTime
-            self.image = info.image
-            self.isLiked = info.isLiked
-            self.longFormInfo = info.longFormInfo
-
-            NotificationCenter.default.post(
-                name: .contentModelDidUpdate,
-                object: nil
-            )
-        }
+        title = displayText.title
+        artist = displayText.artist
+        isPlaying = info.isPlaying
+        if trackChanged { imageURL = info.imageURL }
+        totalTime = info.totalTime
+        currentTime = info.currentTime
+        image = info.image
+        isLiked = info.isLiked
+        longFormInfo = info.longFormInfo
+        notifyModelUpdate()
     }
 
     func togglePlayPause() {
+        if playerType == .spotifast { spotifast.control(["play-pause"]); return }
+        if playerType == .cider { cider.control(.toggle); return }
         // Execute the command first
-        controller.togglePlayPause()
-        
+        controller?.togglePlayPause()
+
         // Small delay to allow the music player to process, then update UI
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             self.isPlaying.toggle()
             self.notifyModelUpdate()
         }
-        
+
         delayedFetch()
     }
 
     func skipForward() {
-        controller.skipForward()
+        if playerType == .spotifast { spotifast.control(["next"]); return }
+        if playerType == .cider { cider.control(.next); return }
+        controller?.skipForward()
         delayedFetch()
     }
 
     func skipBack() {
-        controller.skipBack()
+        if playerType == .spotifast { spotifast.control(["previous"]); return }
+        if playerType == .cider { cider.control(.previous); return }
+        controller?.skipBack()
         delayedFetch()
-    }
-
-    func toggleLiked() {
-        let previousLikeStatus = self.isLiked
-
-        // Immediately update like status for UI responsiveness
-        if let previous = previousLikeStatus {
-            isLiked = !previous
-        }
-        
-        // Send notification to update status bar immediately
-        notifyModelUpdate()
-
-        controller.toggleLiked()
-        delayedFetch()
-    }
-
-    func likeTrack() {
-        // Immediately update like status for UI responsiveness
-        isLiked = true
-        
-        // Send notification to update status bar immediately
-        notifyModelUpdate()
-        
-        controller.likeTrack()
-    }
-
-    func unlikeTrack() {
-        // Immediately update like status for UI responsiveness
-        isLiked = false
-        
-        // Send notification to update status bar immediately
-        notifyModelUpdate()
-        
-        controller.unlikeTrack()
-    }
-
-    func updatePlaybackPosition(to seconds: Double) {
-        controller.updatePlaybackPosition(to: seconds)
-        self.currentTime = seconds
     }
 
     func openMusicApp() {
-        controller.openApp()
+        if playerType == .spotifast { openApp(bundleIdentifier: "rocks.spotifast.Spotifast"); return }
+        if playerType == .cider { openApp(bundleIdentifier: "sh.cider.genten.mac"); return }
+        controller?.openApp()
     }
 
     private func delayedFetch() {
@@ -279,7 +278,7 @@ class PlaybackModel: ObservableObject {
             self.fetchInfo()
         }
     }
-    
+
     private func notifyModelUpdate() {
         NotificationCenter.default.post(
             name: .contentModelDidUpdate,
@@ -288,16 +287,16 @@ class PlaybackModel: ObservableObject {
     }
 
     private func reset() {
-        DispatchQueue.main.async {
-            self.title = ""
-            self.artist = ""
-            self.isPlaying = false
-            self.imageURL = nil
-            self.currentTime = 0
-            self.totalTime = 1
-            self.image = nil
-            self.longFormInfo = nil
-        }
+        title = ""
+        artist = ""
+        isPlaying = false
+        imageURL = nil
+        currentTime = 0
+        totalTime = 1
+        image = nil
+        longFormInfo = nil
+        isLiked = nil
+        notifyModelUpdate()
     }
 
     private func computeDisplayText(from info: PlaybackInfo)
@@ -319,7 +318,9 @@ class PlaybackModel: ObservableObject {
         case .titleOnly:
             titleText = baseTitle
         case .segmentOnly:
-            titleText = segmentTitle?.isEmpty == false ? segmentTitle!
+            titleText =
+                segmentTitle?.isEmpty == false
+                ? segmentTitle!
                 : baseTitle
         case .titleAndSegment:
             if let segment = segmentTitle,
@@ -335,6 +336,63 @@ class PlaybackModel: ObservableObject {
         let artistText = authorText.isEmpty ? info.artist : authorText
 
         return (artistText, titleText)
+    }
+}
+
+extension PlaybackModel {
+    func toggleLiked() {
+        guard isLikingImplemented else { return }
+        if playerType == .spotifast { spotifast.control(["like"]); return }
+        if playerType == .cider {
+            guard let isLiked else { return }
+            cider.setFavorite(!isLiked)
+            return
+        }
+        let previousLikeStatus = self.isLiked
+
+        // Immediately update like status for UI responsiveness
+        if let previous = previousLikeStatus {
+            isLiked = !previous
+        }
+
+        // Send notification to update status bar immediately
+        notifyModelUpdate()
+
+        controller?.toggleLiked()
+        delayedFetch()
+    }
+
+    func likeTrack() {
+        guard isLikingImplemented else { return }
+        if playerType == .spotifast { spotifast.control(["like"], desiredLike: true); return }
+        if playerType == .cider { cider.setFavorite(true); return }
+        // Immediately update like status for UI responsiveness
+        isLiked = true
+
+        // Send notification to update status bar immediately
+        notifyModelUpdate()
+
+        controller?.likeTrack()
+    }
+
+    func unlikeTrack() {
+        guard isLikingImplemented else { return }
+        if playerType == .spotifast { spotifast.control(["like"], desiredLike: false); return }
+        if playerType == .cider { cider.setFavorite(false); return }
+        // Immediately update like status for UI responsiveness
+        isLiked = false
+
+        // Send notification to update status bar immediately
+        notifyModelUpdate()
+
+        controller?.unlikeTrack()
+    }
+
+    func updatePlaybackPosition(to seconds: Double) {
+        if playerType == .spotifast { spotifast.seek(to: seconds); return }
+        if playerType == .cider { cider.seek(to: seconds); return }
+        controller?.updatePlaybackPosition(to: seconds)
+        self.currentTime = seconds
     }
 }
 
