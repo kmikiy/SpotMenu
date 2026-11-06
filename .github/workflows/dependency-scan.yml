@@ -16,9 +16,17 @@ concurrency:
 
 jobs:
   scan:
-    name: Scan Swift and website dependencies
+    name: ${{ matrix.name }}
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ecosystem: swift
+            name: Swift / SwiftPM dependencies
+          - ecosystem: website
+            name: Website / Node.js npm dependencies
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -31,12 +39,12 @@ jobs:
           echo "160c6253e2922e9e0a6a9771c5c4c40a4b3c6090b34a3cdd5e80c96cc2e4218b  $RUNNER_TEMP/osv-scanner" | sha256sum --check
           chmod +x "$RUNNER_TEMP/osv-scanner"
           echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
-      - name: Scan locked dependencies
-        run: ./scripts/audit.sh --format=json --all-packages --output-file="$RUNNER_TEMP/dependencies.json"
+      - name: Scan ${{ matrix.ecosystem }} locked dependencies
+        run: ./scripts/audit.sh ${{ matrix.ecosystem }} --format=json --all-packages --output-file="$RUNNER_TEMP/dependencies.json"
       - name: Upload vulnerability report
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
-          name: dependency-vulnerabilities
+          name: dependency-vulnerabilities-${{ matrix.ecosystem }}
           path: ${{ runner.temp }}/dependencies.json
           if-no-files-found: warn
