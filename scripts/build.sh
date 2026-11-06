@@ -17,6 +17,6 @@ fi
 
 exec xcodebuild -quiet -project SpotMenu.xcodeproj -scheme SpotMenu \
     -configuration Debug -destination 'platform=macOS' \
-    -derivedDataPath "${SPOTMENU_BUILD_DIR:-${TMPDIR:-/tmp}/spotmenu-build}" \
+    -derivedDataPath "${SPOTMENU_BUILD_DIR:-$PWD/build}" \
     CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="$identity" DEVELOPMENT_TEAM="$team" \
     "$@"

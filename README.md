@@ -58,7 +58,8 @@ For command-line builds, use the repository scripts:
 
 The scripts use a local Apple Development certificate and detect its development team.
 Set `SPOTMENU_SIGN_IDENTITY` and `SPOTMENU_DEVELOPMENT_TEAM` to select another signing identity.
-Set `SPOTMENU_BUILD_DIR` to change the build directory. The default is `spotmenu-build` in the temporary directory.
+The built app is at `build/Build/Products/Debug/SpotMenu.app` inside this checkout.
+Set `SPOTMENU_BUILD_DIR` to use a different build directory.
 
 ### Continuous integration
 

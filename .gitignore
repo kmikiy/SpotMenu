@@ -12,3 +12,4 @@ website/dist/
 .DS_Store
 
 SpotMenuReleases
+/build/
