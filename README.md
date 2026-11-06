@@ -71,12 +71,19 @@ Run `./scripts/format.sh --write` to apply formatting, or `./scripts/format.sh -
 CI installs checksum-verified SwiftLint 0.65.1 instead of relying on runner packages.
 For local use, install SwiftLint through Homebrew (`brew install swiftlint`); the formatter is included in Xcode.
 Run `./scripts/test-ci.sh` to test with CI signing and locked Swift dependencies.
+Use `./scripts/test-results.sh path/to/results.xcresult` to read an Xcode test summary.
+
+`mise.toml` pins Node and actionlint for local use. Run `mise install node actionlint` before website or workflow checks.
+Run `./scripts/website.sh install` for a clean npm install, then `./scripts/website.sh build`.
+Use `./scripts/website.sh preview` to preview the build at `http://localhost:4321/SpotMenu/`.
+CI and Pages deployment use the same Node pin. Pull requests also build the website.
 
 The dependency workflow runs on pushes, pull requests, manual dispatch, and each Monday at 06:23 UTC.
-OSV-Scanner 2.7.0 checks the Swift `Package.resolved` and the website's `package-lock.json`, including transitive dependencies.
-It fails on known vulnerabilities and uploads the JSON report even when findings fail the job.
+OSV-Scanner 2.7.0 checks SwiftPM and website/npm dependencies in separate jobs, including transitive dependencies.
+Each job fails on known vulnerabilities and uploads its own JSON report, even when the other job fails.
 The weekly schedule starts after the workflow reaches the default branch.
 For the same scan locally, install OSV-Scanner and run `./scripts/audit.sh`.
+Use `./scripts/audit.sh swift` or `./scripts/audit.sh website` to scan one ecosystem.
 
 ### Spotifast
 

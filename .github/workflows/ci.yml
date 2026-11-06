@@ -16,6 +16,24 @@ env:
   DEVELOPER_DIR: /Applications/Xcode_26.6.app/Contents/Developer
 
 jobs:
+  website:
+    name: Website build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5
+        with:
+          version: 2026.11.1
+          install_args: node
+      - run: npm ci
+      - run: npm run build
+
   build-and-test:
     name: Build and test
     runs-on: macos-26

@@ -21,12 +21,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Node with mise
+        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5
         with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: website/package-lock.json
+          version: 2026.11.1
+          install_args: node
 
       - name: Install dependencies
         working-directory: ./website
