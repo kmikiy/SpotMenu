@@ -79,10 +79,10 @@ Run `./scripts/website.sh install` for a clean npm install, then `./scripts/webs
 Use `./scripts/website.sh preview` to preview the build at `http://localhost:4321/SpotMenu/`.
 CI and Pages deployment use the same Node pin. Pull requests also build the website.
 
-The dependency workflow runs on pushes, pull requests, manual dispatch, and each Monday at 06:23 UTC.
+The dependency workflow runs on pushes, pull requests, manual dispatch, and daily at 00:00 UTC.
 OSV-Scanner 2.7.0 checks SwiftPM and website/npm dependencies in separate jobs, including transitive dependencies.
 Each job fails on known vulnerabilities and uploads its own JSON report, even when the other job fails.
-The weekly schedule starts after the workflow reaches the default branch.
+The daily schedule starts after the workflow reaches the default branch.
 For the same scan locally, run `./scripts/audit.sh` after installing the tools with mise.
 Use `./scripts/audit.sh swift` or `./scripts/audit.sh website` to scan one ecosystem.
 
