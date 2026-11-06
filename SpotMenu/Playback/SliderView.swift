@@ -5,6 +5,8 @@ struct CustomSlider: View {
     let range: ClosedRange<Double>
     let foregroundColor: Color
     let trackColor: Color
+    var commitOnEnd = false
+    @State private var previewValue: Double?
 
     private let height: CGFloat = 4
     private let thumbSize: CGFloat = 20
@@ -35,25 +37,22 @@ struct CustomSlider: View {
                     )
                     .frame(maxHeight: .infinity, alignment: .center)
                     .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1)
-                    .animation(.easeInOut(duration: 0.15), value: value)
+                    .animation(.easeInOut(duration: 0.15), value: previewValue ?? value)
             }
             .frame(height: thumbSize)
             .contentShape(Rectangle())
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { drag in
-                        let location = drag.location.x - thumbSize / 2
-                        let clampedX = min(
-                            max(0, location),
-                            availableWidth
-                        )
-                        let relative = clampedX / availableWidth
-                        let newValue =
-                            range.lowerBound
-                            + (range.upperBound - range.lowerBound)
-                            * Double(relative)
+                        let newValue = position(at: drag.location.x, width: availableWidth)
                         withAnimation(.easeInOut(duration: 0.15)) {
-                            value = newValue
+                            if commitOnEnd { previewValue = newValue } else { value = newValue }
+                        }
+                    }
+                    .onEnded { drag in
+                        if commitOnEnd {
+                            value = position(at: drag.location.x, width: availableWidth)
+                            previewValue = nil
                         }
                     }
             )
@@ -62,7 +61,7 @@ struct CustomSlider: View {
     }
 
     private func progressWidth(in availableWidth: CGFloat) -> CGFloat {
-        let clampedValue = max(range.lowerBound, min(range.upperBound, value))
+        let clampedValue = max(range.lowerBound, min(range.upperBound, previewValue ?? value))
         let percent =
             (clampedValue - range.lowerBound)
             / (range.upperBound - range.lowerBound)
@@ -71,5 +70,11 @@ struct CustomSlider: View {
 
     private func thumbOffset(in availableWidth: CGFloat) -> CGFloat {
         progressWidth(in: availableWidth) - thumbSize / 2
+    }
+
+    private func position(at location: CGFloat, width: CGFloat) -> Double {
+        guard width > 0 else { return range.lowerBound }
+        let relative = min(max(0, location - thumbSize / 2), width) / width
+        return range.lowerBound + (range.upperBound - range.lowerBound) * Double(relative)
     }
 }
